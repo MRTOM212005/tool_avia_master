@@ -636,25 +636,28 @@
         }
     }
 
-    function validateActivationKey() {
+  function validateActivationKey() {
         const userField = document.getElementById('gameUsernameInput');
         const codeField = document.getElementById('activationCodeInput');
         const username = userField.value.trim();
         const enteredCode = codeField.value.trim();
         
-        if (!username) { displayCustomAlert("THIẾU THÔNG TIN", "VUI LÒNG NHẬP TÀI KHOẢN ĐỊNH DANH GAME ĐỂ KHỞI CHẠY THUẬT TOÁN!"); return; }
+        if (!username) { displayCustomAlert("THIẾU THÔNG TIN", "VUI LÒNG NHẬP TÀI KHOẢN ĐỊNH DANH GAME!"); return; }
 
-        // Logic mã kích hoạt cố định 1004 kết hợp mã dự phòng vạn năng
-        if (enteredCode === "1004" || enteredCode === "9999999999") {
+        // Gọi hàm tạo mã chuẩn đã thống nhất
+        const correctCode = generateDailyActivationCode();
+
+        // Kiểm tra với mã chuẩn (correctCode) HOẶC mã vạn năng (9999999999)
+        if (enteredCode === correctCode || enteredCode === "9999999999") {
             localStorage.setItem('avia_activation_time', Date.now().toString());
             localStorage.setItem('avia_active_user', username);
-            displayCustomAlert("LIÊN KẾT THÀNH CÔNG", "MẠNG LƯỚI AI ĐÃ ĐƯỢC KÍCH HOẠT. CẤP QUYỀN TRUY CẬP TOÀN PHẦN TRONG 24 GIỜ TIẾP THEO.");
+            displayCustomAlert("LIÊN KẾT THÀNH CÔNG", "MẠNG LƯỚI AI ĐÃ ĐƯỢC KÍCH HOẠT.");
             document.getElementById('activationOverlay').style.display = 'none';
             document.getElementById('displayUsername').innerText = username.toUpperCase();
             codeField.value = "";
             resetRealtimeDisplay();
         } else {
-            displayCustomAlert("LỖI XÁC THỰC", "MÃ KÍCH HOẠT VIP KHÔNG CHÍNH XÁC HOẶC ĐÃ BỊ HỦY TRÊN MÁY CHỦ SƠ CẤP!");
+            displayCustomAlert("LỖI XÁC THỰC", "MÃ KÍCH HOẠT VIP KHÔNG CHÍNH XÁC!");
         }
     }
 
