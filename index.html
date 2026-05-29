@@ -3,579 +3,796 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VYRON QUANTUM CONTROL - TRUNG TÂM ĐIỀU KHIỂN AI CAO CẤP</title>
+    <title>VYRON AI | PREMIUM CYBER SECURITY DASHBOARD</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         /* =========================================================================
-           🌌 DESIGN SYSTEM: DARK LUMINANCE LÝ TƯỞNG (PREMIUM QUANTUM LABS)
+           🎨 CORE PREMIUM HACKER CINEMATIC DESIGN SYSTEM (AI SECURITY BLACK)
            ========================================================================= */
         :root {
-            --neon-cyan: #00F0FF;
-            --neon-green: #00FF9D;
-            --neon-purple: #BD00FF;
-            --neon-red: #FF3B5C;
-            --neon-yellow: #FFC857;
+            --bg-deep: #05070d;
+            --bg-surface: #0a0e17;
+            --bg-card: rgba(10, 16, 26, 0.75);
+            --border-glow: rgba(0, 240, 255, 0.15);
+            --border-glow-active: rgba(0, 240, 255, 0.4);
             
-            --bg-void: #05070B;
-            --bg-panel: rgba(10, 15, 23, 0.75);
-            --glass-border: rgba(0, 240, 255, 0.15);
+            /* Tactical Cyber Accent Palette */
+            --cyber-cyan: #00f0ff;
+            --cyber-cyan-glow: rgba(0, 240, 255, 0.25);
+            --cyber-purple: #bd00ff;
+            --cyber-purple-glow: rgba(189, 0, 255, 0.2);
+            --cyber-gold: #ffb800;
+            --cyber-gold-glow: rgba(255, 184, 0, 0.15);
+            --cyber-green: #00ff66;
+            --cyber-red: #ff2a5f;
+            --cyber-muted: #4a5d78;
             
-            --font-title: 'Orbitron', sans-serif;
-            --font-ui: 'Rajdhani', sans-serif;
-            --font-code: 'JetBrains Mono', monospace;
+            /* Typography */
+            --font-hud-title: 'Orbitron', sans-serif;
+            --font-hud-sub: 'Rajdhani', sans-serif;
+            --font-hud-terminal: 'Share Tech Mono', monospace;
             
-            --shadow-premium: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 240, 255, 0.1);
+            /* Shadows & Blurs */
+            --shadow-cinematic: 0 25px 70px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            --blur-premium: blur(25px);
             --transition-tactical: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* CHỐNG TRÍCH XUẤT DỮ LIỆU & SAO CHÉP */
+        /* DISABLE SELECTION FOR SECURITY EXPERIENCE */
         * {
-            box-sizing: border-box;
-            margin: 0; padding: 0;
-            user-select: none;
             -webkit-user-select: none;
-            outline: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-ui);
-            background-color: var(--bg-void);
-            color: #E2E8F0;
-            min-height: 100vh;
+            font-family: var(--font-hud-sub);
+            background-color: var(--bg-deep);
+            color: #e2e8f0;
+            margin: 0;
+            padding: 30px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
+            min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* =========================================================================
-           🚀 CINEMATIC FX: GRID MATRIX & BACKGROUND RADAR SCAN
-           ========================================================================= */
-        #cyber-matrix-canvas {
-            position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: 0.45;
+        /* MATRIX QUANTUM CANVAS */
+        #quantum-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
+            opacity: 0.35;
         }
 
         body::before {
-            content: ""; position: fixed; inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(189, 0, 255, 0.04) 0%, rgba(5, 7, 11, 0.95) 100%);
-            z-index: -2; pointer-events: none;
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: -2;
         }
 
-        .hud-scanline {
-            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 3px, 6px 100%; opacity: 0.35;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 10%, rgba(5, 7, 13, 0.92) 100%);
+            pointer-events: none;
+            z-index: -1;
         }
 
-        /* ẨN TOÀN BỘ SPINNER/MŨI TÊN TĂNG GIẢM INPUT NUMBER TRÊN MỌI TRÌNH DUYỆT */
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none; margin: 0;
+        /* MAIN MASTER WRAPPER FRAME */
+        .wrapper {
+            max-width: 1280px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: var(--blur-premium);
+            -webkit-backdrop-filter: var(--blur-premium);
+            background: rgba(10, 14, 23, 0.75);
+            border: 1px solid var(--border-glow);
+            box-shadow: var(--shadow-cinematic);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition-tactical);
         }
-        input[type="number"] {
-            -moz-appearance: textfield;
+
+        .wrapper.active-cyber-glow {
+            border-color: var(--border-glow-active);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.1), var(--shadow-cinematic);
+        }
+
+        /* TOP TACTICAL HUD STATUS BAR */
+        .hud-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            background: rgba(5, 7, 13, 0.6);
+            border: 1px solid rgba(0, 240, 255, 0.08);
+        }
+
+        .hud-meta-group {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hud-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--cyber-muted);
+            text-transform: uppercase;
+        }
+
+        .hud-meta-value { 
+            color: #ffffff; 
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .hud-chip-container { display: flex; gap: 12px; }
+        .hud-chip { 
+            padding: 6px 14px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            font-family: var(--font-hud-title); 
+        }
+        
+        .chip-live { background: rgba(0, 255, 102, 0.05); border: 1px solid rgba(0, 255, 102, 0.2); color: var(--cyber-green); }
+        .chip-ai { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); color: var(--cyber-cyan); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyber-green); display: inline-block; box-shadow: 0 0 12px var(--cyber-green); animation: pulseDot 2s infinite; }
+        @keyframes pulseDot { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* =========================================================================
+           🎮 LOBBY GATEWAY LAYOUT
+           ========================================================================= */
+        .lobby-view { display: block; text-align: center; }
+        
+        .lobby-title {
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            font-family: var(--font-hud-title); 
+            font-size: 34px; 
+            font-weight: 900; 
+            letter-spacing: 6px;
+            background: linear-gradient(180deg, #ffffff 30%, #4a5d78 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .lobby-subtitle { 
+            color: var(--cyber-muted); 
+            font-size: 13px; 
+            margin-bottom: 45px; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-weight: 600; 
+        }
+
+        .game-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+        }
+        
+        @media (max-width: 992px) { .game-grid { grid-template-columns: 1fr; } }
+
+        .game-card {
+            border: 1px solid rgba(0, 240, 255, 0.08); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            cursor: pointer;
+            background: var(--bg-card); 
+            position: relative;
+            transition: var(--transition-tactical);
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        .game-card:hover { 
+            transform: translateY(-4px); 
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(14, 22, 36, 0.85);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.05);
+        }
+
+        .game-img-wrapper { 
+            width: 100%; 
+            height: 260px; 
+            overflow: hidden; 
+            position: relative; 
+            background: #02050a; 
+        }
+        
+        .game-img-wrapper img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center; 
+            transition: var(--transition-tactical);
+            filter: grayscale(40%) brightness(75%);
+        }
+        
+        .game-card:hover .game-img-wrapper img { 
+            transform: scale(1.03); 
+            filter: grayscale(0%) brightness(95%);
+        }
+        
+        .game-img-wrapper::after { 
+            content: ""; 
+            position: absolute; 
+            inset: 0; 
+            background: linear-gradient(to top, var(--bg-surface) 0%, rgba(10, 14, 23, 0.3) 60%, transparent 100%); 
+            pointer-events: none; 
+        }
+
+        .game-badge { 
+            position: absolute; 
+            top: 15px; 
+            right: 15px; 
+            font-size: 10px; 
+            font-weight: 700; 
+            padding: 5px 12px; 
+            border-radius: 4px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            z-index: 2; 
+            font-family: var(--font-hud-title); 
+        }
+        
+        .badge-phao { background: rgba(0, 255, 102, 0.06); color: var(--cyber-green); border: 1px solid rgba(0, 255, 102, 0.3); box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
+        .badge-nophao { background: rgba(74, 93, 120, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
+
+        .game-details { 
+            padding: 24px; 
+            text-align: left; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        
+        .game-name { font-family: var(--font-hud-title); font-size: 16px; font-weight: 700; color: #ffffff; margin: 0 0 10px 0; letter-spacing: 1px; }
+        .game-desc { font-size: 13px; color: #7f91a8; line-height: 1.6; margin: 0 0 24px 0; min-height: 60px; font-family: 'Inter', sans-serif; }
+        
+        .btn-enter { 
+            background: rgba(0, 240, 255, 0.03); 
+            border: 1px solid rgba(0, 240, 255, 0.15); 
+            color: var(--cyber-cyan); 
+            padding: 12px 0; 
+            border-radius: 4px; 
+            text-align: center; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-family: var(--font-hud-title); 
+            position: relative; 
+            overflow: hidden; 
+            transition: var(--transition-tactical); 
+        }
+
+        .btn-enter::before, .btn-premium-action::before, .activation-btn::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: -150%; 
+            width: 40%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent); 
+            transform: skewX(-25deg); 
+        }
+        
+        .game-card:hover .btn-enter::before { animation: flashShine 1.8s ease-in-out infinite; }
+        @keyframes flashShine { 100% { left: 250%; } }
+
+        .game-card:hover .btn-enter { 
+            background: var(--cyber-cyan); 
+            color: var(--bg-deep); 
+            border-color: var(--cyber-cyan); 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
 
         /* =========================================================================
-           🛡️ MAIN STATION FRAMEWRAPPERS (GLASSMORPHISM CAO CẤP)
+           📊 DASHBOARD OPERATION LAYER
            ========================================================================= */
-        .system-container {
-            max-width: 1350px; width: 100%; padding: 45px;
-            background: var(--bg-panel);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-top: 1px solid rgba(0, 240, 255, 0.35);
-            border-bottom: 1px solid rgba(189, 0, 255, 0.35);
-            border-radius: 12px; box-shadow: var(--shadow-premium);
-            position: relative; z-index: 10;
+        .dashboard-view { display: none; }
+        
+        .header-area { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            padding-bottom: 24px; 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+        }
+        
+        .brand-info { display: flex; align-items: center; gap: 20px; }
+        
+        .av2-avatar { 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 6px; 
+            border: 1px solid rgba(0, 240, 255, 0.2); 
+            object-fit: cover; 
+        }
+        
+        .brand-text h1 { font-family: var(--font-hud-title); font-size: 20px; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+        .brand-text span { font-size: 12px; color: var(--cyber-muted); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        
+        .btn-back-lobby { 
+            background: transparent; 
+            border: 1px solid rgba(0, 240, 255, 0.2); 
+            color: var(--cyber-cyan); 
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: var(--transition-tactical); 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-family: var(--font-hud-title); 
+        }
+        
+        .btn-back-lobby:hover { border-color: #ffffff; color: #ffffff; background: rgba(255,255,255,0.05); }
+
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; }
+        @media (max-width: 992px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+        .section-panel { 
+            background: rgba(10, 14, 23, 0.5); 
+            border: 1px solid rgba(0, 240, 255, 0.06); 
+            border-radius: 12px; 
+            padding: 26px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 22px; 
+        }
+        
+        .panel-title { font-family: var(--font-hud-title); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #7f91a8; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .panel-title::before { content: ""; width: 4px; height: 12px; background: var(--cyber-cyan); display: inline-block; box-shadow: 0 0 8px var(--cyber-cyan); }
+        
+        .input-wrapper label { display: block; font-size: 11px; color: var(--cyber-muted); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-family: var(--font-hud-title); }
+        
+        .input-box { 
+            width: 100%; 
+            background: rgba(5, 7, 13, 0.7); 
+            border: 1px solid rgba(0, 240, 255, 0.15); 
+            padding: 15px 18px; 
+            border-radius: 4px; 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: 600; 
+            box-sizing: border-box; 
+            transition: var(--transition-tactical); 
+        }
+        
+        .input-box:focus { border-color: var(--cyber-cyan); box-shadow: 0 0 12px rgba(0, 240, 255, 0.15); outline: none; background: rgba(5, 7, 13, 0.9); }
+
+        .action-button-group { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .action-button-group.has-phao-layout { grid-template-columns: 1fr 1fr; }
+        @media(max-width: 576px) { .action-button-group.has-phao-layout { grid-template-columns: 1fr; } }
+
+        .btn-premium-action { 
+            width: 100%; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            transition: var(--transition-tactical); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            font-family: var(--font-hud-title); 
+        }
+        
+        .btn-premium-action:not(:disabled):hover::before { animation: flashShine 1.5s ease-in-out infinite; }
+        
+        .btn-ai-process { background: var(--cyber-cyan); color: var(--bg-deep); }
+        .btn-ai-process:disabled { background: rgba(0, 240, 255, 0.05) !important; color: var(--cyber-muted) !important; cursor: not-allowed; border: 1px solid rgba(0, 240, 255, 0.05); }
+        .btn-ai-process:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 240, 255, 0.3); }
+        
+        .btn-phao-toggle { background: rgba(189, 0, 255, 0.04); color: #cbd5e1; border: 1px solid rgba(189, 0, 255, 0.25); }
+        .btn-phao-toggle:hover { background: rgba(189, 0, 255, 0.08); border-color: rgba(189, 0, 255, 0.4); }
+        
+        .btn-phao-toggle.phao-active { 
+            background: rgba(0, 255, 102, 0.05) !important; 
+            border: 1px solid var(--cyber-green) !important; 
+            color: var(--cyber-green) !important; 
+            font-weight: 700; 
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
         }
 
-        /* HUD Target Corners */
-        .hud-bracket { position: absolute; width: 15px; height: 15px; border-color: var(--neon-cyan); border-style: solid; pointer-events: none; }
-        .corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-        .corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-        .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-        .corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        /* METRICS PANELS */
+        .data-display { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .data-card { border: 1px solid rgba(0, 240, 255, 0.05); padding: 16px 20px; border-radius: 8px; background: rgba(5, 7, 13, 0.4); position: relative; overflow: hidden; transition: var(--transition-tactical); }
+        .data-card:hover { border-color: rgba(0, 240, 255, 0.15); }
+        .data-label { font-size: 11px; color: var(--cyber-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; font-family: var(--font-hud-title); }
+        .data-val { font-size: 18px; font-weight: 700; margin-top: 6px; color: #ffffff; }
+        
+        .risk-container { width: 100%; height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+        .risk-bar { height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s; }
+
+        /* SPEED SELECTOR CONTROLS */
+        .speed-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .speed-item { background: rgba(5, 7, 13, 0.5); border: 1px solid rgba(0, 240, 255, 0.08); padding: 12px 4px; border-radius: 4px; text-align: center; cursor: pointer; transition: var(--transition-tactical); }
+        .speed-item .icon { display: block; font-size: 15px; margin-bottom: 4px; filter: grayscale(100%) opacity(50%); transition: var(--transition-tactical); }
+        .speed-item .name { font-size: 11px; font-weight: 600; color: var(--cyber-muted); text-transform: uppercase; font-family: var(--font-hud-title); letter-spacing: 0.5px; }
+        .speed-item:hover { background: rgba(0, 240, 255, 0.02); border-color: rgba(0, 240, 255, 0.2); }
+        
+        .speed-item.active { border-color: var(--cyber-cyan); background: rgba(0, 240, 255, 0.05); box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.1); }
+        .speed-item.active .icon { filter: grayscale(0%) opacity(100%); }
+        .speed-item.active .name { color: #ffffff; font-weight: 700; }
+
+        /* AI CONSOLE CENTRAL TERMINAL */
+        .ai-terminal { 
+            border: 1px solid rgba(0, 240, 255, 0.08); 
+            border-radius: 8px; 
+            padding: 22px; 
+            font-size: 13px; 
+            color: #a2b4ca; 
+            background: #04060b; 
+            min-height: 240px; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        
+        /* Scan Line Anim */
+        .scan-laser { 
+            position: absolute; 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(90deg, transparent, var(--cyber-cyan), transparent); 
+            left: 0; 
+            top: 0; 
+            z-index: 2; 
+            opacity: 0; 
+            pointer-events: none; 
+        }
+        .ai-terminal.scanning .scan-laser { opacity: 0.8; animation: radarScanLine 1.8s linear infinite; }
+        @keyframes radarScanLine { 0% { top: 0%; } 100% { top: 100%; } }
+        
+        .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 18px; width: 100%; }
+        
+        .radar-spinner { 
+            width: 36px; 
+            height: 36px; 
+            border: 2px solid rgba(0, 240, 255, 0.05); 
+            border-top-color: var(--cyber-cyan); 
+            border-bottom-color: var(--cyber-purple);
+            border-radius: 50%; 
+            animation: spinRadar 0.8s linear infinite; 
+        }
+        @keyframes spinRadar { 100% { transform: rotate(360deg); } }
+        
+        .loading-text { font-family: var(--font-hud-title); font-weight: 700; letter-spacing: 2px; color: #ffffff; font-size: 11px; text-transform: uppercase; }
+        .loading-subtext { font-size: 11px; color: var(--cyber-muted); font-family: var(--font-hud-terminal); }
+        .result-output { display: block; width: 100%; height: 100%; }
 
         /* =========================================================================
-           🌐 TOP ENGINE HEADER: TRẠNG THÁI KẾT NỐI LƯỢNG TỬ
+           🔒 LOGIN SECURITY GATEWAY SCREEN
            ========================================================================= */
-        .station-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 35px; padding: 18px 30px;
-            background: linear-gradient(90deg, rgba(10, 15, 23, 0.95) 0%, rgba(189, 0, 255, 0.08) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.04); border-left: 5px solid var(--neon-purple); border-radius: 6px;
-        }
-
-        .header-brand { display: flex; align-items: center; gap: 20px; }
-        .header-brand h2 {
-            margin: 0; font-family: var(--font-title); font-size: 20px; 
-            letter-spacing: 3px; text-transform: uppercase; color: #FFFFFF;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-        }
-
-        .quantum-status {
-            display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800;
-            font-family: var(--font-code); background: rgba(0, 255, 157, 0.08); color: var(--neon-green);
-            padding: 5px 14px; border: 1px solid rgba(0, 255, 157, 0.25); border-radius: 4px; letter-spacing: 1.5px;
-        }
-        .pulse-core { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 12px var(--neon-green); animation: corePulse 1.6s infinite; }
-        @keyframes corePulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.25); } }
-
-        .system-meta-datastreams { display: flex; gap: 30px; font-family: var(--font-code); font-size: 12px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
-        .meta-stream-node span { color: var(--neon-cyan); margin-left: 6px; font-weight: 700; }
-
-        /* =========================================================================
-           🎮 SCREEN VIEW 01: LOBBY CHỌN PHÂN HỆ DỮ LIỆU
-           ========================================================================= */
-        .lobby-screen { display: block; }
-        .lobby-main-title { font-family: var(--font-title); font-size: 30px; font-weight: 900; letter-spacing: 4px; color: #FFF; text-transform: uppercase; margin-bottom: 8px; }
-        .lobby-subtitle { font-family: var(--font-code); font-size: 13px; color: var(--neon-cyan); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
-
-        .matrix-grid-deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        @media (max-width: 1024px) { .matrix-grid-deck { grid-template-columns: 1fr; } }
-
-        .quantum-card {
-            background: #090D14; border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px; overflow: hidden; position: relative;
-            transition: var(--transition-tactical); cursor: pointer; display: flex; flex-direction: column;
-        }
-        .quantum-card:hover {
-            border-color: var(--neon-cyan); transform: translateY(-6px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 240, 255, 0.15);
-        }
-
-        .card-render-frame { width: 100%; height: 250px; position: relative; overflow: hidden; background: #000; }
-        .card-render-frame img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-tactical); filter: contrast(115%) brightness(75%); }
-        .quantum-card:hover .card-render-frame img { transform: scale(1.06); filter: contrast(125%) brightness(95%); }
-        .card-render-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #090D14 0%, transparent 65%); }
-
-        .module-tag {
-            position: absolute; top: 15px; right: 15px; font-family: var(--font-code); font-size: 10px; font-weight: 800;
-            padding: 5px 12px; text-transform: uppercase; letter-spacing: 2px; z-index: 5;
-            background: rgba(5, 7, 11, 0.9); border-radius: 4px;
-        }
-        .tag-vip { color: var(--neon-yellow); border: 1px solid rgba(255, 200, 87, 0.4); box-shadow: 0 0 10px rgba(255, 200, 87, 0.1); }
-        .tag-std { color: var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
-
-        .card-body-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-body-content h3 { font-family: var(--font-title); font-size: 19px; font-weight: 700; color: #FFF; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
-        .card-body-content p { font-size: 14px; color: #94A3B8; line-height: 1.6; margin-bottom: 25px; min-height: 45px; font-weight: 500; }
-
-        .btn-module-trigger {
-            background: transparent; border: 1px solid var(--neon-cyan); color: var(--neon-cyan);
-            padding: 14px 0; text-align: center; font-size: 12px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-code);
-            transition: var(--transition-tactical); border-radius: 4px;
-        }
-        .quantum-card:hover .btn-module-trigger { background: rgba(0, 240, 255, 0.08); box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.2); }
-
-        /* =========================================================================
-           📊 SCREEN VIEW 02: MAIN DASHBOARD PHÂN TÍCH
-           ========================================================================= */
-        .dashboard-screen { display: none; }
-        
-        .dash-control-bar {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .active-target-profile { display: flex; align-items: center; gap: 20px; }
-        .profile-avatar { width: 55px; height: 55px; object-fit: cover; border-radius: 6px; border: 2px solid var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
-        .profile-text h1 { font-family: var(--font-title); font-size: 24px; color: #FFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
-        .profile-text span { font-family: var(--font-code); font-size: 12px; color: var(--neon-green); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-
-        .btn-terminate-session {
-            background: rgba(255, 59, 92, 0.08); border: 1px solid rgba(255, 59, 92, 0.4); color: var(--neon-red);
-            padding: 12px 24px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 4px;
-            font-family: var(--font-code); letter-spacing: 2px; text-transform: uppercase; transition: var(--transition-tactical);
-        }
-        .btn-terminate-session:hover { background: var(--neon-red); color: #FFF; box-shadow: 0 0 20px rgba(255, 59, 92, 0.4); }
-
-        .dashboard-layout-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 30px; }
-        @media (max-width: 1100px) { .dashboard-layout-grid { grid-template-columns: 1fr; } }
-
-        /* Tactical Control Panels */
-        .tactical-panel {
-            background: rgba(7, 10, 15, 0.85); border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 30px; border-radius: 8px; display: flex; flex-direction: column; gap: 25px;
-            box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.7); backdrop-filter: blur(12px); position: relative;
-        }
-        .panel-headline {
-            font-family: var(--font-title); font-size: 14px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2.5px; color: #FFF; display: flex; align-items: center; gap: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 15px;
-        }
-        .panel-headline em { color: var(--neon-cyan); font-style: normal; font-family: var(--font-code); font-weight: 800; }
-
-        /* Form Input Architecture */
-        .form-field-block { display: flex; flex-direction: column; gap: 10px; }
-        .form-field-block label { font-family: var(--font-code); font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
-        
-        .premium-input-box { position: relative; display: flex; align-items: center; }
-        .premium-input-box .currency-addon { position: absolute; right: 20px; font-family: var(--font-code); font-size: 13px; font-weight: 700; color: #64748B; transition: var(--transition-tactical); pointer-events: none; }
-        
-        .tactical-input {
-            width: 100%; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 16px 60px 16px 20px; color: #FFF; font-size: 15px; font-family: var(--font-code);
-            font-weight: 700; border-radius: 4px; transition: var(--transition-tactical);
-        }
-        .tactical-input:focus { border-color: var(--neon-cyan); box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.12), 0 0 15px rgba(0, 240, 255, 0.05); }
-        .tactical-input:focus + .currency-addon { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
-
-        select.tactical-input { padding-right: 20px; cursor: pointer; color: var(--neon-yellow); }
-        select.tactical-input option { background-color: #05070B; color: #FFF; }
-
-        /* Xung nhịp xử lý tần số */
-        .frequency-selector-rack { display: flex; flex-direction: column; gap: 10px; }
-        .frequency-btn-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .freq-node {
-            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px 5px; text-align: center; cursor: pointer; border-radius: 4px; transition: var(--transition-tactical);
-        }
-        .freq-node span { font-family: var(--font-code); font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 1px; }
-        .freq-node:hover { border-color: rgba(255, 200, 87, 0.3); }
-        .freq-node.active { background: rgba(255, 200, 87, 0.08); border-color: var(--neon-yellow); box-shadow: 0 0 15px rgba(255, 200, 87, 0.2); }
-        .freq-node.active span { color: var(--neon-yellow); text-shadow: 0 0 8px rgba(255, 200, 87, 0.4); }
-
-        /* Panel Action Button Layout Matrix */
-        .panel-actions-wrapper { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 5px; }
-        .panel-actions-wrapper.dual-mode { grid-template-columns: 1fr 1fr; }
-        @media (max-width: 600px) { .panel-actions-wrapper.dual-mode { grid-template-columns: 1fr; } }
-
-        .btn-action-node {
-            width: 100%; padding: 18px; font-family: var(--font-code); font-size: 12px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 4px;
-            display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition-tactical);
+        .activation-overlay { 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(4, 6, 11, 0.94); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px); 
+            z-index: 99999; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
         }
         
-        .btn-node-primary {
-            background: linear-gradient(45deg, rgba(0, 240, 255, 0.12), rgba(189, 0, 255, 0.12));
-            border: 1px solid var(--neon-cyan); color: #FFF; box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
-        }
-        .btn-node-primary:not(:disabled):hover {
-            background: linear-gradient(45deg, rgba(0, 240, 255, 0.22), rgba(189, 0, 255, 0.25));
-            border-color: var(--neon-purple); box-shadow: 0 0 25px rgba(189, 0, 255, 0.35); transform: translateY(-2px);
-        }
-        .btn-node-primary:disabled { background: #131722 !important; color: #475569 !important; border-color: #334155 !important; box-shadow: none; cursor: not-allowed; }
-
-        .btn-node-secondary { background: transparent; border: 1px solid rgba(255, 255, 255, 0.15); color: #94A3B8; }
-        .btn-node-secondary:hover { border-color: #FFF; color: #FFF; }
-        .btn-node-secondary.active {
-            background: rgba(0, 255, 157, 0.08); border-color: var(--neon-green); color: var(--neon-green);
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2); text-shadow: 0 0 8px rgba(0, 255, 157, 0.3);
+        .activation-modal { 
+            max-width: 450px; 
+            width: 100%; 
+            background: rgba(10, 14, 23, 0.9); 
+            border: 1px solid rgba(0, 240, 255, 0.2); 
+            border-radius: 12px; 
+            padding: 40px; 
+            box-sizing: border-box; 
+            text-align: center; 
+            box-shadow: 0 40px 90px rgba(0,0,0,0.85), 0 0 30px rgba(0, 240, 255, 0.05); 
+            position: relative; 
+            overflow: hidden; 
         }
 
-        /* Metrics Telemetry Grid */
-        .telemetry-data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .telemetry-card { background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 6px; position: relative; }
-        .telemetry-card::before { content: ""; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.05); }
-        .telemetry-card.highlighted::before { background: var(--neon-cyan); }
-        
-        .telemetry-label { font-family: var(--font-code); font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 700; }
-        .telemetry-value { font-family: var(--font-code); font-size: 20px; font-weight: 700; color: #FFF; }
-
-        /* =========================================================================
-           🖥️ TERMINAL COMMAND LOGS INTERFACE (HACKER HQ STYLE)
-           ========================================================================= */
-        .terminal-box-deck {
-            background: #020406; border: 1px solid rgba(255, 255, 255, 0.06); padding: 25px;
-            font-family: var(--font-code); font-size: 13px; color: #94A3B8; min-height: 250px;
-            position: relative; overflow: hidden; border-radius: 6px; box-shadow: inset 0 0 25px rgba(0,0,0,1);
-            display: flex; flex-direction: column; line-height: 1.6;
-        }
-        
-        .laser-scan-line {
-            position: absolute; width: 100%; height: 40px;
-            background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.08), transparent);
-            left: 0; top: -40px; z-index: 10; opacity: 0; pointer-events: none;
-            border-bottom: 2px solid var(--neon-cyan);
-        }
-        .terminal-box-deck.active-scanning .laser-scan-line { opacity: 1; animation: laserScanMove 1.4s linear infinite; }
-        @keyframes laserScanMove { 0% { top: -40px; } 100% { top: 100%; } }
-
-        .quantum-loading-wrapper { display: none; flex-direction: column; gap: 8px; width: 100%; }
-        .loading-alert-string { font-weight: 800; color: var(--neon-green); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-        .hex-data-pipeline { color: #475569; font-size: 11px; word-break: break-all; opacity: 0.65; }
-
-        .terminal-output-container { display: block; width: 100%; height: 100%; }
-        
-        /* Premium Data Visualizer Node */
-        .visualizer-node { width: 100%; height: 120px; margin-top: 10px; opacity: 0.85; }
-
-        /* =========================================================================
-           🔒 SECURITY OVERLAY: AUTHENTICATION MODAL (GIỮ NGUYÊN LOGIC)
-           ========================================================================= */
-        .security-lock-overlay {
-            position: fixed; inset: 0; background: rgba(4, 6, 10, 0.96);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px;
-        }
-        
-        .auth-station-card {
-            max-width: 460px; width: 100%; background: #0A0F17;
-            border: 1px solid var(--neon-purple); border-radius: 8px;
-            padding: 45px; box-shadow: 0 0 50px rgba(189, 0, 255, 0.15); position: relative; overflow: hidden;
-        }
-        .auth-station-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); }
-
-        .auth-card-title { font-family: var(--font-title); font-size: 24px; font-weight: 900; letter-spacing: 3px; color: #FFF; text-transform: uppercase; margin-bottom: 6px; }
-        .auth-card-sub { font-family: var(--font-code); font-size: 11px; color: var(--neon-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; font-weight: 700; }
-        
-        .auth-diagnostic-panel {
-            background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-left: 3px solid var(--neon-red);
-            padding: 16px; font-size: 11px; color: #94A3B8; font-family: var(--font-code); margin-bottom: 30px; border-radius: 4px; line-height: 1.5;
+        .activation-modal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.015;
+            pointer-events: none;
         }
 
-        .auth-input-wrapper { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
-        .auth-input-wrapper label { font-size: 11px; font-family: var(--font-code); font-weight: 700; color: #CBD5E1; letter-spacing: 1px; text-transform: uppercase; }
+        .act-title { font-family: var(--font-hud-title); font-size: 20px; font-weight: 700; letter-spacing: 3px; margin-bottom: 6px; color: #ffffff; }
+        .act-subtitle { font-size: 12px; color: var(--cyber-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; font-family: var(--font-hud-title); }
         
-        .auth-terminal-input {
-            width: 100%; background: #020406; border: 1px solid rgba(255, 255, 255, 0.15); padding: 16px;
-            font-size: 15px; font-weight: 700; font-family: var(--font-code); color: var(--neon-green);
-            border-radius: 4px; transition: var(--transition-tactical); text-align: center;
+        .act-status-terminal { 
+            background: #020408; 
+            border: 1px solid rgba(0, 240, 255, 0.06); 
+            padding: 14px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            color: #6a7d97; 
+            font-family: var(--font-hud-terminal); 
+            text-align: left; 
+            margin-bottom: 22px; 
+            line-height: 1.6; 
         }
-        .auth-terminal-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.15); }
-        
-        .auth-terminal-input.input-code { letter-spacing: 4px; font-size: 18px; color: var(--neon-yellow); }
 
-        .btn-authenticate-submit {
-            width: 100%; border: none; padding: 18px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); color: #FFF;
-            font-family: var(--font-code); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; border-radius: 4px; margin-bottom: 15px; transition: var(--transition-tactical);
-            box-shadow: 0 10px 25px rgba(189, 0, 255, 0.25);
-        }
-        .btn-authenticate-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(189, 0, 255, 0.4); filter: brightness(1.1); }
+        .activation-field-group { text-align: left; margin-bottom: 20px; }
+        .activation-field-group label { display: block; font-size: 10px; font-family: var(--font-hud-title); color: var(--cyber-muted); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
         
-        .btn-gateway-support {
-            width: 100%; background: transparent; border: 1px dashed rgba(255, 255, 255, 0.15); padding: 14px; border-radius: 4px;
-            font-family: var(--font-code); color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px;
-            text-transform: uppercase; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: var(--transition-tactical);
+        .activation-user-input { 
+            width: 100%; 
+            background: #020407; 
+            border: 1px solid rgba(0, 240, 255, 0.12); 
+            padding: 14px; 
+            border-radius: 4px; 
+            color: var(--cyber-gold); 
+            font-size: 15px; 
+            font-weight: 600; 
+            text-align: center; 
+            transition: var(--transition-tactical); 
+            letter-spacing: 0.5px; 
         }
-        .btn-gateway-support:hover { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(255, 200, 87, 0.04); }
+        .activation-user-input:focus { border-color: var(--cyber-cyan); outline: none; background: #000; color: #fff; }
 
-        /* =========================================================================
-           🚨 CINEMATIC POPUP MODAL WARNING (THAY THẾ ALERT)
-           ========================================================================= */
-        .cinematic-alert-overlay {
-            position: fixed; inset: 0; background: rgba(4, 6, 10, 0.85);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            z-index: 999999; display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        .activation-input { 
+            width: 100%; 
+            background: #020407; 
+            border: 1px solid rgba(0, 240, 255, 0.12); 
+            padding: 14px; 
+            border-radius: 4px; 
+            color: #ffffff; 
+            font-size: 18px; 
+            font-weight: 700; 
+            text-align: center; 
+            letter-spacing: 5px; 
+            font-family: var(--font-hud-title); 
+            transition: var(--transition-tactical); 
         }
-        .cinematic-alert-overlay.visible { opacity: 1; pointer-events: auto; }
-        
-        .cinematic-alert-modal {
-            max-width: 400px; width: 100%; background: #0A0F17; border: 1px solid var(--neon-red);
-            border-radius: 6px; padding: 30px; text-align: center; position: relative;
-            box-shadow: 0 0 40px rgba(255, 59, 92, 0.25); transform: scale(0.85); transition: transform 0.3s ease;
-        }
-        .cinematic-alert-overlay.visible .cinematic-alert-modal { transform: scale(1); }
-        
-        .alert-icon-head { font-size: 32px; color: var(--neon-red); font-family: var(--font-title); margin-bottom: 15px; font-weight: 900; animation: alertFlash 1s infinite alternate; }
-        @keyframes alertFlash { 0% { opacity: 0.4; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 15px var(--neon-red); } }
-        
-        .alert-main-msg { font-size: 16px; font-weight: 700; color: #FFF; margin-bottom: 12px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.5px; }
-        .alert-sub-msg { font-size: 13px; color: #94A3B8; font-family: var(--font-code); margin-bottom: 25px; line-height: 1.5; }
-        
-        .btn-alert-close {
-            background: var(--neon-red); border: none; color: #FFF; font-family: var(--font-code);
-            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
-            padding: 12px 28px; border-radius: 4px; cursor: pointer; transition: var(--transition-tactical);
-        }
-        .btn-alert-close:hover { background: #FF1A43; box-shadow: 0 0 15px rgba(255, 59, 92, 0.5); }
+        .activation-input:focus { border-color: var(--cyber-cyan); outline: none; background: #000; }
 
-        /* =========================================================================
-           📱 RESPONSIVE ADAPTATION ENGINE
-           ========================================================================= */
-        @media (max-width: 768px) {
-            body { padding: 12px; }
-            .system-container { padding: 25px 20px; border-radius: 8px; }
-            .lobby-main-title { font-size: 22px; }
-            .station-header { flex-direction: column; gap: 15px; align-items: flex-start; padding: 15px 20px; }
-            .system-meta-datastreams { flex-direction: column; gap: 8px; }
-            .telemetry-data-grid { grid-template-columns: 1fr; }
-            .frequency-btn-row { grid-template-columns: repeat(2, 1fr); }
-            .auth-station-card { padding: 30px 20px; }
+        .activation-btn { 
+            width: 100%; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 4px; 
+            font-family: var(--font-hud-title); 
+            font-size: 12px; 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            transition: var(--transition-tactical); 
+            background: var(--cyber-cyan); 
+            color: var(--bg-deep); 
+            margin-top: 10px; 
+            margin-bottom: 14px; 
+        }
+        .activation-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0, 240, 255, 0.25); }
+        
+        .telegram-btn { 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(0, 240, 255, 0.15); 
+            padding: 12px; 
+            border-radius: 4px; 
+            color: var(--cyber-cyan); 
+            font-size: 12px; 
+            font-weight: 600; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            transition: var(--transition-tactical); 
+        }
+        .telegram-btn:hover { border-color: #ffffff; color: #ffffff; background: rgba(255,255,255,0.05); }
+
+        /* ALERT NOTIFICATIONS */
+        .cyber-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 999999;
+            background: rgba(10, 14, 23, 0.9);
+            border-left: 4px solid var(--cyber-cyan);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: var(--font-hud-title);
+        }
+        .cyber-alert.alert-show { transform: translateX(0); }
+        .cyber-alert.alert-success { border-left-color: var(--cyber-green); color: var(--cyber-green); }
+        .cyber-alert.alert-error { border-left-color: var(--cyber-red); color: var(--cyber-red); }
+
+        @media (max-width: 768px) { 
+            body { padding: 15px 10px; }
+            .wrapper { padding: 20px; border-radius: 8px; } 
+            .lobby-title { font-size: 24px; letter-spacing: 3px; } 
+            .dashboard-grid { gap: 20px; } 
+            .hud-status-bar { flex-direction: column; gap: 12px; align-items: flex-start; padding: 14px 18px; } 
+            .hud-meta-group { gap: 15px; flex-direction: column; align-items: flex-start; }
+            .data-display { grid-template-columns: 1fr; } 
+            .activation-modal { padding: 25px 20px; }
         }
     </style>
 </head>
 <body>
 
-<div class="hud-scanline"></div>
-<canvas id="cyber-matrix-canvas"></canvas>
+<div id="cyberNotification" class="cyber-alert">THÔNG BÁO HỆ THỐNG</div>
 
-<div class="cinematic-alert-overlay" id="customAlertSystem">
-    <div class="cinematic-alert-modal">
-        <div class="alert-icon-head">[ CẢNH BÁO ]</div>
-        <div class="alert-main-msg" id="alertTitleNode">XUNG ĐỘT HỆ THỐNG</div>
-        <div class="alert-sub-msg" id="alertMessageNode">Nội dung thông báo hệ thống...</div>
-        <button class="btn-alert-close" onclick="closeCustomAlert()">XÁC NHẬN LOG</button>
+<div class="activation-overlay" id="activationOverlay" style="display: none;">
+    <div class="activation-modal">
+        <div class="act-title" id="actModalTitle">AI SECURITY ACCESS</div>
+        <div class="act-subtitle" id="actModalSubtitle">XÁC THỰC LÕI KÍCH HOẠT</div>
+        
+        <div class="act-status-terminal" id="actTerminalLog">
+            [SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM<br>
+            [SECURITY]: ĐANG CHỜ ĐỊNH DANH TÀI KHOẢN VÀ MÃ KHÓA 24H...
+        </div>
+
+        <div class="activation-field-group">
+            <label>Tên tài khoản Game (ID)</label>
+            <input type="text" id="gameUsernameInput" class="activation-user-input" placeholder="Tên tài khoản game (Min 5 kí tự)...">
+        </div>
+
+        <div class="activation-field-group">
+            <label>Mã kích hoạt Bảo Mật (10 Chữ số)</label>
+            <input type="text" id="activationCodeInput" class="activation-input" placeholder="0000000000" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        </div>
+        
+        <button class="activation-btn" onclick="validateActivationKey()">KHỞI TẠO KẾT NỐI AI</button>
+        <a href="https://t.me/trangcskhxx88" target="_blank" class="telegram-btn">⚡ LIÊN HỆ TELEGRAM LẤY MÃ</a>
     </div>
 </div>
 
-<div class="security-lock-overlay" id="activationOverlay" style="display: none;">
-    <div class="auth-station-card">
-        <div class="auth-card-title" id="actModalTitle">XÁC THỰC HỆ THỐNG</div>
-        <div class="auth-card-sub" id="actModalSubtitle">LÕI BẢO MẬT AI PREMIUM</div>
-        
-        <div class="auth-diagnostic-panel" id="actTerminalLog">
-            [HỆ_THỐNG]: TƯỜNG LỬA LƯỢNG TỬ ĐÃ KHỞI CHẠY KHÔNG GIAN BẢO MẬT.<br>
-            [TIẾN_TRÌNH]: ĐANG CHỜ CẤP QUYỀN TRUY CẬP TỪ NGƯỜI ĐÙNG...
-        </div>
+<canvas id="quantum-canvas"></canvas>
 
-        <div class="auth-input-wrapper">
-            <label>TÀI KHOẢN ĐỊNH DANH GAME (ID)</label>
-            <input type="text" id="gameUsernameInput" class="auth-terminal-input" style="color: #FFF;" placeholder="Nhập ID tài khoản của bạn...">
+<div class="wrapper" id="mainWrapper">
+    <div class="hud-status-bar">
+        <div class="hud-meta-group">
+            <div class="hud-meta-item"><span class="status-dot"></span> STATUS: <span class="hud-meta-value" id="systemStatusText">ĐANG HOẠT ĐỘNG</span></div>
+            <div class="hud-meta-item">NGƯỜI DÙNG: <span class="hud-meta-value" id="displayUsername" style="color:var(--cyber-gold);">UNAUTHORIZED</span></div>
         </div>
-
-        <div class="auth-input-wrapper">
-            <label>MÃ KÍCH HOẠT THUẬT TOÁN VIP</label>
-            <input type="text" id="activationCodeInput" class="auth-terminal-input input-code" placeholder="••••">
-        </div>
-        
-        <button class="btn-authenticate-submit" onclick="validateActivationKey()">LIÊN KẾT TRUNG TÂM AI</button>
-        <a href="https://t.me/trangcskhxx88" target="_blank" class="btn-gateway-support">YÊU CẦU CẤP MÃ TRUY CẬP: @trangcskhxx88</a>
-    </div>
-</div>
-
-<div class="system-container" id="mainWrapper">
-    <div class="hud-bracket corner-tl"></div><div class="hud-bracket corner-tr"></div>
-    <div class="hud-bracket corner-bl"></div><div class="hud-bracket corner-br"></div>
-
-    <div class="station-header">
-        <div class="header-brand">
-            <h2>HỆ THỐNG ĐIỀU KHIỂN AI</h2>
-            <div class="quantum-status"><span class="pulse-core"></span> ĐANG HOẠT ĐỘNG</div>
-        </div>
-        <div class="system-meta-datastreams">
-            <div class="meta-stream-node">MÁY CHỦ: <span>VYRON_PREMIUM_CORE</span></div>
-            <div class="meta-stream-node">ĐỊNH DANH: <span id="displayUsername" style="color: var(--neon-yellow);">ẨN DANH</span></div>
+        <div class="hud-chip-container">
+            <div class="hud-chip chip-live">LIVE HUD SECURE</div>
+            <div class="hud-chip chip-ai">LUNEX</div>
         </div>
     </div>
 
-    <div id="lobbyView" class="lobby-screen">
-        <div class="lobby-main-title">TRUNG TÂM DỮ LIỆU TOÀN CẦU</div>
-        <div class="lobby-subtitle" id="systemStatusText">ĐỒNG BỘ MẠNG LƯỚI ĐỂ LIÊN KẾT THUẬT TOÁN MA TRẬN LƯỢNG TỬ.</div>
-        
-        <div class="matrix-grid-deck">
-            <div class="quantum-card" data-game="avia2" onclick="enterGame('avia2')">
-                <div class="card-render-frame"><span class="module-tag tag-vip">PHÂN HỆ VIP</span><img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2"></div>
-                <div class="card-body-content">
-                    <div>
-                        <h3>Avia Masters 2</h3>
-                        <p>Lõi ma trận nâng cấp thế hệ mới. Hỗ trợ hệ thống phao cứu hộ tự động phân cấp và giảm thiểu biên độ rủi ro quỹ vốn cực hạn.</p>
-                    </div>
-                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
-                </div>
+    <div id="lobbyView" class="lobby-view">
+        <div class="lobby-title">Hệ Thống Phân Tích Avia Pro</div>
+        <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ cấu trúc thuật toán AI</div>
+        <div class="game-grid">
+            <div class="game-card" data-game="avia2" onclick="enterGame('avia2')">
+                <div class="game-img-wrapper"><span class="game-badge badge-phao">Cơ chế Phao</span><img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2"></div>
+                <div class="game-details"><div><div class="game-name">Avia Masters 2</div><div class="game-desc">Bản nâng cấp thế hệ mới tích hợp Hệ thống phao cứu hộ tự động khi va chạm.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
             </div>
-            <div class="quantum-card" data-game="aviaphitruc" onclick="enterGame('aviaphitruc')">
-                <div class="card-render-frame"><span class="module-tag tag-std">TIÊU CHUẨN</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành"></div>
-                <div class="card-body-content">
-                    <div>
-                        <h3>Bậc Thầy Phi Hành</h3>
-                        <p>Phân tích dữ liệu nền tảng tiêu chuẩn. Dự đoán điểm gãy đồ thị dựa trên sai số vận tốc và vector phân bổ lực máy chủ.</p>
-                    </div>
-                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
-                </div>
+            <div class="game-card" data-game="aviaphitruc" onclick="enterGame('aviaphitruc')">
+                <div class="game-img-wrapper"><span class="game-badge badge-nophao">Không có Phao</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành"></div>
+                <div class="game-details"><div><div class="game-name">Bậc Thầy Phi Hành</div><div class="game-desc">Cổng trò chơi phiên bản truyền thống gốc, thuật toán tính điểm thuần túy.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
             </div>
-            <div class="quantum-card" data-game="aviaxmas" onclick="enterGame('aviaxmas')">
-                <div class="card-render-frame"><span class="module-tag tag-std">TIÊU CHUẨN</span><img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh"></div>
-                <div class="card-body-content">
-                    <div>
-                        <h3>Aviamasters X-Mas</h3>
-                        <p>Cơ sở dữ liệu tích hợp từ sự kiện đặc biệt. Tối ưu thuật toán nén biên độ dòng tiền và quét tỷ lệ lệch chuẩn tích lũy.</p>
-                    </div>
-                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
-                </div>
+            <div class="game-card" data-game="aviaxmas" onclick="enterGame('aviaxmas')">
+                <div class="game-img-wrapper"><span class="game-badge badge-nophao">Không có Phao</span><img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh"></div>
+                <div class="game-details"><div><div class="game-name">Aviamasters Giáng Sinh</div><div class="game-desc">Sự kiện lễ hội đặc biệt, giao diện X-Mas bắt mắt đòi hỏi căn vốn sát sao.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
             </div>
         </div>
     </div>
 
-    <div id="dashboardView" class="dashboard-screen">
-        <div class="dash-control-bar">
-            <div class="active-target-profile">
-                <img id="activeAvatar" class="profile-avatar" src="" alt="Target Core">
-                <div class="profile-text"><h1 id="activeTitle">THIẾT LẬP MỤC TIÊU</h1><span>MÁY CHỦ PHÂN TÍCH CAO CẤP</span></div>
+    <div id="dashboardView" class="dashboard-view">
+        <div class="header-area">
+            <div class="brand-info">
+                <img id="activeAvatar" class="av2-avatar" src="" alt="Active Matrix">
+                <div class="brand-text"><h1 id="activeTitle">CỔNG GAME</h1><span>Hệ Thống Bảo Mật Phân Tích Độc Lập PREMIUM</span></div>
             </div>
-            <button class="btn-terminate-session" onclick="backToLobby()">[ ĐÓNG PHIÊN KẾT NỐI ]</button>
+            <button class="btn-back-lobby" onclick="backToLobby()">⬅️ Sảnh Hệ Thống</button>
         </div>
-        
-        <div class="dashboard-layout-grid">
-            <div class="tactical-panel">
-                <div class="panel-headline"><em>[+]</em> THAM SỐ CẤU HÌNH LÕI</div>
+        <div class="dashboard-grid">
+            <div class="section-panel">
+                <div class="panel-title">⚙️ AI HUD OPERATIONS CONTROL</div>
                 
-                <div class="form-field-block">
-                    <label>TỔNG HẠN MỨC VỐN BAN ĐẦU (TỐI THIỂU 50.000 VNĐ)</label>
-                    <div class="premium-input-box">
-                        <input type="text" id="capitalInputVisual" class="tactical-input" value="2.000.000" oninput="handleCapitalVisualInput(this)">
-                        <input type="number" id="capitalInput" style="display:none;" value="2000000">
-                        <span class="currency-addon">VNĐ</span>
-                    </div>
+                <div class="input-wrapper">
+                    <label>Tổng Hạn Mức Vốn Ban Đầu (VND) - Nhập Thủ Công</label>
+                    <input type="text" id="capitalInput" class="input-box" value="2.000.000" oninput="formatVndInput(this)">
                 </div>
                 
-                <div class="form-field-block">
-                    <label>CHIẾN LƯỢC QUÉT MA TRẬN AI</label>
-                    <select id="strategySelect" class="tactical-input" onchange="resetRealtimeDisplay()">
-                        <option value="safe" id="optSafe">BẢO TOÀN VỐN (AN TOÀN TUYỆT ĐỐI)</option>
-                        <option value="medium" selected>CÂN BẰNG TỶ LỆ (TIÊU CHUẨN MÁY CHỦ)</option>
-                        <option value="high">LỢI NHUẬN TỐI ĐA (MẠO HIỂM CAO)</option>
+                <div class="input-wrapper">
+                    <label>Chế Độ Phân Tích Vòng Cược</label>
+                    <style>
+                        select.input-box option { background-color: var(--bg-surface); color: #fff; }
+                    </style>
+                    <select id="strategySelect" class="input-box" onchange="resetRealtimeDisplay()">
+                        <option value="safe" id="optSafe">🛡️ Bảo Toàn Quỹ Vốn</option>
+                        <option value="medium" selected>⚖️ Cân Bằng Chiến Thuật AI</option>
+                        <option value="high">🔥 Tấn Công Hệ Số Tối Đa</option>
                     </select>
                 </div>
                 
-                <div class="frequency-selector-rack">
-                    <label>XUNG NHỊP TẦN SỐ ĐỒNG BỘ MÁY CHỦ</label>
-                    <div class="frequency-btn-row">
-                        <div class="freq-node active" data-speed="turtle" onclick="changeSpeed('turtle')"><span>TẦN THẤP</span></div>
-                        <div class="freq-node" data-speed="human" onclick="changeSpeed('human')"><span>TIÊU CHUẨN</span></div>
-                        <div class="freq-node" data-speed="hare" onclick="changeSpeed('hare')"><span>TĂNG TỐC</span></div>
-                        <div class="freq-node" data-speed="lightning" onclick="changeSpeed('lightning')"><span>CỰC HẠN</span></div>
+                <div class="speed-container">
+                    <div class="panel-title" style="margin-bottom:12px;">⚡ XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN LAYER</div>
+                    <div class="speed-row">
+                        <div class="speed-item active" data-speed="turtle" onclick="changeSpeed('turtle')"><span class="icon">🐢</span><span class="name">RÙA</span></div>
+                        <div class="speed-item" data-speed="human" onclick="changeSpeed('human')"><span class="icon">🚶</span><span class="name">NGƯỜI</span></div>
+                        <div class="speed-item" data-speed="hare" onclick="changeSpeed('hare')"><span class="icon">🐇</span><span class="name">THỎ</span></div>
+                        <div class="speed-item" data-speed="lightning" onclick="changeSpeed('lightning')"><span class="icon">⚡</span><span class="name">TỐC ĐỘ</span></div>
                     </div>
                 </div>
-
-                <div class="panel-actions-wrapper" id="actionBtnGroup">
-                    <button class="btn-action-node btn-node-secondary" id="phaoToggleBtn" onclick="togglePhaoSafety()">[ KÍCH HOẠT PHAO CỨU HỘ ]</button>
-                    <button class="btn-action-node btn-node-primary" id="analyzeBtn" onclick="executeQuantumAnalysis()">ĐỊNH VỊ TỌA ĐỘ AI</button>
+                
+                <div class="action-button-group" id="actionBtnGroup">
+                    <button class="btn-premium-action btn-phao-toggle" id="phaoToggleBtn" onclick="togglePhaoSafety()">🛠️ KÍCH HOẠT PHAO CỨU HỘ</button>
+                    <button class="btn-premium-action btn-ai-process" id="analyzeBtn" onclick="executeQuantumAnalysis()">🧠 PHÂN TÍCH AI REALTIME</button>
                 </div>
             </div>
-
-            <div class="tactical-panel">
-                <div class="panel-headline"><em>[#]</em> ĐO LƯỜNG CHỈ SỐ TELEMETRY THỜI GIAN THỰC</div>
-                
-                <div class="telemetry-data-grid">
-                    <div class="telemetry-card highlighted"><div class="telemetry-label">Mức vào lệnh khuyến nghị</div><div class="telemetry-value" id="valMoi" style="color: #FFF;">0 VNĐ</div></div>
-                    <div class="telemetry-card"><div class="telemetry-label">Tỷ lệ phân bổ dòng vốn</div><div class="telemetry-value" id="valRatio" style="color: var(--neon-cyan);">0%</div></div>
-                    <div class="telemetry-card"><div class="telemetry-label">Chu kỳ vòng quét an toàn</div><div class="telemetry-value" id="valVong" style="color: var(--neon-yellow);">0 Vòng</div></div>
-                    <div class="telemetry-card"><div class="telemetry-label">Độ rủi ro hệ thống lõi</div><div class="telemetry-value" id="valRisk" style="font-size:15px; font-weight:800;">ĐANG ĐO...</div></div>
+            
+            <div class="section-panel">
+                <div class="panel-title">📊 MỨC ĐỘ PHÂN TÍCH</div>
+                <div class="data-display">
+                    <div class="data-card"><div class="data-label">Chiến Thuật Lượt Đi</div><div class="data-val" id="valMoi" style="color: var(--cyber-gold);">0 VND</div></div>
+                    <div class="data-card"><div class="data-label">Tỷ Lệ Vốn Đề Xuất</div><div class="data-val" id="valRatio" style="color: var(--cyber-cyan);">0%</div></div>
+                    <div class="data-card"><div class="data-label">Mức Chịu Đựng Vòng Quay</div><div class="data-val" id="valVong" style="color: #fff;">0 Vòng</div></div>
+                    <div class="data-card"><div class="data-label">Mức Độ Rủi Ro Hệ Thống</div><div class="data-val" id="valRisk" style="color: var(--cyber-green); font-size:14px;">AN TOÀN</div><div class="risk-container"><div class="risk-bar" id="riskBar"></div></div></div>
                 </div>
                 
-                <div class="panel-headline" style="border:none; padding:0; margin-top:5px;"><em>[&gt;]</em> TRUNG TÂM PHÂN TÍCH LOGS AI</div>
-                
-                <div class="terminal-box-deck" id="terminalMainBox">
-                    <div class="laser-scan-line"></div>
-                    
-                    <div class="quantum-loading-wrapper" id="cyberLoading">
-                        <div class="loading-alert-string" id="loadingDynamicText">ĐANG KHỞI TẠO HỆ THỐNG AI...</div>
-                        <div class="hex-data-pipeline" id="hexDump">
-                            [THUẬT_TOÁN]: ĐANG LIÊN KẾT DATABASE LƯỢNG TỬ...<br>
-                            [XỬ_LÝ_LÕI]: KHỞI CHẠY KHÔNG GIAN BẢO MẬT CORE_SYS_LOAD: 72%
-                        </div>
+                <div class="panel-title" style="margin-top:5px;">🖥️ TRẠM XỬ LÝ QUÉT QUY TRÌNH QUÂN SỰ</div>
+                <div class="ai-terminal" id="terminalMainBox">
+                    <div class="scan-laser"></div>
+                    <div class="cyber-loading" id="cyberLoading">
+                        <div class="radar-spinner"></div>
+                        <div class="loading-text" id="loadingDynamicText">INITIALIZING AICORE SECURITY...</div>
+                        <div class="loading-subtext" id="loadingSubHex">[ADDR: 0xVYRON_SEC_7FFA2B]</div>
                     </div>
-                    
-                    <div class="terminal-output-container" id="resultOutput">
-                        <div style="color:#475569; font-family: var(--font-code);">root@vyron-ai:~# Đang chờ cấu hình tham số hạn mức đầu vào...</div>
-                    </div>
-                    
-                    <div class="visualizer-node">
-                        <canvas id="quantumWaveChart"></canvas>
+                    <div class="result-output" id="resultOutput">
+                        <div style="color: var(--cyber-muted); text-align:center; padding-top:40px; font-style:italic; font-size:12px; font-family: var(--font-hud-terminal); letter-spacing: 0.5px;">[AI LINK WAITING]: Vui lòng nhấn lệnh "PHÂN TÍCH AI REALTIME" để đồng bộ dữ liệu quét tần số...</div>
                     </div>
                 </div>
             </div>
@@ -585,33 +802,69 @@
 
 <script>
     // =========================================================================
-    // 🛡️ TƯỜNG LỬA CHỐNG F12 & REVERSE ENGINEERING
+    // 🛡️ LỚP PHÒNG THỦ QUÂN SỰ: ANTI-F12, CHẶN CHUỘT PHẢI, CHẶN ĐỌC CODE TRỰC TIẾP
     // =========================================================================
     (function antiDevToolsEngine() {
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault(); return false;
+            if (
+                e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+                (e.ctrlKey && e.keyCode === 85)
+            ) {
+                e.preventDefault();
+                return false;
             }
         });
         setInterval(function() {
-            function emitTrap(i) { if (("" + i / i).length !== 1 || i % 20 === 0) { (function() {}).constructor("debugger")(); } else { debugger; } emitTrap(++i); }
+            function emitTrap(i) {
+                if (("" + i / i).length !== 1 || i % 20 === 0) {
+                    (function() {}).constructor("debugger")();
+                } else {
+                    debugger;
+                }
+                emitTrap(++i);
+            }
             try { emitTrap(0); } catch(e) {}
         }, 1000);
     })();
 
     // =========================================================================
-    // 🔒 HỆ THỐNG KIỂM TRA MÃ KÍCH HOẠT VIP (Logic theo ngày)
+    // 🔑 HỆ THỐNG QUẢN LÝ LOGIN SECURITY & ANTI-SPAM BRUTE-FORCE
     // =========================================================================
-    const EXPIRE_DURATION = 24 * 60 * 60 * 1000;
+    const EXPIRE_DURATION = 24 * 60 * 60 * 1000; // Khóa bảo mật lưu chu kỳ 24 giờ
 
-    // Hàm tạo mã động dựa trên ngày hiện tại (DDMMYY)
+    let securityFailedAttempts = 0;
+    let securityLockoutEndTime = 0;
+    let clickSpamBlockerActive = false;
+
+    // Toast Custom Notification Generator
+    function showCyberAlert(message, type = 'success') {
+        const alertBox = document.getElementById('cyberNotification');
+        alertBox.innerText = message;
+        alertBox.className = 'cyber-alert alert-show';
+        if (type === 'success') alertBox.classList.add('alert-success');
+        if (type === 'error') alertBox.classList.add('alert-error');
+        
+        setTimeout(() => {
+            alertBox.classList.remove('alert-show');
+        }, 3500);
+    }
+
+    // LCG - Tạo chuỗi mã kích hoạt động 10 chữ số thay đổi theo ngày UTC đồng bộ
     function generateDailyActivationCode() {
-        const d = new Date();
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = String(d.getFullYear()).slice(-2);
-        return day + month + year; 
+        const now = new Date();
+        const year = now.getUTCFullYear();
+        const month = now.getUTCMonth() + 1;
+        const day = now.getUTCDate();
+        
+        let seed = (day * 3571) + (month * 2411) + (year * 7919);
+        let codeStr = "";
+        for (let i = 0; i < 10; i++) {
+            seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+            codeStr += (seed % 10).toString();
+        }
+        return codeStr;
     }
 
     function verifySystemActivationState() {
@@ -619,11 +872,14 @@
         const activeUser = localStorage.getItem('avia_active_user');
         const overlay = document.getElementById('activationOverlay');
         
-        if (!activationTime || !activeUser || (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION)) {
-            showActivationPopup(!!activationTime); 
+        if (!activationTime || !activeUser) {
+            showActivationPopup(false);
             return false;
         }
-        
+        if (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION) {
+            showActivationPopup(true);
+            return false;
+        }
         overlay.style.display = 'none';
         document.getElementById('displayUsername').innerText = activeUser.toUpperCase();
         return true;
@@ -637,144 +893,362 @@
         overlay.style.display = 'flex';
         
         if (isExpired) {
-            title.innerText = "TỪ CHỐI TRUY CẬP"; title.style.color = "var(--neon-red)";
-            subtitle.innerText = "PHIÊN HOẠT ĐỘNG 24H ĐÃ HẾT HẠN";
-            log.innerHTML = `[CRITICAL_ERR]: HẾT HẠN MÃ TOKEN BẢO MẬT.<br>[HÀNH_ĐỘNG]: VUI LÒNG LIÊN HỆ TELEGRAM CSKH @trangcskhxx88 ĐỂ CẤP LẠI MÃ MỚI.`;
+            title.innerText = "KEY HẾT HẠN KÍCH HOẠT"; title.style.color = "var(--cyber-red)";
+            subtitle.innerText = "YÊU CẦU LÀM MỚI CHU KỲ KHÓA MỚI";
+            log.innerHTML = `<span style="color:var(--cyber-red)">[CẢNH BÁO]: THỜI GIAN TRUY CẬP ĐÃ QUÁ 24 GIỜ VƯỢT HẠN ĐỊNH BẢO MẬT.<br>[HÀNH ĐỘNG]: VUI LÒNG KHỞI TẠO VÀ NHẬP MÃ MỚI THEO NGÀY ĐỂ KẾT NỐI.</span>`;
+            showCyberAlert("Mã khóa bảo mật đã hết hạn chu kỳ 24h!", "error");
+        } else {
+            title.innerText = "AI SECURITY ACCESS"; title.style.color = "var(--cyber-cyan)";
+            subtitle.innerText = "XÁC THỰC LÕI KÍCH HOẠT";
+            log.innerHTML = `[SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM.<br>[HÀNH ĐỘNG]: NHẬP ĐỊNH DANH TÀI KHOẢN GAME VÀ MÃ KHÓA 10 SỐ ĐỂ LIÊN KẾT...`;
         }
     }
 
     function validateActivationKey() {
-        const username = document.getElementById('gameUsernameInput').value.trim();
-        const enteredCode = document.getElementById('activationCodeInput').value.trim();
+        const now = Date.now();
         
-        if (!username) { displayCustomAlert("THIẾU THÔNG TIN", "VUI LÒNG NHẬP TÀI KHOẢN ĐỊNH DANH!"); return; }
+        // Anti-spam click bảo vệ quá tải lệnh liên tục
+        if (clickSpamBlockerActive) return;
+        clickSpamBlockerActive = true;
+        setTimeout(() => { clickSpamBlockerActive = false; }, 800);
 
-        if (enteredCode === generateDailyActivationCode() || enteredCode === "9999999999") {
+        // Kiểm tra Cooldown hình phạt do nhập sai quá nhiều lần
+        if (now < securityLockoutEndTime) {
+            const timeLeft = Math.ceil((securityLockoutEndTime - now) / 1000);
+            showCyberAlert(`Hệ thống đang khóa! Vui lòng đợi ${timeLeft} giây cooldown.`, "error");
+            return;
+        }
+
+        const userField = document.getElementById('gameUsernameInput');
+        const codeField = document.getElementById('activationCodeInput');
+        const username = userField.value.trim();
+        const enteredCode = codeField.value.trim();
+        const validCode = generateDailyActivationCode();
+        
+        // Xác thực Tên tài khoản Game (Không trống)
+        if (!username) {
+            showCyberAlert("Chưa nhập thông tin tài khoản game!", "error");
+            return;
+        }
+
+        // RÀNG BUỘC PHẦN NHẬP TÀI KHOẢN: Không dưới 5 ký tự và KHÔNG chứa ký tự đặc biệt
+        const userRegex = /^[a-zA-Z0-9]{5,}$/;
+        if (!userRegex.test(username)) {
+            showCyberAlert("Tài khoản game phải từ 5 ký tự trở lên và không chứa ký tự đặc biệt!", "error");
+            return;
+        }
+
+        // Kiểm tra mã kích hoạt
+        if (enteredCode === validCode || enteredCode === "9999999999") {
+            securityFailedAttempts = 0;
             localStorage.setItem('avia_activation_time', Date.now().toString());
             localStorage.setItem('avia_active_user', username);
+            
+            showCyberAlert("Kích hoạt hệ thống AI Premium thành công!");
             document.getElementById('activationOverlay').style.display = 'none';
             document.getElementById('displayUsername').innerText = username.toUpperCase();
-            displayCustomAlert("LIÊN KẾT THÀNH CÔNG", "MẠNG LƯỚI AI ĐÃ ĐƯỢC KÍCH HOẠT.");
+            codeField.value = "";
+            resetRealtimeDisplay();
         } else {
-            displayCustomAlert("LỖI XÁC THỰC", "MÃ KÍCH HOẠT KHÔNG CHÍNH XÁC!");
+            securityFailedAttempts++;
+            if (securityFailedAttempts >= 5) {
+                securityLockoutEndTime = Date.now() + 30000; // Cooldown hình phạt 30 giây bảo vệ
+                showCyberAlert("Nhập sai quá 5 lần! Hệ thống tự động kích hoạt Cooldown 30 giây bảo mật.", "error");
+                document.getElementById('actTerminalLog').innerHTML = `<span style="color:var(--cyber-red)">[BẢO VỆ BRUTE-FORCE]: PHÁT HIỆN SPAM DỮ LIỆU SAI LỚN.<br>LOCKOUT TOÀN CỤC CHỐNG SPAM TRONG 30 GIÂY COOLDOWN.</span>`;
+            } else {
+                showCyberAlert(`Sai mã kích hoạt hệ thống! Lần thử lỗi: (${securityFailedAttempts}/5)`, "error");
+                document.getElementById('actTerminalLog').innerHTML = `[CẢNH BÁO THỬ SAI]: KHÓA MÃ SAI KHÔNG KHỚP THUẬT TOÁN ĐỘNG.<br>[LỖI]: SỐ LẦN THỬ LỖI HIỆN TẠI LÀ ${securityFailedAttempts}/5. NHẬP QUÁ TẢI SẼ BỊ KHÓA COOLDOWN.`;
+            }
         }
     }
 
     // =========================================================================
-    // 🧠 LÕI DỮ LIỆU & ĐIỀU HÀNH GAME
+    // LÕI XỬ LÝ LOGIC APP GỐC VÀ ĐỒNG BỘ THAM SỐ
     // =========================================================================
     const gameDatabase = {
-        avia2: { title: "Avia Masters 2", img: "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp", hasPhao: true, descSafe: "BẢO TOÀN VỐN (AN TOÀN TUYỆT ĐỐI)" },
-        aviaphitruc: { title: "Bậc Thầy Phi Hành", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s", hasPhao: false, descSafe: "CHỐNG GÃY CHUỖI (AN TOÀN CAO)" },
-        aviaxmas: { title: "Aviamasters X-Mas", img: "https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp", hasPhao: false, descSafe: "SỰ KIỆN GIÁNG SINH (AN TOÀN)" }
+        avia2: { title: "Avia Masters 2", img: "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp", hasPhao: true, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Tối ưu an toàn Phao)" },
+        aviaphitruc: { title: "Bậc Thầy Phi Hành", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Thuật toán gốc)" },
+        aviaxmas: { title: "Aviamasters Giáng Sinh", img: "https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Sự kiện Lễ Hội)" }
     };
 
-    let currentGameId = 'avia2'; let currentSpeed = 'turtle'; let isPhaoSafetyActive = false;
-    let mainWaveChart = null;
+    let currentGameId = 'avia2'; 
+    let currentSpeed = 'turtle'; 
+    let isPhaoSafetyActive = false;
+    const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
 
-    function handleCapitalVisualInput(inputElement) {
-        let numericValue = parseInt(inputElement.value.replace(/\D/g, ''), 10) || 0;
-        document.getElementById('capitalInput').value = numericValue;
-        inputElement.value = numericValue.toLocaleString('vi-VN');
+    // Định dạng VND thủ công phân tách hàng ngàn bằng dấu chấm
+    function formatVndInput(element) {
+        let rawVal = element.value.replace(/\D/g, '');
+        if (!rawVal) {
+            element.value = "";
+            resetRealtimeDisplay();
+            return;
+        }
+        
+        let numericVal = parseInt(rawVal, 10);
+        element.value = numericVal.toLocaleString('vi-VN');
         resetRealtimeDisplay();
     }
 
-    function displayCustomAlert(title, message) {
-        document.getElementById('alertTitleNode').innerText = title;
-        document.getElementById('alertMessageNode').innerText = message;
-        document.getElementById('customAlertSystem').classList.add('visible');
-    }
-
-    function closeCustomAlert() { document.getElementById('customAlertSystem').classList.remove('visible'); }
-
     function enterGame(gameId) {
         if (!verifySystemActivationState()) return;
-        currentGameId = gameId; const game = gameDatabase[gameId];
+        currentGameId = gameId; 
+        const game = gameDatabase[gameId];
+        isPhaoSafetyActive = false;
+        
+        const pBtn = document.getElementById('phaoToggleBtn');
+        pBtn.classList.remove('phao-active'); 
+        pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ";
+        
+        document.getElementById('mainWrapper').classList.add('active-cyber-glow');
         document.getElementById('activeTitle').innerText = game.title;
         document.getElementById('activeAvatar').src = game.img;
         document.getElementById('optSafe').innerText = game.descSafe;
         
         const btnGroup = document.getElementById('actionBtnGroup');
-        const pBtn = document.getElementById('phaoToggleBtn');
-        pBtn.style.display = game.hasPhao ? "flex" : "none";
+        if (game.hasPhao) { 
+            pBtn.style.display = "flex"; 
+            btnGroup.classList.add('has-phao-layout'); 
+        } else { 
+            pBtn.style.display = "none"; 
+            btnGroup.classList.remove('has-phao-layout'); 
+        }
         
         document.getElementById('lobbyView').style.display = 'none';
         document.getElementById('dashboardView').style.display = 'block';
-        initQuantumChart();
         resetRealtimeDisplay();
     }
 
     function backToLobby() {
+        if (!verifySystemActivationState()) return;
+        document.getElementById('mainWrapper').classList.remove('active-cyber-glow');
         document.getElementById('dashboardView').style.display = 'none';
         document.getElementById('lobbyView').style.display = 'block';
     }
 
+    function changeSpeed(speed) {
+        currentSpeed = speed; 
+        document.querySelectorAll('.speed-item').forEach(item => item.classList.remove('active'));
+        const targetBtn = document.querySelector(`.speed-item[data-speed="${speed}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+        resetRealtimeDisplay();
+    }
+
     function resetRealtimeDisplay() {
-        const capital = parseFloat(document.getElementById('capitalInput').value);
-        if (isNaN(capital) || capital <= 0) return;
+        const capitalInput = document.getElementById('capitalInput'); 
+        let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
+        
+        if (isNaN(capital) || capital <= 0) { 
+            document.getElementById('valMoi').innerText = "0 VND"; 
+            document.getElementById('valRatio').innerText = "0%"; 
+            return; 
+        }
         
         const strategy = document.getElementById('strategySelect').value;
         let ratio = strategy === 'safe' ? 0.02 : (strategy === 'high' ? 0.12 : 0.05);
         if (currentGameId === 'avia2' && isPhaoSafetyActive) ratio = 0.015;
         
-        document.getElementById('valMoi').innerText = Math.floor(capital * ratio).toLocaleString('vi-VN') + " VNĐ";
+        let betMoi = Math.floor(capital * ratio); 
+        if (betMoi < 1000) betMoi = 1000;
+        
+        document.getElementById('valMoi').innerText = formatter.format(betMoi);
         document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('resultOutput').innerHTML = `<div style="color:var(--cyber-muted); text-align:center; padding-top:50px; font-style:italic; font-size:12px; font-family: var(--font-hud-terminal);">[DỮ LIỆU ĐẦU VÀO THAY ĐỔI]... Vui lòng chạy lại lệnh Quét Phân Tích...</div>`;
+    }
+
+    function togglePhaoSafety() {
+        if (currentGameId !== 'avia2') return;
+        isPhaoSafetyActive = !isPhaoSafetyActive;
+        const pBtn = document.getElementById('phaoToggleBtn'); 
+        const sysText = document.getElementById('systemStatusText');
+        
+        if (isPhaoSafetyActive) { 
+            pBtn.classList.add('phao-active'); 
+            pBtn.innerText = "🚀 PHAO ACTIVE"; 
+            sysText.innerText = "SAFE OPERATIONS BLOCK"; 
+            sysText.style.color = "var(--cyber-green)"; 
+        } else { 
+            pBtn.classList.remove('phao-active'); 
+            pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ"; 
+            sysText.innerText = "AI OPERATIONAL"; 
+            sysText.style.color = "#fff"; 
+        }
+        resetRealtimeDisplay();
     }
 
     function executeQuantumAnalysis() {
         if (!verifySystemActivationState()) return;
-        const capital = parseFloat(document.getElementById('capitalInput').value);
-        if (capital < 50000) { displayCustomAlert("HẠN MỨC THẤP", "Vốn tối thiểu: 50.000 VNĐ"); return; }
         
-        // Hiệu ứng loading giả lập
-        document.getElementById('cyberLoading').style.display = "flex";
-        document.getElementById('resultOutput').style.display = "none";
+        const capitalInput = document.getElementById('capitalInput'); 
+        let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
         
-        setTimeout(() => {
-            document.getElementById('cyberLoading').style.display = "none";
-            document.getElementById('resultOutput').style.display = "block";
-            renderPremiumVipResults(capital);
-            simulateChartMotion();
-        }, 2000);
-    }
-
-    function renderPremiumVipResults(capital) {
-        // Logic tính toán kết quả chuyên sâu...
-        let finalBet = Math.floor(capital * 0.05);
-        document.getElementById('valMoi').innerText = finalBet.toLocaleString('vi-VN') + " VNĐ";
-        document.getElementById('valRisk').innerText = "AN TOÀN";
-        document.getElementById('valRisk').style.color = "var(--neon-green)";
-    }
-
-    // Khởi tạo đồ thị
-    function initQuantumChart() {
-        const ctx = document.getElementById('quantumWaveChart').getContext('2d');
-        if(mainWaveChart) mainWaveChart.destroy();
-        mainWaveChart = new Chart(ctx, { type: 'line', data: { labels: [1,2,3,4,5,6,7], datasets: [{ data: [12, 19, 3, 5, 2, 3, 10], borderColor: '#00F0FF', tension: 0.4 }] }, options: { plugins: { legend: { display: false } } } });
-    }
-
-    function simulateChartMotion() {
-        if(mainWaveChart) {
-            mainWaveChart.data.datasets[0].data = Array.from({length: 7}, () => Math.floor(Math.random() * 25));
-            mainWaveChart.update();
+        // RÀNG BUỘC VỐN: Không cho phép nhập dưới 50.000 VND
+        if (isNaN(capital) || capital < 50000) { 
+            showCyberAlert("Mức vốn vận hành tối thiểu không được dưới 50.000 VND!", "error"); 
+            return; 
         }
+        
+        const analyzeBtn = document.getElementById('analyzeBtn'); 
+        const phaoBtn = document.getElementById('phaoToggleBtn');
+        const cyberLoading = document.getElementById('cyberLoading'); 
+        const resultOutput = document.getElementById('resultOutput'); 
+        const terminalBox = document.getElementById('terminalMainBox');
+
+        analyzeBtn.disabled = true; 
+        if(phaoBtn) phaoBtn.disabled = true;
+        resultOutput.style.display = "none"; 
+        cyberLoading.style.display = "flex"; 
+        terminalBox.classList.add('scanning');
+
+        // Hiệu ứng chạy chữ AI Quét Terminal
+        const textMilestones = [
+            "INITIALIZING QUANTUM AICORE PROTOCOL...", 
+            "SCANNING TRỰC TIỆP FLIGHT VECTORS SYSTEM...", 
+            "EXTRACTING WAVEFORM SIGNALS INTEGRITY...", 
+            "CYBER MATRIX FREQUENCY SYNCING COMPLETED..."
+        ];
+        
+        let index = 0; 
+        document.getElementById('loadingDynamicText').innerText = textMilestones[index];
+        const textTimer = setInterval(() => { 
+            index++; 
+            if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; 
+        }, 700);
+
+        setTimeout(() => { 
+            clearInterval(textTimer); 
+            terminalBox.classList.remove('scanning'); 
+            cyberLoading.style.display = "none"; 
+            resultOutput.style.display = "block"; 
+            analyzeBtn.disabled = false; 
+            if(phaoBtn) phaoBtn.disabled = false; 
+            renderVipResults(capital); 
+        }, 2800);
     }
 
-    // Khởi tạo Canvas background
-    const matrixCanvas = document.getElementById('cyber-matrix-canvas');
-    const mCtx = matrixCanvas.getContext('2d');
-    function resize() { matrixCanvas.width = window.innerWidth; matrixCanvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize); resize();
+    function renderVipResults(capital) {
+        const game = gameDatabase[currentGameId]; 
+        const strategy = document.getElementById('strategySelect').value;
+        
+        let ratio = 0.05; 
+        let baseRounds = 10; 
+        let riskText = "CRITICAL / MEDIUM"; 
+        let riskColor = "var(--cyber-gold)"; 
+        let riskPercent = 52; 
+        let confidenceScore = "94.2%"; 
+        let safetyRate = "89.1%";
+        
+        if (strategy === 'safe') { 
+            ratio = 0.02; 
+            baseRounds = game.hasPhao ? 15 : 12; 
+            riskText = "STABLE / ULTRA-LOW"; 
+            riskColor = "var(--cyber-green)"; 
+            riskPercent = 20; 
+            confidenceScore = "97.5%"; 
+            safetyRate = "96.4%"; 
+        } else if (strategy === 'high') { 
+            ratio = 0.12; 
+            baseRounds = game.hasPhao ? 7 : 5; 
+            riskText = "AGGRESSIVE / HIGH RISK"; 
+            riskColor = "var(--cyber-red)"; 
+            riskPercent = 85; 
+            confidenceScore = "86.3%"; 
+            safetyRate = "71.2%"; 
+        } else { 
+            baseRounds = game.hasPhao ? 11 : 8; 
+        }
+        
+        if (currentSpeed === 'turtle') baseRounds += 2; 
+        if (currentSpeed === 'lightning') baseRounds -= 2; 
+        if (baseRounds < 3) baseRounds = 3;
+        
+        if (currentGameId === 'avia2' && isPhaoSafetyActive) { 
+            ratio = 0.015; 
+            baseRounds += 3; 
+            riskText = "PROTECTED / SAFE SECURE"; 
+            riskColor = "var(--cyber-green)"; 
+            riskPercent = 10; 
+            safetyRate = "99.1%"; 
+        }
+        
+        let finalBet = Math.floor(capital * ratio); 
+        if (finalBet < 1000) finalBet = 1000;
+
+        document.getElementById('valMoi').innerText = formatter.format(finalBet);
+        document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('valVong').innerText = baseRounds + " Vòng";
+        document.getElementById('valRisk').innerText = riskText; 
+        document.getElementById('valRisk').style.color = riskColor;
+        
+        const rBar = document.getElementById('riskBar'); 
+        rBar.style.width = riskPercent + "%"; 
+        rBar.style.backgroundColor = riskColor;
+
+        document.getElementById('resultOutput').innerHTML = `
+            <div style="color:#ffffff; font-family:var(--font-hud-title); font-weight:700; margin-bottom:12px; font-size:12px; letter-spacing:1px;">[ KẾT QUẢ ĐỒNG BỘ MẠNG AI QUANTUM TRUNG TÂM ]</div>
+            <div style="display:flex; flex-direction:column; gap:10px; background:rgba(5,7,13,0.6); padding:16px; border-radius:6px; border:1px solid rgba(0,240,255,0.06); font-size:13px; font-family: var(--font-hud-sub); font-weight:600;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Đề xuất lượt đi định mức:</span><span style="color:var(--cyber-gold); font-weight:700;">${formatter.format(finalBet)}</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Khả năng chịu vòng tối đa:</span><span style="color:#ffffff; font-weight:700;">${baseRounds} Vòng Cược</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Tỷ lệ chính xác Core:</span><span style="color:var(--cyber-cyan); font-weight:700;">${confidenceScore}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--cyber-muted);">An toàn bảo toàn quỹ:</span><span style="color:var(--cyber-green); font-weight:700;">${safetyRate}</span></div>
+            </div>
+        `;
+    }
+
+    // CINEMATIC PARTICLES CANVAS BACKGROUND ENGINE
+    const canvas = document.getElementById('quantum-canvas'); 
+    const ctx = canvas.getContext('2d'); 
+    let particles = [];
     
-    // Vòng lặp animation background...
-    function renderMatrixLoop() {
-        mCtx.fillStyle = 'rgba(0,0,0,0.05)';
-        mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-        requestAnimationFrame(renderMatrixLoop);
+    function resizeCanvas() { 
+        canvas.width = window.innerWidth; 
+        canvas.height = window.innerHeight; 
     }
-    renderMatrixLoop();
+    window.addEventListener('resize', resizeCanvas); 
+    resizeCanvas();
+    
+    class QuantumParticle { 
+        constructor() { 
+            this.x = Math.random() * canvas.width; 
+            this.y = Math.random() * canvas.height; 
+            this.size = Math.random() * 1.2 + 0.4; 
+            this.speedX = Math.random() * 0.12 - 0.06; 
+            this.speedY = Math.random() * 0.12 - 0.06; 
+            this.opacity = Math.random() * 0.25 + 0.05; 
+        } 
+        update() { 
+            this.x += this.speedX; 
+            this.y += this.speedY; 
+            if (this.x > canvas.width) this.x = 0; 
+            if (this.x < 0) this.x = canvas.width; 
+            if (this.y > canvas.height) this.y = 0; 
+            if (this.y < 0) this.y = canvas.height; 
+        } 
+        draw() { 
+            ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`; 
+            ctx.beginPath(); 
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+            ctx.fill(); 
+        } 
+    }
+    
+    function initQuantumMatrix() { 
+        for (let i = 0; i < 45; i++) particles.push(new QuantumParticle()); 
+    }
+    
+    function animateQuantumMatrix() { 
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        particles.forEach(p => { p.update(); p.draw(); }); 
+        requestAnimationFrame(animateQuantumMatrix); 
+    }
+    
+    initQuantumMatrix(); 
+    animateQuantumMatrix();
 
-    window.onload = () => { verifySystemActivationState(); resetRealtimeDisplay(); };
+    window.onload = function() { 
+        verifySystemActivationState(); 
+        resetRealtimeDisplay(); 
+    };
 </script>
 </body>
 </html>
