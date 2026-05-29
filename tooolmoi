@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VYRON QUANTUM CONTROL - TRUNG TÂM ĐIỀU KHIỂN AI CAO CẤP</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* =========================================================================
+           🌌 DESIGN SYSTEM: DARK LUMINANCE LÝ TƯỞNG (PREMIUM QUANTUM LABS)
+           ========================================================================= */
+        :root {
+            --neon-cyan: #00F0FF;
+            --neon-green: #00FF9D;
+            --neon-purple: #BD00FF;
+            --neon-red: #FF3B5C;
+            --neon-yellow: #FFC857;
+            
+            --bg-void: #05070B;
+            --bg-panel: rgba(10, 15, 23, 0.75);
+            --glass-border: rgba(0, 240, 255, 0.15);
+            
+            --font-title: 'Orbitron', sans-serif;
+            --font-ui: 'Rajdhani', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+            
+            --shadow-premium: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 240, 255, 0.1);
+            --transition-tactical: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* CHỐNG TRÍCH XUẤT DỮ LIỆU & SAO CHÉP */
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            outline: none;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background-color: var(--bg-void);
+            color: #E2E8F0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* =========================================================================
+           🚀 CINEMATIC FX: GRID MATRIX & BACKGROUND RADAR SCAN
+           ========================================================================= */
+        #cyber-matrix-canvas {
+            position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: 0.45;
+        }
+
+        body::before {
+            content: ""; position: fixed; inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(189, 0, 255, 0.04) 0%, rgba(5, 7, 11, 0.95) 100%);
+            z-index: -2; pointer-events: none;
+        }
+
+        .hud-scanline {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 3px, 6px 100%; opacity: 0.35;
+        }
+
+        /* ẨN TOÀN BỘ SPINNER/MŨI TÊN TĂNG GIẢM INPUT NUMBER TRÊN MỌI TRÌNH DUYỆT */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none; margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        /* =========================================================================
+           🛡️ MAIN STATION FRAMEWRAPPERS (GLASSMORPHISM CAO CẤP)
+           ========================================================================= */
+        .system-container {
+            max-width: 1350px; width: 100%; padding: 45px;
+            background: var(--bg-panel);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(0, 240, 255, 0.35);
+            border-bottom: 1px solid rgba(189, 0, 255, 0.35);
+            border-radius: 12px; box-shadow: var(--shadow-premium);
+            position: relative; z-index: 10;
+        }
+
+        /* HUD Target Corners */
+        .hud-bracket { position: absolute; width: 15px; height: 15px; border-color: var(--neon-cyan); border-style: solid; pointer-events: none; }
+        .corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+        .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+        .corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        /* =========================================================================
+           🌐 TOP ENGINE HEADER: TRẠNG THÁI KẾT NỐI LƯỢNG TỬ
+           ========================================================================= */
+        .station-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 35px; padding: 18px 30px;
+            background: linear-gradient(90deg, rgba(10, 15, 23, 0.95) 0%, rgba(189, 0, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04); border-left: 5px solid var(--neon-purple); border-radius: 6px;
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 20px; }
+        .header-brand h2 {
+            margin: 0; font-family: var(--font-title); font-size: 20px; 
+            letter-spacing: 3px; text-transform: uppercase; color: #FFFFFF;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .quantum-status {
+            display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800;
+            font-family: var(--font-code); background: rgba(0, 255, 157, 0.08); color: var(--neon-green);
+            padding: 5px 14px; border: 1px solid rgba(0, 255, 157, 0.25); border-radius: 4px; letter-spacing: 1.5px;
+        }
+        .pulse-core { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 12px var(--neon-green); animation: corePulse 1.6s infinite; }
+        @keyframes corePulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.25); } }
+
+        .system-meta-datastreams { display: flex; gap: 30px; font-family: var(--font-code); font-size: 12px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+        .meta-stream-node span { color: var(--neon-cyan); margin-left: 6px; font-weight: 700; }
+
+        /* =========================================================================
+           🎮 SCREEN VIEW 01: LOBBY CHỌN PHÂN HỆ DỮ LIỆU
+           ========================================================================= */
+        .lobby-screen { display: block; }
+        .lobby-main-title { font-family: var(--font-title); font-size: 30px; font-weight: 900; letter-spacing: 4px; color: #FFF; text-transform: uppercase; margin-bottom: 8px; }
+        .lobby-subtitle { font-family: var(--font-code); font-size: 13px; color: var(--neon-cyan); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .matrix-grid-deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        @media (max-width: 1024px) { .matrix-grid-deck { grid-template-columns: 1fr; } }
+
+        .quantum-card {
+            background: #090D14; border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px; overflow: hidden; position: relative;
+            transition: var(--transition-tactical); cursor: pointer; display: flex; flex-direction: column;
+        }
+        .quantum-card:hover {
+            border-color: var(--neon-cyan); transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+
+        .card-render-frame { width: 100%; height: 250px; position: relative; overflow: hidden; background: #000; }
+        .card-render-frame img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-tactical); filter: contrast(115%) brightness(75%); }
+        .quantum-card:hover .card-render-frame img { transform: scale(1.06); filter: contrast(125%) brightness(95%); }
+        .card-render-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #090D14 0%, transparent 65%); }
+
+        .module-tag {
+            position: absolute; top: 15px; right: 15px; font-family: var(--font-code); font-size: 10px; font-weight: 800;
+            padding: 5px 12px; text-transform: uppercase; letter-spacing: 2px; z-index: 5;
+            background: rgba(5, 7, 11, 0.9); border-radius: 4px;
+        }
+        .tag-vip { color: var(--neon-yellow); border: 1px solid rgba(255, 200, 87, 0.4); box-shadow: 0 0 10px rgba(255, 200, 87, 0.1); }
+        .tag-std { color: var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
+
+        .card-body-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-body-content h3 { font-family: var(--font-title); font-size: 19px; font-weight: 700; color: #FFF; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .card-body-content p { font-size: 14px; color: #94A3B8; line-height: 1.6; margin-bottom: 25px; min-height: 45px; font-weight: 500; }
+
+        .btn-module-trigger {
+            background: transparent; border: 1px solid var(--neon-cyan); color: var(--neon-cyan);
+            padding: 14px 0; text-align: center; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-code);
+            transition: var(--transition-tactical); border-radius: 4px;
+        }
+        .quantum-card:hover .btn-module-trigger { background: rgba(0, 240, 255, 0.08); box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.2); }
+
+        /* =========================================================================
+           📊 SCREEN VIEW 02: MAIN DASHBOARD PHÂN TÍCH
+           ========================================================================= */
+        .dashboard-screen { display: none; }
+        
+        .dash-control-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .active-target-profile { display: flex; align-items: center; gap: 20px; }
+        .profile-avatar { width: 55px; height: 55px; object-fit: cover; border-radius: 6px; border: 2px solid var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
+        .profile-text h1 { font-family: var(--font-title); font-size: 24px; color: #FFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+        .profile-text span { font-family: var(--font-code); font-size: 12px; color: var(--neon-green); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+        .btn-terminate-session {
+            background: rgba(255, 59, 92, 0.08); border: 1px solid rgba(255, 59, 92, 0.4); color: var(--neon-red);
+            padding: 12px 24px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 4px;
+            font-family: var(--font-code); letter-spacing: 2px; text-transform: uppercase; transition: var(--transition-tactical);
+        }
+        .btn-terminate-session:hover { background: var(--neon-red); color: #FFF; box-shadow: 0 0 20px rgba(255, 59, 92, 0.4); }
+
+        .dashboard-layout-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 30px; }
+        @media (max-width: 1100px) { .dashboard-layout-grid { grid-template-columns: 1fr; } }
+
+        /* Tactical Control Panels */
+        .tactical-panel {
+            background: rgba(7, 10, 15, 0.85); border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 30px; border-radius: 8px; display: flex; flex-direction: column; gap: 25px;
+            box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.7); backdrop-filter: blur(12px); position: relative;
+        }
+        .panel-headline {
+            font-family: var(--font-title); font-size: 14px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2.5px; color: #FFF; display: flex; align-items: center; gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 15px;
+        }
+        .panel-headline em { color: var(--neon-cyan); font-style: normal; font-family: var(--font-code); font-weight: 800; }
+
+        /* Form Input Architecture */
+        .form-field-block { display: flex; flex-direction: column; gap: 10px; }
+        .form-field-block label { font-family: var(--font-code); font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        .premium-input-box { position: relative; display: flex; align-items: center; }
+        .premium-input-box .currency-addon { position: absolute; right: 20px; font-family: var(--font-code); font-size: 13px; font-weight: 700; color: #64748B; transition: var(--transition-tactical); pointer-events: none; }
+        
+        .tactical-input {
+            width: 100%; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px 60px 16px 20px; color: #FFF; font-size: 15px; font-family: var(--font-code);
+            font-weight: 700; border-radius: 4px; transition: var(--transition-tactical);
+        }
+        .tactical-input:focus { border-color: var(--neon-cyan); box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.12), 0 0 15px rgba(0, 240, 255, 0.05); }
+        .tactical-input:focus + .currency-addon { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+
+        select.tactical-input { padding-right: 20px; cursor: pointer; color: var(--neon-yellow); }
+        select.tactical-input option { background-color: #05070B; color: #FFF; }
+
+        /* Xung nhịp xử lý tần số */
+        .frequency-selector-rack { display: flex; flex-direction: column; gap: 10px; }
+        .frequency-btn-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .freq-node {
+            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 5px; text-align: center; cursor: pointer; border-radius: 4px; transition: var(--transition-tactical);
+        }
+        .freq-node span { font-family: var(--font-code); font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 1px; }
+        .freq-node:hover { border-color: rgba(255, 200, 87, 0.3); }
+        .freq-node.active { background: rgba(255, 200, 87, 0.08); border-color: var(--neon-yellow); box-shadow: 0 0 15px rgba(255, 200, 87, 0.2); }
+        .freq-node.active span { color: var(--neon-yellow); text-shadow: 0 0 8px rgba(255, 200, 87, 0.4); }
+
+        /* Panel Action Button Layout Matrix */
+        .panel-actions-wrapper { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 5px; }
+        .panel-actions-wrapper.dual-mode { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 600px) { .panel-actions-wrapper.dual-mode { grid-template-columns: 1fr; } }
+
+        .btn-action-node {
+            width: 100%; padding: 18px; font-family: var(--font-code); font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition-tactical);
+        }
+        
+        .btn-node-primary {
+            background: linear-gradient(45deg, rgba(0, 240, 255, 0.12), rgba(189, 0, 255, 0.12));
+            border: 1px solid var(--neon-cyan); color: #FFF; box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+        }
+        .btn-node-primary:not(:disabled):hover {
+            background: linear-gradient(45deg, rgba(0, 240, 255, 0.22), rgba(189, 0, 255, 0.25));
+            border-color: var(--neon-purple); box-shadow: 0 0 25px rgba(189, 0, 255, 0.35); transform: translateY(-2px);
+        }
+        .btn-node-primary:disabled { background: #131722 !important; color: #475569 !important; border-color: #334155 !important; box-shadow: none; cursor: not-allowed; }
+
+        .btn-node-secondary { background: transparent; border: 1px solid rgba(255, 255, 255, 0.15); color: #94A3B8; }
+        .btn-node-secondary:hover { border-color: #FFF; color: #FFF; }
+        .btn-node-secondary.active {
+            background: rgba(0, 255, 157, 0.08); border-color: var(--neon-green); color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2); text-shadow: 0 0 8px rgba(0, 255, 157, 0.3);
+        }
+
+        /* Metrics Telemetry Grid */
+        .telemetry-data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .telemetry-card { background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 6px; position: relative; }
+        .telemetry-card::before { content: ""; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.05); }
+        .telemetry-card.highlighted::before { background: var(--neon-cyan); }
+        
+        .telemetry-label { font-family: var(--font-code); font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 700; }
+        .telemetry-value { font-family: var(--font-code); font-size: 20px; font-weight: 700; color: #FFF; }
+
+        /* =========================================================================
+           🖥️ TERMINAL COMMAND LOGS INTERFACE (HACKER HQ STYLE)
+           ========================================================================= */
+        .terminal-box-deck {
+            background: #020406; border: 1px solid rgba(255, 255, 255, 0.06); padding: 25px;
+            font-family: var(--font-code); font-size: 13px; color: #94A3B8; min-height: 250px;
+            position: relative; overflow: hidden; border-radius: 6px; box-shadow: inset 0 0 25px rgba(0,0,0,1);
+            display: flex; flex-direction: column; line-height: 1.6;
+        }
+        
+        .laser-scan-line {
+            position: absolute; width: 100%; height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.08), transparent);
+            left: 0; top: -40px; z-index: 10; opacity: 0; pointer-events: none;
+            border-bottom: 2px solid var(--neon-cyan);
+        }
+        .terminal-box-deck.active-scanning .laser-scan-line { opacity: 1; animation: laserScanMove 1.4s linear infinite; }
+        @keyframes laserScanMove { 0% { top: -40px; } 100% { top: 100%; } }
+
+        .quantum-loading-wrapper { display: none; flex-direction: column; gap: 8px; width: 100%; }
+        .loading-alert-string { font-weight: 800; color: var(--neon-green); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .hex-data-pipeline { color: #475569; font-size: 11px; word-break: break-all; opacity: 0.65; }
+
+        .terminal-output-container { display: block; width: 100%; height: 100%; }
+        
+        /* Premium Data Visualizer Node */
+        .visualizer-node { width: 100%; height: 120px; margin-top: 10px; opacity: 0.85; }
+
+        /* =========================================================================
+           🔒 SECURITY OVERLAY: AUTHENTICATION MODAL (GIỮ NGUYÊN LOGIC)
+           ========================================================================= */
+        .security-lock-overlay {
+            position: fixed; inset: 0; background: rgba(4, 6, 10, 0.96);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        
+        .auth-station-card {
+            max-width: 460px; width: 100%; background: #0A0F17;
+            border: 1px solid var(--neon-purple); border-radius: 8px;
+            padding: 45px; box-shadow: 0 0 50px rgba(189, 0, 255, 0.15); position: relative; overflow: hidden;
+        }
+        .auth-station-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); }
+
+        .auth-card-title { font-family: var(--font-title); font-size: 24px; font-weight: 900; letter-spacing: 3px; color: #FFF; text-transform: uppercase; margin-bottom: 6px; }
+        .auth-card-sub { font-family: var(--font-code); font-size: 11px; color: var(--neon-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; font-weight: 700; }
+        
+        .auth-diagnostic-panel {
+            background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-left: 3px solid var(--neon-red);
+            padding: 16px; font-size: 11px; color: #94A3B8; font-family: var(--font-code); margin-bottom: 30px; border-radius: 4px; line-height: 1.5;
+        }
+
+        .auth-input-wrapper { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+        .auth-input-wrapper label { font-size: 11px; font-family: var(--font-code); font-weight: 700; color: #CBD5E1; letter-spacing: 1px; text-transform: uppercase; }
+        
+        .auth-terminal-input {
+            width: 100%; background: #020406; border: 1px solid rgba(255, 255, 255, 0.15); padding: 16px;
+            font-size: 15px; font-weight: 700; font-family: var(--font-code); color: var(--neon-green);
+            border-radius: 4px; transition: var(--transition-tactical); text-align: center;
+        }
+        .auth-terminal-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.15); }
+        
+        .auth-terminal-input.input-code { letter-spacing: 4px; font-size: 18px; color: var(--neon-yellow); }
+
+        .btn-authenticate-submit {
+            width: 100%; border: none; padding: 18px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); color: #FFF;
+            font-family: var(--font-code); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; border-radius: 4px; margin-bottom: 15px; transition: var(--transition-tactical);
+            box-shadow: 0 10px 25px rgba(189, 0, 255, 0.25);
+        }
+        .btn-authenticate-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(189, 0, 255, 0.4); filter: brightness(1.1); }
+        
+        .btn-gateway-support {
+            width: 100%; background: transparent; border: 1px dashed rgba(255, 255, 255, 0.15); padding: 14px; border-radius: 4px;
+            font-family: var(--font-code); color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: var(--transition-tactical);
+        }
+        .btn-gateway-support:hover { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(255, 200, 87, 0.04); }
+
+        /* =========================================================================
+           🚨 CINEMATIC POPUP MODAL WARNING (THAY THẾ ALERT)
+           ========================================================================= */
+        .cinematic-alert-overlay {
+            position: fixed; inset: 0; background: rgba(4, 6, 10, 0.85);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 999999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .cinematic-alert-overlay.visible { opacity: 1; pointer-events: auto; }
+        
+        .cinematic-alert-modal {
+            max-width: 400px; width: 100%; background: #0A0F17; border: 1px solid var(--neon-red);
+            border-radius: 6px; padding: 30px; text-align: center; position: relative;
+            box-shadow: 0 0 40px rgba(255, 59, 92, 0.25); transform: scale(0.85); transition: transform 0.3s ease;
+        }
+        .cinematic-alert-overlay.visible .cinematic-alert-modal { transform: scale(1); }
+        
+        .alert-icon-head { font-size: 32px; color: var(--neon-red); font-family: var(--font-title); margin-bottom: 15px; font-weight: 900; animation: alertFlash 1s infinite alternate; }
+        @keyframes alertFlash { 0% { opacity: 0.4; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 15px var(--neon-red); } }
+        
+        .alert-main-msg { font-size: 16px; font-weight: 700; color: #FFF; margin-bottom: 12px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.5px; }
+        .alert-sub-msg { font-size: 13px; color: #94A3B8; font-family: var(--font-code); margin-bottom: 25px; line-height: 1.5; }
+        
+        .btn-alert-close {
+            background: var(--neon-red); border: none; color: #FFF; font-family: var(--font-code);
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+            padding: 12px 28px; border-radius: 4px; cursor: pointer; transition: var(--transition-tactical);
+        }
+        .btn-alert-close:hover { background: #FF1A43; box-shadow: 0 0 15px rgba(255, 59, 92, 0.5); }
+
+        /* =========================================================================
+           📱 RESPONSIVE ADAPTATION ENGINE
+           ========================================================================= */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .system-container { padding: 25px 20px; border-radius: 8px; }
+            .lobby-main-title { font-size: 22px; }
+            .station-header { flex-direction: column; gap: 15px; align-items: flex-start; padding: 15px 20px; }
+            .system-meta-datastreams { flex-direction: column; gap: 8px; }
+            .telemetry-data-grid { grid-template-columns: 1fr; }
+            .frequency-btn-row { grid-template-columns: repeat(2, 1fr); }
+            .auth-station-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hud-scanline"></div>
+<canvas id="cyber-matrix-canvas"></canvas>
+
+<div class="cinematic-alert-overlay" id="customAlertSystem">
+    <div class="cinematic-alert-modal">
+        <div class="alert-icon-head">[ CẢNH BÁO ]</div>
+        <div class="alert-main-msg" id="alertTitleNode">XUNG ĐỘT HỆ THỐNG</div>
+        <div class="alert-sub-msg" id="alertMessageNode">Nội dung thông báo hệ thống...</div>
+        <button class="btn-alert-close" onclick="closeCustomAlert()">XÁC NHẬN LOG</button>
+    </div>
+</div>
+
+<div class="security-lock-overlay" id="activationOverlay" style="display: none;">
+    <div class="auth-station-card">
+        <div class="auth-card-title" id="actModalTitle">XÁC THỰC HỆ THỐNG</div>
+        <div class="auth-card-sub" id="actModalSubtitle">LÕI BẢO MẬT AI PREMIUM</div>
+        
+        <div class="auth-diagnostic-panel" id="actTerminalLog">
+            [HỆ_THỐNG]: TƯỜNG LỬA LƯỢNG TỬ ĐÃ KHỞI CHẠY KHÔNG GIAN BẢO MẬT.<br>
+            [TIẾN_TRÌNH]: ĐANG CHỜ CẤP QUYỀN TRUY CẬP TỪ NGƯỜI ĐÙNG...
+        </div>
+
+        <div class="auth-input-wrapper">
+            <label>TÀI KHOẢN ĐỊNH DANH GAME (ID)</label>
+            <input type="text" id="gameUsernameInput" class="auth-terminal-input" style="color: #FFF;" placeholder="Nhập ID tài khoản của bạn...">
+        </div>
+
+        <div class="auth-input-wrapper">
+            <label>MÃ KÍCH HOẠT THUẬT TOÁN VIP</label>
+            <input type="text" id="activationCodeInput" class="auth-terminal-input input-code" placeholder="••••">
+        </div>
+        
+        <button class="btn-authenticate-submit" onclick="validateActivationKey()">LIÊN KẾT TRUNG TÂM AI</button>
+        <a href="https://t.me/trangcskhxx88" target="_blank" class="btn-gateway-support">YÊU CẦU CẤP MÃ TRUY CẬP: @trangcskhxx88</a>
+    </div>
+</div>
+
+<div class="system-container" id="mainWrapper">
+    <div class="hud-bracket corner-tl"></div><div class="hud-bracket corner-tr"></div>
+    <div class="hud-bracket corner-bl"></div><div class="hud-bracket corner-br"></div>
+
+    <div class="station-header">
+        <div class="header-brand">
+            <h2>HỆ THỐNG ĐIỀU KHIỂN AI</h2>
+            <div class="quantum-status"><span class="pulse-core"></span> ĐANG HOẠT ĐỘNG</div>
+        </div>
+        <div class="system-meta-datastreams">
+            <div class="meta-stream-node">MÁY CHỦ: <span>VYRON_PREMIUM_CORE</span></div>
+            <div class="meta-stream-node">ĐỊNH DANH: <span id="displayUsername" style="color: var(--neon-yellow);">ẨN DANH</span></div>
+        </div>
+    </div>
+
+    <div id="lobbyView" class="lobby-screen">
+        <div class="lobby-main-title">TRUNG TÂM DỮ LIỆU TOÀN CẦU</div>
+        <div class="lobby-subtitle" id="systemStatusText">ĐỒNG BỘ MẠNG LƯỚI ĐỂ LIÊN KẾT THUẬT TOÁN MA TRẬN LƯỢNG TỬ.</div>
+        
+        <div class="matrix-grid-deck">
+            <div class="quantum-card" data-game="avia2" onclick="enterGame('avia2')">
+                <div class="card-render-frame"><span class="module-tag tag-vip">PHÂN HỆ VIP</span><img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2"></div>
+                <div class="card-body-content">
+                    <div>
+                        <h3>Avia Masters 2</h3>
+                        <p>Lõi ma trận nâng cấp thế hệ mới. Hỗ trợ hệ thống phao cứu hộ tự động phân cấp và giảm thiểu biên độ rủi ro quỹ vốn cực hạn.</p>
+                    </div>
+                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
+                </div>
+            </div>
+            <div class="quantum-card" data-game="aviaphitruc" onclick="enterGame('aviaphitruc')">
+                <div class="card-render-frame"><span class="module-tag tag-std">TIÊU CHUẨN</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành"></div>
+                <div class="card-body-content">
+                    <div>
+                        <h3>Bậc Thầy Phi Hành</h3>
+                        <p>Phân tích dữ liệu nền tảng tiêu chuẩn. Dự đoán điểm gãy đồ thị dựa trên sai số vận tốc và vector phân bổ lực máy chủ.</p>
+                    </div>
+                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
+                </div>
+            </div>
+            <div class="quantum-card" data-game="aviaxmas" onclick="enterGame('aviaxmas')">
+                <div class="card-render-frame"><span class="module-tag tag-std">TIÊU CHUẨN</span><img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh"></div>
+                <div class="card-body-content">
+                    <div>
+                        <h3>Aviamasters X-Mas</h3>
+                        <p>Cơ sở dữ liệu tích hợp từ sự kiện đặc biệt. Tối ưu thuật toán nén biên độ dòng tiền và quét tỷ lệ lệch chuẩn tích lũy.</p>
+                    </div>
+                    <div class="btn-module-trigger">LIÊN KẾT THUẬT TOÁN</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardView" class="dashboard-screen">
+        <div class="dash-control-bar">
+            <div class="active-target-profile">
+                <img id="activeAvatar" class="profile-avatar" src="" alt="Target Core">
+                <div class="profile-text"><h1 id="activeTitle">THIẾT LẬP MỤC TIÊU</h1><span>MÁY CHỦ PHÂN TÍCH CAO CẤP</span></div>
+            </div>
+            <button class="btn-terminate-session" onclick="backToLobby()">[ ĐÓNG PHIÊN KẾT NỐI ]</button>
+        </div>
+        
+        <div class="dashboard-layout-grid">
+            <div class="tactical-panel">
+                <div class="panel-headline"><em>[+]</em> THAM SỐ CẤU HÌNH LÕI</div>
+                
+                <div class="form-field-block">
+                    <label>TỔNG HẠN MỨC VỐN BAN ĐẦU (TỐI THIỂU 50.000 VNĐ)</label>
+                    <div class="premium-input-box">
+                        <input type="text" id="capitalInputVisual" class="tactical-input" value="2.000.000" oninput="handleCapitalVisualInput(this)">
+                        <input type="number" id="capitalInput" style="display:none;" value="2000000">
+                        <span class="currency-addon">VNĐ</span>
+                    </div>
+                </div>
+                
+                <div class="form-field-block">
+                    <label>CHIẾN LƯỢC QUÉT MA TRẬN AI</label>
+                    <select id="strategySelect" class="tactical-input" onchange="resetRealtimeDisplay()">
+                        <option value="safe" id="optSafe">BẢO TOÀN VỐN (AN TOÀN TUYỆT ĐỐI)</option>
+                        <option value="medium" selected>CÂN BẰNG TỶ LỆ (TIÊU CHUẨN MÁY CHỦ)</option>
+                        <option value="high">LỢI NHUẬN TỐI ĐA (MẠO HIỂM CAO)</option>
+                    </select>
+                </div>
+                
+                <div class="frequency-selector-rack">
+                    <label>XUNG NHỊP TẦN SỐ ĐỒNG BỘ MÁY CHỦ</label>
+                    <div class="frequency-btn-row">
+                        <div class="freq-node active" data-speed="turtle" onclick="changeSpeed('turtle')"><span>TẦN THẤP</span></div>
+                        <div class="freq-node" data-speed="human" onclick="changeSpeed('human')"><span>TIÊU CHUẨN</span></div>
+                        <div class="freq-node" data-speed="hare" onclick="changeSpeed('hare')"><span>TĂNG TỐC</span></div>
+                        <div class="freq-node" data-speed="lightning" onclick="changeSpeed('lightning')"><span>CỰC HẠN</span></div>
+                    </div>
+                </div>
+
+                <div class="panel-actions-wrapper" id="actionBtnGroup">
+                    <button class="btn-action-node btn-node-secondary" id="phaoToggleBtn" onclick="togglePhaoSafety()">[ KÍCH HOẠT PHAO CỨU HỘ ]</button>
+                    <button class="btn-action-node btn-node-primary" id="analyzeBtn" onclick="executeQuantumAnalysis()">ĐỊNH VỊ TỌA ĐỘ AI</button>
+                </div>
+            </div>
+
+            <div class="tactical-panel">
+                <div class="panel-headline"><em>[#]</em> ĐO LƯỜNG CHỈ SỐ TELEMETRY THỜI GIAN THỰC</div>
+                
+                <div class="telemetry-data-grid">
+                    <div class="telemetry-card highlighted"><div class="telemetry-label">Mức vào lệnh khuyến nghị</div><div class="telemetry-value" id="valMoi" style="color: #FFF;">0 VNĐ</div></div>
+                    <div class="telemetry-card"><div class="telemetry-label">Tỷ lệ phân bổ dòng vốn</div><div class="telemetry-value" id="valRatio" style="color: var(--neon-cyan);">0%</div></div>
+                    <div class="telemetry-card"><div class="telemetry-label">Chu kỳ vòng quét an toàn</div><div class="telemetry-value" id="valVong" style="color: var(--neon-yellow);">0 Vòng</div></div>
+                    <div class="telemetry-card"><div class="telemetry-label">Độ rủi ro hệ thống lõi</div><div class="telemetry-value" id="valRisk" style="font-size:15px; font-weight:800;">ĐANG ĐO...</div></div>
+                </div>
+                
+                <div class="panel-headline" style="border:none; padding:0; margin-top:5px;"><em>[&gt;]</em> TRUNG TÂM PHÂN TÍCH LOGS AI</div>
+                
+                <div class="terminal-box-deck" id="terminalMainBox">
+                    <div class="laser-scan-line"></div>
+                    
+                    <div class="quantum-loading-wrapper" id="cyberLoading">
+                        <div class="loading-alert-string" id="loadingDynamicText">ĐANG KHỞI TẠO HỆ THỐNG AI...</div>
+                        <div class="hex-data-pipeline" id="hexDump">
+                            [THUẬT_TOÁN]: ĐANG LIÊN KẾT DATABASE LƯỢNG TỬ...<br>
+                            [XỬ_LÝ_LÕI]: KHỞI CHẠY KHÔNG GIAN BẢO MẬT CORE_SYS_LOAD: 72%
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-output-container" id="resultOutput">
+                        <div style="color:#475569; font-family: var(--font-code);">root@vyron-ai:~# Đang chờ cấu hình tham số hạn mức đầu vào...</div>
+                    </div>
+                    
+                    <div class="visualizer-node">
+                        <canvas id="quantumWaveChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // =========================================================================
+    // 🛡️ TƯỜNG LỬA CHỐNG F12 & REVERSE ENGINEERING (GIỮ NGUYÊN HOÀN TOÀN)
+    // =========================================================================
+    (function antiDevToolsEngine() {
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault(); return false;
+            }
+        });
+        setInterval(function() {
+            function emitTrap(i) { if (("" + i / i).length !== 1 || i % 20 === 0) { (function() {}).constructor("debugger")(); } else { debugger; } emitTrap(++i); }
+            try { emitTrap(0); } catch(e) {}
+        }, 1000);
+    })();
+
+    // =========================================================================
+    // 🔒 HỆ THỐNG KIỂM TRA MÃ KÍCH HOẠT VIP CỐ ĐỊNH "1004" (GIỮ NGUYÊN LOGIC)
+    // =========================================================================
+    const EXPIRE_DURATION = 24 * 60 * 60 * 1000;
+
+    function verifySystemActivationState() {
+        const activationTime = localStorage.getItem('avia_activation_time');
+        const activeUser = localStorage.getItem('avia_active_user');
+        const overlay = document.getElementById('activationOverlay');
+        
+        if (!activationTime || !activeUser) { showActivationPopup(false); return false; }
+        if (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION) { showActivationPopup(true); return false; }
+        
+        overlay.style.display = 'none';
+        document.getElementById('displayUsername').innerText = activeUser.toUpperCase();
+        return true;
+    }
+
+    function showActivationPopup(isExpired) {
+        const overlay = document.getElementById('activationOverlay');
+        const title = document.getElementById('actModalTitle');
+        const subtitle = document.getElementById('actModalSubtitle');
+        const log = document.getElementById('actTerminalLog');
+        overlay.style.display = 'flex';
+        
+        if (isExpired) {
+            title.innerText = "TỪ CHỐI TRUY CẬP"; title.style.color = "var(--neon-red)";
+            subtitle.innerText = "PHIÊN HOẠT ĐỘNG 24H ĐÃ HẾT HẠN";
+            log.innerHTML = `[CRITICAL_ERR]: HẾT HẠN MÃ TOKEN BẢO MẬT TRÊN THIẾT BỊ.<br>[HÀNH_ĐỘNG]: VUI LÒNG LIÊN HỆ TELEGRAM CSKH @trangcskhxx88 ĐỂ CẤP LẠI MÃ MỚI.`;
+        } else {
+            title.innerText = "XÁC THỰC HỆ THỐNG"; title.style.color = "#FFF";
+            subtitle.innerText = "LÕI BẢO MẬT AI PREMIUM";
+            log.innerHTML = `[HỆ_THỐNG]: TƯỜNG LỬA LƯỢNG TỬ ĐÃ KHỞI CHẠY KHÔNG GIAN BẢO MẬT.<br>[TIẾN_TRÌNH]: ĐANG CHỜ CẤP QUYỀN TRUY CẬP TỪ NGƯỜI ĐÙNG...`;
+        }
+    }
+
+    function validateActivationKey() {
+        const userField = document.getElementById('gameUsernameInput');
+        const codeField = document.getElementById('activationCodeInput');
+        const username = userField.value.trim();
+        const enteredCode = codeField.value.trim();
+        
+        if (!username) { displayCustomAlert("THIẾU THÔNG TIN", "VUI LÒNG NHẬP TÀI KHOẢN ĐỊNH DANH GAME ĐỂ KHỞI CHẠY THUẬT TOÁN!"); return; }
+
+        // Logic mã kích hoạt cố định 1004 kết hợp mã dự phòng vạn năng
+        if (enteredCode === "1004" || enteredCode === "9999999999") {
+            localStorage.setItem('avia_activation_time', Date.now().toString());
+            localStorage.setItem('avia_active_user', username);
+            displayCustomAlert("LIÊN KẾT THÀNH CÔNG", "MẠNG LƯỚI AI ĐÃ ĐƯỢC KÍCH HOẠT. CẤP QUYỀN TRUY CẬP TOÀN PHẦN TRONG 24 GIỜ TIẾP THEO.");
+            document.getElementById('activationOverlay').style.display = 'none';
+            document.getElementById('displayUsername').innerText = username.toUpperCase();
+            codeField.value = "";
+            resetRealtimeDisplay();
+        } else {
+            displayCustomAlert("LỖI XÁC THỰC", "MÃ KÍCH HOẠT VIP KHÔNG CHÍNH XÁC HOẶC ĐÃ BỊ HỦY TRÊN MÁY CHỦ SƠ CẤP!");
+        }
+    }
+
+    // =========================================================================
+    // 🧠 LÕI DỮ LIỆU ĐIỀU HÀNH GAME & KHỐI XỬ LÝ TOÁN HỌC (GIỮ NGUYÊN LOGIC)
+    // =========================================================================
+    const gameDatabase = {
+        avia2: { title: "Avia Masters 2", img: "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp", hasPhao: true, descSafe: "BẢO TOÀN VỐN (AN TOÀN TUYỆT ĐỐI)" },
+        aviaphitruc: { title: "Bậc Thầy Phi Hành", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s", hasPhao: false, descSafe: "CHỐNG GÃY CHUỖI (AN TOÀN CAO)" },
+        aviaxmas: { title: "Aviamasters X-Mas", img: "https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp", hasPhao: false, descSafe: "SỰ KIỆN GIÁNG SINH (AN TOÀN)" }
+    };
+
+    let currentGameId = 'avia2'; let currentSpeed = 'turtle'; let isPhaoSafetyActive = false;
+    let mainWaveChart = null;
+    const currencyFormatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+
+    // 1. CHỨC NĂNG REALTIME FORMAT TIỀN VIỆT CÓ DẤU CHẤM PHÂN CÁCH ĐÚNG CẤU TRÚC
+    function handleCapitalVisualInput(inputElement) {
+        let cleanValue = inputElement.value.replace(/\D/g, '');
+        if (cleanValue === '') {
+            document.getElementById('capitalInput').value = 0;
+            resetRealtimeDisplay();
+            return;
+        }
+        
+        let numericValue = parseInt(cleanValue, 10);
+        document.getElementById('capitalInput').value = numericValue;
+        
+        // Đặt dấu chấm ngăn cách phân bổ hàng nghìn
+        inputElement.value = numericValue.toLocaleString('vi-VN');
+        resetRealtimeDisplay();
+    }
+
+    // 2. PHƯƠNG THỨC HIỂN THỊ THÔNG BÁO POPUP NEO-DARK CUSTOM (THAY ALERT MẶC ĐỊNH)
+    function displayCustomAlert(title, message) {
+        document.getElementById('alertTitleNode').innerText = title;
+        document.getElementById('alertMessageNode').innerText = message;
+        document.getElementById('customAlertSystem').classList.add('visible');
+    }
+
+    function closeCustomAlert() {
+        document.getElementById('customAlertSystem').classList.remove('visible');
+    }
+
+    function enterGame(gameId) {
+        if (!verifySystemActivationState()) return;
+        currentGameId = gameId; const game = gameDatabase[gameId];
+        isPhaoSafetyActive = false;
+        
+        const pBtn = document.getElementById('phaoToggleBtn');
+        pBtn.classList.remove('active'); pBtn.innerText = "[ KÍCH HOẠT PHAO CỨU HỘ ]";
+        
+        document.getElementById('activeTitle').innerText = game.title;
+        document.getElementById('activeAvatar').src = game.img;
+        document.getElementById('optSafe').innerText = game.descSafe;
+        
+        const btnGroup = document.getElementById('actionBtnGroup');
+        if (game.hasPhao) { pBtn.style.display = "flex"; btnGroup.classList.add('has-phao'); btnGroup.classList.add('dual-mode'); } 
+        else { pBtn.style.display = "none"; btnGroup.classList.remove('has-phao'); btnGroup.classList.remove('dual-mode'); }
+        
+        document.getElementById('lobbyView').style.display = 'none';
+        document.getElementById('dashboardView').style.display = 'block';
+        resetRealtimeDisplay();
+        initQuantumChart();
+    }
+
+    function backToLobby() {
+        if (!verifySystemActivationState()) return;
+        document.getElementById('dashboardView').style.display = 'none';
+        document.getElementById('lobbyView').style.display = 'block';
+    }
+
+    function changeSpeed(speed) {
+        currentSpeed = speed; document.querySelectorAll('.freq-node').forEach(item => item.classList.remove('active'));
+        const targetBtn = document.querySelector(`.freq-node[data-speed="${speed}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+        resetRealtimeDisplay();
+    }
+
+    function resetRealtimeDisplay() {
+        const capital = parseFloat(document.getElementById('capitalInput').value);
+        if (isNaN(capital) || capital <= 0) {
+            document.getElementById('valMoi').innerText = "0 VNĐ";
+            document.getElementById('valRatio').innerText = "0%";
+            return;
+        }
+        
+        const strategy = document.getElementById('strategySelect').value;
+        let ratio = strategy === 'safe' ? 0.02 : (strategy === 'high' ? 0.12 : 0.05);
+        if (currentGameId === 'avia2' && isPhaoSafetyActive) ratio = 0.015;
+        
+        let betMoi = Math.floor(capital * ratio); if (betMoi < 1000) betMoi = 1000;
+        
+        // Cập nhật giá trị hiển thị dạng tiền tệ Việt mượt mà
+        document.getElementById('valMoi').innerText = betMoi.toLocaleString('vi-VN') + " VNĐ";
+        document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('resultOutput').innerHTML = `<div style="color:#475569; font-family: var(--font-code);">root@vyron-ai:~# Đã cập nhật cấu hình tham số. Sẵn sàng thực thi quét.</div>`;
+    }
+
+    function togglePhaoSafety() {
+        if (currentGameId !== 'avia2') return;
+        isPhaoSafetyActive = !isPhaoSafetyActive;
+        const pBtn = document.getElementById('phaoToggleBtn'); const sysText = document.getElementById('systemStatusText');
+        if (isPhaoSafetyActive) { 
+            pBtn.classList.add('active'); pBtn.innerText = "[ PHAO ĐANG HOẠT ĐỘNG ]"; 
+            sysText.innerText = "HỆ THỐNG PHAO BẢO VỆ ĐÃ ĐƯỢC TÍCH HỢP VÀO LÕI THUẬT TOÁN."; sysText.style.color = "var(--neon-green)"; 
+        } else { 
+            pBtn.classList.remove('active'); pBtn.innerText = "[ KÍCH HOẠT PHAO CỨU HỘ ]"; 
+            sysText.innerText = "ĐỒNG BỘ MẠNG LƯỚI ĐỂ LIÊN KẾT THUẬT TOÁN MA TRẬN LƯỢNG TỬ."; sysText.style.color = "var(--neon-cyan)"; 
+        }
+        resetRealtimeDisplay();
+    }
+
+    // 5. NÂNG CẤP TIẾN TRÌNH QUÉT TERMINAL THUẦN TIẾNG VIỆT 100% CỰC CHUYÊN NGHIỆP
+    function executeQuantumAnalysis() {
+        if (!verifySystemActivationState()) return;
+        const capital = parseFloat(document.getElementById('capitalInput').value);
+        
+        // Ràng buộc điều kiện kiểm soát số vốn tối thiểu 50.000 VNĐ theo yêu cầu nâng cấp
+        if (isNaN(capital) || capital < 50000) { 
+            displayCustomAlert("HẠN MỨC KHÔNG HỢP LỆ", "HỆ THỐNG KHÔNG THỂ KHỞI CHẠY. SỐ VỐN TỐI THIỂU YÊU CẦU PHẢI TỪ 50.000 VNĐ TRỞ LÊN!"); 
+            return; 
+        }
+        
+        const analyzeBtn = document.getElementById('analyzeBtn'); const phaoBtn = document.getElementById('phaoToggleBtn');
+        const cyberLoading = document.getElementById('cyberLoading'); const resultOutput = document.getElementById('resultOutput'); const terminalBox = document.getElementById('terminalMainBox');
+
+        analyzeBtn.disabled = true; if(phaoBtn) phaoBtn.disabled = true;
+        resultOutput.style.display = "none"; cyberLoading.style.display = "flex"; terminalBox.classList.add('active-scanning');
+
+        const textMilestones = [
+            "ĐANG KHỞI TẠO HỆ THỐNG AI...",
+            "ĐANG QUÉT TÍN HIỆU TOÀN MÁY CHỦ...",
+            "ĐANG ĐỒNG BỘ DỮ LIỆU GAME CHUYÊN SÂU...",
+            "ĐÃ KHÓA ĐIỂM VÀO AN TOÀN..."
+        ];
+        let index = 0; document.getElementById('loadingDynamicText').innerText = textMilestones[index];
+        
+        const hexDump = document.getElementById('hexDump');
+        const dumpInterval = setInterval(() => {
+            const chars = '0123456789ABCDEF'; let hex = 'DATA_FLOW_';
+            for(let i=0; i<6; i++) hex += chars[Math.floor(Math.random() * chars.length)];
+            hexDump.innerHTML = hexDump.innerHTML.substring(hexDump.innerHTML.length - 140) + " [XỬ_LÝ_" + hex + "]";
+        }, 120);
+
+        const textTimer = setInterval(() => { index++; if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; }, 700);
+
+        setTimeout(() => { 
+            clearInterval(textTimer); clearInterval(dumpInterval);
+            terminalBox.classList.remove('active-scanning'); cyberLoading.style.display = "none"; resultOutput.style.display = "block"; analyzeBtn.disabled = false; if(phaoBtn) phaoBtn.disabled = false; 
+            renderPremiumVipResults(capital); 
+            simulateChartMotion();
+        }, 2800);
+    }
+
+    // 8. BỔ SUNG ĐẾM SỐ VÀ TINH CHỈNH ĐO LƯỜNG TIỀN VIỆT CHUYÊN NGHIỆP
+    function renderPremiumVipResults(capital) {
+        const game = gameDatabase[currentGameId]; const strategy = document.getElementById('strategySelect').value;
+        let ratio = 0.05; let baseRounds = 10; let riskText = "TRUNG BÌNH"; let riskColor = "var(--neon-yellow)"; let confidenceScore = "95.34%"; let safetyRate = "88.12%";
+        
+        if (strategy === 'safe') { ratio = 0.02; baseRounds = game.hasPhao ? 15 : 12; riskText = "RẤT THẤP (AN TOÀN)"; riskColor = "var(--neon-green)"; confidenceScore = "98.74%"; safetyRate = "96.45%"; } 
+        else if (strategy === 'high') { ratio = 0.12; baseRounds = game.hasPhao ? 7 : 5; riskText = "CAO (MẠO HIỂM)"; riskColor = "var(--neon-red)"; confidenceScore = "84.15%"; safetyRate = "65.73%"; }
+        else { baseRounds = game.hasPhao ? 11 : 8; }
+        
+        if (currentSpeed === 'turtle') baseRounds += 2; if (currentSpeed === 'lightning') baseRounds -= 2; if (baseRounds < 3) baseRounds = 3;
+        if (currentGameId === 'avia2' && isPhaoSafetyActive) { ratio = 0.015; baseRounds += 3; riskText = "TUYỆT ĐỐI BẢO MẬT"; riskColor = "var(--neon-cyan)"; safetyRate = "99.28%"; }
+        
+        let finalBet = Math.floor(capital * ratio); if (finalBet < 1000) finalBet = 1000;
+
+        // Tiến hành hiệu ứng đếm số mượt mà bằng GSAP
+        let targetMetrics = { bet: 0, ratioValue: 0, rounds: 0 };
+        gsap.to(targetMetrics, {
+            bet: finalBet, ratioValue: ratio * 100, rounds: baseRounds, duration: 1.2, ease: "power2.out",
+            onUpdate: function() {
+                document.getElementById('valMoi').innerText = Math.floor(targetMetrics.bet).toLocaleString('vi-VN') + " VNĐ";
+                document.getElementById('valRatio').innerText = targetMetrics.ratioValue.toFixed(1) + "%";
+                document.getElementById('valVong').innerText = Math.floor(targetMetrics.rounds) + " Vòng";
+            }
+        });
+
+        document.getElementById('valRisk').innerText = riskText; document.getElementById('valRisk').style.color = riskColor;
+
+        document.getElementById('resultOutput').innerHTML = `
+            <div style="color:var(--neon-green); font-weight:800; margin-bottom:12px; font-size:14px; font-family: var(--font-code);">>>> HOÀN TẤT PHÂN TÍCH THUẬT TOÁN LƯỢNG TỬ</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-family: var(--font-code); font-size:12px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:5px;"><span style="color:#64748B;">[-] Điểm Vào Khuyến Nghị:</span><span style="color:#FFF; font-weight:700;">${finalBet.toLocaleString('vi-VN')} VNĐ</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:5px;"><span style="color:#64748B;">[-] Chu Kỳ Chịu Tải Quỹ Vốn:</span><span style="color:var(--neon-yellow); font-weight:700;">${baseRounds} Chu Kỳ Quét</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:5px;"><span style="color:#64748B;">[-] Xác Suất Khớp Lệnh Hệ Thống:</span><span style="color:var(--neon-cyan); font-weight:700;">${confidenceScore}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:#64748B;">[-] Chỉ Số An Toàn Lõi:</span><span style="color:var(--neon-green); font-weight:700;">${safetyRate}</span></div>
+            </div>
+            <div style="margin-top:15px; color:#475569; font-size:11px;">root@vyron-ai:~# Đang duy trì kết nối bảo mật máy chủ...</div>
+        `;
+    }
+
+    // =========================================================================
+    // 📈 PREMIUM MODERN UI LIBRARIES TÍCH HỢP (CHART.JS ENGINE)
+    // =========================================================================
+    function initQuantumChart() {
+        const ctxChart = document.getElementById('quantumWaveChart').getContext('2d');
+        if(mainWaveChart) { mainWaveChart.destroy(); }
+        
+        mainWaveChart = new Chart(ctxChart, {
+            type: 'line',
+            data: {
+                labels: ['Nút 1', 'Nút 2', 'Nút 3', 'Nút 4', 'Nút 5', 'Nút 6', 'Nút 7'],
+                datasets: [{
+                    label: 'Tần Số Sóng AI',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    borderColor: '#00F0FF',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 240, 255, 0.03)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { display: false }, y: { display: false } }
+            }
+        });
+    }
+
+    function simulateChartMotion() {
+        if(!mainWaveChart) return;
+        mainWaveChart.data.datasets[0].data = Array.from({length: 7}, () => Math.floor(Math.random() * 25));
+        mainWaveChart.update('none');
+    }
+
+    // =========================================================================
+    // 🌌 CINEMATIC CANVAS MATRIX GRID LOGIC BACKGROUND
+    // =========================================================================
+    const matrixCanvas = document.getElementById('cyber-matrix-canvas'); const mCtx = matrixCanvas.getContext('2d');
+    let dotMatrixArray = [];
+    
+    function resizeMatrixCanvas() { matrixCanvas.width = window.innerWidth; matrixCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeMatrixCanvas); resizeMatrixCanvas();
+    
+    class MatrixDot {
+        constructor() {
+            this.x = Math.random() * matrixCanvas.width; this.y = Math.random() * matrixCanvas.height;
+            this.radius = Math.random() * 1.5; this.velocity = Math.random() * 0.4 + 0.05;
+            this.nodeColor = Math.random() > 0.55 ? 'rgba(0, 240, 255, 0.3)' : 'rgba(189, 0, 255, 0.25)';
+        }
+        step() { this.y -= this.velocity; if (this.y < 0) { this.y = matrixCanvas.height; this.x = Math.random() * matrixCanvas.width; } }
+        render() { mCtx.fillStyle = this.nodeColor; mCtx.beginPath(); mCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); mCtx.fill(); }
+    }
+    
+    function populateMatrixEngine() { dotMatrixArray = []; for (let i = 0; i < 70; i++) { dotMatrixArray.push(new MatrixDot()); } }
+    function renderMatrixLoop() {
+        mCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+        
+        // Vẽ cấu trúc đồ thị HUD Cyber mờ
+        mCtx.strokeStyle = 'rgba(255, 255, 255, 0.015)'; mCtx.lineWidth = 1;
+        for(let i = 0; i < matrixCanvas.width; i += 70) { mCtx.beginPath(); mCtx.moveTo(i, 0); mCtx.lineTo(i, matrixCanvas.height); mCtx.stroke(); }
+        for(let i = 0; i < matrixCanvas.height; i += 70) { mCtx.beginPath(); mCtx.moveTo(0, i); mCtx.lineTo(matrixCanvas.width, i); mCtx.stroke(); }
+
+        for (let i = 0; i < dotMatrixArray.length; i++) { dotMatrixArray[i].step(); dotMatrixArray[i].render(); }
+        requestAnimationFrame(renderMatrixLoop);
+    }
+    
+    populateMatrixEngine(); renderMatrixLoop();
+    window.onload = function() { verifySystemActivationState(); resetRealtimeDisplay(); };
+</script>
+</body>
+</html>
