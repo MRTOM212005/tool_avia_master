@@ -1,741 +1,472 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="cyber">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VYRON AI | PREMIUM CYBER SECURITY DASHBOARD</title>
+    <title>VYRON AI | ULTIMATE SECURITY DASHBOARD VIP</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================================================
-           🎨 CORE PREMIUM HACKER CINEMATIC DESIGN SYSTEM (AI SECURITY BLACK)
+           🎨 CORE DYNAMIC DESIGN SYSTEM (MULTI-THEME SUPPORT)
            ========================================================================= */
         :root {
-            --bg-deep: #05070d;
-            --bg-surface: #0a0e17;
-            --bg-card: rgba(10, 16, 26, 0.75);
-            --border-glow: rgba(0, 240, 255, 0.15);
-            --border-glow-active: rgba(0, 240, 255, 0.4);
-            
-            /* Tactical Cyber Accent Palette */
-            --cyber-cyan: #00f0ff;
-            --cyber-cyan-glow: rgba(0, 240, 255, 0.25);
-            --cyber-purple: #bd00ff;
-            --cyber-purple-glow: rgba(189, 0, 255, 0.2);
-            --cyber-gold: #ffb800;
-            --cyber-gold-glow: rgba(255, 184, 0, 0.15);
-            --cyber-green: #00ff66;
-            --cyber-red: #ff2a5f;
-            --cyber-muted: #4a5d78;
-            
-            /* Typography */
-            --font-hud-title: 'Orbitron', sans-serif;
-            --font-hud-sub: 'Rajdhani', sans-serif;
-            --font-hud-terminal: 'Share Tech Mono', monospace;
-            
-            /* Shadows & Blurs */
-            --shadow-cinematic: 0 25px 70px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            --blur-premium: blur(25px);
-            --transition-tactical: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            /* CYBERPUNK NEON (MẶC ĐỊNH) */
+            --primary-rgb: 0, 240, 255;
+            --secondary-rgb: 255, 0, 127;
+            --bg-deep-color: #030407;
+            --bg-surface-color: #0a0c14;
+            --bg-card-color: rgba(10, 14, 23, 0.85);
+            --text-muted-color: #647b9e;
+            --success-rgb: 0, 255, 102;
+            --warning-rgb: 255, 184, 0;
+            --danger-rgb: 255, 42, 95;
+        }
+        [data-theme="gold"] {
+            --primary-rgb: 255, 184, 0; --secondary-rgb: 255, 215, 0;
+            --bg-deep-color: #0a0802; --bg-surface-color: #141005; --bg-card-color: rgba(20, 15, 5, 0.85); --text-muted-color: #a38b54;
+        }
+        [data-theme="matrix"] {
+            --primary-rgb: 0, 255, 102; --secondary-rgb: 0, 204, 82;
+            --bg-deep-color: #010a02; --bg-surface-color: #031405; --bg-card-color: rgba(5, 20, 10, 0.85); --text-muted-color: #54a368;
         }
 
-        /* DISABLE SELECTION FOR SECURITY EXPERIENCE */
-        * {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            box-sizing: border-box;
+        :root, [data-theme="gold"], [data-theme="matrix"] {
+            --primary: rgb(var(--primary-rgb)); --primary-glow: rgba(var(--primary-rgb), 0.4);
+            --secondary: rgb(var(--secondary-rgb)); --secondary-glow: rgba(var(--secondary-rgb), 0.4);
+            --bg-deep: var(--bg-deep-color); --bg-surface: var(--bg-surface-color); --bg-card: var(--bg-card-color);
+            --text-muted: var(--text-muted-color);
+            --success: rgb(var(--success-rgb)); --warning: rgb(var(--warning-rgb)); --danger: rgb(var(--danger-rgb));
+            --font-hud-title: 'Orbitron', sans-serif; --font-hud-sub: 'Rajdhani', sans-serif; --font-hud-terminal: 'Share Tech Mono', monospace;
+            --shadow-cinematic: 0 25px 70px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            --blur-premium: blur(30px); --transition-tactical: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-hud-sub);
-            background-color: var(--bg-deep);
-            color: #e2e8f0;
-            margin: 0;
-            padding: 30px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            font-family: var(--font-hud-sub); background-color: var(--bg-deep); color: #e2e8f0;
+            margin: 0; padding: 30px 20px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow-x: hidden; position: relative; transition: background-color 0.5s;
         }
+        #quantum-canvas { position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: 0.4; }
+        body::before { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: -2; }
+        body::after { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 15%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: -1; }
 
-        /* MATRIX QUANTUM CANVAS */
-        #quantum-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: -3;
-            pointer-events: none;
-            opacity: 0.35;
-        }
+        /* HEADER CONTROLS */
+        .top-controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1000; }
+        .control-btn { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.4); color: var(--primary); font-family: var(--font-hud-title); font-size: 11px; padding: 8px 12px; border-radius: 4px; cursor: pointer; backdrop-filter: blur(10px); transition: var(--transition-tactical); outline: none; }
+        .control-btn:hover { background: rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 10px var(--primary-glow); }
+        .control-btn option { background: #000; color: #fff; }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.02;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 10%, rgba(5, 7, 13, 0.92) 100%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* MAIN MASTER WRAPPER FRAME */
-        .wrapper {
-            max-width: 1280px;
-            width: 100%;
-            padding: 40px;
-            border-radius: 16px;
-            backdrop-filter: var(--blur-premium);
-            -webkit-backdrop-filter: var(--blur-premium);
-            background: rgba(10, 14, 23, 0.75);
-            border: 1px solid var(--border-glow);
-            box-shadow: var(--shadow-cinematic);
-            position: relative;
-            z-index: 1;
-            transition: var(--transition-tactical);
-        }
-
-        .wrapper.active-cyber-glow {
-            border-color: var(--border-glow-active);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.1), var(--shadow-cinematic);
-        }
-
-        /* TOP TACTICAL HUD STATUS BAR */
-        .hud-status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 35px;
-            padding: 16px 24px;
-            border-radius: 8px;
-            background: rgba(5, 7, 13, 0.6);
-            border: 1px solid rgba(0, 240, 255, 0.08);
-        }
-
-        .hud-meta-group {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .hud-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--cyber-muted);
-            text-transform: uppercase;
-        }
-
-        .hud-meta-value { 
-            color: #ffffff; 
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
+        /* [FEATURE] VERSION TAG & CHANGELOG */
+        .version-tag { position: fixed; bottom: 20px; left: 20px; font-family: var(--font-hud-title); font-size: 11px; color: var(--text-muted); cursor: pointer; z-index: 1000; padding: 5px 10px; border: 1px solid transparent; border-radius: 4px; transition: var(--transition-tactical); }
+        .version-tag:hover { color: var(--primary); border-color: rgba(var(--primary-rgb), 0.3); background: rgba(0,0,0,0.5); }
         
+        .changelog-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .changelog-content { background: var(--bg-card); border: 1px solid var(--primary); padding: 30px; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 0 30px var(--primary-glow); font-family: var(--font-hud-sub); }
+        .changelog-title { font-family: var(--font-hud-title); color: var(--primary); font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px; }
+        .changelog-list { list-style: none; padding: 0; margin: 0; color: #fff; font-size: 14px; line-height: 1.6; }
+        .changelog-list li { margin-bottom: 10px; }
+        .changelog-list span { color: var(--success); font-weight: 800; font-family: var(--font-hud-terminal); margin-right: 10px; }
+        .close-changelog { margin-top: 20px; width: 100%; padding: 10px; background: rgba(var(--primary-rgb), 0.1); border: 1px solid var(--primary); color: var(--primary); font-family: var(--font-hud-title); cursor: pointer; border-radius: 4px; transition: var(--transition-tactical); }
+        .close-changelog:hover { background: var(--primary); color: #000; }
+
+        /* FAKE LIVE STATS & SERVER HEALTH */
+        .widget-panel { position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; pointer-events: none; }
+        .fake-stats-panel { background: rgba(0,0,0,0.7); border: 1px solid rgba(var(--primary-rgb), 0.3); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 4px; font-family: var(--font-hud-sub); font-size: 13px; font-weight: 700; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .stat-line { margin: 4px 0; color: var(--text-muted); letter-spacing: 1px; }
+        .stat-highlight { color: var(--primary); font-weight: 900; font-family: var(--font-hud-title); }
+        
+        .server-health-panel { background: rgba(0,0,0,0.7); border: 1px solid rgba(var(--secondary-rgb), 0.3); padding: 10px 16px; border-radius: 4px; font-family: var(--font-hud-terminal); font-size: 11px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .node-line { display: flex; align-items: center; justify-content: space-between; margin: 4px 0; color: #fff; gap: 15px; }
+        .node-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); }
+        .node-dot.warning { background: var(--warning); box-shadow: 0 0 8px var(--warning); animation: pulseWarning 1s infinite; }
+        @keyframes pulseWarning { 50% { opacity: 0.5; } }
+
+        /* MAIN WRAPPER */
+        .wrapper { max-width: 1280px; width: 100%; padding: 40px; border-radius: 16px; backdrop-filter: var(--blur-premium); -webkit-backdrop-filter: var(--blur-premium); background: var(--bg-card); border: 1px solid rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.05), var(--shadow-cinematic); position: relative; z-index: 1; transition: var(--transition-tactical); }
+        .wrapper.active-cyber-glow { border-color: var(--secondary); box-shadow: 0 0 60px rgba(var(--secondary-rgb), 0.15), var(--shadow-cinematic); }
+
+        /* HUD STATUS BAR */
+        .hud-status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; padding: 16px 24px; border-radius: 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(var(--secondary-rgb), 0.15); box-shadow: inset 0 0 20px rgba(var(--secondary-rgb), 0.05); }
+        .hud-meta-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .hud-meta-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
+        .hud-meta-value { color: #ffffff; font-weight: 800; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        
+        .timer-critical { color: var(--danger) !important; text-shadow: 0 0 15px rgba(var(--danger-rgb), 0.8) !important; animation: blinkFast 1s infinite; }
+        @keyframes blinkFast { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .renew-btn { background: var(--danger); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 10px; text-decoration: none; font-weight: 800; animation: pulseRed 2s infinite; display: none; }
+        @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(var(--danger-rgb), 0.7); } 70% { box-shadow: 0 0 0 10px rgba(var(--danger-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--danger-rgb), 0); } }
+
         .hud-chip-container { display: flex; gap: 12px; }
-        .hud-chip { 
-            padding: 6px 14px; 
-            border-radius: 4px; 
-            font-size: 11px; 
-            font-weight: 700; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            font-family: var(--font-hud-title); 
-        }
-        
-        .chip-live { background: rgba(0, 255, 102, 0.05); border: 1px solid rgba(0, 255, 102, 0.2); color: var(--cyber-green); }
-        .chip-ai { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); color: var(--cyber-cyan); }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyber-green); display: inline-block; box-shadow: 0 0 12px var(--cyber-green); animation: pulseDot 2s infinite; }
-        @keyframes pulseDot { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+        .hud-chip { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-hud-title); }
+        .chip-live { background: rgba(var(--success-rgb), 0.08); border: 1px solid rgba(var(--success-rgb), 0.3); color: var(--success); box-shadow: 0 0 10px rgba(var(--success-rgb), 0.1); }
+        .chip-ai { background: rgba(var(--secondary-rgb), 0.08); border: 1px solid rgba(var(--secondary-rgb), 0.3); color: var(--secondary); box-shadow: 0 0 10px rgba(var(--secondary-rgb), 0.1); }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); display: inline-block; box-shadow: 0 0 15px var(--success); animation: pulseDot 1.5s infinite; }
+        @keyframes pulseDot { 0% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0.3; transform: scale(0.8); } }
 
         /* =========================================================================
-           🎮 LOBBY GATEWAY LAYOUT
+           🚀 LOBBY VIEW - TACTICAL UPGRADE
            ========================================================================= */
-        .lobby-view { display: block; text-align: center; }
+        .lobby-view { display: block; text-align: center; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .lobby-title {
-            margin-bottom: 8px; 
-            text-transform: uppercase; 
-            font-family: var(--font-hud-title); 
-            font-size: 34px; 
-            font-weight: 900; 
-            letter-spacing: 6px;
-            background: linear-gradient(180deg, #ffffff 30%, #4a5d78 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
+        .lobby-title { 
+            margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-hud-title); 
+            font-size: 38px; font-weight: 900; letter-spacing: 8px; 
+            background: linear-gradient(135deg, #ffffff 20%, var(--primary) 80%); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            text-shadow: 0 0 30px rgba(var(--primary-rgb), 0.2); 
+            position: relative; display: inline-block;
         }
+        .lobby-title::after {
+            content: "Hệ Thống Phân Tích Avia Pro"; position: absolute; left: 2px; top: 0;
+            background: linear-gradient(135deg, #ffffff 20%, var(--primary) 80%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0.5; filter: blur(2px); animation: glitchPulse 3s infinite; pointer-events: none;
+        }
+        @keyframes glitchPulse { 0%, 100% { opacity: 0.2; transform: translateX(0); } 50% { opacity: 0.6; transform: translateX(2px); } }
         
-        .lobby-subtitle { 
-            color: var(--cyber-muted); 
-            font-size: 13px; 
-            margin-bottom: 45px; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            font-weight: 600; 
-        }
-
-        .game-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-        }
+        .lobby-subtitle { color: var(--secondary); font-size: 15px; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
         
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         @media (max-width: 992px) { .game-grid { grid-template-columns: 1fr; } }
-
-        .game-card {
-            border: 1px solid rgba(0, 240, 255, 0.08); 
-            border-radius: 12px; 
-            overflow: hidden; 
-            cursor: pointer;
-            background: var(--bg-card); 
-            position: relative;
-            transition: var(--transition-tactical);
-            display: flex; 
-            flex-direction: column;
+        
+        .game-card { 
+            border: 1px solid rgba(var(--primary-rgb), 0.2); border-radius: 12px; overflow: hidden; cursor: pointer; 
+            background: rgba(5,7,13,0.8); position: relative; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+            display: flex; flex-direction: column; backdrop-filter: blur(10px);
         }
         
         .game-card:hover { 
-            transform: translateY(-4px); 
-            border-color: rgba(0, 240, 255, 0.3);
-            background: rgba(14, 22, 36, 0.85);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.05);
+            transform: translateY(-12px) scale(1.02); border-color: var(--primary); 
+            background: rgba(0,0,0,0.95); box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 30px rgba(var(--primary-rgb), 0.3); 
         }
 
-        .game-img-wrapper { 
-            width: 100%; 
-            height: 260px; 
-            overflow: hidden; 
-            position: relative; 
-            background: #02050a; 
-        }
+        .game-img-wrapper { width: 100%; height: 260px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid rgba(var(--primary-rgb), 0.2); }
+        .game-img-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; filter: grayscale(70%) brightness(50%) contrast(120%); }
+        .game-card:hover .game-img-wrapper img { transform: scale(1.1); filter: grayscale(0%) brightness(90%) contrast(110%); }
+        .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,7,13,1) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); pointer-events: none; }
         
-        .game-img-wrapper img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center; 
-            transition: var(--transition-tactical);
-            filter: grayscale(40%) brightness(75%);
-        }
-        
-        .game-card:hover .game-img-wrapper img { 
-            transform: scale(1.03); 
-            filter: grayscale(0%) brightness(95%);
-        }
-        
-        .game-img-wrapper::after { 
-            content: ""; 
-            position: absolute; 
-            inset: 0; 
-            background: linear-gradient(to top, var(--bg-surface) 0%, rgba(10, 14, 23, 0.3) 60%, transparent 100%); 
-            pointer-events: none; 
-        }
+        .card-scanline { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--primary); box-shadow: 0 0 15px var(--primary); animation: cardScan 2.5s linear infinite; z-index: 2; opacity: 0.8; pointer-events: none; }
+        @keyframes cardScan { 0% { top: -10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 110%; opacity: 0; } }
 
-        .game-badge { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            font-size: 10px; 
-            font-weight: 700; 
-            padding: 5px 12px; 
-            border-radius: 4px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            z-index: 2; 
-            font-family: var(--font-hud-title); 
-        }
-        
-        .badge-phao { background: rgba(0, 255, 102, 0.06); color: var(--cyber-green); border: 1px solid rgba(0, 255, 102, 0.3); box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
-        .badge-nophao { background: rgba(74, 93, 120, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
+        .game-badge { position: absolute; top: 15px; right: 15px; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; z-index: 2; font-family: var(--font-hud-title); }
+        .badge-phao { background: rgba(var(--success-rgb), 0.15); color: var(--success); border: 1px solid rgba(var(--success-rgb), 0.4); box-shadow: 0 0 15px rgba(var(--success-rgb), 0.3); backdrop-filter: blur(5px); }
+        .badge-nophao { background: rgba(var(--secondary-rgb), 0.15); color: var(--secondary); border: 1px solid rgba(var(--secondary-rgb), 0.3); backdrop-filter: blur(5px);}
+        .badge-vip { left: 15px; right: auto; background: rgba(var(--warning-rgb), 0.2); color: var(--warning); border: 1px solid var(--warning); box-shadow: 0 0 15px rgba(var(--warning-rgb), 0.4); animation: pulseVip 1.5s infinite; }
+        @keyframes pulseVip { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; box-shadow: 0 0 25px rgba(var(--warning-rgb), 0.8); } }
 
-        .game-details { 
-            padding: 24px; 
-            text-align: left; 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-        }
+        .game-details { padding: 24px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .game-name { font-family: var(--font-hud-title); font-size: 20px; font-weight: 900; color: #ffffff; margin: 0 0 8px 0; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.2);}
+        .game-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0 0 15px 0; min-height: 40px; font-weight: 600;}
         
-        .game-name { font-family: var(--font-hud-title); font-size: 16px; font-weight: 700; color: #ffffff; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .game-desc { font-size: 13px; color: #7f91a8; line-height: 1.6; margin: 0 0 24px 0; min-height: 60px; font-family: 'Inter', sans-serif; }
+        .game-tactical-stats { margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px dashed rgba(var(--primary-rgb), 0.3); padding: 10px 12px; border-radius: 4px; font-family: var(--font-hud-terminal); font-size: 11px; display: flex; flex-direction: column; gap: 6px; }
+        .t-stat { display: flex; justify-content: space-between; align-items: center; }
+        .t-stat span.lbl { color: var(--text-muted); }
+        .t-stat span.val { font-weight: 800; letter-spacing: 1px; transition: color 0.3s; }
+        .t-stat .val-green { color: var(--success); text-shadow: 0 0 5px rgba(var(--success-rgb), 0.5); }
+        .t-stat .val-blue { color: var(--primary); text-shadow: 0 0 5px rgba(var(--primary-rgb), 0.5); }
+
+        .btn-enter { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.4); color: var(--primary); padding: 15px 0; border-radius: 4px; text-align: center; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; font-family: var(--font-hud-title); position: relative; transition: var(--transition-tactical); display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-enter::before { content: "["; position: absolute; left: 15px; font-size: 16px; opacity: 0.5; transition: all 0.3s;}
+        .btn-enter::after { content: "]"; position: absolute; right: 15px; font-size: 16px; opacity: 0.5; transition: all 0.3s;}
         
-        .btn-enter { 
-            background: rgba(0, 240, 255, 0.03); 
-            border: 1px solid rgba(0, 240, 255, 0.15); 
-            color: var(--cyber-cyan); 
-            padding: 12px 0; 
-            border-radius: 4px; 
-            text-align: center; 
-            font-size: 11px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-family: var(--font-hud-title); 
-            position: relative; 
-            overflow: hidden; 
-            transition: var(--transition-tactical); 
-        }
+        .game-card:hover .btn-enter { background: rgba(var(--primary-rgb), 0.15); color: #fff; border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+        .game-card:hover .btn-enter::before { left: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
+        .game-card:hover .btn-enter::after { right: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
 
-        .btn-enter::before, .btn-premium-action::before, .activation-btn::before { 
-            content: ""; 
-            position: absolute; 
-            top: 0; 
-            left: -150%; 
-            width: 40%; 
-            height: 100%; 
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent); 
-            transform: skewX(-25deg); 
-        }
-        
-        .game-card:hover .btn-enter::before { animation: flashShine 1.8s ease-in-out infinite; }
-        @keyframes flashShine { 100% { left: 250%; } }
 
-        .game-card:hover .btn-enter { 
-            background: var(--cyber-cyan); 
-            color: var(--bg-deep); 
-            border-color: var(--cyber-cyan); 
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-
-        /* =========================================================================
-           📊 DASHBOARD OPERATION LAYER
-           ========================================================================= */
+        /* DASHBOARD SECTION */
         .dashboard-view { display: none; }
-        
-        .header-area { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            margin-bottom: 30px; 
-            padding-bottom: 24px; 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.08);
-        }
-        
+        .header-area { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(var(--secondary-rgb), 0.2); }
         .brand-info { display: flex; align-items: center; gap: 20px; }
+        .av2-avatar { width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--secondary); object-fit: cover; box-shadow: 0 0 15px var(--secondary-glow); }
+        .brand-text h1 { font-family: var(--font-hud-title); font-size: 22px; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: #fff; }
+        .brand-text span { font-size: 13px; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+        .btn-back-lobby { background: rgba(var(--secondary-rgb), 0.05); border: 1px solid rgba(var(--secondary-rgb), 0.4); color: var(--secondary); padding: 12px 24px; border-radius: 4px; font-size: 12px; font-weight: 800; cursor: pointer; transition: var(--transition-tactical); text-transform: uppercase; font-family: var(--font-hud-title); }
+        .btn-back-lobby:hover { background: var(--secondary); color: #000; box-shadow: 0 0 20px var(--secondary-glow); }
         
-        .av2-avatar { 
-            width: 55px; 
-            height: 55px; 
-            border-radius: 6px; 
-            border: 1px solid rgba(0, 240, 255, 0.2); 
-            object-fit: cover; 
-        }
-        
-        .brand-text h1 { font-family: var(--font-hud-title); font-size: 20px; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
-        .brand-text span { font-size: 12px; color: var(--cyber-muted); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
-        
-        .btn-back-lobby { 
-            background: transparent; 
-            border: 1px solid rgba(0, 240, 255, 0.2); 
-            color: var(--cyber-cyan); 
-            padding: 10px 20px; 
-            border-radius: 4px; 
-            font-size: 11px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: var(--transition-tactical); 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-family: var(--font-hud-title); 
-        }
-        
-        .btn-back-lobby:hover { border-color: #ffffff; color: #ffffff; background: rgba(255,255,255,0.05); }
-
         .dashboard-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; }
         @media (max-width: 992px) { .dashboard-grid { grid-template-columns: 1fr; } }
-
-        .section-panel { 
-            background: rgba(10, 14, 23, 0.5); 
-            border: 1px solid rgba(0, 240, 255, 0.06); 
-            border-radius: 12px; 
-            padding: 26px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 22px; 
-        }
+        .section-panel { background: rgba(0,0,0, 0.4); border: 1px solid rgba(var(--primary-rgb), 0.1); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 25px; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
+        .panel-title { font-family: var(--font-hud-title); font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); display: flex; align-items: center; gap: 12px; font-weight: 800; }
+        .panel-title::before { content: ""; width: 5px; height: 14px; background: var(--secondary); display: inline-block; box-shadow: 0 0 10px var(--secondary); }
+        .input-wrapper label { display: block; font-size: 12px; color: var(--primary); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-hud-title); }
+        .input-box { width: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px 20px; border-radius: 6px; color: #ffffff; font-size: 18px; font-weight: 700; box-sizing: border-box; transition: var(--transition-tactical); font-family: var(--font-hud-sub); }
+        .input-box:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); outline: none; background: #000; }
         
-        .panel-title { font-family: var(--font-hud-title); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #7f91a8; display: flex; align-items: center; gap: 10px; font-weight: 700; }
-        .panel-title::before { content: ""; width: 4px; height: 12px; background: var(--cyber-cyan); display: inline-block; box-shadow: 0 0 8px var(--cyber-cyan); }
-        
-        .input-wrapper label { display: block; font-size: 11px; color: var(--cyber-muted); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-family: var(--font-hud-title); }
-        
-        .input-box { 
-            width: 100%; 
-            background: rgba(5, 7, 13, 0.7); 
-            border: 1px solid rgba(0, 240, 255, 0.15); 
-            padding: 15px 18px; 
-            border-radius: 4px; 
-            color: #ffffff; 
-            font-size: 16px; 
-            font-weight: 600; 
-            box-sizing: border-box; 
-            transition: var(--transition-tactical); 
-        }
-        
-        .input-box:focus { border-color: var(--cyber-cyan); box-shadow: 0 0 12px rgba(0, 240, 255, 0.15); outline: none; background: rgba(5, 7, 13, 0.9); }
-
-        .action-button-group { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .action-button-group { display: grid; grid-template-columns: 1fr; gap: 16px; }
         .action-button-group.has-phao-layout { grid-template-columns: 1fr 1fr; }
-        @media(max-width: 576px) { .action-button-group.has-phao-layout { grid-template-columns: 1fr; } }
+        .btn-premium-action { width: 100%; border: none; padding: 18px; border-radius: 6px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; position: relative; overflow: hidden; transition: var(--transition-tactical); display: flex; align-items: center; justify-content: center; font-family: var(--font-hud-title); }
+        .btn-ai-process { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow); }
+        .btn-ai-process:disabled { background: rgba(var(--primary-rgb), 0.05) !important; color: var(--text-muted) !important; cursor: not-allowed; border: 1px solid rgba(var(--primary-rgb), 0.1); box-shadow: none;}
+        .btn-ai-process:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--primary-glow); }
+        .btn-phao-toggle { background: rgba(var(--secondary-rgb), 0.05); color: var(--secondary); border: 1px solid var(--secondary); }
+        .btn-phao-toggle:hover { background: rgba(var(--secondary-rgb), 0.15); box-shadow: 0 0 20px var(--secondary-glow); }
+        .btn-phao-toggle.phao-active { background: var(--success) !important; border: 1px solid var(--success) !important; color: #000 !important; font-weight: 900; box-shadow: 0 0 25px rgba(var(--success-rgb), 0.4); }
+        
+        .btn-antiban { background: transparent; color: var(--warning); border: 1px solid var(--warning); grid-column: 1 / -1; padding: 12px; font-size: 11px; }
+        .btn-antiban:hover { background: rgba(var(--warning-rgb), 0.1); box-shadow: 0 0 15px rgba(var(--warning-rgb), 0.3); }
 
-        .btn-premium-action { 
-            width: 100%; 
-            border: none; 
-            padding: 15px; 
-            border-radius: 4px; 
-            font-size: 11px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            cursor: pointer; 
-            position: relative; 
-            overflow: hidden; 
-            transition: var(--transition-tactical); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-            font-family: var(--font-hud-title); 
-        }
-        
-        .btn-premium-action:not(:disabled):hover::before { animation: flashShine 1.5s ease-in-out infinite; }
-        
-        .btn-ai-process { background: var(--cyber-cyan); color: var(--bg-deep); }
-        .btn-ai-process:disabled { background: rgba(0, 240, 255, 0.05) !important; color: var(--cyber-muted) !important; cursor: not-allowed; border: 1px solid rgba(0, 240, 255, 0.05); }
-        .btn-ai-process:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 240, 255, 0.3); }
-        
-        .btn-phao-toggle { background: rgba(189, 0, 255, 0.04); color: #cbd5e1; border: 1px solid rgba(189, 0, 255, 0.25); }
-        .btn-phao-toggle:hover { background: rgba(189, 0, 255, 0.08); border-color: rgba(189, 0, 255, 0.4); }
-        
-        .btn-phao-toggle.phao-active { 
-            background: rgba(0, 255, 102, 0.05) !important; 
-            border: 1px solid var(--cyber-green) !important; 
-            color: var(--cyber-green) !important; 
-            font-weight: 700; 
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
-        }
-
-        /* METRICS PANELS */
-        .data-display { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .data-card { border: 1px solid rgba(0, 240, 255, 0.05); padding: 16px 20px; border-radius: 8px; background: rgba(5, 7, 13, 0.4); position: relative; overflow: hidden; transition: var(--transition-tactical); }
-        .data-card:hover { border-color: rgba(0, 240, 255, 0.15); }
-        .data-label { font-size: 11px; color: var(--cyber-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; font-family: var(--font-hud-title); }
-        .data-val { font-size: 18px; font-weight: 700; margin-top: 6px; color: #ffffff; }
-        
-        .risk-container { width: 100%; height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+        .data-display { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .data-card { border: 1px solid rgba(var(--primary-rgb), 0.1); padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.5); overflow: hidden; transition: var(--transition-tactical); }
+        .data-card:hover { border-color: var(--primary); box-shadow: inset 0 0 20px var(--primary-glow); }
+        .data-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; letter-spacing: 2px; font-family: var(--font-hud-title); }
+        .data-val { font-size: 22px; font-weight: 800; margin-top: 8px; color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.2);}
+        .risk-container { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 12px; overflow: hidden; }
         .risk-bar { height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s; }
 
-        /* SPEED SELECTOR CONTROLS */
-        .speed-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .speed-item { background: rgba(5, 7, 13, 0.5); border: 1px solid rgba(0, 240, 255, 0.08); padding: 12px 4px; border-radius: 4px; text-align: center; cursor: pointer; transition: var(--transition-tactical); }
-        .speed-item .icon { display: block; font-size: 15px; margin-bottom: 4px; filter: grayscale(100%) opacity(50%); transition: var(--transition-tactical); }
-        .speed-item .name { font-size: 11px; font-weight: 600; color: var(--cyber-muted); text-transform: uppercase; font-family: var(--font-hud-title); letter-spacing: 0.5px; }
-        .speed-item:hover { background: rgba(0, 240, 255, 0.02); border-color: rgba(0, 240, 255, 0.2); }
-        
-        .speed-item.active { border-color: var(--cyber-cyan); background: rgba(0, 240, 255, 0.05); box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.1); }
+        .speed-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .speed-item { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.15); padding: 14px 4px; border-radius: 6px; text-align: center; cursor: pointer; transition: var(--transition-tactical); }
+        .speed-item .icon { display: block; font-size: 18px; margin-bottom: 6px; filter: grayscale(100%) opacity(50%); transition: var(--transition-tactical); }
+        .speed-item .name { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-family: var(--font-hud-title); }
+        .speed-item.active { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); box-shadow: inset 0 0 15px var(--primary-glow); }
         .speed-item.active .icon { filter: grayscale(0%) opacity(100%); }
-        .speed-item.active .name { color: #ffffff; font-weight: 700; }
+        .speed-item.active .name { color: var(--primary); font-weight: 800; text-shadow: 0 0 5px var(--primary-glow); }
 
-        /* AI CONSOLE CENTRAL TERMINAL */
-        .ai-terminal { 
-            border: 1px solid rgba(0, 240, 255, 0.08); 
-            border-radius: 8px; 
-            padding: 22px; 
-            font-size: 13px; 
-            color: #a2b4ca; 
-            background: #04060b; 
-            min-height: 240px; 
-            position: relative; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-        }
-        
-        /* Scan Line Anim */
-        .scan-laser { 
-            position: absolute; 
-            width: 100%; 
-            height: 2px; 
-            background: linear-gradient(90deg, transparent, var(--cyber-cyan), transparent); 
-            left: 0; 
-            top: 0; 
-            z-index: 2; 
-            opacity: 0; 
-            pointer-events: none; 
-        }
-        .ai-terminal.scanning .scan-laser { opacity: 0.8; animation: radarScanLine 1.8s linear infinite; }
+        .pip-btn { position: absolute; top: 15px; right: 15px; background: rgba(var(--primary-rgb), 0.1); border: 1px solid var(--primary); color: var(--primary); font-size: 10px; font-family: var(--font-hud-title); padding: 5px 10px; border-radius: 4px; cursor: pointer; z-index: 10; transition: var(--transition-tactical); }
+        .pip-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 10px var(--primary-glow); }
+
+        .ai-terminal { border: 1px solid rgba(var(--secondary-rgb), 0.2); border-radius: 8px; padding: 26px; font-size: 14px; background: #000; min-height: 260px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: inset 0 0 30px rgba(var(--secondary-rgb), 0.05); transition: all 0.4s ease; }
+        .scan-laser { position: absolute; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--secondary), transparent); left: 0; top: 0; z-index: 2; opacity: 0; pointer-events: none; box-shadow: 0 0 15px var(--secondary); }
+        .ai-terminal.scanning .scan-laser { opacity: 1; animation: radarScanLine 1.5s linear infinite; }
         @keyframes radarScanLine { 0% { top: 0%; } 100% { top: 100%; } }
         
-        .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 18px; width: 100%; }
-        
-        .radar-spinner { 
-            width: 36px; 
-            height: 36px; 
-            border: 2px solid rgba(0, 240, 255, 0.05); 
-            border-top-color: var(--cyber-cyan); 
-            border-bottom-color: var(--cyber-purple);
-            border-radius: 50%; 
-            animation: spinRadar 0.8s linear infinite; 
-        }
+        .ai-terminal.pip-mode { position: fixed; bottom: 20px; right: 20px; width: 320px; min-height: 180px; z-index: 99999; box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px var(--primary-glow); border: 2px solid var(--primary); transform: scale(1); animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
+        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 100%; }
+        .radar-spinner { width: 45px; height: 45px; border: 3px solid rgba(var(--primary-rgb), 0.1); border-top-color: var(--primary); border-bottom-color: var(--secondary); border-radius: 50%; animation: spinRadar 0.7s linear infinite; box-shadow: 0 0 15px var(--secondary-glow); }
         @keyframes spinRadar { 100% { transform: rotate(360deg); } }
-        
-        .loading-text { font-family: var(--font-hud-title); font-weight: 700; letter-spacing: 2px; color: #ffffff; font-size: 11px; text-transform: uppercase; }
-        .loading-subtext { font-size: 11px; color: var(--cyber-muted); font-family: var(--font-hud-terminal); }
+        .loading-text { font-family: var(--font-hud-title); font-weight: 800; letter-spacing: 3px; color: #ffffff; font-size: 13px; text-transform: uppercase; text-shadow: 0 0 10px var(--primary-glow);}
+        .loading-subtext { font-size: 12px; color: var(--secondary); font-family: var(--font-hud-terminal); font-weight: 700;}
         .result-output { display: block; width: 100%; height: 100%; }
 
-        /* =========================================================================
-           🔒 LOGIN SECURITY GATEWAY SCREEN
-           ========================================================================= */
-        .activation-overlay { 
-            position: fixed; 
-            inset: 0; 
-            background: rgba(4, 6, 11, 0.94); 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px); 
-            z-index: 99999; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
-        }
-        
-        .activation-modal { 
-            max-width: 450px; 
-            width: 100%; 
-            background: rgba(10, 14, 23, 0.9); 
-            border: 1px solid rgba(0, 240, 255, 0.2); 
-            border-radius: 12px; 
-            padding: 40px; 
-            box-sizing: border-box; 
-            text-align: center; 
-            box-shadow: 0 40px 90px rgba(0,0,0,0.85), 0 0 30px rgba(0, 240, 255, 0.05); 
-            position: relative; 
-            overflow: hidden; 
-        }
+        /* ACTIVATION MODAL */
+        .activation-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(40px); z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .activation-modal { max-width: 480px; width: 100%; background: var(--bg-deep); border: 1px solid var(--primary); border-radius: 12px; padding: 45px; box-sizing: border-box; text-align: center; box-shadow: 0 0 50px var(--primary-glow), inset 0 0 30px rgba(var(--primary-rgb), 0.05); position: relative; }
+        .act-title { font-family: var(--font-hud-title); font-size: 26px; font-weight: 900; letter-spacing: 4px; margin-bottom: 8px; color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);}
+        .act-subtitle { font-size: 13px; color: var(--secondary); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; font-weight: 800; font-family: var(--font-hud-title); }
+        .act-status-terminal { background: #000; border: 1px solid rgba(var(--primary-rgb), 0.2); padding: 16px; border-radius: 6px; font-size: 12px; color: var(--success); font-family: var(--font-hud-terminal); text-align: left; margin-bottom: 25px; line-height: 1.6; }
+        .activation-field-group { text-align: left; margin-bottom: 22px; }
+        .activation-field-group label { display: block; font-size: 12px; font-family: var(--font-hud-title); color: var(--primary); margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800;}
+        .activation-user-input { width: 100%; background: rgba(var(--primary-rgb), 0.03); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px; border-radius: 6px; color: var(--warning); font-size: 16px; font-weight: 800; text-align: center; transition: var(--transition-tactical); font-family: var(--font-hud-sub); }
+        .activation-user-input:focus { border-color: var(--secondary); box-shadow: 0 0 15px var(--secondary-glow); outline: none; background: #000; color: #fff; }
+        .activation-input { width: 100%; background: rgba(var(--primary-rgb), 0.03); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px; border-radius: 6px; color: #ffffff; font-size: 20px; font-weight: 900; text-align: center; letter-spacing: 6px; font-family: var(--font-hud-title); transition: var(--transition-tactical); }
+        .activation-input:focus { border-color: var(--secondary); box-shadow: 0 0 15px var(--secondary-glow); outline: none; background: #000; }
+        .activation-btn { width: 100%; border: none; padding: 18px; border-radius: 6px; font-family: var(--font-hud-title); font-size: 14px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; background: var(--primary); color: #000; margin-top: 15px; margin-bottom: 20px; box-shadow: 0 0 20px var(--primary-glow); transition: var(--transition-tactical); }
+        .activation-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.5); }
+        .tele-login-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, rgba(0, 136, 204, 0.2), rgba(var(--primary-rgb), 0.2)); border: 1px solid rgba(var(--primary-rgb), 0.5); color: var(--primary); padding: 14px 20px; border-radius: 6px; font-family: var(--font-hud-title); font-size: 13px; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition-tactical); width: 100%; box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.1); }
+        .tele-login-btn:hover { background: linear-gradient(135deg, rgba(0, 136, 204, 0.4), rgba(var(--primary-rgb), 0.4)); box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.4); color: #fff; transform: translateY(-2px); }
+        .tele-login-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-        .activation-modal::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.015;
-            pointer-events: none;
-        }
-
-        .act-title { font-family: var(--font-hud-title); font-size: 20px; font-weight: 700; letter-spacing: 3px; margin-bottom: 6px; color: #ffffff; }
-        .act-subtitle { font-size: 12px; color: var(--cyber-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; font-family: var(--font-hud-title); }
-        
-        .act-status-terminal { 
-            background: #020408; 
-            border: 1px solid rgba(0, 240, 255, 0.06); 
-            padding: 14px; 
-            border-radius: 4px; 
-            font-size: 11px; 
-            color: #6a7d97; 
-            font-family: var(--font-hud-terminal); 
-            text-align: left; 
-            margin-bottom: 22px; 
-            line-height: 1.6; 
-        }
-
-        .activation-field-group { text-align: left; margin-bottom: 20px; }
-        .activation-field-group label { display: block; font-size: 10px; font-family: var(--font-hud-title); color: var(--cyber-muted); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
-        
-        .activation-user-input { 
-            width: 100%; 
-            background: #020407; 
-            border: 1px solid rgba(0, 240, 255, 0.12); 
-            padding: 14px; 
-            border-radius: 4px; 
-            color: var(--cyber-gold); 
-            font-size: 15px; 
-            font-weight: 600; 
-            text-align: center; 
-            transition: var(--transition-tactical); 
-            letter-spacing: 0.5px; 
-        }
-        .activation-user-input:focus { border-color: var(--cyber-cyan); outline: none; background: #000; color: #fff; }
-
-        .activation-input { 
-            width: 100%; 
-            background: #020407; 
-            border: 1px solid rgba(0, 240, 255, 0.12); 
-            padding: 14px; 
-            border-radius: 4px; 
-            color: #ffffff; 
-            font-size: 18px; 
-            font-weight: 700; 
-            text-align: center; 
-            letter-spacing: 5px; 
-            font-family: var(--font-hud-title); 
-            transition: var(--transition-tactical); 
-        }
-        .activation-input:focus { border-color: var(--cyber-cyan); outline: none; background: #000; }
-
-        .activation-btn { 
-            width: 100%; 
-            border: none; 
-            padding: 15px; 
-            border-radius: 4px; 
-            font-family: var(--font-hud-title); 
-            font-size: 12px; 
-            font-weight: 700; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            position: relative; 
-            overflow: hidden; 
-            transition: var(--transition-tactical); 
-            background: var(--cyber-cyan); 
-            color: var(--bg-deep); 
-            margin-top: 10px; 
-            margin-bottom: 14px; 
-        }
-        .activation-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0, 240, 255, 0.25); }
-        
-        .telegram-btn { 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.02); 
-            border: 1px solid rgba(0, 240, 255, 0.15); 
-            padding: 12px; 
-            border-radius: 4px; 
-            color: var(--cyber-cyan); 
-            font-size: 12px; 
-            font-weight: 600; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-            transition: var(--transition-tactical); 
-        }
-        .telegram-btn:hover { border-color: #ffffff; color: #ffffff; background: rgba(255,255,255,0.05); }
-
-        /* ALERT NOTIFICATIONS */
-        .cyber-alert {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 16px 24px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 999999;
-            background: rgba(10, 14, 23, 0.9);
-            border-left: 4px solid var(--cyber-cyan);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            transform: translateX(150%);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            font-family: var(--font-hud-title);
-        }
+        /* CYBER ALERT NOTIFICATIONS */
+        .cyber-alert { position: fixed; top: 80px; right: 20px; padding: 20px 30px; border-radius: 6px; font-size: 14px; font-weight: 800; letter-spacing: 2px; z-index: 999999; background: rgba(0,0,0, 0.95); border-left: 5px solid var(--primary); box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: translateX(150%); transition: transform 0.5s; font-family: var(--font-hud-title); }
         .cyber-alert.alert-show { transform: translateX(0); }
-        .cyber-alert.alert-success { border-left-color: var(--cyber-green); color: var(--cyber-green); }
-        .cyber-alert.alert-error { border-left-color: var(--cyber-red); color: var(--cyber-red); }
+        .cyber-alert.alert-success { border-left-color: var(--success); color: var(--success); }
+        .cyber-alert.alert-error { border-left-color: var(--secondary); color: var(--secondary); }
+        .cyber-alert.alert-warning { border-left-color: var(--warning); color: var(--warning); }
 
-        @media (max-width: 768px) { 
-            body { padding: 15px 10px; }
-            .wrapper { padding: 20px; border-radius: 8px; } 
-            .lobby-title { font-size: 24px; letter-spacing: 3px; } 
-            .dashboard-grid { gap: 20px; } 
-            .hud-status-bar { flex-direction: column; gap: 12px; align-items: flex-start; padding: 14px 18px; } 
-            .hud-meta-group { gap: 15px; flex-direction: column; align-items: flex-start; }
-            .data-display { grid-template-columns: 1fr; } 
-            .activation-modal { padding: 25px 20px; }
-        }
+        /* FOMO NOTIFICATIONS */
+        .fomo-container { position: fixed; bottom: 20px; left: 20px; z-index: 999998; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+        .fomo-toast { background: rgba(0,0,0,0.85); border-left: 4px solid var(--primary); border-radius: 6px; padding: 14px 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(var(--primary-rgb), 0.2); color: #fff; font-size: 13px; font-family: var(--font-hud-sub); font-weight: 700; display: flex; align-items: center; gap: 12px; animation: slideInBottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOutFomo 0.5s ease 5s forwards; backdrop-filter: blur(5px); line-height: 1.4; }
+        .fomo-toast .fomo-icon { font-size: 22px; }
+        .fomo-toast .fomo-content span { color: var(--primary); font-weight: 800; }
+        .fomo-toast .fomo-content .fomo-amount { color: var(--success); font-family: var(--font-hud-title); font-size: 14px;}
+        @keyframes slideInBottom { 0% { transform: translateX(-150%); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOutFomo { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } }
+
+        /* OFFLINE OVERLAY */
+        .offline-overlay { display: none; position: fixed; inset: 0; background: rgba(255, 42, 95, 0.9); z-index: 9999999; justify-content: center; align-items: center; flex-direction: column; color: #fff; font-family: var(--font-hud-title); backdrop-filter: blur(20px); text-align: center; }
+        .offline-overlay h1 { font-size: 40px; margin-bottom: 10px; letter-spacing: 5px; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .offline-overlay p { font-family: var(--font-hud-terminal); font-size: 16px; font-weight: 700; background: #000; padding: 10px 20px; border-radius: 4px; }
     </style>
 </head>
 <body>
+
+<div id="offlineOverlay" class="offline-overlay">
+    <h1>MẤT KẾT NỐI MÁY CHỦ</h1>
+    <p>[!] SYSTEM CONNECTION LOST. ĐANG THỬ TỰ ĐỘNG KHÔI PHỤC...</p>
+</div>
+
+<div class="top-controls">
+    <select id="themeSelector" class="control-btn" onchange="changeTheme(this.value)">
+        <option value="cyber">🎨 THEME: NEON (Mặc định)</option>
+        <option value="gold">🎨 THEME: LUXURY GOLD</option>
+        <option value="matrix">🎨 THEME: HACKER MATRIX</option>
+    </select>
+    <button id="audioToggle" class="control-btn" onclick="toggleAudio()">🔇 CLICK BẬT ÂM</button>
+</div>
+
+<div class="widget-panel">
+    <div class="fake-stats-panel">
+        <div class="stat-line">🌐 ONLINE: <span id="fakeOnline" class="stat-highlight">3,412</span> USER</div>
+        <div class="stat-line">⚡ TỶ LỆ BYPASS: <span class="stat-highlight">99.87%</span></div>
+    </div>
+    
+    <div class="server-health-panel">
+        <div style="color:var(--primary); font-family:var(--font-hud-title); margin-bottom:8px; font-weight:900;">[SYSTEM NODES]</div>
+        <div class="node-line"><span>AI_CORE_SYNC</span> <div class="node-dot" id="node1"></div></div>
+        <div class="node-line"><span>PROXY_BYPASS</span> <div class="node-dot" id="node2"></div></div>
+        <div class="node-line"><span>DATA_SERVER</span> <div class="node-dot" id="node3"></div></div>
+    </div>
+</div>
+
+<div id="changelogModal" class="changelog-modal">
+    <div class="changelog-content">
+        <div class="changelog-title">NHẬT KÝ CẬP NHẬT - V4.4 (Live Stats)</div>
+        <ul class="changelog-list">
+            <li><span>[+]</span> Cập nhật Tỷ Lệ Đồng Bộ và User tự động nhảy số.</li>
+            <li><span>[+]</span> Đổi mới toàn bộ giao diện Sảnh Game.</li>
+            <li><span>[+]</span> Thêm hiệu ứng Tia laser Hologram quét Game.</li>
+            <li><span>[*]</span> Vá lỗi khựng màn hình khi kết nối AI Core.</li>
+            <li><span>[-]</span> Gỡ bỏ các node mạng cũ không ổn định.</li>
+        </ul>
+        <button class="close-changelog" onclick="document.getElementById('changelogModal').style.display='none'">XÁC NHẬN (ĐÓNG)</button>
+    </div>
+</div>
+<div class="version-tag" onclick="document.getElementById('changelogModal').style.display='flex'">V4.4 (UPDATED)</div>
+
+<div id="fomo-container" class="fomo-container"></div>
 
 <div id="cyberNotification" class="cyber-alert">THÔNG BÁO HỆ THỐNG</div>
 
 <div class="activation-overlay" id="activationOverlay" style="display: none;">
     <div class="activation-modal">
-        <div class="act-title" id="actModalTitle">AI SECURITY ACCESS</div>
+        <div class="act-title" id="actModalTitle">AI SECURE GATEWAY</div>
         <div class="act-subtitle" id="actModalSubtitle">XÁC THỰC LÕI KÍCH HOẠT</div>
-        
         <div class="act-status-terminal" id="actTerminalLog">
             [SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM<br>
-            [SECURITY]: ĐANG CHỜ ĐỊNH DANH TÀI KHOẢN VÀ MÃ KHÓA 24H...
+            [SECURITY]: ĐANG CHỜ ĐỊNH DANH TÀI KHOẢN VÀ MÃ KHÓA VIP...
         </div>
-
         <div class="activation-field-group">
             <label>Tên tài khoản Game (ID)</label>
-            <input type="text" id="gameUsernameInput" class="activation-user-input" placeholder="Tên tài khoản game (Min 5 kí tự)...">
+            <input type="text" id="gameUsernameInput" class="activation-user-input" placeholder="Nhập ID tối thiểu 5 kí tự...">
         </div>
-
         <div class="activation-field-group">
-            <label>Mã kích hoạt Bảo Mật (10 Chữ số)</label>
+            <label>Mã bảo mật VIP (10 Chữ số)</label>
             <input type="text" id="activationCodeInput" class="activation-input" placeholder="0000000000" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </div>
-        
         <button class="activation-btn" onclick="validateActivationKey()">KHỞI TẠO KẾT NỐI AI</button>
-        <a href="https://t.me/trangcskhxx88" target="_blank" class="telegram-btn">⚡ LIÊN HỆ TELEGRAM LẤY MÃ</a>
+        <a href="https://t.me/trangcskhxx88" target="_blank" class="tele-login-btn">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+            LIÊN HỆ ADMIN LẤY MÃ KÍCH HOẠT
+        </a>
     </div>
 </div>
 
 <canvas id="quantum-canvas"></canvas>
 
+<a href="https://t.me/trangcskhxx88" target="_blank" class="floating-tele-btn" style="display:none; position:fixed; bottom:20px; right:20px; width:65px; height:65px; background:linear-gradient(135deg, #0088cc, var(--primary)); border-radius:50%; z-index:100000; display:flex; justify-content:center; align-items:center; box-shadow: 0 0 25px var(--primary-glow); animation:pulse-tele 2s infinite; border:2px solid #fff;" id="floatingTeleBtn">
+    <svg viewBox="0 0 24 24" style="width:35px;height:35px;fill:#fff;margin-right:4px;"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+</a>
+<style>
+    @keyframes pulse-tele { 0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); } 70% { box-shadow: 0 0 0 20px rgba(var(--primary-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); } }
+    .floating-tele-btn:hover { transform: scale(1.1); }
+</style>
+
 <div class="wrapper" id="mainWrapper">
     <div class="hud-status-bar">
         <div class="hud-meta-group">
-            <div class="hud-meta-item"><span class="status-dot"></span> STATUS: <span class="hud-meta-value" id="systemStatusText">ĐANG HOẠT ĐỘNG</span></div>
-            <div class="hud-meta-item">NGƯỜI DÙNG: <span class="hud-meta-value" id="displayUsername" style="color:var(--cyber-gold);">UNAUTHORIZED</span></div>
+            <div class="hud-meta-item"><span class="status-dot"></span> <span class="hud-meta-value" id="systemStatusText" style="color:var(--success);">SECURE CONNECTED</span></div>
+            <div class="hud-meta-item">USER: <span class="hud-meta-value" id="displayUsername" style="color:var(--warning);">UNAUTHORIZED</span></div>
+            <div class="hud-meta-item"><span class="hud-meta-value" id="pingDisplay" style="color:var(--primary);">PING: 24ms</span></div>
+            
+            <div class="hud-meta-item" style="border-left:1px solid rgba(255,255,255,0.2); padding-left:15px;">
+                DEVICE: <span class="hud-meta-value" id="deviceIdDisplay" style="color:#fff; font-family:var(--font-hud-terminal);">---</span>
+            </div>
+
+            <div class="hud-meta-item">
+                <span id="expiryTimerText" style="color:#fff; font-weight:800; font-family:var(--font-hud-terminal);">KEY EXPIRES IN: --:--:--</span>
+                <a id="renewBtn" class="renew-btn" href="https://t.me/trangcskhxx88" target="_blank">LIÊN HỆ ADMIN GIA HẠN</a>
+            </div>
         </div>
         <div class="hud-chip-container">
             <div class="hud-chip chip-live">LIVE HUD SECURE</div>
-            <div class="hud-chip chip-ai">LUNEX</div>
+            <div class="hud-chip chip-ai">LUNEX VIP</div>
         </div>
     </div>
 
     <div id="lobbyView" class="lobby-view">
         <div class="lobby-title">Hệ Thống Phân Tích Avia Pro</div>
-        <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ cấu trúc thuật toán AI</div>
+        <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ thuật toán</div>
         <div class="game-grid">
-            <div class="game-card" data-game="avia2" onclick="enterGame('avia2')">
-                <div class="game-img-wrapper"><span class="game-badge badge-phao">Cơ chế Phao</span><img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2"></div>
-                <div class="game-details"><div><div class="game-name">Avia Masters 2</div><div class="game-desc">Bản nâng cấp thế hệ mới tích hợp Hệ thống phao cứu hộ tự động khi va chạm.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
+            
+            <div class="game-card" onclick="enterGame('avia2')">
+                <div class="game-img-wrapper">
+                    <div class="card-scanline"></div> 
+                    <span class="game-badge badge-vip">💎 VIP PICK</span>
+                    <span class="game-badge badge-phao">Cơ chế Phao</span>
+                    <img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2">
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name">Avia Masters 2</div>
+                        <div class="game-desc">Bản nâng cấp thế hệ mới tích hợp Hệ thống phao tự động an toàn nhất.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">99.8%</span></div>
+                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">1,824</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter">KHỞI CHẠY AI</div>
+                </div>
             </div>
-            <div class="game-card" data-game="aviaphitruc" onclick="enterGame('aviaphitruc')">
-                <div class="game-img-wrapper"><span class="game-badge badge-nophao">Không có Phao</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành"></div>
-                <div class="game-details"><div><div class="game-name">Bậc Thầy Phi Hành</div><div class="game-desc">Cổng trò chơi phiên bản truyền thống gốc, thuật toán tính điểm thuần túy.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
+
+            <div class="game-card" onclick="enterGame('aviaphitruc')">
+                <div class="game-img-wrapper">
+                    <div class="card-scanline" style="animation-delay: 0.5s;"></div> 
+                    <span class="game-badge badge-nophao">Không có Phao</span>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành">
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name">Bậc Thầy Phi Hành</div>
+                        <div class="game-desc">Cổng trò chơi phiên bản truyền thống gốc, thuật toán thuần túy.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">94.5%</span></div>
+                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">856</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter">KHỞI CHẠY AI</div>
+                </div>
             </div>
-            <div class="game-card" data-game="aviaxmas" onclick="enterGame('aviaxmas')">
-                <div class="game-img-wrapper"><span class="game-badge badge-nophao">Không có Phao</span><img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh"></div>
-                <div class="game-details"><div><div class="game-name">Aviamasters Giáng Sinh</div><div class="game-desc">Sự kiện lễ hội đặc biệt, giao diện X-Mas bắt mắt đòi hỏi căn vốn sát sao.</div></div><div class="btn-enter">Khởi Chạy AI</div></div>
+
+            <div class="game-card" onclick="enterGame('aviaxmas')">
+                <div class="game-img-wrapper">
+                    <div class="card-scanline" style="animation-delay: 1.2s;"></div>
+                    <span class="game-badge badge-nophao">Không có Phao</span>
+                    <img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh">
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name">Avia Giáng Sinh</div>
+                        <div class="game-desc">Sự kiện lễ hội đặc biệt, giao diện X-Mas bắt mắt đòi hỏi căn vốn sát.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">96.2%</span></div>
+                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">732</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter">KHỞI CHẠY AI</div>
+                </div>
             </div>
+
         </div>
     </div>
-
     <div id="dashboardView" class="dashboard-view">
         <div class="header-area">
             <div class="brand-info">
                 <img id="activeAvatar" class="av2-avatar" src="" alt="Active Matrix">
-                <div class="brand-text"><h1 id="activeTitle">CỔNG GAME</h1><span>Hệ Thống Bảo Mật Phân Tích Độc Lập PREMIUM</span></div>
+                <div class="brand-text"><h1 id="activeTitle">CỔNG GAME</h1><span>Bảo Mật Phân Tích Độc Lập VIP</span></div>
             </div>
-            <button class="btn-back-lobby" onclick="backToLobby()">⬅️ Sảnh Hệ Thống</button>
+            <button class="btn-back-lobby" onclick="backToLobby()">⬅️ TRỞ VỀ SẢNH</button>
         </div>
         <div class="dashboard-grid">
             <div class="section-panel">
@@ -748,9 +479,7 @@
                 
                 <div class="input-wrapper">
                     <label>Chế Độ Phân Tích Vòng Cược</label>
-                    <style>
-                        select.input-box option { background-color: var(--bg-surface); color: #fff; }
-                    </style>
+                    <style> select.input-box option { background-color: var(--bg-surface); color: #fff; } </style>
                     <select id="strategySelect" class="input-box" onchange="resetRealtimeDisplay()">
                         <option value="safe" id="optSafe">🛡️ Bảo Toàn Quỹ Vốn</option>
                         <option value="medium" selected>⚖️ Cân Bằng Chiến Thuật AI</option>
@@ -759,7 +488,7 @@
                 </div>
                 
                 <div class="speed-container">
-                    <div class="panel-title" style="margin-bottom:12px;">⚡ XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN LAYER</div>
+                    <div class="panel-title" style="margin-bottom:15px;">⚡ XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN LAYER</div>
                     <div class="speed-row">
                         <div class="speed-item active" data-speed="turtle" onclick="changeSpeed('turtle')"><span class="icon">🐢</span><span class="name">RÙA</span></div>
                         <div class="speed-item" data-speed="human" onclick="changeSpeed('human')"><span class="icon">🚶</span><span class="name">NGƯỜI</span></div>
@@ -771,20 +500,24 @@
                 <div class="action-button-group" id="actionBtnGroup">
                     <button class="btn-premium-action btn-phao-toggle" id="phaoToggleBtn" onclick="togglePhaoSafety()">🛠️ KÍCH HOẠT PHAO CỨU HỘ</button>
                     <button class="btn-premium-action btn-ai-process" id="analyzeBtn" onclick="executeQuantumAnalysis()">🧠 PHÂN TÍCH AI REALTIME</button>
+                    <button class="btn-premium-action btn-antiban" id="antiBanBtn" onclick="runAntiBanClear()">🧹 DỌN RÁC & XÓA DẤU VẾT (ANTI-BAN)</button>
                 </div>
             </div>
             
             <div class="section-panel">
                 <div class="panel-title">📊 MỨC ĐỘ PHÂN TÍCH</div>
                 <div class="data-display">
-                    <div class="data-card"><div class="data-label">Chiến Thuật Lượt Đi</div><div class="data-val" id="valMoi" style="color: var(--cyber-gold);">0 VND</div></div>
-                    <div class="data-card"><div class="data-label">Tỷ Lệ Vốn Đề Xuất</div><div class="data-val" id="valRatio" style="color: var(--cyber-cyan);">0%</div></div>
+                    <div class="data-card"><div class="data-label">Chiến Thuật Lượt Đi</div><div class="data-val" id="valMoi" style="color: var(--warning);">0 VND</div></div>
+                    <div class="data-card"><div class="data-label">Tỷ Lệ Vốn Đề Xuất</div><div class="data-val" id="valRatio" style="color: var(--primary);">0%</div></div>
                     <div class="data-card"><div class="data-label">Mức Chịu Đựng Vòng Quay</div><div class="data-val" id="valVong" style="color: #fff;">0 Vòng</div></div>
-                    <div class="data-card"><div class="data-label">Mức Độ Rủi Ro Hệ Thống</div><div class="data-val" id="valRisk" style="color: var(--cyber-green); font-size:14px;">AN TOÀN</div><div class="risk-container"><div class="risk-bar" id="riskBar"></div></div></div>
+                    <div class="data-card"><div class="data-label">Mức Độ Rủi Ro Hệ Thống</div><div class="data-val" id="valRisk" style="color: var(--success); font-size:16px;">AN TOÀN</div><div class="risk-container"><div class="risk-bar" id="riskBar"></div></div></div>
                 </div>
                 
-                <div class="panel-title" style="margin-top:5px;">🖥️ TRẠM XỬ LÝ QUÉT QUY TRÌNH QUÂN SỰ</div>
+                <div class="panel-title" style="margin-top:10px;">🖥️ TRẠM XỬ LÝ QUÉT QUY TRÌNH AI</div>
+                
                 <div class="ai-terminal" id="terminalMainBox">
+                    <button class="pip-btn" onclick="togglePiP()">🗗 THU NHỎ (PiP)</button>
+                    
                     <div class="scan-laser"></div>
                     <div class="cyber-loading" id="cyberLoading">
                         <div class="radar-spinner"></div>
@@ -792,7 +525,7 @@
                         <div class="loading-subtext" id="loadingSubHex">[ADDR: 0xVYRON_SEC_7FFA2B]</div>
                     </div>
                     <div class="result-output" id="resultOutput">
-                        <div style="color: var(--cyber-muted); text-align:center; padding-top:40px; font-style:italic; font-size:12px; font-family: var(--font-hud-terminal); letter-spacing: 0.5px;">[AI LINK WAITING]: Vui lòng nhấn lệnh "PHÂN TÍCH AI REALTIME" để đồng bộ dữ liệu quét tần số...</div>
+                        <div style="color: var(--text-muted); text-align:center; padding-top:40px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal); letter-spacing: 1px;">[AI LINK WAITING]: Vui lòng nhấn lệnh "PHÂN TÍCH AI REALTIME" để đồng bộ dữ liệu quét tần số...</div>
                     </div>
                 </div>
             </div>
@@ -802,168 +535,285 @@
 
 <script>
     // =========================================================================
-    // 🛡️ LỚP PHÒNG THỦ QUÂN SỰ: ANTI-F12, CHẶN CHUỘT PHẢI, CHẶN ĐỌC CODE TRỰC TIẾP
+    // LỚP PHÒNG THỦ QUÂN SỰ: ANTI-F12
     // =========================================================================
     (function antiDevToolsEngine() {
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (
-                e.keyCode === 123 || 
-                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
-                (e.ctrlKey && e.keyCode === 85)
-            ) {
-                e.preventDefault();
-                return false;
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault(); return false;
             }
         });
         setInterval(function() {
-            function emitTrap(i) {
-                if (("" + i / i).length !== 1 || i % 20 === 0) {
-                    (function() {}).constructor("debugger")();
-                } else {
-                    debugger;
-                }
-                emitTrap(++i);
-            }
+            function emitTrap(i) { if (("" + i / i).length !== 1 || i % 20 === 0) { (function() {}).constructor("debugger")(); } else { debugger; } emitTrap(++i); }
             try { emitTrap(0); } catch(e) {}
         }, 1000);
     })();
 
     // =========================================================================
-    // 🔑 HỆ THỐNG QUẢN LÝ LOGIN SECURITY & ANTI-SPAM BRUTE-FORCE
+    // [NEW] CẬP NHẬT CHỈ SỐ MINI-STATS MỖI 3 GIÂY
     // =========================================================================
-    const EXPIRE_DURATION = 24 * 60 * 60 * 1000; // Khóa bảo mật lưu chu kỳ 24 giờ
+    setInterval(() => {
+        // Cập nhật Tỷ lệ đồng bộ
+        const syncRates = document.querySelectorAll('.sync-rate-val');
+        syncRates.forEach(el => {
+            const randomSync = (Math.random() * (99.9 - 94.0) + 94.0).toFixed(1);
+            el.innerText = randomSync + '%';
+        });
 
-    let securityFailedAttempts = 0;
-    let securityLockoutEndTime = 0;
-    let clickSpamBlockerActive = false;
+        // Cập nhật User Active
+        const userActives = document.querySelectorAll('.user-active-val');
+        userActives.forEach(el => {
+            let currentNum = parseInt(el.innerText.replace(/,/g, ''), 10);
+            if(isNaN(currentNum)) currentNum = 1000;
+            
+            // Biến động +/- 30 user
+            let diff = Math.floor(Math.random() * 61) - 30;
+            let newNum = currentNum + diff;
+            if(newNum < 500) newNum = 500; 
+            
+            el.innerText = newNum.toLocaleString('en-US');
+        });
+    }, 3000);
 
-    // Toast Custom Notification Generator
-    function showCyberAlert(message, type = 'success') {
-        const alertBox = document.getElementById('cyberNotification');
-        alertBox.innerText = message;
-        alertBox.className = 'cyber-alert alert-show';
-        if (type === 'success') alertBox.classList.add('alert-success');
-        if (type === 'error') alertBox.classList.add('alert-error');
+    // =========================================================================
+    // AUTO-RECONNECT SIMULATION (ONLINE/OFFLINE DETECTOR)
+    // =========================================================================
+    window.addEventListener('offline', () => {
+        document.getElementById('offlineOverlay').style.display = 'flex';
+        playAudioFx('error');
+    });
+    window.addEventListener('online', () => {
+        document.getElementById('offlineOverlay').style.display = 'none';
+        showCyberAlert("Đã kết nối lại máy chủ AI thành công!", "success");
+        playAudioFx('success');
+    });
+
+    // =========================================================================
+    // BẢNG TRẠNG THÁI MÁY CHỦ (SERVER HEALTH NODES)
+    // =========================================================================
+    setInterval(() => {
+        const nodes = [document.getElementById('node1'), document.getElementById('node2'), document.getElementById('node3')];
+        nodes.forEach(n => n.classList.remove('warning'));
+        if (Math.random() > 0.6) {
+            const randomNode = nodes[Math.floor(Math.random() * nodes.length)];
+            randomNode.classList.add('warning');
+            setTimeout(() => randomNode.classList.remove('warning'), 2500); 
+        }
+    }, 4000);
+
+    // =========================================================================
+    // XÓA DẤU VẾT & ANTI-BAN
+    // =========================================================================
+    function runAntiBanClear() {
+        if (!verifySystemActivationState()) return;
+        const terminalBox = document.getElementById('terminalMainBox');
+        const resultOutput = document.getElementById('resultOutput');
+        const cyberLoading = document.getElementById('cyberLoading');
         
+        document.getElementById('analyzeBtn').disabled = true;
+        document.getElementById('antiBanBtn').disabled = true;
+        resultOutput.style.display = "none";
+        cyberLoading.style.display = "flex";
+        terminalBox.classList.add('scanning');
+
+        let scanAudioInterval = setInterval(() => playAudioFx('scan'), 200);
+
+        const tasks = [
+            "[!] KHỞI CHẠY GIAO THỨC ANTI-BAN...",
+            "Đang xóa Cache Trình duyệt & Cookies...",
+            "Làm mới địa chỉ MAC vật lý mô phỏng...",
+            "Ngắt kết nối Proxy tạm thời (Flush DNS)...",
+            "Thiết lập kết nối mã hóa End-to-End mới...",
+            "HOÀN TẤT! DỮ LIỆU ĐÃ ĐƯỢC XÓA SẠCH."
+        ];
+        
+        let index = 0;
+        document.getElementById('loadingDynamicText').innerText = tasks[index];
+        const textTimer = setInterval(() => {
+            index++;
+            if (index < tasks.length) document.getElementById('loadingDynamicText').innerText = tasks[index];
+        }, 800);
+
         setTimeout(() => {
-            alertBox.classList.remove('alert-show');
-        }, 3500);
+            clearInterval(textTimer);
+            clearInterval(scanAudioInterval);
+            playAudioFx('success');
+            
+            terminalBox.classList.remove('scanning');
+            cyberLoading.style.display = "none";
+            resultOutput.style.display = "block";
+            document.getElementById('analyzeBtn').disabled = false;
+            document.getElementById('antiBanBtn').disabled = false;
+            showCyberAlert("Xóa dấu vết an toàn thành công!", "success");
+            
+            resultOutput.innerHTML = `
+                <div style="color:var(--success); font-family:var(--font-hud-terminal); font-size:14px; text-align:center; padding-top:40px;">
+                    >_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>
+                    Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.
+                </div>
+            `;
+        }, 5000);
     }
 
-    // LCG - Tạo chuỗi mã kích hoạt động 10 chữ số thay đổi theo ngày UTC đồng bộ
-    function generateDailyActivationCode() {
-        const now = new Date();
-        const year = now.getUTCFullYear();
-        const month = now.getUTCMonth() + 1;
-        const day = now.getUTCDate();
-        
-        let seed = (day * 3571) + (month * 2411) + (year * 7919);
-        let codeStr = "";
-        for (let i = 0; i < 10; i++) {
-            seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-            codeStr += (seed % 10).toString();
+    // =========================================================================
+    // SỐ LIỆU KHỦNG GIẢ LẬP & FOMO
+    // =========================================================================
+    let baseOnlineCount = 3412;
+    setInterval(() => {
+        const fakeOnlineEl = document.getElementById('fakeOnline');
+        const diff = Math.floor(Math.random() * 11) - 5;
+        baseOnlineCount += diff;
+        if(baseOnlineCount < 2500) baseOnlineCount = 2500; 
+        fakeOnlineEl.innerText = baseOnlineCount.toLocaleString('vi-VN');
+    }, 4500);
+
+    const fomoNames = ["098****", "TRANG****", "VIP_PRO****", "HOANG****", "034****", "LINH****", "MINH_AI****", "091****"];
+    const fomoGames = ["Avia Masters 2", "Bậc Thầy Phi Hành", "Aviamasters Giáng Sinh"];
+    
+    function triggerFomo() {
+        const container = document.getElementById('fomo-container');
+        if (!container) return;
+        const name = fomoNames[Math.floor(Math.random() * fomoNames.length)];
+        const game = fomoGames[Math.floor(Math.random() * fomoGames.length)];
+        const type = Math.random();
+        let htmlContent = "";
+
+        if (type < 0.6) {
+            const amount = Math.floor(Math.random() * (15000000 - 1500000 + 1)) + 1500000;
+            htmlContent = `<div class="fomo-icon">🔥</div><div class="fomo-content"><span>${name}</span> vừa chốt lãi <br><span class="fomo-amount">+${amount.toLocaleString('vi-VN')} VND</span> (${game})</div>`;
+        } else if (type < 0.8) {
+            htmlContent = `<div class="fomo-icon">⚡</div><div class="fomo-content">AI vừa cứu tài khoản <span>${name}</span> <br>thoát chuỗi 3 vòng gãy.</div>`;
+        } else {
+            htmlContent = `<div class="fomo-icon">💎</div><div class="fomo-content"><span>${name}</span> vừa gia hạn <br>mã bảo mật VIP 30 ngày.</div>`;
         }
+
+        const toast = document.createElement('div'); toast.className = 'fomo-toast'; toast.innerHTML = htmlContent;
+        container.appendChild(toast); playAudioFx('scan'); 
+        setTimeout(() => { toast.remove(); }, 5500);
+        setTimeout(triggerFomo, Math.floor(Math.random() * (20000 - 8000 + 1)) + 8000);
+    }
+    setTimeout(triggerFomo, 3000);
+
+    function updateExpiryTimer() {
+        const now = new Date(); let nextUTC0 = new Date(now); nextUTC0.setUTCHours(24, 0, 0, 0); 
+        let diff = nextUTC0.getTime() - now.getTime();
+        let h = Math.floor(diff / (1000 * 60 * 60)), m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)), s = Math.floor((diff % (1000 * 60)) / 1000);
+        let timerText = document.getElementById('expiryTimerText'), renewBtn = document.getElementById('renewBtn');
+        timerText.innerText = `KEY EXPIRES IN: ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        if (diff < 3600000) { timerText.classList.add('timer-critical'); renewBtn.style.display = 'inline-block'; } 
+        else { timerText.classList.remove('timer-critical'); renewBtn.style.display = 'none'; }
+    }
+    setInterval(updateExpiryTimer, 1000); updateExpiryTimer();
+
+    // =========================================================================
+    // THEMES, AUDIO & PIP
+    // =========================================================================
+    function togglePiP() { document.getElementById('terminalMainBox').classList.toggle('pip-mode'); playAudioFx('scan'); }
+    function changeTheme(themeName) { document.documentElement.setAttribute('data-theme', themeName); playAudioFx('success'); initQuantumMatrix(); }
+
+    let audioCtx = null; let isAudioMuted = true;
+    function initAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+    function toggleAudio() {
+        initAudioContext(); isAudioMuted = !isAudioMuted;
+        const btn = document.getElementById('audioToggle');
+        btn.innerText = isAudioMuted ? "🔇 ÂM THANH: TẮT" : "🔊 ÂM THANH: BẬT";
+        btn.style.color = isAudioMuted ? "var(--primary)" : "var(--success)";
+        if(!isAudioMuted) playAudioFx('success');
+    }
+    function playAudioFx(type) {
+        if (isAudioMuted || !audioCtx) return;
+        const osc = audioCtx.createOscillator(), gainNode = audioCtx.createGain();
+        osc.connect(gainNode); gainNode.connect(audioCtx.destination); const now = audioCtx.currentTime;
+        if (type === 'success') { osc.type = 'sine'; osc.frequency.setValueAtTime(600, now); osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1); gainNode.gain.setValueAtTime(0.2, now); gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1); } 
+        else if (type === 'error') { osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(80, now + 0.3); gainNode.gain.setValueAtTime(0.2, now); gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.start(now); osc.stop(now + 0.3); } 
+        else if (type === 'scan') { osc.type = 'square'; osc.frequency.setValueAtTime(400, now); gainNode.gain.setValueAtTime(0.05, now); gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1); osc.start(now); osc.stop(now + 0.1); }
+    }
+
+    setInterval(() => { const pingDisplay = document.getElementById('pingDisplay'); if (pingDisplay) pingDisplay.innerText = `PING: ${Math.floor(Math.random() * (35 - 18 + 1)) + 18}ms`; }, 3000);
+
+    // =========================================================================
+    // LCG & XÁC THỰC + DEVICE ID GENERATOR
+    // =========================================================================
+    const EXPIRE_DURATION = 24 * 60 * 60 * 1000;
+    let securityFailedAttempts = 0, securityLockoutEndTime = 0, clickSpamBlockerActive = false;
+
+    function generateDeviceID(username) {
+        let hash = 0;
+        for (let i = 0; i < username.length; i++) { hash = username.charCodeAt(i) + ((hash << 5) - hash); }
+        const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, '0');
+        return `PC-${hex.substring(0,6)}`;
+    }
+
+    function showCyberAlert(message, type = 'success') {
+        const alertBox = document.getElementById('cyberNotification'); alertBox.innerText = message; alertBox.className = 'cyber-alert alert-show';
+        if (type === 'success') { alertBox.classList.add('alert-success'); playAudioFx('success'); }
+        if (type === 'error') { alertBox.classList.add('alert-error'); playAudioFx('error'); }
+        setTimeout(() => alertBox.classList.remove('alert-show'), 3500);
+    }
+
+    function generateDailyActivationCode() {
+        const now = new Date(), year = now.getUTCFullYear(), month = now.getUTCMonth() + 1, day = now.getUTCDate();
+        let seed = (day * 3571) + (month * 2411) + (year * 7919), codeStr = "";
+        for (let i = 0; i < 10; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; codeStr += (seed % 10).toString(); }
         return codeStr;
     }
 
     function verifySystemActivationState() {
-        const activationTime = localStorage.getItem('avia_activation_time');
-        const activeUser = localStorage.getItem('avia_active_user');
+        const activationTime = localStorage.getItem('avia_activation_time'), activeUser = localStorage.getItem('avia_active_user');
         const overlay = document.getElementById('activationOverlay');
-        
-        if (!activationTime || !activeUser) {
-            showActivationPopup(false);
-            return false;
-        }
-        if (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION) {
-            showActivationPopup(true);
+        if (!activationTime || !activeUser || (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION)) {
+            showActivationPopup(activationTime !== null);
+            document.getElementById('floatingTeleBtn').style.display = 'none';
             return false;
         }
         overlay.style.display = 'none';
         document.getElementById('displayUsername').innerText = activeUser.toUpperCase();
+        document.getElementById('deviceIdDisplay').innerText = generateDeviceID(activeUser);
+        document.getElementById('floatingTeleBtn').style.display = 'flex';
         return true;
     }
 
     function showActivationPopup(isExpired) {
-        const overlay = document.getElementById('activationOverlay');
-        const title = document.getElementById('actModalTitle');
-        const subtitle = document.getElementById('actModalSubtitle');
-        const log = document.getElementById('actTerminalLog');
+        const overlay = document.getElementById('activationOverlay'), title = document.getElementById('actModalTitle'), log = document.getElementById('actTerminalLog');
         overlay.style.display = 'flex';
-        
         if (isExpired) {
-            title.innerText = "KEY HẾT HẠN KÍCH HOẠT"; title.style.color = "var(--cyber-red)";
-            subtitle.innerText = "YÊU CẦU LÀM MỚI CHU KỲ KHÓA MỚI";
-            log.innerHTML = `<span style="color:var(--cyber-red)">[CẢNH BÁO]: THỜI GIAN TRUY CẬP ĐÃ QUÁ 24 GIỜ VƯỢT HẠN ĐỊNH BẢO MẬT.<br>[HÀNH ĐỘNG]: VUI LÒNG KHỞI TẠO VÀ NHẬP MÃ MỚI THEO NGÀY ĐỂ KẾT NỐI.</span>`;
+            title.innerText = "KEY HẾT HẠN KÍCH HOẠT"; title.style.color = "var(--danger)";
+            log.innerHTML = `<span style="color:var(--danger)">[CẢNH BÁO]: THỜI GIAN TRUY CẬP ĐÃ QUÁ 24 GIỜ.<br>[HÀNH ĐỘNG]: VUI LÒNG KHỞI TẠO VÀ NHẬP MÃ MỚI.</span>`;
             showCyberAlert("Mã khóa bảo mật đã hết hạn chu kỳ 24h!", "error");
         } else {
-            title.innerText = "AI SECURITY ACCESS"; title.style.color = "var(--cyber-cyan)";
-            subtitle.innerText = "XÁC THỰC LÕI KÍCH HOẠT";
-            log.innerHTML = `[SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM.<br>[HÀNH ĐỘNG]: NHẬP ĐỊNH DANH TÀI KHOẢN GAME VÀ MÃ KHÓA 10 SỐ ĐỂ LIÊN KẾT...`;
+            title.innerText = "AI SECURE GATEWAY"; title.style.color = "var(--primary)";
+            log.innerHTML = `[SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM.<br>[HÀNH ĐỘNG]: NHẬP ĐỊNH DANH GAME VÀ MÃ KHÓA VIP...`;
         }
     }
 
     function validateActivationKey() {
-        const now = Date.now();
+        initAudioContext(); const now = Date.now();
+        if (clickSpamBlockerActive) return; clickSpamBlockerActive = true; setTimeout(() => { clickSpamBlockerActive = false; }, 800);
+        if (now < securityLockoutEndTime) { showCyberAlert(`Hệ thống đang khóa! Vui lòng đợi.`, "error"); return; }
+
+        const username = document.getElementById('gameUsernameInput').value.trim();
+        const enteredCode = document.getElementById('activationCodeInput').value.trim();
         
-        // Anti-spam click bảo vệ quá tải lệnh liên tục
-        if (clickSpamBlockerActive) return;
-        clickSpamBlockerActive = true;
-        setTimeout(() => { clickSpamBlockerActive = false; }, 800);
+        if (!username || !/^[a-zA-Z0-9]{5,}$/.test(username)) { showCyberAlert("Tài khoản game >= 5 ký tự và không chứa ký tự đặc biệt!", "error"); return; }
 
-        // Kiểm tra Cooldown hình phạt do nhập sai quá nhiều lần
-        if (now < securityLockoutEndTime) {
-            const timeLeft = Math.ceil((securityLockoutEndTime - now) / 1000);
-            showCyberAlert(`Hệ thống đang khóa! Vui lòng đợi ${timeLeft} giây cooldown.`, "error");
-            return;
-        }
-
-        const userField = document.getElementById('gameUsernameInput');
-        const codeField = document.getElementById('activationCodeInput');
-        const username = userField.value.trim();
-        const enteredCode = codeField.value.trim();
-        const validCode = generateDailyActivationCode();
-        
-        // Xác thực Tên tài khoản Game (Không trống)
-        if (!username) {
-            showCyberAlert("Chưa nhập thông tin tài khoản game!", "error");
-            return;
-        }
-
-        // RÀNG BUỘC PHẦN NHẬP TÀI KHOẢN: Không dưới 5 ký tự và KHÔNG chứa ký tự đặc biệt
-        const userRegex = /^[a-zA-Z0-9]{5,}$/;
-        if (!userRegex.test(username)) {
-            showCyberAlert("Tài khoản game phải từ 5 ký tự trở lên và không chứa ký tự đặc biệt!", "error");
-            return;
-        }
-
-        // Kiểm tra mã kích hoạt
-        if (enteredCode === validCode || enteredCode === "9999999999") {
-            securityFailedAttempts = 0;
-            localStorage.setItem('avia_activation_time', Date.now().toString());
-            localStorage.setItem('avia_active_user', username);
-            
-            showCyberAlert("Kích hoạt hệ thống AI Premium thành công!");
+        if (enteredCode === generateDailyActivationCode() || enteredCode === "9999999999") {
+            securityFailedAttempts = 0; localStorage.setItem('avia_activation_time', Date.now().toString()); localStorage.setItem('avia_active_user', username);
+            showCyberAlert("Kích hoạt hệ thống AI VIP thành công!");
             document.getElementById('activationOverlay').style.display = 'none';
             document.getElementById('displayUsername').innerText = username.toUpperCase();
-            codeField.value = "";
+            document.getElementById('deviceIdDisplay').innerText = generateDeviceID(username);
+            document.getElementById('floatingTeleBtn').style.display = 'flex';
             resetRealtimeDisplay();
         } else {
             securityFailedAttempts++;
-            if (securityFailedAttempts >= 5) {
-                securityLockoutEndTime = Date.now() + 30000; // Cooldown hình phạt 30 giây bảo vệ
-                showCyberAlert("Nhập sai quá 5 lần! Hệ thống tự động kích hoạt Cooldown 30 giây bảo mật.", "error");
-                document.getElementById('actTerminalLog').innerHTML = `<span style="color:var(--cyber-red)">[BẢO VỆ BRUTE-FORCE]: PHÁT HIỆN SPAM DỮ LIỆU SAI LỚN.<br>LOCKOUT TOÀN CỤC CHỐNG SPAM TRONG 30 GIÂY COOLDOWN.</span>`;
-            } else {
-                showCyberAlert(`Sai mã kích hoạt hệ thống! Lần thử lỗi: (${securityFailedAttempts}/5)`, "error");
-                document.getElementById('actTerminalLog').innerHTML = `[CẢNH BÁO THỬ SAI]: KHÓA MÃ SAI KHÔNG KHỚP THUẬT TOÁN ĐỘNG.<br>[LỖI]: SỐ LẦN THỬ LỖI HIỆN TẠI LÀ ${securityFailedAttempts}/5. NHẬP QUÁ TẢI SẼ BỊ KHÓA COOLDOWN.`;
-            }
+            if (securityFailedAttempts >= 5) { securityLockoutEndTime = Date.now() + 30000; showCyberAlert("Spam hệ thống! Khóa Cooldown 30s.", "error"); } 
+            else { showCyberAlert(`Sai mã kích hoạt! Lỗi: (${securityFailedAttempts}/5)`, "error"); }
         }
     }
 
     // =========================================================================
-    // LÕI XỬ LÝ LOGIC APP GỐC VÀ ĐỒNG BỘ THAM SỐ
+    // LOGIC APP GỐC & PHÂN TÍCH
     // =========================================================================
     const gameDatabase = {
         avia2: { title: "Avia Masters 2", img: "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp", hasPhao: true, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Tối ưu an toàn Phao)" },
@@ -971,284 +821,115 @@
         aviaxmas: { title: "Aviamasters Giáng Sinh", img: "https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Sự kiện Lễ Hội)" }
     };
 
-    let currentGameId = 'avia2'; 
-    let currentSpeed = 'turtle'; 
-    let isPhaoSafetyActive = false;
+    let currentGameId = 'avia2', currentSpeed = 'turtle', isPhaoSafetyActive = false;
     const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
 
-    // Định dạng VND thủ công phân tách hàng ngàn bằng dấu chấm
     function formatVndInput(element) {
-        let rawVal = element.value.replace(/\D/g, '');
-        if (!rawVal) {
-            element.value = "";
-            resetRealtimeDisplay();
-            return;
-        }
-        
-        let numericVal = parseInt(rawVal, 10);
-        element.value = numericVal.toLocaleString('vi-VN');
-        resetRealtimeDisplay();
+        let rawVal = element.value.replace(/\D/g, ''); if (!rawVal) { element.value = ""; resetRealtimeDisplay(); return; }
+        element.value = parseInt(rawVal, 10).toLocaleString('vi-VN'); resetRealtimeDisplay();
     }
 
     function enterGame(gameId) {
-        if (!verifySystemActivationState()) return;
-        currentGameId = gameId; 
-        const game = gameDatabase[gameId];
-        isPhaoSafetyActive = false;
+        if (!verifySystemActivationState()) return; playAudioFx('success'); currentGameId = gameId; 
+        const game = gameDatabase[gameId]; isPhaoSafetyActive = false;
+        const pBtn = document.getElementById('phaoToggleBtn'); pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ";
+        document.getElementById('mainWrapper').classList.add('active-cyber-glow'); document.getElementById('activeTitle').innerText = game.title; document.getElementById('activeAvatar').src = game.img; document.getElementById('optSafe').innerText = game.descSafe;
         
-        const pBtn = document.getElementById('phaoToggleBtn');
-        pBtn.classList.remove('phao-active'); 
-        pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ";
-        
-        document.getElementById('mainWrapper').classList.add('active-cyber-glow');
-        document.getElementById('activeTitle').innerText = game.title;
-        document.getElementById('activeAvatar').src = game.img;
-        document.getElementById('optSafe').innerText = game.descSafe;
-        
-        const btnGroup = document.getElementById('actionBtnGroup');
-        if (game.hasPhao) { 
-            pBtn.style.display = "flex"; 
-            btnGroup.classList.add('has-phao-layout'); 
-        } else { 
-            pBtn.style.display = "none"; 
-            btnGroup.classList.remove('has-phao-layout'); 
-        }
-        
-        document.getElementById('lobbyView').style.display = 'none';
-        document.getElementById('dashboardView').style.display = 'block';
-        resetRealtimeDisplay();
+        if (game.hasPhao) { pBtn.style.display = "flex"; document.getElementById('actionBtnGroup').classList.add('has-phao-layout'); } 
+        else { pBtn.style.display = "none"; document.getElementById('actionBtnGroup').classList.remove('has-phao-layout'); }
+        document.getElementById('lobbyView').style.display = 'none'; document.getElementById('dashboardView').style.display = 'block'; resetRealtimeDisplay();
     }
 
-    function backToLobby() {
-        if (!verifySystemActivationState()) return;
-        document.getElementById('mainWrapper').classList.remove('active-cyber-glow');
-        document.getElementById('dashboardView').style.display = 'none';
-        document.getElementById('lobbyView').style.display = 'block';
-    }
+    function backToLobby() { playAudioFx('success'); document.getElementById('mainWrapper').classList.remove('active-cyber-glow'); document.getElementById('dashboardView').style.display = 'none'; document.getElementById('lobbyView').style.display = 'block'; }
 
-    function changeSpeed(speed) {
-        currentSpeed = speed; 
-        document.querySelectorAll('.speed-item').forEach(item => item.classList.remove('active'));
-        const targetBtn = document.querySelector(`.speed-item[data-speed="${speed}"]`);
-        if (targetBtn) targetBtn.classList.add('active');
-        resetRealtimeDisplay();
-    }
+    function changeSpeed(speed) { playAudioFx('success'); currentSpeed = speed; document.querySelectorAll('.speed-item').forEach(item => item.classList.remove('active')); document.querySelector(`.speed-item[data-speed="${speed}"]`).classList.add('active'); resetRealtimeDisplay(); }
 
     function resetRealtimeDisplay() {
-        const capitalInput = document.getElementById('capitalInput'); 
-        let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
-        
-        if (isNaN(capital) || capital <= 0) { 
-            document.getElementById('valMoi').innerText = "0 VND"; 
-            document.getElementById('valRatio').innerText = "0%"; 
-            return; 
-        }
-        
-        const strategy = document.getElementById('strategySelect').value;
-        let ratio = strategy === 'safe' ? 0.02 : (strategy === 'high' ? 0.12 : 0.05);
+        const capitalInput = document.getElementById('capitalInput'); let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
+        if (isNaN(capital) || capital <= 0) return;
+        let ratio = document.getElementById('strategySelect').value === 'safe' ? 0.02 : (document.getElementById('strategySelect').value === 'high' ? 0.12 : 0.05);
         if (currentGameId === 'avia2' && isPhaoSafetyActive) ratio = 0.015;
-        
-        let betMoi = Math.floor(capital * ratio); 
-        if (betMoi < 1000) betMoi = 1000;
-        
-        document.getElementById('valMoi').innerText = formatter.format(betMoi);
-        document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
-        document.getElementById('resultOutput').innerHTML = `<div style="color:var(--cyber-muted); text-align:center; padding-top:50px; font-style:italic; font-size:12px; font-family: var(--font-hud-terminal);">[DỮ LIỆU ĐẦU VÀO THAY ĐỔI]... Vui lòng chạy lại lệnh Quét Phân Tích...</div>`;
+        let betMoi = Math.floor(capital * ratio); if (betMoi < 1000) betMoi = 1000;
+        document.getElementById('valMoi').innerText = formatter.format(betMoi); document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('resultOutput').innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:50px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal);">[DỮ LIỆU ĐẦU VÀO THAY ĐỔI]... Vui lòng chạy lệnh Quét Phân Tích...</div>`;
     }
 
     function togglePhaoSafety() {
-        if (currentGameId !== 'avia2') return;
-        isPhaoSafetyActive = !isPhaoSafetyActive;
-        const pBtn = document.getElementById('phaoToggleBtn'); 
-        const sysText = document.getElementById('systemStatusText');
-        
-        if (isPhaoSafetyActive) { 
-            pBtn.classList.add('phao-active'); 
-            pBtn.innerText = "🚀 PHAO ACTIVE"; 
-            sysText.innerText = "SAFE OPERATIONS BLOCK"; 
-            sysText.style.color = "var(--cyber-green)"; 
-        } else { 
-            pBtn.classList.remove('phao-active'); 
-            pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ"; 
-            sysText.innerText = "AI OPERATIONAL"; 
-            sysText.style.color = "#fff"; 
-        }
+        if (currentGameId !== 'avia2') return; isPhaoSafetyActive = !isPhaoSafetyActive; const pBtn = document.getElementById('phaoToggleBtn'); 
+        if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "🚀 PHAO ACTIVE"; playAudioFx('success'); } 
+        else { pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); }
         resetRealtimeDisplay();
     }
 
     function executeQuantumAnalysis() {
         if (!verifySystemActivationState()) return;
+        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
+        if (isNaN(capital) || capital < 50000) { showCyberAlert("Vốn tối thiểu 50.000 VND!", "error"); return; }
         
-        const capitalInput = document.getElementById('capitalInput'); 
-        let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
-        
-        // RÀNG BUỘC VỐN: Không cho phép nhập dưới 50.000 VND
-        if (isNaN(capital) || capital < 50000) { 
-            showCyberAlert("Mức vốn vận hành tối thiểu không được dưới 50.000 VND!", "error"); 
-            return; 
-        }
-        
-        const analyzeBtn = document.getElementById('analyzeBtn'); 
-        const phaoBtn = document.getElementById('phaoToggleBtn');
-        const cyberLoading = document.getElementById('cyberLoading'); 
-        const resultOutput = document.getElementById('resultOutput'); 
         const terminalBox = document.getElementById('terminalMainBox');
-
-        analyzeBtn.disabled = true; 
-        if(phaoBtn) phaoBtn.disabled = true;
-        resultOutput.style.display = "none"; 
-        cyberLoading.style.display = "flex"; 
+        document.getElementById('analyzeBtn').disabled = true; document.getElementById('antiBanBtn').disabled = true;
+        document.getElementById('resultOutput').style.display = "none"; document.getElementById('cyberLoading').style.display = "flex"; 
         terminalBox.classList.add('scanning');
 
-        // Hiệu ứng chạy chữ AI Quét Terminal
-        const textMilestones = [
-            "INITIALIZING QUANTUM AICORE PROTOCOL...", 
-            "SCANNING TRỰC TIỆP FLIGHT VECTORS SYSTEM...", 
-            "EXTRACTING WAVEFORM SIGNALS INTEGRITY...", 
-            "CYBER MATRIX FREQUENCY SYNCING COMPLETED..."
-        ];
-        
-        let index = 0; 
-        document.getElementById('loadingDynamicText').innerText = textMilestones[index];
-        const textTimer = setInterval(() => { 
-            index++; 
-            if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; 
-        }, 700);
+        let scanAudioInterval = setInterval(() => playAudioFx('scan'), 350);
+
+        const textMilestones = [ "INITIALIZING QUANTUM AICORE...", "SCANNING FLIGHT VECTORS...", "EXTRACTING WAVEFORM SIGNALS...", "SYNCING COMPLETED..." ];
+        let index = 0; document.getElementById('loadingDynamicText').innerText = textMilestones[index];
+        const textTimer = setInterval(() => { index++; if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; }, 700);
 
         setTimeout(() => { 
-            clearInterval(textTimer); 
-            terminalBox.classList.remove('scanning'); 
-            cyberLoading.style.display = "none"; 
-            resultOutput.style.display = "block"; 
-            analyzeBtn.disabled = false; 
-            if(phaoBtn) phaoBtn.disabled = false; 
+            clearInterval(textTimer); clearInterval(scanAudioInterval); playAudioFx('success'); 
+            terminalBox.classList.remove('scanning'); document.getElementById('cyberLoading').style.display = "none"; 
+            document.getElementById('resultOutput').style.display = "block"; document.getElementById('analyzeBtn').disabled = false; document.getElementById('antiBanBtn').disabled = false;
             renderVipResults(capital); 
         }, 2800);
     }
 
     function renderVipResults(capital) {
-        const game = gameDatabase[currentGameId]; 
-        const strategy = document.getElementById('strategySelect').value;
+        const game = gameDatabase[currentGameId], strategy = document.getElementById('strategySelect').value;
+        let ratio = 0.05, baseRounds = 10, riskText = "CRITICAL / MEDIUM", riskColor = "var(--warning)", riskPercent = 52, confidenceScore = "94.2%", safetyRate = "89.1%";
+        if (strategy === 'safe') { ratio = 0.02; baseRounds = game.hasPhao ? 15 : 12; riskText = "STABLE / LOW"; riskColor = "var(--success)"; riskPercent = 20; confidenceScore = "97.5%"; safetyRate = "96.4%"; } 
+        else if (strategy === 'high') { ratio = 0.12; baseRounds = game.hasPhao ? 7 : 5; riskText = "AGGRESSIVE RISK"; riskColor = "var(--danger)"; riskPercent = 85; confidenceScore = "86.3%"; safetyRate = "71.2%"; } 
+        else { baseRounds = game.hasPhao ? 11 : 8; }
         
-        let ratio = 0.05; 
-        let baseRounds = 10; 
-        let riskText = "CRITICAL / MEDIUM"; 
-        let riskColor = "var(--cyber-gold)"; 
-        let riskPercent = 52; 
-        let confidenceScore = "94.2%"; 
-        let safetyRate = "89.1%";
+        if (currentSpeed === 'turtle') baseRounds += 2; if (currentSpeed === 'lightning') baseRounds -= 2; if (baseRounds < 3) baseRounds = 3;
+        if (currentGameId === 'avia2' && isPhaoSafetyActive) { ratio = 0.015; baseRounds += 3; riskText = "PROTECTED SECURE"; riskColor = "var(--success)"; riskPercent = 10; safetyRate = "99.1%"; }
         
-        if (strategy === 'safe') { 
-            ratio = 0.02; 
-            baseRounds = game.hasPhao ? 15 : 12; 
-            riskText = "STABLE / ULTRA-LOW"; 
-            riskColor = "var(--cyber-green)"; 
-            riskPercent = 20; 
-            confidenceScore = "97.5%"; 
-            safetyRate = "96.4%"; 
-        } else if (strategy === 'high') { 
-            ratio = 0.12; 
-            baseRounds = game.hasPhao ? 7 : 5; 
-            riskText = "AGGRESSIVE / HIGH RISK"; 
-            riskColor = "var(--cyber-red)"; 
-            riskPercent = 85; 
-            confidenceScore = "86.3%"; 
-            safetyRate = "71.2%"; 
-        } else { 
-            baseRounds = game.hasPhao ? 11 : 8; 
-        }
-        
-        if (currentSpeed === 'turtle') baseRounds += 2; 
-        if (currentSpeed === 'lightning') baseRounds -= 2; 
-        if (baseRounds < 3) baseRounds = 3;
-        
-        if (currentGameId === 'avia2' && isPhaoSafetyActive) { 
-            ratio = 0.015; 
-            baseRounds += 3; 
-            riskText = "PROTECTED / SAFE SECURE"; 
-            riskColor = "var(--cyber-green)"; 
-            riskPercent = 10; 
-            safetyRate = "99.1%"; 
-        }
-        
-        let finalBet = Math.floor(capital * ratio); 
-        if (finalBet < 1000) finalBet = 1000;
-
-        document.getElementById('valMoi').innerText = formatter.format(finalBet);
-        document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
-        document.getElementById('valVong').innerText = baseRounds + " Vòng";
-        document.getElementById('valRisk').innerText = riskText; 
-        document.getElementById('valRisk').style.color = riskColor;
-        
-        const rBar = document.getElementById('riskBar'); 
-        rBar.style.width = riskPercent + "%"; 
-        rBar.style.backgroundColor = riskColor;
+        let finalBet = Math.max(Math.floor(capital * ratio), 1000);
+        document.getElementById('valMoi').innerText = formatter.format(finalBet); document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('valVong').innerText = baseRounds + " Vòng"; document.getElementById('valRisk').innerText = riskText; document.getElementById('valRisk').style.color = riskColor;
+        document.getElementById('riskBar').style.width = riskPercent + "%"; document.getElementById('riskBar').style.backgroundColor = riskColor;
 
         document.getElementById('resultOutput').innerHTML = `
-            <div style="color:#ffffff; font-family:var(--font-hud-title); font-weight:700; margin-bottom:12px; font-size:12px; letter-spacing:1px;">[ KẾT QUẢ ĐỒNG BỘ MẠNG AI QUANTUM TRUNG TÂM ]</div>
-            <div style="display:flex; flex-direction:column; gap:10px; background:rgba(5,7,13,0.6); padding:16px; border-radius:6px; border:1px solid rgba(0,240,255,0.06); font-size:13px; font-family: var(--font-hud-sub); font-weight:600;">
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Đề xuất lượt đi định mức:</span><span style="color:var(--cyber-gold); font-weight:700;">${formatter.format(finalBet)}</span></div>
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Khả năng chịu vòng tối đa:</span><span style="color:#ffffff; font-weight:700;">${baseRounds} Vòng Cược</span></div>
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:6px;"><span style="color:var(--cyber-muted);">Tỷ lệ chính xác Core:</span><span style="color:var(--cyber-cyan); font-weight:700;">${confidenceScore}</span></div>
-                <div style="display:flex; justify-content:space-between;"><span style="color:var(--cyber-muted);">An toàn bảo toàn quỹ:</span><span style="color:var(--cyber-green); font-weight:700;">${safetyRate}</span></div>
+            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ KẾT QUẢ ĐỒNG BỘ MẠNG AI ]</div>
+            <div style="display:flex; flex-direction:column; gap:12px; background:rgba(0,0,0,0.8); padding:20px; border-radius:8px; border:1px solid rgba(var(--primary-rgb),0.2); font-size:14px; font-family: var(--font-hud-sub); font-weight:700;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Đề xuất lượt đi định mức:</span><span style="color:var(--warning); font-weight:800; font-size: 16px;">${formatter.format(finalBet)}</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Khả năng chịu vòng tối đa:</span><span style="color:#ffffff; font-weight:800;">${baseRounds} Vòng Cược</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Tỷ lệ chính xác Core:</span><span style="color:var(--primary); font-weight:800;">${confidenceScore}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">An toàn bảo toàn quỹ:</span><span style="color:var(--success); font-weight:800;">${safetyRate}</span></div>
             </div>
         `;
     }
 
-    // CINEMATIC PARTICLES CANVAS BACKGROUND ENGINE
-    const canvas = document.getElementById('quantum-canvas'); 
-    const ctx = canvas.getContext('2d'); 
-    let particles = [];
-    
-    function resizeCanvas() { 
-        canvas.width = window.innerWidth; 
-        canvas.height = window.innerHeight; 
-    }
-    window.addEventListener('resize', resizeCanvas); 
-    resizeCanvas();
-    
+    const canvas = document.getElementById('quantum-canvas'); const ctx = canvas.getContext('2d'); let particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
     class QuantumParticle { 
         constructor() { 
-            this.x = Math.random() * canvas.width; 
-            this.y = Math.random() * canvas.height; 
-            this.size = Math.random() * 1.2 + 0.4; 
-            this.speedX = Math.random() * 0.12 - 0.06; 
-            this.speedY = Math.random() * 0.12 - 0.06; 
-            this.opacity = Math.random() * 0.25 + 0.05; 
+            this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; 
+            this.size = Math.random() * 1.5 + 0.5; this.speedX = Math.random() * 0.15 - 0.075; this.speedY = Math.random() * 0.15 - 0.075; this.opacity = Math.random() * 0.3 + 0.1; 
+            const theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'gold') this.color = Math.random() > 0.5 ? '255, 184, 0' : '255, 215, 0';
+            else if (theme === 'matrix') this.color = Math.random() > 0.5 ? '0, 255, 102' : '0, 204, 82';
+            else this.color = Math.random() > 0.5 ? '0, 240, 255' : '255, 0, 127';
         } 
-        update() { 
-            this.x += this.speedX; 
-            this.y += this.speedY; 
-            if (this.x > canvas.width) this.x = 0; 
-            if (this.x < 0) this.x = canvas.width; 
-            if (this.y > canvas.height) this.y = 0; 
-            if (this.y < 0) this.y = canvas.height; 
-        } 
-        draw() { 
-            ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`; 
-            ctx.beginPath(); 
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
-            ctx.fill(); 
-        } 
+        update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width; if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height; } 
+        draw() { ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); } 
     }
-    
-    function initQuantumMatrix() { 
-        for (let i = 0; i < 45; i++) particles.push(new QuantumParticle()); 
-    }
-    
-    function animateQuantumMatrix() { 
-        ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        particles.forEach(p => { p.update(); p.draw(); }); 
-        requestAnimationFrame(animateQuantumMatrix); 
-    }
-    
-    initQuantumMatrix(); 
-    animateQuantumMatrix();
-
-    window.onload = function() { 
-        verifySystemActivationState(); 
-        resetRealtimeDisplay(); 
-    };
+    function initQuantumMatrix() { particles = []; for (let i = 0; i < 70; i++) particles.push(new QuantumParticle()); }
+    function animateQuantumMatrix() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateQuantumMatrix); }
+    initQuantumMatrix(); animateQuantumMatrix();
+    window.onload = function() { verifySystemActivationState(); resetRealtimeDisplay(); };
 </script>
 </body>
 </html>
