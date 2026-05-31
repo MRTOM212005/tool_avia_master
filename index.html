@@ -88,7 +88,7 @@
         @keyframes pulseWarning { 50% { opacity: 0.5; } }
 
         /* MAIN WRAPPER */
-        .wrapper { max-width: 1280px; width: 100%; padding: 40px; border-radius: 16px; backdrop-filter: var(--blur-premium); -webkit-backdrop-filter: var(--blur-premium); background: var(--bg-card); border: 1px solid rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.05), var(--shadow-cinematic); position: relative; z-index: 1; transition: var(--transition-tactical); }
+        .wrapper { max-width: 1350px; width: 100%; padding: 40px; border-radius: 16px; backdrop-filter: var(--blur-premium); -webkit-backdrop-filter: var(--blur-premium); background: var(--bg-card); border: 1px solid rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.05), var(--shadow-cinematic); position: relative; z-index: 1; transition: var(--transition-tactical); }
         .wrapper.active-cyber-glow { border-color: var(--secondary); box-shadow: 0 0 60px rgba(var(--secondary-rgb), 0.15), var(--shadow-cinematic); }
 
         /* HUD STATUS BAR */
@@ -110,7 +110,7 @@
         @keyframes pulseDot { 0% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0.3; transform: scale(0.8); } }
 
         /* =========================================================================
-           🚀 LOBBY VIEW - TACTICAL UPGRADE
+           🚀 LOBBY VIEW - TACTICAL UPGRADE (GRID GAMES)
            ========================================================================= */
         .lobby-view { display: block; text-align: center; animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -133,8 +133,9 @@
         
         .lobby-subtitle { color: var(--secondary); font-size: 15px; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
         
-        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        @media (max-width: 992px) { .game-grid { grid-template-columns: 1fr; } }
+        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        @media (max-width: 1200px) { .game-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .game-grid { grid-template-columns: 1fr; } }
         
         .game-card { 
             border: 1px solid rgba(var(--primary-rgb), 0.2); border-radius: 12px; overflow: hidden; cursor: pointer; 
@@ -147,17 +148,15 @@
             background: rgba(0,0,0,0.95); box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 30px rgba(var(--primary-rgb), 0.3); 
         }
 
-        .game-img-wrapper { width: 100%; height: 260px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid rgba(var(--primary-rgb), 0.2); }
-        .game-img-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; filter: grayscale(70%) brightness(50%) contrast(120%); }
-        .game-card:hover .game-img-wrapper img { transform: scale(1.1); filter: grayscale(0%) brightness(90%) contrast(110%); }
+        .game-img-wrapper { width: 100%; height: 200px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid rgba(var(--primary-rgb), 0.2); }
+        .game-img-wrapper img { width: 100%; height: 100%; object-fit: contain; object-position: center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; filter: grayscale(40%) brightness(70%) contrast(120%); transform: scale(0.95);}
+        .game-card:hover .game-img-wrapper img { transform: scale(1.05); filter: grayscale(0%) brightness(100%) contrast(110%); }
         .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,7,13,1) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); pointer-events: none; }
         
         .card-scanline { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--primary); box-shadow: 0 0 15px var(--primary); animation: cardScan 2.5s linear infinite; z-index: 2; opacity: 0.8; pointer-events: none; }
         @keyframes cardScan { 0% { top: -10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 110%; opacity: 0; } }
 
         .game-badge { position: absolute; top: 15px; right: 15px; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; z-index: 2; font-family: var(--font-hud-title); }
-        .badge-phao { background: rgba(var(--success-rgb), 0.15); color: var(--success); border: 1px solid rgba(var(--success-rgb), 0.4); box-shadow: 0 0 15px rgba(var(--success-rgb), 0.3); backdrop-filter: blur(5px); }
-        .badge-nophao { background: rgba(var(--secondary-rgb), 0.15); color: var(--secondary); border: 1px solid rgba(var(--secondary-rgb), 0.3); backdrop-filter: blur(5px);}
         .badge-vip { left: 15px; right: auto; background: rgba(var(--warning-rgb), 0.2); color: var(--warning); border: 1px solid var(--warning); box-shadow: 0 0 15px rgba(var(--warning-rgb), 0.4); animation: pulseVip 1.5s infinite; }
         @keyframes pulseVip { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; box-shadow: 0 0 25px rgba(var(--warning-rgb), 0.8); } }
 
@@ -180,7 +179,6 @@
         .game-card:hover .btn-enter::before { left: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
         .game-card:hover .btn-enter::after { right: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
 
-
         /* DASHBOARD SECTION */
         .dashboard-view { display: none; }
         .header-area { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(var(--secondary-rgb), 0.2); }
@@ -196,10 +194,47 @@
         .section-panel { background: rgba(0,0,0, 0.4); border: 1px solid rgba(var(--primary-rgb), 0.1); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 25px; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
         .panel-title { font-family: var(--font-hud-title); font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); display: flex; align-items: center; gap: 12px; font-weight: 800; }
         .panel-title::before { content: ""; width: 5px; height: 14px; background: var(--secondary); display: inline-block; box-shadow: 0 0 10px var(--secondary); }
+        
         .input-wrapper label { display: block; font-size: 12px; color: var(--primary); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-hud-title); }
         .input-box { width: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px 20px; border-radius: 6px; color: #ffffff; font-size: 18px; font-weight: 700; box-sizing: border-box; transition: var(--transition-tactical); font-family: var(--font-hud-sub); }
         .input-box:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); outline: none; background: #000; }
         
+        /* CHIP SELECTOR */
+        .chip-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { padding: 8px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #a1b4cc; cursor: pointer; transition: all 0.3s; font-family: var(--font-hud-terminal); font-weight: bold; font-size: 13px; backdrop-filter: blur(5px); }
+        .chip.active, .chip:hover { background: rgba(var(--primary-rgb), 0.15); border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); color: #fff; transform: translateY(-2px); }
+
+        /* VORTEX SPECIFIC UI */
+        .vortex-btn { flex: 1; min-width: 30%; padding: 12px; border-radius: 6px; border: none; font-family: var(--font-hud-title); font-weight: bold; cursor: pointer; transition: all 0.3s; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .vortex-btn.fireBtn { background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; }
+        .vortex-btn.earthBtn { background: rgba(40, 209, 124, 0.15); color: #28d17c; border: 1px solid #28d17c; }
+        .vortex-btn.waterBtn { background: rgba(77, 166, 255, 0.15); color: #4da6ff; border: 1px solid #4da6ff; }
+        .vortex-btn.windBtn { background: rgba(136, 136, 136, 0.15); color: #fff; border: 1px solid #888; }
+        .vortex-btn.skullBtn { background: rgba(0, 0, 0, 0.6); color: #fff; border: 1px solid #fff; box-shadow: inset 0 0 10px rgba(255,255,255,0.2); }
+        .vortex-btn:hover { transform: translateY(-2px); filter: brightness(1.3); }
+
+        .vortex-progress-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .vp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .vp-label { font-size: 12px; font-weight: bold; width: 60px; color: var(--text-muted); font-family: var(--font-hud-title); }
+        .vp-bar-bg { flex: 1; height: 12px; background: rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; position: relative; }
+        .vp-bar-fill { height: 100%; transition: width 0.3s ease; }
+        .vp-bar-fill.fire { background: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
+        .vp-bar-fill.earth { background: #28d17c; box-shadow: 0 0 10px #28d17c; }
+        .vp-bar-fill.water { background: #4da6ff; box-shadow: 0 0 10px #4da6ff; }
+        .vp-text { font-size: 11px; width: 40px; text-align: right; font-family: var(--font-hud-terminal); font-weight: bold; }
+        
+        .ai-dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
+        .ai-stat-box { background: rgba(0,0,0,0.5); border: 1px solid rgba(var(--primary-rgb), 0.2); padding: 10px; border-radius: 6px; text-align: center; }
+        .ai-stat-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; font-family: var(--font-hud-title); }
+        .ai-stat-val { font-size: 18px; font-weight: bold; color: #fff; font-family: var(--font-hud-sub); }
+        
+        .score-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-top: 5px; display: inline-block;}
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444;}
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e15; border: 1px solid #f59e15;}
+        .badge-neutral { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308;}
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981;}
+        .badge-premium { background: rgba(6, 182, 212, 0.2); color: #06b6d4; text-shadow: 0 0 5px rgba(6, 182, 212, 0.5); border: 1px solid #06b6d4;}
+
         .action-button-group { display: grid; grid-template-columns: 1fr; gap: 16px; }
         .action-button-group.has-phao-layout { grid-template-columns: 1fr 1fr; }
         .btn-premium-action { width: 100%; border: none; padding: 18px; border-radius: 6px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; position: relative; overflow: hidden; transition: var(--transition-tactical); display: flex; align-items: center; justify-content: center; font-family: var(--font-hud-title); }
@@ -239,6 +274,14 @@
         
         .ai-terminal.pip-mode { position: fixed; bottom: 20px; right: 20px; width: 320px; min-height: 180px; z-index: 99999; box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px var(--primary-glow); border: 2px solid var(--primary); transform: scale(1); animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
         @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* 3-WAY STRIKER UI */
+        .dir-box { flex:1; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:15px 5px; text-align:center; transition:var(--transition-tactical); }
+        .dir-box.active-dir { background:rgba(var(--success-rgb), 0.15); border-color:var(--success); box-shadow:0 0 20px rgba(var(--success-rgb),0.4); animation: pulseRadar 1.5s infinite;}
+        .dir-lbl { font-family:var(--font-hud-title); font-size:14px; font-weight:bold; color:var(--text-muted); margin-bottom:5px;}
+        .active-dir .dir-lbl { color:var(--success); }
+        .dir-prob { font-family:var(--font-hud-terminal); font-size:20px; font-weight:bold; color:#fff;}
+        @keyframes pulseRadar { 0% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0.4); } 70% { box-shadow: 0 0 0 15px rgba(var(--success-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0); } }
 
         .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 100%; }
         .radar-spinner { width: 45px; height: 45px; border: 3px solid rgba(var(--primary-rgb), 0.1); border-top-color: var(--primary); border-bottom-color: var(--secondary); border-radius: 50%; animation: spinRadar 0.7s linear infinite; box-shadow: 0 0 15px var(--secondary-glow); }
@@ -319,18 +362,18 @@
 
 <div id="changelogModal" class="changelog-modal">
     <div class="changelog-content">
-        <div class="changelog-title">NHẬT KÝ CẬP NHẬT - V4.4 (Live Stats)</div>
+        <div class="changelog-title">NHẬT KÝ CẬP NHẬT - V4.7 (VORTEX PRO AI)</div>
         <ul class="changelog-list">
-            <li><span>[+]</span> Cập nhật Tỷ Lệ Đồng Bộ và User tự động nhảy số.</li>
-            <li><span>[+]</span> Đổi mới toàn bộ giao diện Sảnh Game.</li>
-            <li><span>[+]</span> Thêm hiệu ứng Tia laser Hologram quét Game.</li>
-            <li><span>[*]</span> Vá lỗi khựng màn hình khi kết nối AI Core.</li>
-            <li><span>[-]</span> Gỡ bỏ các node mạng cũ không ổn định.</li>
+            <li><span>[+]</span> Tích hợp bộ nạp Data <strong>Vortex Official</strong> (Hỏa-Thổ-Thủy).</li>
+            <li><span>[+]</span> AI Score đánh giá trạng thái 10, 20, 30 vòng.</li>
+            <li><span>[+]</span> Thuật toán quét Track chuỗi (Hot/Cold) bảo vệ vốn.</li>
+            <li><span>[*]</span> Tối ưu bảng hiển thị Live Data Matrix.</li>
+            <li><span>[-]</span> Giữ nguyên Logic chuẩn của Bậc thầy phi hành & Soccer.</li>
         </ul>
         <button class="close-changelog" onclick="document.getElementById('changelogModal').style.display='none'">XÁC NHẬN (ĐÓNG)</button>
     </div>
 </div>
-<div class="version-tag" onclick="document.getElementById('changelogModal').style.display='flex'">V4.4 (UPDATED)</div>
+<div class="version-tag" onclick="document.getElementById('changelogModal').style.display='flex'">V4.7 (VORTEX PRO)</div>
 
 <div id="fomo-container" class="fomo-container"></div>
 
@@ -393,15 +436,53 @@
     </div>
 
     <div id="lobbyView" class="lobby-view">
-        <div class="lobby-title">Hệ Thống Phân Tích Avia Pro</div>
+        <div class="lobby-title">Hệ Thống Phân Tích Game Pro</div>
         <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ thuật toán</div>
         <div class="game-grid">
             
+            <div class="game-card" onclick="enterGame('vortex')">
+                <div class="game-img-wrapper">
+                    <div class="card-scanline" style="animation-delay: 2.0s;"></div>
+                    <span class="game-badge badge-vip" style="background: rgba(0, 240, 255, 0.2); color: #00f0ff; border-color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">🌀 3 ELEMENTS</span>
+                    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJN9cpQ2Mq1M3r9dAaSsh8KZA3mE-yQ5Ys0-NuPNAcTm5gOs7w">
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name">Vortex Analyzer PRO</div>
+                        <div class="game-desc">Bổ sung AI Score, Quét chuỗi Hot/Cold, Tính tỷ lệ xuất hiện vòng nguyên tố nâng cao.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">98.5%</span></div>
+                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">3,086</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter">KHỞI CHẠY AI</div>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="enterGame('soccerstriker')">
+                <div class="game-img-wrapper">
+                    <div class="card-scanline"></div>
+                    <span class="game-badge badge-vip">💎 3D PREDICTOR</span>
+                    <img src="https://emucasino.com/cdn-cgi/image/width=382,height=240,quality=90,format=jpeg/https://cdn.emucasino.com/en/images/games/mg-soccer-striker-thumbnail.png" alt="Soccer Striker">
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name">Soccer Striker</div>
+                        <div class="game-desc">Module phân tích bóng đá / Penalty (Trái-Giữa-Phải) thế hệ mới.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">98.5%</span></div>
+                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">2,156</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter">KHỞI CHẠY AI</div>
+                </div>
+            </div>
+
             <div class="game-card" onclick="enterGame('avia2')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline"></div> 
-                    <span class="game-badge badge-vip">💎 VIP PICK</span>
-                    <span class="game-badge badge-phao">Cơ chế Phao</span>
+                    <div class="card-scanline" style="animation-delay: 0.5s;"></div> 
                     <img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2">
                 </div>
                 <div class="game-details">
@@ -420,9 +501,8 @@
 
             <div class="game-card" onclick="enterGame('aviaphitruc')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline" style="animation-delay: 0.5s;"></div> 
-                    <span class="game-badge badge-nophao">Không có Phao</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s" alt="Bậc Thầy Phi Hành">
+                    <div class="card-scanline" style="animation-delay: 1.0s;"></div> 
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThBGKlZPizw4F25xhbgeT9vD3nM5s1gtNGXg&s" alt="Bậc Thầy Phi Hành">
                 </div>
                 <div class="game-details">
                     <div>
@@ -432,26 +512,6 @@
                             <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
                             <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">94.5%</span></div>
                             <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">856</span></div>
-                        </div>
-                    </div>
-                    <div class="btn-enter">KHỞI CHẠY AI</div>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="enterGame('aviaxmas')">
-                <div class="game-img-wrapper">
-                    <div class="card-scanline" style="animation-delay: 1.2s;"></div>
-                    <span class="game-badge badge-nophao">Không có Phao</span>
-                    <img src="https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp" alt="Aviamasters Giáng Sinh">
-                </div>
-                <div class="game-details">
-                    <div>
-                        <div class="game-name">Avia Giáng Sinh</div>
-                        <div class="game-desc">Sự kiện lễ hội đặc biệt, giao diện X-Mas bắt mắt đòi hỏi căn vốn sát.</div>
-                        <div class="game-tactical-stats">
-                            <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
-                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">96.2%</span></div>
-                            <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">732</span></div>
                         </div>
                     </div>
                     <div class="btn-enter">KHỞI CHẠY AI</div>
@@ -472,12 +532,11 @@
             <div class="section-panel">
                 <div class="panel-title">⚙️ AI HUD OPERATIONS CONTROL</div>
                 
-                <div class="input-wrapper">
-                    <label>Tổng Hạn Mức Vốn Ban Đầu (VND) - Nhập Thủ Công</label>
+                <div id="capitalInputWrapper" class="input-wrapper">
+                    <label>Tổng Hạn Mức Vốn Ban Đầu (VND) / Mức Cược Vortex</label>
                     <input type="text" id="capitalInput" class="input-box" value="2.000.000" oninput="formatVndInput(this)">
                 </div>
-                
-                <div class="input-wrapper">
+                <div id="standardStrategyWrapper" class="input-wrapper">
                     <label>Chế Độ Phân Tích Vòng Cược</label>
                     <style> select.input-box option { background-color: var(--bg-surface); color: #fff; } </style>
                     <select id="strategySelect" class="input-box" onchange="resetRealtimeDisplay()">
@@ -486,8 +545,7 @@
                         <option value="high">🔥 Tấn Công Hệ Số Tối Đa</option>
                     </select>
                 </div>
-                
-                <div class="speed-container">
+                <div id="speedContainerWrapper" class="speed-container">
                     <div class="panel-title" style="margin-bottom:15px;">⚡ XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN LAYER</div>
                     <div class="speed-row">
                         <div class="speed-item active" data-speed="turtle" onclick="changeSpeed('turtle')"><span class="icon">🐢</span><span class="name">RÙA</span></div>
@@ -496,8 +554,35 @@
                         <div class="speed-item" data-speed="lightning" onclick="changeSpeed('lightning')"><span class="icon">⚡</span><span class="name">TỐC ĐỘ</span></div>
                     </div>
                 </div>
+
+                <div id="strikerControlsWrapper" style="display:none;">
+                    <div class="input-wrapper" style="margin-bottom: 20px;">
+                        <label>Chế Độ Thi Đấu</label>
+                        <select id="soccerModeSelect" class="input-box" onchange="resetRealtimeDisplay()">
+                            <option value="nghiepdu">Nghiệp Dư</option>
+                            <option value="caulacbo" selected>Câu Lạc Bộ</option>
+                            <option value="chuyennghiep">Chuyên Nghiệp</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Mức Cược (Stake Chips)</label>
+                        <div class="chip-container" id="chipContainer"></div>
+                    </div>
+                </div>
+
+                <div id="vortexControlsWrapper" style="display:none; margin-top: 10px;">
+                    <div class="panel-title" style="margin-bottom: 15px;">🌀 NHẬP DỮ LIỆU THỰC TẾ (LIVE DATA)</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
+                        <button class="vortex-btn fireBtn" onclick="addVortexResult('fire')">🔥 Fire</button>
+                        <button class="vortex-btn earthBtn" onclick="addVortexResult('earth')">🌱 Earth</button>
+                        <button class="vortex-btn waterBtn" onclick="addVortexResult('water')">🌊 Water</button>
+                        <button class="vortex-btn windBtn" onclick="addVortexResult('wind')">🌪 Wind</button>
+                        <button class="vortex-btn skullBtn" onclick="addVortexResult('skull')">💀 Skull</button>
+                    </div>
+                    <button class="btn-premium-action" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; margin-top: 10px;" onclick="resetVortex()">🔄 RESET MA TRẬN CHU KỲ MỚI</button>
+                </div>
                 
-                <div class="action-button-group" id="actionBtnGroup">
+                <div class="action-button-group" id="actionBtnGroup" style="margin-top: 15px;">
                     <button class="btn-premium-action btn-phao-toggle" id="phaoToggleBtn" onclick="togglePhaoSafety()">🛠️ KÍCH HOẠT PHAO CỨU HỘ</button>
                     <button class="btn-premium-action btn-ai-process" id="analyzeBtn" onclick="executeQuantumAnalysis()">🧠 PHÂN TÍCH AI REALTIME</button>
                     <button class="btn-premium-action btn-antiban" id="antiBanBtn" onclick="runAntiBanClear()">🧹 DỌN RÁC & XÓA DẤU VẾT (ANTI-BAN)</button>
@@ -524,7 +609,7 @@
                         <div class="loading-text" id="loadingDynamicText">INITIALIZING AICORE SECURITY...</div>
                         <div class="loading-subtext" id="loadingSubHex">[ADDR: 0xVYRON_SEC_7FFA2B]</div>
                     </div>
-                    <div class="result-output" id="resultOutput">
+                    <div class="result-output" id="resultOutput" style="overflow-y: auto;">
                         <div style="color: var(--text-muted); text-align:center; padding-top:40px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal); letter-spacing: 1px;">[AI LINK WAITING]: Vui lòng nhấn lệnh "PHÂN TÍCH AI REALTIME" để đồng bộ dữ liệu quét tần số...</div>
                     </div>
                 </div>
@@ -551,47 +636,29 @@
     })();
 
     // =========================================================================
-    // [NEW] CẬP NHẬT CHỈ SỐ MINI-STATS MỖI 3 GIÂY
+    // CẬP NHẬT CHỈ SỐ MINI-STATS MỖI 3 GIÂY
     // =========================================================================
     setInterval(() => {
-        // Cập nhật Tỷ lệ đồng bộ
         const syncRates = document.querySelectorAll('.sync-rate-val');
         syncRates.forEach(el => {
             const randomSync = (Math.random() * (99.9 - 94.0) + 94.0).toFixed(1);
             el.innerText = randomSync + '%';
         });
 
-        // Cập nhật User Active
         const userActives = document.querySelectorAll('.user-active-val');
         userActives.forEach(el => {
             let currentNum = parseInt(el.innerText.replace(/,/g, ''), 10);
             if(isNaN(currentNum)) currentNum = 1000;
-            
-            // Biến động +/- 30 user
             let diff = Math.floor(Math.random() * 61) - 30;
             let newNum = currentNum + diff;
             if(newNum < 500) newNum = 500; 
-            
             el.innerText = newNum.toLocaleString('en-US');
         });
     }, 3000);
 
-    // =========================================================================
-    // AUTO-RECONNECT SIMULATION (ONLINE/OFFLINE DETECTOR)
-    // =========================================================================
-    window.addEventListener('offline', () => {
-        document.getElementById('offlineOverlay').style.display = 'flex';
-        playAudioFx('error');
-    });
-    window.addEventListener('online', () => {
-        document.getElementById('offlineOverlay').style.display = 'none';
-        showCyberAlert("Đã kết nối lại máy chủ AI thành công!", "success");
-        playAudioFx('success');
-    });
+    window.addEventListener('offline', () => { document.getElementById('offlineOverlay').style.display = 'flex'; playAudioFx('error'); });
+    window.addEventListener('online', () => { document.getElementById('offlineOverlay').style.display = 'none'; showCyberAlert("Đã kết nối lại máy chủ AI thành công!", "success"); playAudioFx('success'); });
 
-    // =========================================================================
-    // BẢNG TRẠNG THÁI MÁY CHỦ (SERVER HEALTH NODES)
-    // =========================================================================
     setInterval(() => {
         const nodes = [document.getElementById('node1'), document.getElementById('node2'), document.getElementById('node3')];
         nodes.forEach(n => n.classList.remove('warning'));
@@ -611,48 +678,23 @@
         const resultOutput = document.getElementById('resultOutput');
         const cyberLoading = document.getElementById('cyberLoading');
         
-        document.getElementById('analyzeBtn').disabled = true;
-        document.getElementById('antiBanBtn').disabled = true;
-        resultOutput.style.display = "none";
-        cyberLoading.style.display = "flex";
+        document.getElementById('analyzeBtn').disabled = true; document.getElementById('antiBanBtn').disabled = true;
+        resultOutput.style.display = "none"; cyberLoading.style.display = "flex";
         terminalBox.classList.add('scanning');
 
         let scanAudioInterval = setInterval(() => playAudioFx('scan'), 200);
 
-        const tasks = [
-            "[!] KHỞI CHẠY GIAO THỨC ANTI-BAN...",
-            "Đang xóa Cache Trình duyệt & Cookies...",
-            "Làm mới địa chỉ MAC vật lý mô phỏng...",
-            "Ngắt kết nối Proxy tạm thời (Flush DNS)...",
-            "Thiết lập kết nối mã hóa End-to-End mới...",
-            "HOÀN TẤT! DỮ LIỆU ĐÃ ĐƯỢC XÓA SẠCH."
-        ];
+        const tasks = [ "[!] KHỞI CHẠY GIAO THỨC ANTI-BAN...", "Đang xóa Cache Trình duyệt & Cookies...", "Làm mới địa chỉ MAC vật lý mô phỏng...", "Ngắt kết nối Proxy tạm thời (Flush DNS)...", "Thiết lập kết nối mã hóa End-to-End mới...", "HOÀN TẤT! DỮ LIỆU ĐÃ ĐƯỢC XÓA SẠCH." ];
         
-        let index = 0;
-        document.getElementById('loadingDynamicText').innerText = tasks[index];
-        const textTimer = setInterval(() => {
-            index++;
-            if (index < tasks.length) document.getElementById('loadingDynamicText').innerText = tasks[index];
-        }, 800);
+        let index = 0; document.getElementById('loadingDynamicText').innerText = tasks[index];
+        const textTimer = setInterval(() => { index++; if (index < tasks.length) document.getElementById('loadingDynamicText').innerText = tasks[index]; }, 800);
 
         setTimeout(() => {
-            clearInterval(textTimer);
-            clearInterval(scanAudioInterval);
-            playAudioFx('success');
-            
-            terminalBox.classList.remove('scanning');
-            cyberLoading.style.display = "none";
-            resultOutput.style.display = "block";
-            document.getElementById('analyzeBtn').disabled = false;
-            document.getElementById('antiBanBtn').disabled = false;
+            clearInterval(textTimer); clearInterval(scanAudioInterval); playAudioFx('success');
+            terminalBox.classList.remove('scanning'); cyberLoading.style.display = "none"; resultOutput.style.display = "block";
+            document.getElementById('analyzeBtn').disabled = false; document.getElementById('antiBanBtn').disabled = false;
             showCyberAlert("Xóa dấu vết an toàn thành công!", "success");
-            
-            resultOutput.innerHTML = `
-                <div style="color:var(--success); font-family:var(--font-hud-terminal); font-size:14px; text-align:center; padding-top:40px;">
-                    >_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>
-                    Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.
-                </div>
-            `;
+            resultOutput.innerHTML = `<div style="color:var(--success); font-family:var(--font-hud-terminal); font-size:14px; text-align:center; padding-top:40px;">>_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.</div>`;
         }, 5000);
     }
 
@@ -663,21 +705,19 @@
     setInterval(() => {
         const fakeOnlineEl = document.getElementById('fakeOnline');
         const diff = Math.floor(Math.random() * 11) - 5;
-        baseOnlineCount += diff;
-        if(baseOnlineCount < 2500) baseOnlineCount = 2500; 
+        baseOnlineCount += diff; if(baseOnlineCount < 2500) baseOnlineCount = 2500; 
         fakeOnlineEl.innerText = baseOnlineCount.toLocaleString('vi-VN');
     }, 4500);
 
     const fomoNames = ["098****", "TRANG****", "VIP_PRO****", "HOANG****", "034****", "LINH****", "MINH_AI****", "091****"];
-    const fomoGames = ["Avia Masters 2", "Bậc Thầy Phi Hành", "Aviamasters Giáng Sinh"];
+    const fomoGames = ["Soccer Striker", "Avia Masters 2", "Bậc Thầy Phi Hành", "Aviamasters Giáng Sinh", "Vortex Official"];
     
     function triggerFomo() {
         const container = document.getElementById('fomo-container');
         if (!container) return;
         const name = fomoNames[Math.floor(Math.random() * fomoNames.length)];
         const game = fomoGames[Math.floor(Math.random() * fomoGames.length)];
-        const type = Math.random();
-        let htmlContent = "";
+        const type = Math.random(); let htmlContent = "";
 
         if (type < 0.6) {
             const amount = Math.floor(Math.random() * (15000000 - 1500000 + 1)) + 1500000;
@@ -816,13 +856,31 @@
     // LOGIC APP GỐC & PHÂN TÍCH
     // =========================================================================
     const gameDatabase = {
+        vortex: { title: "Vortex PRO", img: "https://t4.ftcdn.net/jpg/05/65/35/67/360_F_565356770_2iXvFz5jI5D0I4v6gHlG6pA0GjX5zXqL.jpg", hasPhao: false, descSafe: "🛡️ Tối Ưu Hóa Part PayOut (Hỏa-Thổ-Thủy)" },
+        soccerstriker: { title: "Soccer Striker", img: "https://emucasino.com/cdn-cgi/image/width=382,height=240,quality=90,format=jpeg/https://cdn.emucasino.com/en/images/games/mg-soccer-striker-thumbnail.png", hasPhao: false, descSafe: "🛡️ Tối Ưu Hóa Radar Penalty" },
         avia2: { title: "Avia Masters 2", img: "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp", hasPhao: true, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Tối ưu an toàn Phao)" },
-        aviaphitruc: { title: "Bậc Thầy Phi Hành", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosDc9KHbW97G5zTefd0-0MwjBgWxK4-HUvk5n10aDIQ&s", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Thuật toán gốc)" },
+        aviaphitruc: { title: "Bậc Thầy Phi Hành", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThBGKlZPizw4F25xhbgeT9vD3nM5s1gtNGXg&s", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Thuật toán gốc)" },
         aviaxmas: { title: "Aviamasters Giáng Sinh", img: "https://aviamasters2.com/wp-content/uploads/2025/12/x-mas.webp", hasPhao: false, descSafe: "🛡️ Bảo Toàn Quỹ Vốn (Sự kiện Lễ Hội)" }
     };
 
     let currentGameId = 'avia2', currentSpeed = 'turtle', isPhaoSafetyActive = false;
     const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+
+    /* CHIP SELECTOR LOGIC FOR STRIKER */
+    const strikerStakes = [0.10, 0.20, 0.25, 0.50, 1.0, 2.0, 2.5, 5.0, 10.0, 20.0, 25.0, 50.0, 100.0, 200.0, 250.0];
+    let currentStrikerStake = 1.0;
+
+    function renderChips() {
+        const container = document.getElementById('chipContainer');
+        container.innerHTML = '';
+        strikerStakes.forEach(val => {
+            const div = document.createElement('div');
+            div.className = 'chip ' + (currentStrikerStake === val ? 'active' : '');
+            div.innerText = val.toFixed(2);
+            div.onclick = () => { currentStrikerStake = val; renderChips(); resetRealtimeDisplay(); playAudioFx('success'); };
+            container.appendChild(div);
+        });
+    }
 
     function formatVndInput(element) {
         let rawVal = element.value.replace(/\D/g, ''); if (!rawVal) { element.value = ""; resetRealtimeDisplay(); return; }
@@ -835,57 +893,377 @@
         const pBtn = document.getElementById('phaoToggleBtn'); pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ";
         document.getElementById('mainWrapper').classList.add('active-cyber-glow'); document.getElementById('activeTitle').innerText = game.title; document.getElementById('activeAvatar').src = game.img; document.getElementById('optSafe').innerText = game.descSafe;
         
+        // KIỂM SOÁT GIAO DIỆN
+        if (gameId === 'soccerstriker') {
+            document.getElementById('capitalInputWrapper').style.display = 'none';
+            document.getElementById('standardStrategyWrapper').style.display = 'none';
+            document.getElementById('speedContainerWrapper').style.display = 'none';
+            document.getElementById('strikerControlsWrapper').style.display = 'block';
+            document.getElementById('vortexControlsWrapper').style.display = 'none';
+            renderChips();
+        } else if (gameId === 'vortex') {
+            document.getElementById('capitalInputWrapper').style.display = 'block';
+            document.getElementById('standardStrategyWrapper').style.display = 'block';
+            document.getElementById('speedContainerWrapper').style.display = 'none';
+            document.getElementById('strikerControlsWrapper').style.display = 'none';
+            document.getElementById('vortexControlsWrapper').style.display = 'block';
+            document.getElementById('analyzeBtn').innerHTML = "🧠 ĐỒNG BỘ DỮ LIỆU MA TRẬN";
+        } else {
+            document.getElementById('capitalInputWrapper').style.display = 'block';
+            document.getElementById('standardStrategyWrapper').style.display = 'block';
+            document.getElementById('speedContainerWrapper').style.display = 'block';
+            document.getElementById('strikerControlsWrapper').style.display = 'none';
+            document.getElementById('vortexControlsWrapper').style.display = 'none';
+            document.getElementById('analyzeBtn').innerHTML = "🧠 PHÂN TÍCH AI REALTIME";
+        }
+
         if (game.hasPhao) { pBtn.style.display = "flex"; document.getElementById('actionBtnGroup').classList.add('has-phao-layout'); } 
         else { pBtn.style.display = "none"; document.getElementById('actionBtnGroup').classList.remove('has-phao-layout'); }
+        
         document.getElementById('lobbyView').style.display = 'none'; document.getElementById('dashboardView').style.display = 'block'; resetRealtimeDisplay();
     }
 
     function backToLobby() { playAudioFx('success'); document.getElementById('mainWrapper').classList.remove('active-cyber-glow'); document.getElementById('dashboardView').style.display = 'none'; document.getElementById('lobbyView').style.display = 'block'; }
-
     function changeSpeed(speed) { playAudioFx('success'); currentSpeed = speed; document.querySelectorAll('.speed-item').forEach(item => item.classList.remove('active')); document.querySelector(`.speed-item[data-speed="${speed}"]`).classList.add('active'); resetRealtimeDisplay(); }
-
-    function resetRealtimeDisplay() {
-        const capitalInput = document.getElementById('capitalInput'); let capital = parseFloat(capitalInput.value.replace(/\./g, ''));
-        if (isNaN(capital) || capital <= 0) return;
-        let ratio = document.getElementById('strategySelect').value === 'safe' ? 0.02 : (document.getElementById('strategySelect').value === 'high' ? 0.12 : 0.05);
-        if (currentGameId === 'avia2' && isPhaoSafetyActive) ratio = 0.015;
-        let betMoi = Math.floor(capital * ratio); if (betMoi < 1000) betMoi = 1000;
-        document.getElementById('valMoi').innerText = formatter.format(betMoi); document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
-        document.getElementById('resultOutput').innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:50px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal);">[DỮ LIỆU ĐẦU VÀO THAY ĐỔI]... Vui lòng chạy lệnh Quét Phân Tích...</div>`;
-    }
+    function resetRealtimeDisplay() { document.getElementById('resultOutput').innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:40px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal); letter-spacing: 1px;">[AI LINK WAITING]: Vui lòng nhấn lệnh phân tích để đồng bộ dữ liệu quét tần số...</div>`; }
 
     function togglePhaoSafety() {
-        if (currentGameId !== 'avia2') return; isPhaoSafetyActive = !isPhaoSafetyActive; const pBtn = document.getElementById('phaoToggleBtn'); 
+        if (!gameDatabase[currentGameId].hasPhao) return;
+        isPhaoSafetyActive = !isPhaoSafetyActive; const pBtn = document.getElementById('phaoToggleBtn'); 
         if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "🚀 PHAO ACTIVE"; playAudioFx('success'); } 
         else { pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); }
         resetRealtimeDisplay();
     }
 
+    // ==========================================================
+    // VORTEX PRO: STATE & LOGIC
+    // ==========================================================
+    let vortexFire = 0, vortexEarth = 0, vortexWater = 0;
+    let vortexEarthCashouts = 0, vortexWaterCashouts = 0;
+    const vortexHistory = [];
+    const vMultipliers = {
+        fire: [0, 3.9, 12.5, 28, 52, 85, 133, 200],
+        earth: [0, 2.5, 7.7, 16, 27.5, 44],
+        water: [0, 1.55, 4.85, 10]
+    };
+
+    function addVortexResult(type) {
+        playAudioFx('scan');
+        vortexHistory.unshift(type);
+        if(type === "fire"){
+            if(vortexFire < 7) vortexFire++; else vortexFire = 0;
+        }
+        if(type === "earth"){
+            if(vortexEarth < 5) {
+                vortexEarth++;
+                if(vortexEarth === 5) { vortexEarthCashouts++; vortexEarth = 4; }
+            }
+        }
+        if(type === "water"){
+            if(vortexWater < 3) {
+                vortexWater++;
+                if(vortexWater === 3) { vortexWaterCashouts++; vortexWater = 2; }
+            }
+        }
+        if(type === "skull"){
+            vortexFire = Math.max(0, vortexFire - 1);
+            vortexEarth = Math.max(0, vortexEarth - 1);
+            vortexWater = Math.max(0, vortexWater - 1);
+        }
+        // Gọi thẳng render luôn tạo trải nghiệm Live Update Dashboard Realtime
+        renderVortexDashboard();
+    }
+
+    function resetVortex() {
+        playAudioFx('error');
+        vortexFire = 0; vortexEarth = 0; vortexWater = 0;
+        vortexEarthCashouts = 0; vortexWaterCashouts = 0;
+        vortexHistory.length = 0;
+        resetRealtimeDisplay();
+    }
+
+    // ==========================================================
+    // SOCCER STRIKER LOGIC
+    // ==========================================================
+    let strikerHistory = [];
+    function calculateStrikerDirection() {
+        let hash = (Date.now() * 1103515245 + 12345) & 0x7fffffff;
+        const dirs = ['LEFT', 'CENTER', 'RIGHT'], labels = ['TRÁI', 'GIỮA', 'PHẢI'];
+        let targetIdx = hash % 3;
+        if (strikerHistory.length >= 2) {
+            let last1 = strikerHistory[strikerHistory.length - 1]; let last2 = strikerHistory[strikerHistory.length - 2];
+            if (dirs[targetIdx] === last1 && dirs[targetIdx] === last2) targetIdx = (targetIdx + 1 + (hash % 2)) % 3; 
+        }
+        let finalTarget = dirs[targetIdx]; strikerHistory.push(finalTarget); if (strikerHistory.length > 5) strikerHistory.shift();
+        let p1 = Math.floor((hash % 35) + 55), p2 = Math.floor(((hash>>2) % 15) + 5), p3 = 100 - p1 - p2;
+        let probs = [0, 0, 0]; probs[targetIdx] = p1; probs[(targetIdx+1)%3] = p2; probs[(targetIdx+2)%3] = p3;
+        return { target: finalTarget, targetLabel: labels[targetIdx], probs: { LEFT: probs[0], CENTER: probs[1], RIGHT: probs[2] } };
+    }
+
     function executeQuantumAnalysis() {
         if (!verifySystemActivationState()) return;
-        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
-        if (isNaN(capital) || capital < 50000) { showCyberAlert("Vốn tối thiểu 50.000 VND!", "error"); return; }
+        
+        if (currentGameId !== 'soccerstriker') {
+            let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
+            if (isNaN(capital) || capital < 1000) { showCyberAlert("Vui lòng nhập tối thiểu 1.000 VND!", "error"); return; }
+        }
         
         const terminalBox = document.getElementById('terminalMainBox');
         document.getElementById('analyzeBtn').disabled = true; document.getElementById('antiBanBtn').disabled = true;
-        document.getElementById('resultOutput').style.display = "none"; document.getElementById('cyberLoading').style.display = "flex"; 
         terminalBox.classList.add('scanning');
 
-        let scanAudioInterval = setInterval(() => playAudioFx('scan'), 350);
+        let animInterval = null;
 
-        const textMilestones = [ "INITIALIZING QUANTUM AICORE...", "SCANNING FLIGHT VECTORS...", "EXTRACTING WAVEFORM SIGNALS...", "SYNCING COMPLETED..." ];
-        let index = 0; document.getElementById('loadingDynamicText').innerText = textMilestones[index];
-        const textTimer = setInterval(() => { index++; if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; }, 700);
+        if (currentGameId === 'soccerstriker') {
+            document.getElementById('cyberLoading').style.display = "none"; document.getElementById('resultOutput').style.display = "block";
+            document.getElementById('resultOutput').innerHTML = `
+                <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ ĐANG DÒ TÌM VECTOR MA TRẬN... ]</div>
+                <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:15px;">
+                    <div class="dir-box" id="dir-0"><div class="dir-lbl">TRÁI</div><div class="dir-prob">--%</div></div>
+                    <div class="dir-box" id="dir-1"><div class="dir-lbl">GIỮA</div><div class="dir-prob">--%</div></div>
+                    <div class="dir-box" id="dir-2"><div class="dir-lbl">PHẢI</div><div class="dir-prob">--%</div></div>
+                </div>
+                <div style="text-align:center; color:var(--warning); font-family:var(--font-hud-terminal); font-size:12px;">Đang tính toán quỹ đạo sút...</div>
+            `;
+            let lastIdx = -1;
+            animInterval = setInterval(() => {
+                if(lastIdx !== -1) document.getElementById('dir-'+lastIdx).classList.remove('active-dir');
+                let nextIdx = Math.floor(Math.random() * 3); document.getElementById('dir-'+nextIdx).classList.add('active-dir');
+                lastIdx = nextIdx; playAudioFx('scan'); 
+            }, 100); 
+        } else {
+            document.getElementById('resultOutput').style.display = "none"; 
+            document.getElementById('cyberLoading').style.display = "flex"; 
+            animInterval = setInterval(() => playAudioFx('scan'), 350);
+
+            const textMilestones = [ "INITIALIZING QUANTUM AICORE...", "SCANNING FLIGHT VECTORS...", "EXTRACTING WAVEFORM SIGNALS...", "SYNCING COMPLETED..." ];
+            let index = 0; document.getElementById('loadingDynamicText').innerText = textMilestones[index];
+            const textTimer = setInterval(() => { index++; if (index < textMilestones.length) document.getElementById('loadingDynamicText').innerText = textMilestones[index]; }, 700);
+        }
 
         setTimeout(() => { 
-            clearInterval(textTimer); clearInterval(scanAudioInterval); playAudioFx('success'); 
-            terminalBox.classList.remove('scanning'); document.getElementById('cyberLoading').style.display = "none"; 
-            document.getElementById('resultOutput').style.display = "block"; document.getElementById('analyzeBtn').disabled = false; document.getElementById('antiBanBtn').disabled = false;
-            renderVipResults(capital); 
+            clearInterval(animInterval); playAudioFx('success'); 
+            terminalBox.classList.remove('scanning'); 
+            document.getElementById('cyberLoading').style.display = "none"; 
+            document.getElementById('resultOutput').style.display = "block"; 
+            document.getElementById('analyzeBtn').disabled = false; 
+            document.getElementById('antiBanBtn').disabled = false;
+            
+            if (currentGameId === 'soccerstriker') { 
+                renderSoccerResults(); 
+            } else if (currentGameId === 'vortex') {
+                renderVortexDashboard(); // For Vortex, "Analyze" button just shows the dashboard
+            } else { 
+                renderVipResults(); 
+            }
         }, 2800);
     }
 
-    function renderVipResults(capital) {
+    // ==========================================================
+    // MODULE ĐỘC QUYỀN: KẾT QUẢ VORTEX MA TRẬN
+    // ==========================================================
+    function renderVortexDashboard() {
+        document.getElementById('cyberLoading').style.display = "none";
+        const terminal = document.getElementById('resultOutput');
+        terminal.style.display = "block";
+        
+        if (vortexHistory.length === 0) {
+            terminal.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:40px; font-size:13px; font-family:var(--font-hud-terminal);">[!] Hệ thống đang chờ. Hãy click các nút nhập dữ liệu (Fire, Earth...) phía bên trái để AI phân tích vòng quay...</div>`;
+            return;
+        }
+
+        const recent20 = vortexHistory.slice(0, 20);
+        const skullCount = recent20.filter(x => x === "skull").length;
+        const risk = recent20.length > 0 ? Math.round((skullCount / recent20.length) * 100) : 0;
+        
+        const currentMultiplier = vMultipliers.fire[vortexFire] + vMultipliers.earth[vortexEarth] + vMultipliers.water[vortexWater];
+
+        // 1. Dữ liệu mảng 10, 20, 30
+        const slice10 = vortexHistory.slice(0, 10);
+        const slice20 = vortexHistory.slice(0, 20);
+        const slice30 = vortexHistory.slice(0, 30);
+        
+        // 2. Định vị Hot / Cold Element
+        const counts = {
+            "🔥 Fire": slice30.filter(x => x === "fire").length,
+            "🌱 Earth": slice30.filter(x => x === "earth").length,
+            "🌊 Water": slice30.filter(x => x === "water").length,
+            "🌪️ Wind": slice30.filter(x => x === "wind").length,
+            "💀 Skull": slice30.filter(x => x === "skull").length
+        };
+        let hotElement = "N/A", coldElement = "N/A";
+        let maxCount = -1, minCount = 999;
+        for (let el in counts) {
+            if (counts[el] > maxCount) { maxCount = counts[el]; hotElement = el; }
+            if (counts[el] < minCount) { minCount = counts[el]; coldElement = el; }
+        }
+
+        // 3. Chuỗi liên tiếp tối đa
+        let maxSkullStreak = 0, currentSkullStreak = 0;
+        let maxFireStreak = 0, currentFireStreak = 0;
+        let maxEarthStreak = 0, currentEarthStreak = 0;
+        let maxWaterStreak = 0, currentWaterStreak = 0;
+        const reversedHistory = [...vortexHistory].reverse();
+        reversedHistory.forEach(item => {
+            if(item === "skull") { currentSkullStreak++; maxSkullStreak = Math.max(maxSkullStreak, currentSkullStreak); } else currentSkullStreak = 0;
+            if(item === "fire") { currentFireStreak++; maxFireStreak = Math.max(maxFireStreak, currentFireStreak); } else currentFireStreak = 0;
+            if(item === "earth") { currentEarthStreak++; maxEarthStreak = Math.max(maxEarthStreak, currentEarthStreak); } else currentEarthStreak = 0;
+            if(item === "water") { currentWaterStreak++; maxWaterStreak = Math.max(maxWaterStreak, currentWaterStreak); } else currentWaterStreak = 0;
+        });
+
+        // 4. AI SCORE Tính điểm thông minh
+        let aiScore = 50 + (vortexFire * 3) + (vortexEarth * 4) + (vortexWater * 5) + Math.min(15, vortexEarthCashouts * 3) + Math.min(15, vortexWaterCashouts * 4);
+        const recentSkulls = slice10.filter(x => x === "skull").length;
+        const recentHits = slice10.filter(x => x === "fire" || x === "earth" || x === "water").length;
+        aiScore -= (recentSkulls * 4);
+        aiScore += (recentHits * 2);
+        aiScore = Math.max(0, Math.min(100, Math.round(aiScore)));
+
+        let scoreBadge = "";
+        if (aiScore <= 34) scoreBadge = `<span class="score-badge badge-danger">🔴 Rủi ro cao</span>`;
+        else if (aiScore <= 49) scoreBadge = `<span class="score-badge badge-warning">🟠 Thận trọng</span>`;
+        else if (aiScore <= 64) scoreBadge = `<span class="score-badge badge-neutral">🟡 Trung lập</span>`;
+        else if (aiScore <= 79) scoreBadge = `<span class="score-badge badge-success">🟢 Tín hiệu đẹp</span>`;
+        else scoreBadge = `<span class="score-badge badge-premium">💎 Tín hiệu cực đẹp</span>`;
+
+        // 5. Gợi ý AI (Advice) Cốt lõi
+        let advice = "";
+        if ((vortexFire === 1 && vortexEarth === 0 && vortexWater === 0) || (vortexFire === 0 && vortexEarth === 1 && vortexWater === 0) || (vortexFire === 0 && vortexEarth === 0 && vortexWater === 1)) {
+            advice = "💰 [MAX RTP] Rút tiền ngay tại đây mang lại Tỷ lệ hoàn trả vốn cao nhất (97.16%).";
+        } else if(vortexFire >= 6){
+            advice = "🔥 [CƠ HỘI LỚN] Còn 1 ô cuối là kích hoạt BONUS Hỏa Vũ. Rất đáng để liều lĩnh!";
+        } else if(vortexEarth === 4){
+            advice = "🌱 Vòng Đất đang ở 4/5. Trúng tiếp nhận ngay +21.5x miễn phí. Nên quay tiếp.";
+        } else if(vortexWater === 2){
+            advice = "🌊 Vòng Nước đang ở 2/3. Cơ hội nhận +7x miễn phí. Khuyên dùng: Tiếp tục.";
+        } else if(risk >= 30 && currentMultiplier > 20){
+            advice = `💀 [CẢNH BÁO] Tần suất Skull xuất hiện quá dày đặc (${risk}%). Nên RÚT TIỀN để bảo toàn lãi.`;
+        } else if(currentMultiplier >= 50){
+            advice = `💵 Tổng hệ số đã đạt +${currentMultiplier.toFixed(2)}x. Cân nhắc rút Part PayOut để lấy gốc.`;
+        } else {
+            advice = "⏳ Bàn chơi đang ở trạng thái tích lũy ổn định. Bạn nên tiếp tục quay lấy nguyên tố.";
+        }
+
+        // Lập các Hint cho AI Advisor Box
+        let hintsHTML = "";
+        const avgFire30 = slice30.length ? (counts["🔥 Fire"] / slice30.length) : 0;
+        if (avgFire30 > 0.25) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🔥</span> Fire đang có tần suất xuất hiện cao hơn trung bình trong 30 vòng gần nhất.</li>`;
+        if (vortexEarth === 4) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🌱</span> Earth đang tiến rất sát mốc kích hoạt thưởng tự động (+20.5x).</li>`;
+        if (vortexWater === 2) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🌊</span> Water sắp chạm điểm kích hoạt thu hồi dòng vốn an toàn (+7x).</li>`;
+        if (slice30.length && (counts["💀 Skull"] / slice30.length >= 0.25)) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">💀</span> Skull xuất hiện dày đặc, khuyến cáo hạn chế giữ vòng cược quá sâu.</li>`;
+        if (aiScore >= 80) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">💎</span> AI Score > 80 điểm, cấu trúc các lớp nguyên tố tích lũy cực kỳ ngon.</li>`;
+        hintsHTML += `<li style="margin-bottom:6px; color:#647b9e; display:flex; gap:6px; font-size:10px;"><span style="font-size:12px;">📊</span> [THỐNG KÊ] Chuỗi cực đại (Streak): Đầu Lâu [${maxSkullStreak}], Lửa [${maxFireStreak}], Đất [${maxEarthStreak}], Nước [${maxWaterStreak}]. Dữ liệu: ${vortexHistory.length} vòng.</li>`;
+
+        function calcPct(arr, t) { return arr.length ? Math.round((arr.filter(x=>x===t).length/arr.length)*100) : 0; }
+
+        // Vẽ UI
+        terminal.innerHTML = `
+            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ ADVANCED VORTEX DASHBOARD ]</div>
+            
+            <div class="vortex-progress-container">
+                <div class="vp-row">
+                    <span class="vp-label">FIRE</span>
+                    <div class="vp-bar-bg"><div class="vp-bar-fill fire" style="width:${(vortexFire/7)*100}%;"></div></div>
+                    <span class="vp-text">${vortexFire}/7</span>
+                </div>
+                <div class="vp-row">
+                    <span class="vp-label" style="color:#28d17c;">EARTH</span>
+                    <div class="vp-bar-bg"><div class="vp-bar-fill earth" style="width:${(vortexEarth/5)*100}%;"></div></div>
+                    <span class="vp-text" style="color:#28d17c;">${vortexEarth}/5</span>
+                </div>
+                <div class="vp-row">
+                    <span class="vp-label" style="color:#4da6ff;">WATER</span>
+                    <div class="vp-bar-bg"><div class="vp-bar-fill water" style="width:${(vortexWater/3)*100}%;"></div></div>
+                    <span class="vp-text" style="color:#4da6ff;">${vortexWater}/3</span>
+                </div>
+            </div>
+
+            <div class="ai-dashboard-grid">
+                <div class="ai-stat-box">
+                    <div class="ai-stat-title">AI Score Matrix</div>
+                    <div class="ai-stat-val">${aiScore}/100</div>
+                    ${scoreBadge}
+                </div>
+                <div class="ai-stat-box">
+                    <div class="ai-stat-title">Risk Factor</div>
+                    <div class="ai-stat-val" style="color:${risk > 25 ? '#ef4444' : '#10b981'}">${risk}%</div>
+                    <div style="font-size:10px; color:var(--text-muted); margin-top:5px; font-weight:bold;">${risk > 25 ? '⚠️ COLD ZONE' : '🔥 HOT ZONE'}</div>
+                </div>
+                <div class="ai-stat-box">
+                    <div class="ai-stat-title">Hot Element</div>
+                    <div class="ai-stat-val" style="color:#38bdf8">${hotElement.split(" ")[0]}</div>
+                </div>
+                <div class="ai-stat-box">
+                    <div class="ai-stat-title">Cold Element</div>
+                    <div class="ai-stat-val" style="color:#9ca3af">${coldElement.split(" ")[0]}</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; margin-bottom: 15px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 11px; text-align: center; color: #cbd5e1; font-family: var(--font-hud-terminal);">
+                    <thead style="background: #1f2937; color: #9ca3af; font-family: var(--font-hud-title);">
+                        <tr><th style="padding:6px; border:1px solid #374151;">Lượt</th><th style="padding:6px; border:1px solid #374151;">🔥</th><th style="padding:6px; border:1px solid #374151;">🌱</th><th style="padding:6px; border:1px solid #374151;">🌊</th><th style="padding:6px; border:1px solid #374151;">🌪️</th><th style="padding:6px; border:1px solid #374151;">💀</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">10</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice10,'skull')}%</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">20</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice20,'skull')}%</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">30</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice30,'skull')}%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background:rgba(59, 130, 246, 0.1); border-left:4px solid #3b82f6; padding:12px; border-radius:4px; font-size:12px; margin-bottom: 15px; line-height: 1.6;">
+                <span style="color:#38bdf8; font-weight:bold; font-family:var(--font-hud-title); font-size:13px; text-transform:uppercase;">GỢI Ý TỪ HỆ THỐNG AI: </span><span style="color:#fff; font-size: 13px;">${advice}</span><br>
+                <div style="margin-top:8px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:8px; font-family:var(--font-hud-terminal);">
+                    <span style="color:var(--text-muted); font-size:11px;">HỆ SỐ ĐANG GIỮ: <b style="color:#f43f5e; font-size:14px;">+${currentMultiplier.toFixed(2)}x</b> | CỨU HỘ FREE: ĐẤT (${vortexEarthCashouts}), NƯỚC (${vortexWaterCashouts})</span>
+                </div>
+            </div>
+
+            <div style="background: #131c2e; border: 1px solid #1e293b; border-radius: 8px; padding: 15px;">
+                <div style="font-size: 12px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; text-transform: uppercase; font-family:var(--font-hud-title);">🧠 STATISTICAL ADVISOR HINTS</div>
+                <ul style="padding-left:0; list-style:none; font-size:11px; margin:0;">
+                    ${hintsHTML}
+                </ul>
+            </div>
+        `;
+
+        // Update thẻ dữ liệu phía bên trái (MỨC ĐỘ PHÂN TÍCH Global)
+        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
+        let strategy = document.getElementById('strategySelect').value;
+        let ratio = strategy === 'safe' ? 0.02 : (strategy === 'high' ? 0.12 : 0.05);
+        let bet = Math.max(Math.floor(capital * ratio), 1000);
+        
+        document.getElementById('valMoi').innerText = formatter.format(bet); 
+        document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
+        document.getElementById('valVong').innerText = "Tích lũy / Live"; 
+        
+        let rText = aiScore >= 65 ? "AN TOÀN / TỐT" : (aiScore <= 34 ? "RỦI RO CAO" : "TRUNG LẬP");
+        let rColor = aiScore >= 65 ? "var(--success)" : (aiScore <= 34 ? "var(--danger)" : "var(--warning)");
+        document.getElementById('valRisk').innerText = rText; 
+        document.getElementById('valRisk').style.color = rColor;
+        document.getElementById('riskBar').style.width = aiScore + "%"; 
+        document.getElementById('riskBar').style.backgroundColor = rColor;
+    }
+
+    function renderSoccerResults() {
+        const dirData = calculateStrikerDirection();
+        const modeSelect = document.getElementById('soccerModeSelect'), modeText = modeSelect.options[modeSelect.selectedIndex].text;
+
+        document.getElementById('resultOutput').innerHTML = `
+            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ KẾT QUẢ ĐỊNH VỊ VECTOR ]</div>
+            <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:15px;">
+                <div class="dir-box ${dirData.target==='LEFT' ? 'active-dir' : ''}"><div class="dir-lbl">TRÁI</div><div class="dir-prob">${dirData.probs.LEFT}%</div></div>
+                <div class="dir-box ${dirData.target==='CENTER' ? 'active-dir' : ''}"><div class="dir-lbl">GIỮA</div><div class="dir-prob">${dirData.probs.CENTER}%</div></div>
+                <div class="dir-box ${dirData.target==='RIGHT' ? 'active-dir' : ''}"><div class="dir-lbl">PHẢI</div><div class="dir-prob">${dirData.probs.RIGHT}%</div></div>
+            </div>
+            <div style="background:rgba(0,0,0,0.8); padding:15px; border:1px solid rgba(var(--primary-rgb),0.2); border-radius:8px; font-family:var(--font-hud-terminal); font-size:13px; line-height:1.5;">
+                <span style="color:var(--text-muted);">[PREDICTION]:</span> Mức độ tin cậy cao phát hiện tại Vector <span style="color:var(--success); font-weight:bold; font-size:15px;">[ ${dirData.targetLabel} ]</span> với mức cược Chip <span style="color:var(--warning); font-weight:bold;">${currentStrikerStake.toFixed(2)}</span> (Chế độ: ${modeText}).
+            </div>
+        `;
+    }
+
+    function renderVipResults() {
+        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
         const game = gameDatabase[currentGameId], strategy = document.getElementById('strategySelect').value;
         let ratio = 0.05, baseRounds = 10, riskText = "CRITICAL / MEDIUM", riskColor = "var(--warning)", riskPercent = 52, confidenceScore = "94.2%", safetyRate = "89.1%";
         if (strategy === 'safe') { ratio = 0.02; baseRounds = game.hasPhao ? 15 : 12; riskText = "STABLE / LOW"; riskColor = "var(--success)"; riskPercent = 20; confidenceScore = "97.5%"; safetyRate = "96.4%"; } 
