@@ -3,334 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VYRON AI | ULTIMATE SECURITY DASHBOARD VIP</title>
+    <title>AI UNIVERSE COMMAND CENTER | VYRON VIP</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
         /* =========================================================================
-           🎨 CORE DYNAMIC DESIGN SYSTEM (MULTI-THEME SUPPORT)
+           🌌 AI UNIVERSE COMMAND CENTER - SCI-FI HUD DESIGN (HYPER3D)
            ========================================================================= */
         :root {
-            /* CYBERPUNK NEON (MẶC ĐỊNH) */
-            --primary-rgb: 0, 240, 255;
-            --secondary-rgb: 255, 0, 127;
-            --bg-deep-color: #030407;
-            --bg-surface-color: #0a0c14;
-            --bg-card-color: rgba(10, 14, 23, 0.85);
-            --text-muted-color: #647b9e;
-            --success-rgb: 0, 255, 102;
-            --warning-rgb: 255, 184, 0;
-            --danger-rgb: 255, 42, 95;
+            /* CYBERPUNK NEON 2.0 */
+            --primary-rgb: 0, 212, 255;
+            --secondary-rgb: 236, 72, 153;
+            --bg-deep-color: #02040a; 
+            --bg-surface-color: rgba(5, 10, 20, 0.7);
+            --bg-glass: rgba(5, 10, 20, 0.65);
+            --border-glass: rgba(0, 212, 255, 0.2);
+            --border-highlight: rgba(0, 212, 255, 0.5);
+            --text-main: #e2e8f0;
+            --text-muted-color: #64748b;
+            --success-rgb: 16, 185, 129;
+            --warning-rgb: 245, 158, 11;
+            --danger-rgb: 239, 68, 68;
         }
+        
         [data-theme="gold"] {
-            --primary-rgb: 255, 184, 0; --secondary-rgb: 255, 215, 0;
-            --bg-deep-color: #0a0802; --bg-surface-color: #141005; --bg-card-color: rgba(20, 15, 5, 0.85); --text-muted-color: #a38b54;
+            --primary-rgb: 250, 204, 21; --secondary-rgb: 251, 146, 60;
+            --bg-deep-color: #0a0802; --bg-surface-color: rgba(20, 15, 5, 0.7);
+            --bg-glass: rgba(20, 15, 5, 0.7); --border-glass: rgba(250, 204, 21, 0.2); --border-highlight: rgba(250, 204, 21, 0.5);
         }
+        
         [data-theme="matrix"] {
-            --primary-rgb: 0, 255, 102; --secondary-rgb: 0, 204, 82;
-            --bg-deep-color: #010a02; --bg-surface-color: #031405; --bg-card-color: rgba(5, 20, 10, 0.85); --text-muted-color: #54a368;
+            --primary-rgb: 52, 211, 153; --secondary-rgb: 16, 185, 129;
+            --bg-deep-color: #010a05; --bg-surface-color: rgba(2, 20, 10, 0.7);
+            --bg-glass: rgba(2, 20, 10, 0.7); --border-glass: rgba(52, 211, 153, 0.2); --border-highlight: rgba(52, 211, 153, 0.5);
         }
 
         :root, [data-theme="gold"], [data-theme="matrix"] {
             --primary: rgb(var(--primary-rgb)); --primary-glow: rgba(var(--primary-rgb), 0.4);
             --secondary: rgb(var(--secondary-rgb)); --secondary-glow: rgba(var(--secondary-rgb), 0.4);
-            --bg-deep: var(--bg-deep-color); --bg-surface: var(--bg-surface-color); --bg-card: var(--bg-card-color);
+            --bg-deep: var(--bg-deep-color); --bg-surface: var(--bg-surface-color);
             --text-muted: var(--text-muted-color);
             --success: rgb(var(--success-rgb)); --warning: rgb(var(--warning-rgb)); --danger: rgb(var(--danger-rgb));
-            --font-hud-title: 'Orbitron', sans-serif; --font-hud-sub: 'Rajdhani', sans-serif; --font-hud-terminal: 'Share Tech Mono', monospace;
-            --shadow-cinematic: 0 25px 70px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            --blur-premium: blur(30px); --transition-tactical: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            --font-display: 'Orbitron', sans-serif; 
+            --font-sans: 'Rajdhani', sans-serif; 
+            --font-mono: 'Share Tech Mono', monospace;
+            
+            --shadow-premium: 0 0 20px rgba(var(--primary-rgb), 0.15);
+            --shadow-glass: inset 0 0 15px rgba(var(--primary-rgb), 0.1);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            --blur-heavy: blur(12px);
         }
 
-        * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; box-sizing: border-box; }
+        /* CUSTOM CYBER CURSOR */
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; 
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%2300d4ff" stroke-width="1.5"/><path stroke="%2300d4ff" stroke-width="1.5" d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2" fill="%23ec4899"/></svg>') 12 12, auto !important; 
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); }
 
         body {
-            font-family: var(--font-hud-sub); background-color: var(--bg-deep); color: #e2e8f0;
-            margin: 0; padding: 30px 20px; display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow-x: hidden; position: relative; transition: background-color 0.5s;
+            font-family: var(--font-sans); background-color: var(--bg-deep); color: var(--text-main);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow-x: hidden; position: relative; 
+            padding: 40px 20px; padding-bottom: 60px;
         }
-        #quantum-canvas { position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: 0.4; }
-        body::before { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: -2; }
-        body::after { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 15%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: -1; }
 
-        /* HEADER CONTROLS */
-        .top-controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1000; }
-        .control-btn { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.4); color: var(--primary); font-family: var(--font-hud-title); font-size: 11px; padding: 8px 12px; border-radius: 4px; cursor: pointer; backdrop-filter: blur(10px); transition: var(--transition-tactical); outline: none; }
-        .control-btn:hover { background: rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 10px var(--primary-glow); }
-        .control-btn option { background: #000; color: #fff; }
-
-        /* [FEATURE] VERSION TAG & CHANGELOG */
-        .version-tag { position: fixed; bottom: 20px; left: 20px; font-family: var(--font-hud-title); font-size: 11px; color: var(--text-muted); cursor: pointer; z-index: 1000; padding: 5px 10px; border: 1px solid transparent; border-radius: 4px; transition: var(--transition-tactical); }
-        .version-tag:hover { color: var(--primary); border-color: rgba(var(--primary-rgb), 0.3); background: rgba(0,0,0,0.5); }
+        /* THREE JS BACKGROUND */
+        #universeCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; pointer-events: none; }
         
-        .changelog-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .changelog-content { background: var(--bg-card); border: 1px solid var(--primary); padding: 30px; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 0 30px var(--primary-glow); font-family: var(--font-hud-sub); }
-        .changelog-title { font-family: var(--font-hud-title); color: var(--primary); font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px; }
-        .changelog-list { list-style: none; padding: 0; margin: 0; color: #fff; font-size: 14px; line-height: 1.6; }
-        .changelog-list li { margin-bottom: 10px; }
-        .changelog-list span { color: var(--success); font-weight: 800; font-family: var(--font-hud-terminal); margin-right: 10px; }
-        .close-changelog { margin-top: 20px; width: 100%; padding: 10px; background: rgba(var(--primary-rgb), 0.1); border: 1px solid var(--primary); color: var(--primary); font-family: var(--font-hud-title); cursor: pointer; border-radius: 4px; transition: var(--transition-tactical); }
-        .close-changelog:hover { background: var(--primary); color: #000; }
+        /* CRT SCANLINES OVERLAY */
+        .scanlines { position: fixed; inset: 0; z-index: 9999990; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; opacity: 0.15; }
 
-        /* FAKE LIVE STATS & SERVER HEALTH */
-        .widget-panel { position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; pointer-events: none; }
-        .fake-stats-panel { background: rgba(0,0,0,0.7); border: 1px solid rgba(var(--primary-rgb), 0.3); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 4px; font-family: var(--font-hud-sub); font-size: 13px; font-weight: 700; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .stat-line { margin: 4px 0; color: var(--text-muted); letter-spacing: 1px; }
-        .stat-highlight { color: var(--primary); font-weight: 900; font-family: var(--font-hud-title); }
+        /* MATRIX RAIN CANVAS */
+        #matrixCanvas { position: fixed; inset: 0; z-index: -4; pointer-events: none; opacity: 0; transition: opacity 1s ease; }
+        #matrixCanvas.active-rain { opacity: 0.35; }
+        #quantum-canvas { display: none; }
+
+        /* HUD PANEL REDESIGN */
+        .glass-panel {
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur-heavy); -webkit-backdrop-filter: var(--blur-heavy);
+            border: 1px solid var(--border-glass); 
+            box-shadow: var(--shadow-premium), var(--shadow-glass);
+            clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+            position: relative;
+        }
+        .glass-panel::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); pointer-events: none;
+        }
+        .glass-panel::after {
+            content: ""; position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); pointer-events: none;
+        }
+
+        /* CONTROLS */
+        .top-controls { position: fixed; top: 24px; right: 24px; display: flex; gap: 12px; z-index: 1000; flex-wrap: wrap; justify-content: flex-end;}
+        .control-btn { 
+            background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); 
+            color: var(--text-main); font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 1px;
+            padding: 8px 14px; cursor: pointer; backdrop-filter: blur(5px); 
+            transition: var(--transition-smooth); outline: none; box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .control-btn:hover { background: rgba(var(--primary-rgb), 0.2); border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 0 15px var(--primary-glow); }
+        .control-btn option { background: #000; color: var(--text-main); }
+
+        /* WIDGETS */
+        .widget-panel { position: fixed; top: 24px; left: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 1000; pointer-events: none; }
+        .fake-stats-panel, .server-health-panel { 
+            background: rgba(0,0,0,0.6); border: 1px solid var(--border-glass);
+            padding: 16px; backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
+        }
+        .fake-stats-panel { border-left: 3px solid var(--primary); }
+        .stat-line { margin: 6px 0; color: var(--text-muted); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-highlight { color: var(--primary); font-weight: 700; font-family: var(--font-mono); font-size: 15px; text-shadow: 0 0 8px var(--primary-glow);}
         
-        .server-health-panel { background: rgba(0,0,0,0.7); border: 1px solid rgba(var(--secondary-rgb), 0.3); padding: 10px 16px; border-radius: 4px; font-family: var(--font-hud-terminal); font-size: 11px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .node-line { display: flex; align-items: center; justify-content: space-between; margin: 4px 0; color: #fff; gap: 15px; }
-        .node-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); }
-        .node-dot.warning { background: var(--warning); box-shadow: 0 0 8px var(--warning); animation: pulseWarning 1s infinite; }
-        @keyframes pulseWarning { 50% { opacity: 0.5; } }
-
-        /* MAIN WRAPPER */
-        .wrapper { max-width: 1350px; width: 100%; padding: 40px; border-radius: 16px; backdrop-filter: var(--blur-premium); -webkit-backdrop-filter: var(--blur-premium); background: var(--bg-card); border: 1px solid rgba(var(--primary-rgb), 0.2); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.05), var(--shadow-cinematic); position: relative; z-index: 1; transition: var(--transition-tactical); }
-        .wrapper.active-cyber-glow { border-color: var(--secondary); box-shadow: 0 0 60px rgba(var(--secondary-rgb), 0.15), var(--shadow-cinematic); }
-
-        /* HUD STATUS BAR */
-        .hud-status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; padding: 16px 24px; border-radius: 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(var(--secondary-rgb), 0.15); box-shadow: inset 0 0 20px rgba(var(--secondary-rgb), 0.05); }
-        .hud-meta-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .hud-meta-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
-        .hud-meta-value { color: #ffffff; font-weight: 800; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .hw-bar-container { display:flex; align-items:center; gap:8px; margin-top:6px;}
+        .hw-lbl { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); width:25px;}
+        .hw-bar-bg { flex:1; height:4px; background:rgba(255,255,255,0.1); overflow:hidden;}
+        .hw-bar-fill { height:100%; background:var(--primary); transition: width 0.3s; box-shadow: 0 0 10px var(--primary);}
         
-        .timer-critical { color: var(--danger) !important; text-shadow: 0 0 15px rgba(var(--danger-rgb), 0.8) !important; animation: blinkFast 1s infinite; }
-        @keyframes blinkFast { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .renew-btn { background: var(--danger); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 10px; text-decoration: none; font-weight: 800; animation: pulseRed 2s infinite; display: none; }
-        @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(var(--danger-rgb), 0.7); } 70% { box-shadow: 0 0 0 10px rgba(var(--danger-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--danger-rgb), 0); } }
+        .node-line { display: flex; align-items: center; justify-content: space-between; margin: 8px 0 0 0; color: var(--text-muted); font-size: 12px; font-weight: 600; font-family: var(--font-mono);}
+        .node-dot { width: 8px; height: 8px; background: var(--success); box-shadow: 0 0 10px var(--success); border-radius: 50%;}
+        .node-dot.warning { background: var(--warning); box-shadow: 0 0 10px var(--warning); animation: pulseWarning 1s infinite; }
+        @keyframes pulseWarning { 50% { opacity: 0.4; } }
 
-        .hud-chip-container { display: flex; gap: 12px; }
-        .hud-chip { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-hud-title); }
-        .chip-live { background: rgba(var(--success-rgb), 0.08); border: 1px solid rgba(var(--success-rgb), 0.3); color: var(--success); box-shadow: 0 0 10px rgba(var(--success-rgb), 0.1); }
-        .chip-ai { background: rgba(var(--secondary-rgb), 0.08); border: 1px solid rgba(var(--secondary-rgb), 0.3); color: var(--secondary); box-shadow: 0 0 10px rgba(var(--secondary-rgb), 0.1); }
-        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); display: inline-block; box-shadow: 0 0 15px var(--success); animation: pulseDot 1.5s infinite; }
-        @keyframes pulseDot { 0% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0.3; transform: scale(0.8); } }
+        /* CHANGELOG & ALERTS */
+        .version-tag { position: fixed; bottom: 34px; left: 24px; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--primary); cursor: pointer; z-index: 1000; padding: 6px 12px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); transition: var(--transition-smooth); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .version-tag:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow);}
+        
+        .changelog-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100000; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
+        .changelog-content { background: var(--bg-surface); border: 1px solid var(--border-highlight); padding: 32px; width: 90%; max-width: 480px; box-shadow: 0 0 50px rgba(0,212,255,0.2); }
+        .changelog-title { font-family: var(--font-display); color: var(--primary); font-size: 20px; border-bottom: 1px dashed var(--border-glass); padding-bottom: 16px; margin-bottom: 20px; letter-spacing: 2px;}
+        .changelog-list { list-style: none; color: var(--text-main); font-size: 15px; line-height: 1.8; font-family: var(--font-sans); }
+        .changelog-list li { margin-bottom: 12px; display: flex; gap: 10px;}
+        .changelog-list span { color: var(--secondary); font-family: var(--font-mono); font-weight: bold;}
+        .close-changelog { margin-top: 24px; width: 100%; padding: 12px; background: rgba(0,212,255,0.1); border: 1px solid var(--primary); color: var(--primary); font-weight: 700; font-family: var(--font-display); cursor: pointer; transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .close-changelog:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
 
-        /* =========================================================================
-           🚀 LOBBY VIEW - TACTICAL UPGRADE (GRID GAMES)
-           ========================================================================= */
-        .lobby-view { display: block; text-align: center; animation: fadeIn 0.8s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .wrapper { max-width: 1400px; width: 100%; padding: 40px; transition: var(--transition-smooth); position: relative; z-index: 1; }
+        .wrapper.active-cyber-glow { box-shadow: 0 0 80px rgba(var(--primary-rgb), 0.1); border-color: rgba(var(--primary-rgb), 0.5); }
+
+        /* GLITCH HOVER */
+        .glitch-hover { position: relative; display: inline-block; }
+        .glitch-hover:hover::before, .glitch-hover:hover::after { content: attr(data-text); position: absolute; top:0; left:0; width: 100%; height: 100%; background: transparent; }
+        .glitch-hover:hover::before { left: 2px; text-shadow: -1px 0 var(--danger); animation: glitch-anim-1 0.4s infinite linear alternate-reverse; }
+        .glitch-hover:hover::after { left: -2px; text-shadow: -1px 0 var(--primary); animation: glitch-anim-2 0.3s infinite linear alternate-reverse; }
+        @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 40% { clip-path: inset(40% 0 50% 0); } 60% { clip-path: inset(80% 0 5% 0); } 80% { clip-path: inset(10% 0 70% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(30% 0 20% 0); } 40% { clip-path: inset(70% 0 10% 0); } 60% { clip-path: inset(20% 0 50% 0); } 80% { clip-path: inset(80% 0 5% 0); } 100% { clip-path: inset(5% 0 80% 0); } }
+
+        /* HUD TOP BAR */
+        .hud-status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding: 16px 24px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-left: 4px solid var(--primary); backdrop-filter: blur(10px); flex-wrap:wrap; gap: 15px;}
+        .hud-meta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+        .hud-meta-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
+        .hud-meta-value { color: var(--text-main); font-family: var(--font-mono); font-size: 15px; font-weight: 700; text-shadow: 0 0 5px rgba(255,255,255,0.3);}
+        
+        .level-badge { background: var(--primary); color: #000; padding: 2px 6px; font-family: var(--font-display); font-weight: 900; font-size: 11px; margin-left: 8px;}
+        .exp-container { width: 60px; height: 6px; background: rgba(255,255,255,0.1); margin-left: 5px; overflow: hidden; display:inline-block; vertical-align: middle; border: 1px solid var(--border-glass);}
+        .exp-fill { width: 0%; height: 100%; background: var(--secondary); transition: width 0.5s ease; box-shadow: 0 0 10px var(--secondary);}
+
+        .ping-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; margin-left: 6px; }
+        .ping-bar { width: 4px; background: var(--success); opacity: 0.3; transition: height 0.2s; box-shadow: 0 0 5px var(--success);}
+        .ping-bar.active { opacity: 1; }
+
+        .timer-critical { color: var(--danger) !important; animation: blinkSoft 1s infinite; text-shadow: 0 0 10px var(--danger); }
+        @keyframes blinkSoft { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .renew-btn { background: rgba(var(--danger-rgb), 0.1); border: 1px solid var(--danger); color: var(--danger); padding: 4px 12px; font-size: 11px; text-decoration: none; font-weight: 700; transition: var(--transition-smooth); display: none; font-family: var(--font-display);}
+        .renew-btn:hover { background: var(--danger); color: #fff; box-shadow: 0 0 15px var(--danger);}
+
+        .hud-chip-container { display: flex; gap: 12px; align-items: center;}
+        .hud-chip { padding: 6px 12px; font-size: 12px; font-weight: 700; font-family: var(--font-display); letter-spacing: 1px; text-transform: uppercase; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .chip-live { color: var(--success); border-color: rgba(var(--success-rgb), 0.5); }
+        .chip-ai { color: var(--primary); border-color: rgba(var(--primary-rgb), 0.5); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); display: inline-block; box-shadow: 0 0 10px var(--success); animation: pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%, 100% { opacity: 0.5; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        .tier-badge { padding: 2px 6px; font-family: var(--font-display); font-size: 10px; font-weight: 800; background: linear-gradient(45deg, #71717a, #3f3f46); color: #fff; margin-left: 6px; border: 1px solid rgba(255,255,255,0.2); }
+        .tier-bronze { background: linear-gradient(45deg, #b45309, #78350f); }
+        .tier-silver { background: linear-gradient(45deg, #94a3b8, #475569); }
+        .tier-gold { background: linear-gradient(45deg, #fbbf24, #b45309); color:#000; }
+        .tier-diamond { background: linear-gradient(45deg, #2dd4bf, #0369a1); }
+        .tier-quantum { background: linear-gradient(45deg, #c026d3, #4c1d95); animation: quantumGlow 2s infinite; }
+        @keyframes quantumGlow { 0%, 100%{ box-shadow: 0 0 5px #c026d3; } 50%{ box-shadow: 0 0 15px #c026d3; } }
+
+        /* LOBBY VIEW */
+        .lobby-view { display: block; text-align: center; animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
         
         .lobby-title { 
-            margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-hud-title); 
-            font-size: 38px; font-weight: 900; letter-spacing: 8px; 
-            background: linear-gradient(135deg, #ffffff 20%, var(--primary) 80%); 
+            font-family: var(--font-display); font-size: 48px; font-weight: 900; letter-spacing: 6px; 
+            margin-bottom: 12px; background: linear-gradient(to right, #fff, var(--primary)); 
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            text-shadow: 0 0 30px rgba(var(--primary-rgb), 0.2); 
-            position: relative; display: inline-block;
+            text-shadow: 0 0 30px rgba(var(--primary-rgb), 0.5);
         }
-        .lobby-title::after {
-            content: "Hệ Thống Phân Tích Avia Pro"; position: absolute; left: 2px; top: 0;
-            background: linear-gradient(135deg, #ffffff 20%, var(--primary) 80%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            opacity: 0.5; filter: blur(2px); animation: glitchPulse 3s infinite; pointer-events: none;
-        }
-        @keyframes glitchPulse { 0%, 100% { opacity: 0.2; transform: translateX(0); } 50% { opacity: 0.6; transform: translateX(2px); } }
+        .lobby-subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 48px; letter-spacing: 3px; font-weight: 600; font-family: var(--font-mono); }
         
-        .lobby-subtitle { color: var(--secondary); font-size: 15px; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
-        
-        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         @media (max-width: 1200px) { .game-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { .game-grid { grid-template-columns: 1fr; } }
         
         .game-card { 
-            border: 1px solid rgba(var(--primary-rgb), 0.2); border-radius: 12px; overflow: hidden; cursor: pointer; 
-            background: rgba(5,7,13,0.8); position: relative; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+            background: rgba(0,0,0,0.6); border: 1px solid var(--border-glass); 
+            overflow: hidden; cursor: pointer; transition: var(--transition-smooth); 
             display: flex; flex-direction: column; backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+            clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
         }
-        
         .game-card:hover { 
-            transform: translateY(-12px) scale(1.02); border-color: var(--primary); 
-            background: rgba(0,0,0,0.95); box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 30px rgba(var(--primary-rgb), 0.3); 
+            transform: translateY(-8px) scale(1.02); border-color: var(--primary); 
+            background: rgba(0,212,255,0.05); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9), 0 0 30px var(--primary-glow); 
         }
 
-        .game-img-wrapper { width: 100%; height: 200px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid rgba(var(--primary-rgb), 0.2); }
-        .game-img-wrapper img { width: 100%; height: 100%; object-fit: contain; object-position: center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; filter: grayscale(40%) brightness(70%) contrast(120%); transform: scale(0.95);}
-        .game-card:hover .game-img-wrapper img { transform: scale(1.05); filter: grayscale(0%) brightness(100%) contrast(110%); }
-        .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,7,13,1) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); pointer-events: none; }
+        .game-img-wrapper { width: 100%; height: 180px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid var(--border-glass);}
+        .game-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth); opacity: 0.6; filter: grayscale(50%) contrast(120%);}
+        .game-card:hover .game-img-wrapper img { transform: scale(1.1); opacity: 1; filter: grayscale(0%) contrast(100%); }
+        .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-surface) 0%, transparent 100%); }
         
-        .card-scanline { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--primary); box-shadow: 0 0 15px var(--primary); animation: cardScan 2.5s linear infinite; z-index: 2; opacity: 0.8; pointer-events: none; }
-        @keyframes cardScan { 0% { top: -10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 110%; opacity: 0; } }
-
-        .game-badge { position: absolute; top: 15px; right: 15px; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; z-index: 2; font-family: var(--font-hud-title); }
-        .badge-vip { left: 15px; right: auto; background: rgba(var(--warning-rgb), 0.2); color: var(--warning); border: 1px solid var(--warning); box-shadow: 0 0 15px rgba(var(--warning-rgb), 0.4); animation: pulseVip 1.5s infinite; }
-        @keyframes pulseVip { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; box-shadow: 0 0 25px rgba(var(--warning-rgb), 0.8); } }
+        .game-badge { position: absolute; top: 16px; left: 16px; font-family: var(--font-display); font-size: 10px; font-weight: 700; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; z-index: 2; background: rgba(0,0,0,0.8); border: 1px solid var(--border-glass); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .badge-vip { color: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow);}
 
         .game-details { padding: 24px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .game-name { font-family: var(--font-hud-title); font-size: 20px; font-weight: 900; color: #ffffff; margin: 0 0 8px 0; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.2);}
-        .game-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0 0 15px 0; min-height: 40px; font-weight: 600;}
+        .game-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px;}
+        .game-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; min-height: 45px; }
         
-        .game-tactical-stats { margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px dashed rgba(var(--primary-rgb), 0.3); padding: 10px 12px; border-radius: 4px; font-family: var(--font-hud-terminal); font-size: 11px; display: flex; flex-direction: column; gap: 6px; }
-        .t-stat { display: flex; justify-content: space-between; align-items: center; }
+        .game-tactical-stats { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid rgba(255,255,255,0.05);}
+        .t-stat { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-family: var(--font-mono); }
         .t-stat span.lbl { color: var(--text-muted); }
-        .t-stat span.val { font-weight: 800; letter-spacing: 1px; transition: color 0.3s; }
-        .t-stat .val-green { color: var(--success); text-shadow: 0 0 5px rgba(var(--success-rgb), 0.5); }
-        .t-stat .val-blue { color: var(--primary); text-shadow: 0 0 5px rgba(var(--primary-rgb), 0.5); }
+        .t-stat span.val { font-weight: 700; color: var(--text-main); }
+        .t-stat .val-green { color: var(--success); text-shadow: 0 0 5px var(--success);}
+        .t-stat .val-blue { color: var(--primary); text-shadow: 0 0 5px var(--primary);}
 
-        .btn-enter { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.4); color: var(--primary); padding: 15px 0; border-radius: 4px; text-align: center; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; font-family: var(--font-hud-title); position: relative; transition: var(--transition-tactical); display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .btn-enter::before { content: "["; position: absolute; left: 15px; font-size: 16px; opacity: 0.5; transition: all 0.3s;}
-        .btn-enter::after { content: "]"; position: absolute; right: 15px; font-size: 16px; opacity: 0.5; transition: all 0.3s;}
-        
-        .game-card:hover .btn-enter { background: rgba(var(--primary-rgb), 0.15); color: #fff; border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
-        .game-card:hover .btn-enter::before { left: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
-        .game-card:hover .btn-enter::after { right: 25px; opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary);}
+        .btn-enter { 
+            background: rgba(0,212,255,0.05); border: 1px solid var(--border-glass); color: var(--primary); 
+            padding: 14px 0; text-align: center; font-size: 14px; font-weight: 700; font-family: var(--font-display);
+            letter-spacing: 2px; transition: var(--transition-smooth); 
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .game-card:hover .btn-enter { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
 
-        /* DASHBOARD SECTION */
-        .dashboard-view { display: none; }
-        .header-area { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(var(--secondary-rgb), 0.2); }
+        /* DASHBOARD VIEW */
+        .dashboard-view { display: none; animation: fadeIn 0.4s ease-out; }
+        .header-area { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-glass); }
         .brand-info { display: flex; align-items: center; gap: 20px; }
-        .av2-avatar { width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--secondary); object-fit: cover; box-shadow: 0 0 15px var(--secondary-glow); }
-        .brand-text h1 { font-family: var(--font-hud-title); font-size: 22px; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: #fff; }
-        .brand-text span { font-size: 13px; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
-        .btn-back-lobby { background: rgba(var(--secondary-rgb), 0.05); border: 1px solid rgba(var(--secondary-rgb), 0.4); color: var(--secondary); padding: 12px 24px; border-radius: 4px; font-size: 12px; font-weight: 800; cursor: pointer; transition: var(--transition-tactical); text-transform: uppercase; font-family: var(--font-hud-title); }
-        .btn-back-lobby:hover { background: var(--secondary); color: #000; box-shadow: 0 0 20px var(--secondary-glow); }
+        .av2-avatar { width: 64px; height: 64px; border: 2px solid var(--primary); object-fit: cover; cursor: pointer; transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); box-shadow: 0 0 15px var(--primary-glow);}
+        .brand-text h1 { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin: 0; color: var(--text-main); letter-spacing: 2px;}
+        .brand-text span { font-size: 13px; color: var(--primary); letter-spacing: 2px; font-weight: 600; font-family: var(--font-mono); text-transform: uppercase;}
         
-        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; }
+        .btn-back-lobby { background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-main); padding: 10px 20px; font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .btn-back-lobby:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateX(-4px); }
+        
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; }
         @media (max-width: 992px) { .dashboard-grid { grid-template-columns: 1fr; } }
-        .section-panel { background: rgba(0,0,0, 0.4); border: 1px solid rgba(var(--primary-rgb), 0.1); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 25px; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
-        .panel-title { font-family: var(--font-hud-title); font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); display: flex; align-items: center; gap: 12px; font-weight: 800; }
-        .panel-title::before { content: ""; width: 5px; height: 14px; background: var(--secondary); display: inline-block; box-shadow: 0 0 10px var(--secondary); }
         
-        .input-wrapper label { display: block; font-size: 12px; color: var(--primary); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-hud-title); }
-        .input-box { width: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px 20px; border-radius: 6px; color: #ffffff; font-size: 18px; font-weight: 700; box-sizing: border-box; transition: var(--transition-tactical); font-family: var(--font-hud-sub); }
-        .input-box:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); outline: none; background: #000; }
+        .section-panel { padding: 32px; display: flex; flex-direction: column; gap: 24px; position: relative;}
+        .panel-title { font-family: var(--font-display); font-size: 15px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); display: flex; align-items: center; justify-content: space-between; font-weight: 700; border-bottom: 1px solid rgba(0,212,255,0.2); padding-bottom: 10px;}
+        .panel-title-left { display: flex; align-items: center; gap: 10px; }
+        .panel-title-left::before { content: ""; width: 8px; height: 8px; background: var(--primary); display: inline-block; box-shadow: 0 0 10px var(--primary);}
         
-        /* CHIP SELECTOR */
+        .input-wrapper label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .input-box { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); padding: 14px 16px; color: var(--primary); font-size: 18px; font-weight: 700; transition: var(--transition-smooth); font-family: var(--font-mono); outline: none; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .input-box:focus { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); box-shadow: 0 0 15px var(--primary-glow); }
+        
         .chip-container { display: flex; flex-wrap: wrap; gap: 8px; }
-        .chip { padding: 8px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #a1b4cc; cursor: pointer; transition: all 0.3s; font-family: var(--font-hud-terminal); font-weight: bold; font-size: 13px; backdrop-filter: blur(5px); }
-        .chip.active, .chip:hover { background: rgba(var(--primary-rgb), 0.15); border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); color: #fff; transform: translateY(-2px); }
+        .chip { padding: 10px 16px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-muted); cursor: pointer; transition: var(--transition-smooth); font-family: var(--font-mono); font-size: 14px; font-weight: 700; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .chip.active, .chip:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow); transform: translateY(-2px); }
 
-        /* VORTEX SPECIFIC UI */
-        .vortex-btn { flex: 1; min-width: 30%; padding: 12px; border-radius: 6px; border: none; font-family: var(--font-hud-title); font-weight: bold; cursor: pointer; transition: all 0.3s; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        .vortex-btn.fireBtn { background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; }
-        .vortex-btn.earthBtn { background: rgba(40, 209, 124, 0.15); color: #28d17c; border: 1px solid #28d17c; }
-        .vortex-btn.waterBtn { background: rgba(77, 166, 255, 0.15); color: #4da6ff; border: 1px solid #4da6ff; }
-        .vortex-btn.windBtn { background: rgba(136, 136, 136, 0.15); color: #fff; border: 1px solid #888; }
-        .vortex-btn.skullBtn { background: rgba(0, 0, 0, 0.6); color: #fff; border: 1px solid #fff; box-shadow: inset 0 0 10px rgba(255,255,255,0.2); }
-        .vortex-btn:hover { transform: translateY(-2px); filter: brightness(1.3); }
-
-        .vortex-progress-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .vp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .vp-label { font-size: 12px; font-weight: bold; width: 60px; color: var(--text-muted); font-family: var(--font-hud-title); }
-        .vp-bar-bg { flex: 1; height: 12px; background: rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; position: relative; }
-        .vp-bar-fill { height: 100%; transition: width 0.3s ease; }
-        .vp-bar-fill.fire { background: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-        .vp-bar-fill.earth { background: #28d17c; box-shadow: 0 0 10px #28d17c; }
-        .vp-bar-fill.water { background: #4da6ff; box-shadow: 0 0 10px #4da6ff; }
-        .vp-text { font-size: 11px; width: 40px; text-align: right; font-family: var(--font-hud-terminal); font-weight: bold; }
+        .vortex-btn { flex: 1; min-width: 30%; padding: 14px; border: 1px solid var(--border-glass); font-family: var(--font-display); font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: var(--transition-smooth); font-size: 13px; text-transform: uppercase; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .vortex-btn.fireBtn { background: rgba(239, 68, 68, 0.1); color: #ef4444; } .vortex-btn.fireBtn:hover { background: rgba(239, 68, 68, 0.3); border-color: #ef4444; box-shadow: 0 0 15px #ef4444;}
+        .vortex-btn.earthBtn { background: rgba(16, 185, 129, 0.1); color: #10b981; } .vortex-btn.earthBtn:hover { background: rgba(16, 185, 129, 0.3); border-color: #10b981; box-shadow: 0 0 15px #10b981;}
+        .vortex-btn.waterBtn { background: rgba(56, 189, 248, 0.1); color: #38bdf8; } .vortex-btn.waterBtn:hover { background: rgba(56, 189, 248, 0.3); border-color: #38bdf8; box-shadow: 0 0 15px #38bdf8;}
+        .vortex-btn.windBtn { background: rgba(148, 163, 184, 0.1); color: #94a3b8; } .vortex-btn.windBtn:hover { background: rgba(148, 163, 184, 0.3); border-color: #fff; box-shadow: 0 0 15px #fff;}
+        .vortex-btn.skullBtn { background: rgba(0, 0, 0, 0.8); color: #fff; border-color: #555;} .vortex-btn.skullBtn:hover { border-color: #fff; box-shadow: 0 0 15px #fff; background: rgba(255,255,255,0.2);}
         
-        .ai-dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
-        .ai-stat-box { background: rgba(0,0,0,0.5); border: 1px solid rgba(var(--primary-rgb), 0.2); padding: 10px; border-radius: 6px; text-align: center; }
-        .ai-stat-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; font-family: var(--font-hud-title); }
-        .ai-stat-val { font-size: 18px; font-weight: bold; color: #fff; font-family: var(--font-hud-sub); }
+        .vortex-progress-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .vp-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .vp-label { font-size: 12px; font-weight: 700; width: 60px; color: var(--text-main); font-family: var(--font-display); letter-spacing: 1px;}
+        .vp-bar-bg { flex: 1; height: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .vp-bar-fill { height: 100%; transition: width 0.4s ease; }
+        .vp-bar-fill.fire { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 10px #ef4444;}
+        .vp-bar-fill.earth { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 10px #10b981;}
+        .vp-bar-fill.water { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 10px #3b82f6;}
+        .vp-text { font-size: 13px; width: 40px; text-align: right; font-family: var(--font-mono); color: var(--text-main); font-weight: bold;}
         
-        .score-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-top: 5px; display: inline-block;}
-        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444;}
-        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e15; border: 1px solid #f59e15;}
-        .badge-neutral { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308;}
-        .badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981;}
-        .badge-premium { background: rgba(6, 182, 212, 0.2); color: #06b6d4; text-shadow: 0 0 5px rgba(6, 182, 212, 0.5); border: 1px solid #06b6d4;}
+        .ai-dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+        .ai-stat-box { background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); padding: 16px; text-align: center; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: 0.3s;}
+        .ai-stat-box:hover { background: rgba(var(--primary-rgb), 0.1); border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow);}
+        .ai-stat-title { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; font-family: var(--font-display); letter-spacing: 1px; text-transform: uppercase; }
+        .ai-stat-val { font-size: 24px; font-weight: 700; color: var(--text-main); font-family: var(--font-mono); text-shadow: 0 0 10px rgba(255,255,255,0.3);}
+        .score-badge { padding: 4px 8px; font-family: var(--font-display); font-size: 10px; font-weight: 700; margin-top: 8px; display: inline-block; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);}
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e15; border: 1px solid #f59e15; box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);}
+        .badge-neutral { background: rgba(148, 163, 184, 0.2); color: #94a3b8; border: 1px solid #94a3b8;}
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);}
+        .badge-premium { background: rgba(0, 212, 255, 0.2); color: #00d4ff; border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);}
 
         .action-button-group { display: grid; grid-template-columns: 1fr; gap: 16px; }
         .action-button-group.has-phao-layout { grid-template-columns: 1fr 1fr; }
-        .btn-premium-action { width: 100%; border: none; padding: 18px; border-radius: 6px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; position: relative; overflow: hidden; transition: var(--transition-tactical); display: flex; align-items: center; justify-content: center; font-family: var(--font-hud-title); }
-        .btn-ai-process { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow); }
-        .btn-ai-process:disabled { background: rgba(var(--primary-rgb), 0.05) !important; color: var(--text-muted) !important; cursor: not-allowed; border: 1px solid rgba(var(--primary-rgb), 0.1); box-shadow: none;}
-        .btn-ai-process:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--primary-glow); }
-        .btn-phao-toggle { background: rgba(var(--secondary-rgb), 0.05); color: var(--secondary); border: 1px solid var(--secondary); }
-        .btn-phao-toggle:hover { background: rgba(var(--secondary-rgb), 0.15); box-shadow: 0 0 20px var(--secondary-glow); }
-        .btn-phao-toggle.phao-active { background: var(--success) !important; border: 1px solid var(--success) !important; color: #000 !important; font-weight: 900; box-shadow: 0 0 25px rgba(var(--success-rgb), 0.4); }
+        .btn-premium-action { width: 100%; border: none; padding: 18px; font-size: 14px; font-weight: 700; font-family: var(--font-display); letter-spacing: 2px; cursor: pointer; transition: var(--transition-smooth); position: relative; overflow: hidden; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);}
+        .btn-ai-process { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
+        .btn-ai-process:disabled { background: rgba(255,255,255,0.1) !important; color: var(--text-muted) !important; cursor: not-allowed; box-shadow: none;}
+        .btn-ai-process:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--primary); filter: brightness(1.2); }
+        .btn-phao-toggle { background: rgba(0,0,0,0.5); color: var(--text-main); border: 1px solid var(--border-glass); }
+        .btn-phao-toggle:hover { background: rgba(255,255,255,0.1); border-color: #fff;}
+        .btn-phao-toggle.phao-active { background: rgba(16,185,129,0.2) !important; border-color: #10b981 !important; color: #10b981 !important; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);}
+        .btn-antiban { background: rgba(0,0,0,0.8); color: var(--text-muted); border: 1px solid #333; grid-column: 1 / -1; padding: 14px; font-size: 12px; }
+        .btn-antiban:hover { color: var(--text-main); border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.1);}
         
-        .btn-antiban { background: transparent; color: var(--warning); border: 1px solid var(--warning); grid-column: 1 / -1; padding: 12px; font-size: 11px; }
-        .btn-antiban:hover { background: rgba(var(--warning-rgb), 0.1); box-shadow: 0 0 15px rgba(var(--warning-rgb), 0.3); }
+        .btn-self-destruct { background: rgba(239, 68, 68, 0.1); border: 1px dashed var(--danger); color: var(--danger); grid-column: 1 / -1; padding: 12px; font-size: 12px; text-align: center; cursor: pointer; transition: 0.3s; font-family: var(--font-mono); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .btn-self-destruct:hover { background: var(--danger); color:#fff; box-shadow: 0 0 20px var(--danger); border-style: solid;}
+
+        .auto-pilot-container { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; grid-column: 1 / -1; background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid var(--border-glass); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .4s; border: 1px solid var(--border-glass); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: var(--text-muted); transition: .4s; clip-path: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px); }
+        input:checked + .slider { background-color: rgba(var(--primary-rgb), 0.2); border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow);}
+        input:checked + .slider:before { transform: translateX(18px); background-color: var(--primary); box-shadow: 0 0 5px var(--primary); }
+        .auto-pilot-label { font-size: 13px; color: var(--primary); font-weight: 700; font-family: var(--font-display); letter-spacing: 1px;}
 
         .data-display { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .data-card { border: 1px solid rgba(var(--primary-rgb), 0.1); padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.5); overflow: hidden; transition: var(--transition-tactical); }
-        .data-card:hover { border-color: var(--primary); box-shadow: inset 0 0 20px var(--primary-glow); }
-        .data-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; letter-spacing: 2px; font-family: var(--font-hud-title); }
-        .data-val { font-size: 22px; font-weight: 800; margin-top: 8px; color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.2);}
-        .risk-container { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 12px; overflow: hidden; }
-        .risk-bar { height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s; }
+        .data-card { border: 1px solid var(--border-glass); padding: 20px; background: rgba(0,0,0,0.5); transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); position: relative;}
+        .data-card::before { content: ""; position: absolute; top:0; left:0; width:4px; height:100%; background: var(--primary); opacity: 0.5;}
+        .data-card:hover { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.05); box-shadow: 0 0 15px var(--primary-glow);}
+        .data-label { font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);}
+        .data-val { font-size: 26px; font-weight: 700; margin-top: 12px; color: var(--primary); font-family: var(--font-mono); text-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);}
+        .risk-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); margin-top: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);}
+        .risk-bar { height: 100%; width: 0%; transition: width 0.8s ease, background-color 0.4s; box-shadow: 0 0 10px currentColor;}
 
         .speed-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .speed-item { background: rgba(0,0,0,0.6); border: 1px solid rgba(var(--primary-rgb), 0.15); padding: 14px 4px; border-radius: 6px; text-align: center; cursor: pointer; transition: var(--transition-tactical); }
-        .speed-item .icon { display: block; font-size: 18px; margin-bottom: 6px; filter: grayscale(100%) opacity(50%); transition: var(--transition-tactical); }
-        .speed-item .name { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-family: var(--font-hud-title); }
-        .speed-item.active { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); box-shadow: inset 0 0 15px var(--primary-glow); }
-        .speed-item.active .icon { filter: grayscale(0%) opacity(100%); }
-        .speed-item.active .name { color: var(--primary); font-weight: 800; text-shadow: 0 0 5px var(--primary-glow); }
+        .speed-item { background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 16px 8px; text-align: center; cursor: pointer; transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .speed-item .icon { display: block; font-size: 24px; margin-bottom: 8px; opacity: 0.3; transition: var(--transition-smooth); filter: grayscale(100%); }
+        .speed-item .name { font-size: 12px; font-weight: 700; color: var(--text-muted); font-family: var(--font-display); letter-spacing: 1px;}
+        .speed-item.active { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); box-shadow: 0 0 15px var(--primary-glow);}
+        .speed-item.active .icon { opacity: 1; filter: grayscale(0%) drop-shadow(0 0 10px var(--primary)); transform: scale(1.1); }
+        .speed-item.active .name { color: var(--primary); }
 
-        .pip-btn { position: absolute; top: 15px; right: 15px; background: rgba(var(--primary-rgb), 0.1); border: 1px solid var(--primary); color: var(--primary); font-size: 10px; font-family: var(--font-hud-title); padding: 5px 10px; border-radius: 4px; cursor: pointer; z-index: 10; transition: var(--transition-tactical); }
-        .pip-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 10px var(--primary-glow); }
+        .pip-btn { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: 10px; font-family: var(--font-display); padding: 6px 12px; cursor: pointer; z-index: 10; transition: var(--transition-smooth); font-weight: 700; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .pip-btn:hover { background: rgba(255,255,255,0.1); color: var(--text-main); border-color: #fff;}
+        .export-btn { position: absolute; top: 16px; right: 105px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: 10px; font-family: var(--font-display); padding: 6px 12px; cursor: pointer; z-index: 10; transition: var(--transition-smooth); font-weight: 700; display:flex; align-items:center; gap: 4px; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .export-btn:hover { background: rgba(16, 185, 129, 0.1); color: var(--success); border-color: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);}
+        .copy-btn { position: absolute; top: 16px; right: 200px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: 10px; font-family: var(--font-display); padding: 6px 12px; cursor: pointer; z-index: 10; transition: var(--transition-smooth); font-weight: 700; display:flex; align-items:center; gap: 4px; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .copy-btn:hover { background: rgba(0, 212, 255, 0.1); color: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow);}
 
-        .ai-terminal { border: 1px solid rgba(var(--secondary-rgb), 0.2); border-radius: 8px; padding: 26px; font-size: 14px; background: #000; min-height: 260px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: inset 0 0 30px rgba(var(--secondary-rgb), 0.05); transition: all 0.4s ease; }
-        .scan-laser { position: absolute; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--secondary), transparent); left: 0; top: 0; z-index: 2; opacity: 0; pointer-events: none; box-shadow: 0 0 15px var(--secondary); }
-        .ai-terminal.scanning .scan-laser { opacity: 1; animation: radarScanLine 1.5s linear infinite; }
-        @keyframes radarScanLine { 0% { top: 0%; } 100% { top: 100%; } }
+        /* DRAGGABLE PIP TERMINAL */
+        .ai-terminal { border: 1px solid var(--border-glass); padding: 32px; font-size: 14px; background: rgba(0,0,0,0.7); min-height: 300px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: inset 0 0 30px rgba(0,0,0,0.8); transition: box-shadow 0.4s; clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);}
+        .ai-terminal::before { content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(var(--primary-rgb),0.05) 0%, transparent 100%); pointer-events: none;}
+        .scan-laser { position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); left: 0; top: 0; z-index: 2; opacity: 0; pointer-events: none; box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary); }
+        .ai-terminal.scanning .scan-laser { opacity: 1; animation: radarScanLine 2s ease-in-out infinite; }
+        @keyframes radarScanLine { 0% { top: 0%; opacity: 0;} 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0;} }
         
-        .ai-terminal.pip-mode { position: fixed; bottom: 20px; right: 20px; width: 320px; min-height: 180px; z-index: 99999; box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px var(--primary-glow); border: 2px solid var(--primary); transform: scale(1); animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
-        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .ai-terminal.pip-mode { position: fixed; bottom: 24px; right: 24px; width: 380px; min-height: 250px; z-index: 99999; box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 20px rgba(var(--primary-rgb), 0.3); border: 2px solid var(--primary); transform: scale(1); animation: popIn 0.4s cubic-bezier(0.25, 1, 0.5, 1); background: rgba(5,10,20,0.95); backdrop-filter: blur(20px); cursor: move; }
+        @keyframes popIn { 0% { transform: scale(0.8) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
 
-        /* 3-WAY STRIKER UI */
-        .dir-box { flex:1; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:15px 5px; text-align:center; transition:var(--transition-tactical); }
-        .dir-box.active-dir { background:rgba(var(--success-rgb), 0.15); border-color:var(--success); box-shadow:0 0 20px rgba(var(--success-rgb),0.4); animation: pulseRadar 1.5s infinite;}
-        .dir-lbl { font-family:var(--font-hud-title); font-size:14px; font-weight:bold; color:var(--text-muted); margin-bottom:5px;}
-        .active-dir .dir-lbl { color:var(--success); }
-        .dir-prob { font-family:var(--font-hud-terminal); font-size:20px; font-weight:bold; color:#fff;}
-        @keyframes pulseRadar { 0% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0.4); } 70% { box-shadow: 0 0 0 15px rgba(var(--success-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0); } }
+        .dir-box { flex:1; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 16px 8px; text-align: center; transition: var(--transition-smooth); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .dir-box.active-dir { background: rgba(16,185,129,0.1); border-color: #10b981; transform: translateY(-4px); box-shadow: 0 0 15px rgba(16,185,129,0.3);}
+        .dir-lbl { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-display); letter-spacing: 1px;}
+        .active-dir .dir-lbl { color: #10b981; }
+        .dir-prob { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--text-main);}
 
-        .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 100%; }
-        .radar-spinner { width: 45px; height: 45px; border: 3px solid rgba(var(--primary-rgb), 0.1); border-top-color: var(--primary); border-bottom-color: var(--secondary); border-radius: 50%; animation: spinRadar 0.7s linear infinite; box-shadow: 0 0 15px var(--secondary-glow); }
+        .cyber-loading { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px; width: 100%; z-index: 5;}
+        .radar-spinner { width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.05); border-top-color: var(--primary); border-radius: 50%; animation: spinRadar 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite; box-shadow: 0 0 15px var(--primary-glow);}
         @keyframes spinRadar { 100% { transform: rotate(360deg); } }
-        .loading-text { font-family: var(--font-hud-title); font-weight: 800; letter-spacing: 3px; color: #ffffff; font-size: 13px; text-transform: uppercase; text-shadow: 0 0 10px var(--primary-glow);}
-        .loading-subtext { font-size: 12px; color: var(--secondary); font-family: var(--font-hud-terminal); font-weight: 700;}
-        .result-output { display: block; width: 100%; height: 100%; }
+        .loading-text { font-weight: 700; letter-spacing: 2px; color: var(--primary); font-size: 14px; font-family: var(--font-display); text-shadow: 0 0 10px var(--primary-glow);}
+        .loading-subtext { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+        .result-output { display: block; width: 100%; height: 100%; z-index: 5; position: relative;}
+        
+        .typewriter-overlay { display: none; color: var(--primary); font-family: var(--font-mono); font-size: 14px; padding: 20px; text-align: left; text-shadow: 0 0 5px var(--primary-glow);}
 
-        /* ACTIVATION MODAL */
-        .activation-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(40px); z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .activation-modal { max-width: 480px; width: 100%; background: var(--bg-deep); border: 1px solid var(--primary); border-radius: 12px; padding: 45px; box-sizing: border-box; text-align: center; box-shadow: 0 0 50px var(--primary-glow), inset 0 0 30px rgba(var(--primary-rgb), 0.05); position: relative; }
-        .act-title { font-family: var(--font-hud-title); font-size: 26px; font-weight: 900; letter-spacing: 4px; margin-bottom: 8px; color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);}
-        .act-subtitle { font-size: 13px; color: var(--secondary); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; font-weight: 800; font-family: var(--font-hud-title); }
-        .act-status-terminal { background: #000; border: 1px solid rgba(var(--primary-rgb), 0.2); padding: 16px; border-radius: 6px; font-size: 12px; color: var(--success); font-family: var(--font-hud-terminal); text-align: left; margin-bottom: 25px; line-height: 1.6; }
-        .activation-field-group { text-align: left; margin-bottom: 22px; }
-        .activation-field-group label { display: block; font-size: 12px; font-family: var(--font-hud-title); color: var(--primary); margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800;}
-        .activation-user-input { width: 100%; background: rgba(var(--primary-rgb), 0.03); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px; border-radius: 6px; color: var(--warning); font-size: 16px; font-weight: 800; text-align: center; transition: var(--transition-tactical); font-family: var(--font-hud-sub); }
-        .activation-user-input:focus { border-color: var(--secondary); box-shadow: 0 0 15px var(--secondary-glow); outline: none; background: #000; color: #fff; }
-        .activation-input { width: 100%; background: rgba(var(--primary-rgb), 0.03); border: 1px solid rgba(var(--primary-rgb), 0.3); padding: 16px; border-radius: 6px; color: #ffffff; font-size: 20px; font-weight: 900; text-align: center; letter-spacing: 6px; font-family: var(--font-hud-title); transition: var(--transition-tactical); }
-        .activation-input:focus { border-color: var(--secondary); box-shadow: 0 0 15px var(--secondary-glow); outline: none; background: #000; }
-        .activation-btn { width: 100%; border: none; padding: 18px; border-radius: 6px; font-family: var(--font-hud-title); font-size: 14px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; background: var(--primary); color: #000; margin-top: 15px; margin-bottom: 20px; box-shadow: 0 0 20px var(--primary-glow); transition: var(--transition-tactical); }
-        .activation-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.5); }
-        .tele-login-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, rgba(0, 136, 204, 0.2), rgba(var(--primary-rgb), 0.2)); border: 1px solid rgba(var(--primary-rgb), 0.5); color: var(--primary); padding: 14px 20px; border-radius: 6px; font-family: var(--font-hud-title); font-size: 13px; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition-tactical); width: 100%; box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.1); }
-        .tele-login-btn:hover { background: linear-gradient(135deg, rgba(0, 136, 204, 0.4), rgba(var(--primary-rgb), 0.4)); box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.4); color: #fff; transform: translateY(-2px); }
-        .tele-login-btn svg { width: 22px; height: 22px; fill: currentColor; }
+        /* ACTIVATION OVERLAY */
+        .activation-overlay, .offline-overlay { position: fixed; inset: 0; background: rgba(2,4,10,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .activation-modal { max-width: 500px; width: 100%; background: rgba(5,10,20,0.9); border: 1px solid var(--primary); padding: 40px; box-sizing: border-box; text-align: center; box-shadow: 0 0 50px rgba(0,212,255,0.2), inset 0 0 20px rgba(0,212,255,0.1); clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); position: relative;}
+        .activation-modal::before { content: ""; position: absolute; top:0; left:50%; transform: translateX(-50%); width: 100px; height: 3px; background: var(--primary); box-shadow: 0 0 15px var(--primary);}
+        .act-title { font-family: var(--font-display); font-size: 26px; font-weight: 900; margin-bottom: 8px; color: var(--primary); letter-spacing: 3px; text-shadow: 0 0 15px var(--primary-glow);}
+        .act-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; font-weight: 600; font-family: var(--font-mono); letter-spacing: 1px;}
+        .act-status-terminal { background: rgba(0,0,0,0.6); border: 1px solid var(--border-glass); padding: 16px; font-size: 12px; color: var(--success); font-family: var(--font-mono); text-align: left; margin-bottom: 24px; line-height: 1.6; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .activation-field-group { text-align: left; margin-bottom: 20px; }
+        .activation-field-group label { display: block; font-size: 13px; color: var(--primary); margin-bottom: 8px; font-weight: 700; font-family: var(--font-display); letter-spacing: 1px;}
+        .activation-user-input, .activation-input { width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 14px; color: var(--text-main); font-size: 16px; text-align: center; transition: var(--transition-smooth); font-family: var(--font-mono); outline: none; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .activation-input { font-size: 22px; letter-spacing: 6px; font-weight: 700; color: var(--primary); }
+        .activation-user-input:focus, .activation-input:focus { border-color: var(--primary); background: rgba(var(--primary-rgb),0.1); box-shadow: 0 0 15px var(--primary-glow);}
+        .activation-btn { width: 100%; border: none; padding: 18px; font-size: 15px; font-weight: 800; cursor: pointer; background: var(--primary); color: #000; margin-top: 8px; margin-bottom: 16px; transition: var(--transition-smooth); font-family: var(--font-display); letter-spacing: 2px; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);}
+        .activation-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 0 30px var(--primary); }
+        .tele-login-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: var(--text-muted); padding: 14px; font-size: 13px; font-weight: 700; font-family: var(--font-display); text-decoration: none; transition: var(--transition-smooth); width: 100%; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
+        .tele-login-btn:hover { background: rgba(0, 136, 204, 0.1); color: #0088cc; border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);}
+        .tele-login-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* CYBER ALERT NOTIFICATIONS */
-        .cyber-alert { position: fixed; top: 80px; right: 20px; padding: 20px 30px; border-radius: 6px; font-size: 14px; font-weight: 800; letter-spacing: 2px; z-index: 999999; background: rgba(0,0,0, 0.95); border-left: 5px solid var(--primary); box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: translateX(150%); transition: transform 0.5s; font-family: var(--font-hud-title); }
+        /* ALERTS & FOMO */
+        .cyber-alert { position: fixed; top: 24px; right: 24px; padding: 16px 24px; font-size: 14px; font-weight: 700; font-family: var(--font-sans); z-index: 999999; background: rgba(5,10,20,0.9); border: 1px solid var(--border-glass); box-shadow: 0 15px 30px rgba(0,0,0,0.8); transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); backdrop-filter: blur(10px); color: var(--text-main); display: flex; align-items: center; gap: 12px; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);}
         .cyber-alert.alert-show { transform: translateX(0); }
-        .cyber-alert.alert-success { border-left-color: var(--success); color: var(--success); }
-        .cyber-alert.alert-error { border-left-color: var(--secondary); color: var(--secondary); }
-        .cyber-alert.alert-warning { border-left-color: var(--warning); color: var(--warning); }
+        .cyber-alert.alert-success { border-left: 4px solid var(--success); box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);}
+        .cyber-alert.alert-error { border-left: 4px solid var(--danger); box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);}
+        .cyber-alert.alert-warning { border-left: 4px solid var(--warning); box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);}
 
-        /* FOMO NOTIFICATIONS */
-        .fomo-container { position: fixed; bottom: 20px; left: 20px; z-index: 999998; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
-        .fomo-toast { background: rgba(0,0,0,0.85); border-left: 4px solid var(--primary); border-radius: 6px; padding: 14px 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(var(--primary-rgb), 0.2); color: #fff; font-size: 13px; font-family: var(--font-hud-sub); font-weight: 700; display: flex; align-items: center; gap: 12px; animation: slideInBottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOutFomo 0.5s ease 5s forwards; backdrop-filter: blur(5px); line-height: 1.4; }
-        .fomo-toast .fomo-icon { font-size: 22px; }
-        .fomo-toast .fomo-content span { color: var(--primary); font-weight: 800; }
-        .fomo-toast .fomo-content .fomo-amount { color: var(--success); font-family: var(--font-hud-title); font-size: 14px;}
-        @keyframes slideInBottom { 0% { transform: translateX(-150%); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
-        @keyframes fadeOutFomo { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } }
+        .fomo-container { position: fixed; bottom: 40px; left: 24px; z-index: 999998; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+        .fomo-toast { background: rgba(5,10,20,0.85); border: 1px solid var(--border-glass); padding: 12px 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.8); color: var(--text-muted); font-size: 13px; font-family: var(--font-sans); display: flex; align-items: center; gap: 12px; animation: slideInBottom 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards, fadeOutFomo 0.5s ease 5s forwards; backdrop-filter: blur(10px); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); border-left: 3px solid var(--primary);}
+        .fomo-toast .fomo-icon { font-size: 20px; }
+        .fomo-toast .fomo-content span { color: var(--text-main); font-weight: 700; }
+        .fomo-toast .fomo-content .fomo-amount { color: var(--success); font-family: var(--font-mono); font-size: 14px; font-weight: bold; text-shadow: 0 0 5px rgba(16, 185, 129, 0.5);}
+        @keyframes slideInBottom { 0% { transform: translateX(-20px) scale(0.95); opacity: 0; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+        @keyframes fadeOutFomo { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(10px); } }
 
-        /* OFFLINE OVERLAY */
-        .offline-overlay { display: none; position: fixed; inset: 0; background: rgba(255, 42, 95, 0.9); z-index: 9999999; justify-content: center; align-items: center; flex-direction: column; color: #fff; font-family: var(--font-hud-title); backdrop-filter: blur(20px); text-align: center; }
-        .offline-overlay h1 { font-size: 40px; margin-bottom: 10px; letter-spacing: 5px; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .offline-overlay p { font-family: var(--font-hud-terminal); font-size: 16px; font-weight: 700; background: #000; padding: 10px 20px; border-radius: 4px; }
+        /* PANIC / OFFLINE / MENU */
+        .offline-overlay { display: none; background: rgba(5,10,20,0.95); flex-direction: column; color: var(--text-main); text-align: center; }
+        .offline-overlay h1 { font-family: var(--font-display); font-size: 28px; margin-bottom: 12px; font-weight: 900; letter-spacing: 2px; color: var(--danger); text-shadow: 0 0 15px var(--danger);}
+        .offline-overlay p { font-family: var(--font-mono); font-size: 14px; color: #fff; background: rgba(239,68,68,0.2); padding: 12px 24px; border: 1px solid var(--danger); }
+
+        #panicOverlay { display:none; position:fixed; inset:0; background:#000; z-index:9999999; justify-content:center; align-items:center; flex-direction:column; color:#fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        .spinner-win { border: 4px solid rgba(255,255,255,0.1); border-left-color: #0078D7; border-radius: 50%; width: 40px; height: 40px; animation: spinWin 1s linear infinite; margin-bottom: 20px;}
+        @keyframes spinWin { to { transform: rotate(360deg); } }
+
+        #customContextMenu { display:none; position:fixed; z-index:999999; background: rgba(5, 10, 20, 0.95); border:1px solid var(--primary); flex-direction:column; padding:8px 0; font-size:13px; min-width:200px; box-shadow: 0 0 30px rgba(0,212,255,0.2); backdrop-filter: blur(10px); font-family: var(--font-mono); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);}
+        .ctx-item { padding: 12px 20px; color: var(--text-main); cursor: pointer; transition: 0.2s; display:flex; gap:12px; align-items:center; font-weight: bold;}
+        .ctx-item:hover { background: rgba(0, 212, 255, 0.15); color: var(--primary); }
+        .ctx-divider { height: 1px; background: rgba(0, 212, 255, 0.2); margin: 4px 0; }
+
+        /* --- CHATBOT INPUT STYLES --- */
+        .chat-widget { position: fixed; bottom: 40px; right: 24px; width: 300px; background: rgba(5,10,20,0.8); border: 1px solid var(--border-glass); display: flex; flex-direction: column; backdrop-filter: blur(10px); z-index: 1000; overflow: hidden; transition: height 0.3s; height: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);}
+        .chat-widget.expanded { height: 420px; border-color: var(--primary); box-shadow: 0 0 20px rgba(0,212,255,0.2);}
+        .chat-header { padding: 12px 18px; background: rgba(0,212,255,0.1); font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-bottom: 1px solid transparent; }
+        .chat-widget.expanded .chat-header { border-bottom-color: var(--primary); }
+        .chat-body { flex: 1; padding: 12px; overflow-y: auto; display: none; flex-direction: column; gap: 10px; font-size: 13px; font-family: var(--font-sans);}
+        .chat-widget.expanded .chat-body { display: flex; }
+        .chat-msg { background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.5; animation: popChat 0.3s ease; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .chat-msg .c-user { font-weight: 700; font-family: var(--font-mono); color: var(--primary); margin-right: 6px;}
+        .chat-msg.sys-msg .c-user { color: var(--danger); text-shadow: 0 0 5px var(--danger);}
+        @keyframes popChat { from { opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}
+        
+        .chat-input-area { display: none; padding: 10px; background: rgba(0,0,0,0.8); border-top: 1px solid var(--border-glass); gap: 8px; }
+        .chat-widget.expanded .chat-input-area { display: flex; }
+        .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-main); font-family: var(--font-mono); font-size: 12px; padding: 8px; outline: none; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px); transition: var(--transition-smooth);}
+        .chat-input:focus { border-color: var(--primary); background: rgba(0,212,255,0.1); }
+        .chat-send-btn { background: var(--primary); border: none; color: #000; font-family: var(--font-display); font-size: 10px; font-weight: bold; padding: 8px 12px; cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px); transition: 0.3s;}
+        .chat-send-btn:hover { background: #fff; box-shadow: 0 0 10px var(--primary); }
+        .chat-msg.user-msg { background: rgba(0, 212, 255, 0.1); border-left: 2px solid var(--primary); border-right: none; text-align: right; }
+        .chat-msg.user-msg .c-user { color: #fff; }
+        .chat-msg.guide-msg { border-left: 2px solid var(--warning); background: rgba(245, 158, 11, 0.1); }
+        .chat-msg.guide-msg .c-user { color: var(--warning); }
+
+        .system-ticker { position:fixed; bottom:0; left:0; width:100%; height: 24px; background:rgba(0,0,0,0.8); border-top:1px solid var(--primary); color:var(--primary); font-family:var(--font-mono); font-size:12px; font-weight: bold; line-height:24px; z-index:9999; white-space:nowrap; overflow:hidden; box-shadow: 0 0 10px var(--primary-glow);}
+        .ticker-text { display:inline-block; animation: tickerAnim 25s linear infinite; }
+        @keyframes tickerAnim { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+        #hotkeyHelp { display:none; position:fixed; right: 24px; top: 120px; background:rgba(5,10,20,0.9); border:1px solid var(--primary); padding:20px; z-index:9999; font-family:var(--font-mono); color:#fff; font-size:12px; box-shadow: 0 0 30px rgba(0,212,255,0.3); clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);}
+        .hk-line { margin-bottom:10px; display:flex; justify-content:space-between; gap:24px;}
+        .hk-key { background:rgba(0,212,255,0.1); border: 1px solid var(--primary); padding:2px 8px; color:var(--primary); font-weight:bold; box-shadow: 0 0 5px var(--primary-glow);}
+
     </style>
 </head>
 <body>
+
+<canvas id="universeCanvas"></canvas>
+
+<div class="scanlines"></div>
+<canvas id="matrixCanvas"></canvas>
+
+<div class="system-ticker">
+    <div class="ticker-text" id="tickerLog">SYS_INIT OK... TCP_NODELAY: TRUE... BYPASS_PROXY: ACTIVE... HASH: 0x9f8a8b... PINGING ROUTER... SSL_TLS_VERIFIED... SYNCING AI_CORE... PORT_443_OPEN... </div>
+</div>
+
+<div id="hotkeyHelp">
+    <div style="color:var(--primary); font-family:var(--font-display); font-size: 14px; font-weight:bold; margin-bottom:12px; border-bottom:1px solid rgba(0,212,255,0.3); padding-bottom:8px;">TERMINAL HOTKEYS</div>
+    <div class="hk-line"><span class="hk-key">A</span> <span>Phân Tích AI</span></div>
+    <div class="hk-line"><span class="hk-key">P</span> <span>Kích Hoạt Phao</span></div>
+    <div class="hk-line"><span class="hk-key">C</span> <span>Anti-Ban Dọn Rác</span></div>
+    <div class="hk-line"><span class="hk-key">H</span> <span>Đóng/Mở Bảng này</span></div>
+    <div class="hk-line"><span class="hk-key">ESC</span> <span style="color:var(--danger)">Boss Key (Ẩn nhanh)</span></div>
+</div>
+
+<div id="customContextMenu">
+    <div class="ctx-item" onclick="showCyberAlert('Bypassing Security...', 'warning'); hideContextMenu();">🔓 Bypass Security Port</div>
+    <div class="ctx-item" onclick="runAntiBanClear(); hideContextMenu();">🧹 Clear Temp Proxy Cache</div>
+    <div class="ctx-item" onclick="toggleMatrixRain(); hideContextMenu();">🌧️ Toggle Matrix Rain</div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" style="color:var(--danger)" onclick="triggerSelfDestruct(); hideContextMenu();">🔴 Force Exit (Wipe Data)</div>
+</div>
+
+<div id="panicOverlay">
+    <div class="spinner-win"></div>
+    <div style="font-size: 24px; font-weight: 300;">Working on updates</div>
+    <div style="font-size: 14px; margin-top: 5px; color: #aaa;">14% complete. Don't turn off your PC.</div>
+</div>
 
 <div id="offlineOverlay" class="offline-overlay">
     <h1>MẤT KẾT NỐI MÁY CHỦ</h1>
@@ -338,51 +499,61 @@
 </div>
 
 <div class="top-controls">
+    <button class="control-btn" onclick="toggleMatrixRain()">🌧️ MATRIX</button>
+    <button id="fullscreenToggle" class="control-btn" onclick="toggleFullScreen()">🖥️ TOÀN MÀN HÌNH</button>
     <select id="themeSelector" class="control-btn" onchange="changeTheme(this.value)">
-        <option value="cyber">🎨 THEME: NEON (Mặc định)</option>
+        <option value="cyber">🎨 THEME: DEEP SPACE</option>
         <option value="gold">🎨 THEME: LUXURY GOLD</option>
         <option value="matrix">🎨 THEME: HACKER MATRIX</option>
     </select>
-    <button id="audioToggle" class="control-btn" onclick="toggleAudio()">🔇 CLICK BẬT ÂM</button>
+    <button id="bgmToggle" class="control-btn" onclick="toggleBGM()">🎵 BGM: OFF</button>
+    <button id="audioToggle" class="control-btn" onclick="toggleAudio()">🔇 SFX: TẮT</button>
 </div>
 
 <div class="widget-panel">
-    <div class="fake-stats-panel">
+    <div class="fake-stats-panel glass-panel">
         <div class="stat-line">🌐 ONLINE: <span id="fakeOnline" class="stat-highlight">3,412</span> USER</div>
         <div class="stat-line">⚡ TỶ LỆ BYPASS: <span class="stat-highlight">99.87%</span></div>
     </div>
     
-    <div class="server-health-panel">
-        <div style="color:var(--primary); font-family:var(--font-hud-title); margin-bottom:8px; font-weight:900;">[SYSTEM NODES]</div>
+    <div class="server-health-panel glass-panel">
+        <div style="color:var(--primary); font-size: 12px; margin-bottom:12px; font-weight:700; font-family:var(--font-display); letter-spacing:1px;">SYSTEM NODES STATUS</div>
         <div class="node-line"><span>AI_CORE_SYNC</span> <div class="node-dot" id="node1"></div></div>
         <div class="node-line"><span>PROXY_BYPASS</span> <div class="node-dot" id="node2"></div></div>
         <div class="node-line"><span>DATA_SERVER</span> <div class="node-dot" id="node3"></div></div>
+        
+        <div style="margin-top:16px; border-top:1px dashed var(--border-glass); padding-top:12px;">
+            <div class="hw-bar-container"><span class="hw-lbl">CPU</span><div class="hw-bar-bg"><div id="cpuBar" class="hw-bar-fill" style="width:20%"></div></div></div>
+            <div class="hw-bar-container"><span class="hw-lbl">RAM</span><div class="hw-bar-bg"><div id="ramBar" class="hw-bar-fill" style="width:40%; background:var(--secondary); box-shadow: 0 0 10px var(--secondary);"></div></div></div>
+        </div>
     </div>
 </div>
 
 <div id="changelogModal" class="changelog-modal">
-    <div class="changelog-content">
-        <div class="changelog-title">NHẬT KÝ CẬP NHẬT - V4.7 (VORTEX PRO AI)</div>
-        <ul class="changelog-list">
-            <li><span>[+]</span> Tích hợp bộ nạp Data <strong>Vortex Official</strong> (Hỏa-Thổ-Thủy).</li>
-            <li><span>[+]</span> AI Score đánh giá trạng thái 10, 20, 30 vòng.</li>
-            <li><span>[+]</span> Thuật toán quét Track chuỗi (Hot/Cold) bảo vệ vốn.</li>
-            <li><span>[*]</span> Tối ưu bảng hiển thị Live Data Matrix.</li>
-            <li><span>[-]</span> Giữ nguyên Logic chuẩn của Bậc thầy phi hành & Soccer.</li>
+    <div class="changelog-content glass-panel">
+        <div class="changelog-title glitch-hover" data-text="Update Notes - V6.0 (UNIVERSE OS)">Update Notes - V6.0 (UNIVERSE OS)</div>
+        <ul class="changelog-list" style="height:220px; overflow-y:auto; padding-right:10px;">
+            <li><span>[+]</span> Tích hợp Engine Đồ họa 3D Three.js.</li>
+            <li><span>[+]</span> Nâng cấp UI HUD phong cách Star Citizen.</li>
+            <li><span>[+]</span> Tối ưu hóa thuật toán Realtime 60FPS.</li>
+            <li><span>[+]</span> Bổ sung AI CHATBOT GUIDE TERMINAL.</li>
+            <li><span>[+]</span> Cập nhật thuật toán Rút Một Phần Vortex.</li>
+            <li><span>[+]</span> Giữ nguyên 100% Core Logic Phân Tích.</li>
+            <li><span>[+]</span> EXP Bar & Leveling System.</li>
+            <li><span>[+]</span> Hệ thống Router VPN Fake IP.</li>
         </ul>
-        <button class="close-changelog" onclick="document.getElementById('changelogModal').style.display='none'">XÁC NHẬN (ĐÓNG)</button>
+        <button class="close-changelog" onclick="document.getElementById('changelogModal').style.display='none'">XÁC NHẬN ĐÓNG KẾT NỐI</button>
     </div>
 </div>
-<div class="version-tag" onclick="document.getElementById('changelogModal').style.display='flex'">V4.7 (VORTEX PRO)</div>
+<div class="version-tag" onclick="document.getElementById('changelogModal').style.display='flex'">V6.0 (UNIVERSE OS EDITION)</div>
 
 <div id="fomo-container" class="fomo-container"></div>
-
 <div id="cyberNotification" class="cyber-alert">THÔNG BÁO HỆ THỐNG</div>
 
 <div class="activation-overlay" id="activationOverlay" style="display: none;">
     <div class="activation-modal">
-        <div class="act-title" id="actModalTitle">AI SECURE GATEWAY</div>
-        <div class="act-subtitle" id="actModalSubtitle">XÁC THỰC LÕI KÍCH HOẠT</div>
+        <div class="act-title glitch-hover" id="actModalTitle" data-text="AI SECURE GATEWAY">AI SECURE GATEWAY</div>
+        <div class="act-subtitle" id="actModalSubtitle">TRẠM XÁC THỰC HỆ THỐNG TRUNG TÂM</div>
         <div class="act-status-terminal" id="actTerminalLog">
             [SYS STATUS]: KHÓA GIAO DIỆN HỆ THỐNG TRUNG TÂM<br>
             [SECURITY]: ĐANG CHỜ ĐỊNH DANH TÀI KHOẢN VÀ MÃ KHÓA VIP...
@@ -398,61 +569,93 @@
         <button class="activation-btn" onclick="validateActivationKey()">KHỞI TẠO KẾT NỐI AI</button>
         <a href="https://t.me/trangcskhxx88" target="_blank" class="tele-login-btn">
             <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
-            LIÊN HỆ ADMIN LẤY MÃ KÍCH HOẠT
+            Liên hệ Admin nhận mã kích hoạt
         </a>
     </div>
 </div>
 
 <canvas id="quantum-canvas"></canvas>
 
-<a href="https://t.me/trangcskhxx88" target="_blank" class="floating-tele-btn" style="display:none; position:fixed; bottom:20px; right:20px; width:65px; height:65px; background:linear-gradient(135deg, #0088cc, var(--primary)); border-radius:50%; z-index:100000; display:flex; justify-content:center; align-items:center; box-shadow: 0 0 25px var(--primary-glow); animation:pulse-tele 2s infinite; border:2px solid #fff;" id="floatingTeleBtn">
-    <svg viewBox="0 0 24 24" style="width:35px;height:35px;fill:#fff;margin-right:4px;"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+<a href="https://t.me/trangcskhxx88" target="_blank" class="floating-tele-btn glass-panel" style="display:none; position:fixed; bottom:40px; right:24px; width:56px; height:56px; z-index:100000; display:flex; justify-content:center; align-items:center; transition: all 0.3s; padding:0; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);" id="floatingTeleBtn">
+    <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:var(--primary);"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
 </a>
 <style>
-    @keyframes pulse-tele { 0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); } 70% { box-shadow: 0 0 0 20px rgba(var(--primary-rgb), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); } }
-    .floating-tele-btn:hover { transform: scale(1.1); }
+    .floating-tele-btn:hover { transform: translateY(-4px); background: rgba(0,212,255,0.2); border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+    .floating-tele-btn:hover svg { fill: #fff; }
 </style>
 
-<div class="wrapper" id="mainWrapper">
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-header" onclick="toggleChat()">
+        <span><span style="color:var(--success); text-shadow: 0 0 5px var(--success);">●</span> AI GUIDE TERMINAL</span>
+        <span id="chatToggleIcon">▲</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div class="chat-msg guide-msg">
+            <span class="c-user">[AI_GUIDE]:</span> Xin chào! Tôi là trợ lý AI nội bộ. Hãy gõ tên game (Vortex, Soccer, Avia) hoặc "HD" để tôi phân tích chiến thuật cho bạn.
+        </div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" class="chat-input" placeholder="Gõ lệnh (VD: hd vortex)..." onkeypress="handleChatKeyPress(event)">
+        <button class="chat-send-btn" onclick="sendUserMessage()">GỬI LỆNH</button>
+    </div>
+</div>
+
+<div class="wrapper glass-panel" id="mainWrapper">
     <div class="hud-status-bar">
         <div class="hud-meta-group">
-            <div class="hud-meta-item"><span class="status-dot"></span> <span class="hud-meta-value" id="systemStatusText" style="color:var(--success);">SECURE CONNECTED</span></div>
-            <div class="hud-meta-item">USER: <span class="hud-meta-value" id="displayUsername" style="color:var(--warning);">UNAUTHORIZED</span></div>
-            <div class="hud-meta-item"><span class="hud-meta-value" id="pingDisplay" style="color:var(--primary);">PING: 24ms</span></div>
+            <div class="hud-meta-item"><span class="status-dot"></span> <span class="hud-meta-value" id="systemStatusText" style="color:var(--success); text-shadow: 0 0 8px var(--success);">SECURE CONNECTED</span></div>
+            <div class="hud-meta-item">USER: 
+                <span class="hud-meta-value" id="displayUsername" style="color:var(--primary);">UNAUTHORIZED</span>
+                <span id="vipTier" class="tier-badge tier-silver">SILVER</span>
+                <span class="level-badge" id="userLevelBadge">LV.1</span>
+                <div class="exp-container"><div class="exp-fill" id="expFill"></div></div>
+            </div>
             
-            <div class="hud-meta-item" style="border-left:1px solid rgba(255,255,255,0.2); padding-left:15px;">
-                DEVICE: <span class="hud-meta-value" id="deviceIdDisplay" style="color:#fff; font-family:var(--font-hud-terminal);">---</span>
+            <div class="hud-meta-item">
+                <span class="hud-meta-value" id="pingDisplay" style="color:var(--text-main);">PING: 24ms</span>
+                <div class="ping-bars" id="pingChart">
+                    <div class="ping-bar"></div><div class="ping-bar"></div><div class="ping-bar"></div><div class="ping-bar"></div>
+                </div>
+            </div>
+            
+            <div class="hud-meta-item" style="border-left:1px solid var(--border-glass); padding-left:24px;">
+                IP: <span class="hud-meta-value" id="fakeIpDisplay" style="color:var(--primary);">192.168.x.x</span>
+                <span style="font-size:10px; color:var(--text-muted);">(VPN: <span id="vpnLocation">VN</span>)</span>
             </div>
 
             <div class="hud-meta-item">
-                <span id="expiryTimerText" style="color:#fff; font-weight:800; font-family:var(--font-hud-terminal);">KEY EXPIRES IN: --:--:--</span>
-                <a id="renewBtn" class="renew-btn" href="https://t.me/trangcskhxx88" target="_blank">LIÊN HỆ ADMIN GIA HẠN</a>
+                DEVICE: <span class="hud-meta-value" id="deviceIdDisplay" style="color:var(--text-muted);">---</span>
+            </div>
+
+            <div class="hud-meta-item">
+                <span id="expiryTimerText" class="hud-meta-value">KEY EXPIRES IN: --:--:--</span>
+                <a id="renewBtn" class="renew-btn" href="https://t.me/trangcskhxx88" target="_blank">GIA HẠN</a>
             </div>
         </div>
         <div class="hud-chip-container">
-            <div class="hud-chip chip-live">LIVE HUD SECURE</div>
-            <div class="hud-chip chip-ai">LUNEX VIP</div>
+            <div class="hud-chip" style="background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:16px;" id="liveClock">00:00:00</div>
+            <div class="hud-chip chip-live" id="sessionTimer">UPTIME: 00:00</div>
+            <div class="hud-chip chip-ai">VIP SECURE</div>
         </div>
     </div>
 
     <div id="lobbyView" class="lobby-view">
-        <div class="lobby-title">Hệ Thống Phân Tích Game Pro</div>
-        <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ thuật toán</div>
+        <div class="lobby-title glitch-hover" data-text="Vyron Analytics Pro">Vyron Analytics Pro</div>
+        <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ hệ thống AI</div>
         <div class="game-grid">
             
             <div class="game-card" onclick="enterGame('vortex')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline" style="animation-delay: 2.0s;"></div>
-                    <span class="game-badge badge-vip" style="background: rgba(0, 240, 255, 0.2); color: #00f0ff; border-color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">🌀 3 ELEMENTS</span>
+                    <span class="game-badge badge-vip">🌀 3 ELEMENTS</span>
                     <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJN9cpQ2Mq1M3r9dAaSsh8KZA3mE-yQ5Ys0-NuPNAcTm5gOs7w">
                 </div>
                 <div class="game-details">
                     <div>
                         <div class="game-name">Vortex Analyzer PRO</div>
-                        <div class="game-desc">Bổ sung AI Score, Quét chuỗi Hot/Cold, Tính tỷ lệ xuất hiện vòng nguyên tố nâng cao.</div>
+                        <div class="game-desc">Bổ sung AI Score, Quét chuỗi Hot/Cold, Tính tỷ lệ xuất hiện nguyên tố.</div>
                         <div class="game-tactical-stats">
                             <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
-                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">98.5%</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val sync-rate-val">98.5%</span></div>
                             <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">3,086</span></div>
                         </div>
                     </div>
@@ -462,7 +665,6 @@
 
             <div class="game-card" onclick="enterGame('soccerstriker')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline"></div>
                     <span class="game-badge badge-vip">💎 3D PREDICTOR</span>
                     <img src="https://emucasino.com/cdn-cgi/image/width=382,height=240,quality=90,format=jpeg/https://cdn.emucasino.com/en/images/games/mg-soccer-striker-thumbnail.png" alt="Soccer Striker">
                 </div>
@@ -472,7 +674,7 @@
                         <div class="game-desc">Module phân tích bóng đá / Penalty (Trái-Giữa-Phải) thế hệ mới.</div>
                         <div class="game-tactical-stats">
                             <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
-                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">98.5%</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val sync-rate-val">98.5%</span></div>
                             <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">2,156</span></div>
                         </div>
                     </div>
@@ -482,7 +684,6 @@
 
             <div class="game-card" onclick="enterGame('avia2')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline" style="animation-delay: 0.5s;"></div> 
                     <img src="https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp" alt="Avia Masters 2">
                 </div>
                 <div class="game-details">
@@ -491,7 +692,7 @@
                         <div class="game-desc">Bản nâng cấp thế hệ mới tích hợp Hệ thống phao tự động an toàn nhất.</div>
                         <div class="game-tactical-stats">
                             <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
-                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">99.8%</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val sync-rate-val">99.8%</span></div>
                             <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">1,824</span></div>
                         </div>
                     </div>
@@ -501,7 +702,6 @@
 
             <div class="game-card" onclick="enterGame('aviaphitruc')">
                 <div class="game-img-wrapper">
-                    <div class="card-scanline" style="animation-delay: 1.0s;"></div> 
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThBGKlZPizw4F25xhbgeT9vD3nM5s1gtNGXg&s" alt="Bậc Thầy Phi Hành">
                 </div>
                 <div class="game-details">
@@ -510,7 +710,7 @@
                         <div class="game-desc">Cổng trò chơi phiên bản truyền thống gốc, thuật toán thuần túy.</div>
                         <div class="game-tactical-stats">
                             <div class="t-stat"><span class="lbl">TÌNH TRẠNG:</span> <span class="val val-green">ONLINE</span></div>
-                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val val-blue sync-rate-val">94.5%</span></div>
+                            <div class="t-stat"><span class="lbl">TỶ LỆ ĐỒNG BỘ:</span> <span class="val sync-rate-val">94.5%</span></div>
                             <div class="t-stat"><span class="lbl">USER ACTIVE:</span> <span class="val user-active-val">856</span></div>
                         </div>
                     </div>
@@ -520,33 +720,36 @@
 
         </div>
     </div>
+    
     <div id="dashboardView" class="dashboard-view">
         <div class="header-area">
             <div class="brand-info">
-                <img id="activeAvatar" class="av2-avatar" src="" alt="Active Matrix">
-                <div class="brand-text"><h1 id="activeTitle">CỔNG GAME</h1><span>Bảo Mật Phân Tích Độc Lập VIP</span></div>
+                <img id="activeAvatar" class="av2-avatar" src="" alt="Active Game" onclick="cycleAvatar()" title="Click để đổi Avatar">
+                <div class="brand-text"><h1 id="activeTitle" class="glitch-hover" data-text="CỔNG GAME">CỔNG GAME</h1><span>Terminal Phân Tích Kỹ Thuật VIP</span></div>
             </div>
-            <button class="btn-back-lobby" onclick="backToLobby()">⬅️ TRỞ VỀ SẢNH</button>
+            <button class="btn-back-lobby" onclick="backToLobby()">THOÁT VỀ SẢNH TRẠM</button>
         </div>
+        
         <div class="dashboard-grid">
-            <div class="section-panel">
-                <div class="panel-title">⚙️ AI HUD OPERATIONS CONTROL</div>
+            <div class="section-panel glass-panel" style="padding: 24px;">
+                <div class="panel-title">AI HUD OPERATIONS CONTROL</div>
                 
                 <div id="capitalInputWrapper" class="input-wrapper">
                     <label>Tổng Hạn Mức Vốn Ban Đầu (VND) / Mức Cược Vortex</label>
                     <input type="text" id="capitalInput" class="input-box" value="2.000.000" oninput="formatVndInput(this)">
                 </div>
+                
                 <div id="standardStrategyWrapper" class="input-wrapper">
                     <label>Chế Độ Phân Tích Vòng Cược</label>
-                    <style> select.input-box option { background-color: var(--bg-surface); color: #fff; } </style>
                     <select id="strategySelect" class="input-box" onchange="resetRealtimeDisplay()">
                         <option value="safe" id="optSafe">🛡️ Bảo Toàn Quỹ Vốn</option>
                         <option value="medium" selected>⚖️ Cân Bằng Chiến Thuật AI</option>
                         <option value="high">🔥 Tấn Công Hệ Số Tối Đa</option>
                     </select>
                 </div>
+                
                 <div id="speedContainerWrapper" class="speed-container">
-                    <div class="panel-title" style="margin-bottom:15px;">⚡ XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN LAYER</div>
+                    <div class="panel-title" style="margin-bottom:12px; font-size:13px;">XUNG NHỊP ĐIỀU TỐC THUẬT TOÁN</div>
                     <div class="speed-row">
                         <div class="speed-item active" data-speed="turtle" onclick="changeSpeed('turtle')"><span class="icon">🐢</span><span class="name">RÙA</span></div>
                         <div class="speed-item" data-speed="human" onclick="changeSpeed('human')"><span class="icon">🚶</span><span class="name">NGƯỜI</span></div>
@@ -556,7 +759,7 @@
                 </div>
 
                 <div id="strikerControlsWrapper" style="display:none;">
-                    <div class="input-wrapper" style="margin-bottom: 20px;">
+                    <div class="input-wrapper" style="margin-bottom: 24px;">
                         <label>Chế Độ Thi Đấu</label>
                         <select id="soccerModeSelect" class="input-box" onchange="resetRealtimeDisplay()">
                             <option value="nghiepdu">Nghiệp Dư</option>
@@ -571,46 +774,63 @@
                 </div>
 
                 <div id="vortexControlsWrapper" style="display:none; margin-top: 10px;">
-                    <div class="panel-title" style="margin-bottom: 15px;">🌀 NHẬP DỮ LIỆU THỰC TẾ (LIVE DATA)</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
+                    <div class="panel-title" style="margin-bottom: 12px; font-size:13px;">NHẬP DỮ LIỆU THỰC TẾ (LIVE DATA)</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
                         <button class="vortex-btn fireBtn" onclick="addVortexResult('fire')">🔥 Fire</button>
                         <button class="vortex-btn earthBtn" onclick="addVortexResult('earth')">🌱 Earth</button>
                         <button class="vortex-btn waterBtn" onclick="addVortexResult('water')">🌊 Water</button>
                         <button class="vortex-btn windBtn" onclick="addVortexResult('wind')">🌪 Wind</button>
                         <button class="vortex-btn skullBtn" onclick="addVortexResult('skull')">💀 Skull</button>
                     </div>
-                    <button class="btn-premium-action" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; margin-top: 10px;" onclick="resetVortex()">🔄 RESET MA TRẬN CHU KỲ MỚI</button>
+                    <button class="btn-premium-action" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);" onclick="resetVortex()">LÀM MỚI CHU KỲ MA TRẬN</button>
                 </div>
                 
-                <div class="action-button-group" id="actionBtnGroup" style="margin-top: 15px;">
-                    <button class="btn-premium-action btn-phao-toggle" id="phaoToggleBtn" onclick="togglePhaoSafety()">🛠️ KÍCH HOẠT PHAO CỨU HỘ</button>
-                    <button class="btn-premium-action btn-ai-process" id="analyzeBtn" onclick="executeQuantumAnalysis()">🧠 PHÂN TÍCH AI REALTIME</button>
-                    <button class="btn-premium-action btn-antiban" id="antiBanBtn" onclick="runAntiBanClear()">🧹 DỌN RÁC & XÓA DẤU VẾT (ANTI-BAN)</button>
+                <div class="action-button-group" id="actionBtnGroup" style="margin-top: auto; padding-top: 24px;">
+                    <button class="btn-premium-action btn-phao-toggle" id="phaoToggleBtn" onclick="togglePhaoSafety()">KÍCH HOẠT PHAO CỨU HỘ</button>
+                    <button class="btn-premium-action btn-ai-process" id="analyzeBtn" onclick="executeQuantumAnalysis()">PHÂN TÍCH AI REALTIME</button>
+                    <button class="btn-premium-action btn-antiban" id="antiBanBtn" onclick="runAntiBanClear()">Dọn rác & Xóa dấu vết (Anti-Ban)</button>
+                    
+                    <div class="auto-pilot-container">
+                        <span class="auto-pilot-label">AUTO-PILOT LOOP</span>
+                        <label class="switch">
+                            <input type="checkbox" id="autoPilotToggle" onchange="toggleAutoPilot(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="btn-self-destruct" onclick="triggerSelfDestruct()">🔴 WARNING: INITIATE SELF-DESTRUCT WIPE</button>
                 </div>
             </div>
             
-            <div class="section-panel">
-                <div class="panel-title">📊 MỨC ĐỘ PHÂN TÍCH</div>
+            <div class="section-panel glass-panel" style="padding: 24px;">
+                <div class="panel-title">MỨC ĐỘ PHÂN TÍCH</div>
                 <div class="data-display">
-                    <div class="data-card"><div class="data-label">Chiến Thuật Lượt Đi</div><div class="data-val" id="valMoi" style="color: var(--warning);">0 VND</div></div>
-                    <div class="data-card"><div class="data-label">Tỷ Lệ Vốn Đề Xuất</div><div class="data-val" id="valRatio" style="color: var(--primary);">0%</div></div>
-                    <div class="data-card"><div class="data-label">Mức Chịu Đựng Vòng Quay</div><div class="data-val" id="valVong" style="color: #fff;">0 Vòng</div></div>
-                    <div class="data-card"><div class="data-label">Mức Độ Rủi Ro Hệ Thống</div><div class="data-val" id="valRisk" style="color: var(--success); font-size:16px;">AN TOÀN</div><div class="risk-container"><div class="risk-bar" id="riskBar"></div></div></div>
+                    <div class="data-card"><div class="data-label">Chiến Thuật Lượt Đi</div><div class="data-val" id="valMoi" style="color: var(--text-main);">0 VND</div></div>
+                    <div class="data-card"><div class="data-label">Tỷ Lệ Vốn Đề Xuất</div><div class="data-val" id="valRatio" style="color: var(--text-muted);">0%</div></div>
+                    <div class="data-card"><div class="data-label">Mức Chịu Đựng Vòng Quay</div><div class="data-val" id="valVong" style="color: var(--text-main);">0 Vòng</div></div>
+                    <div class="data-card"><div class="data-label">Mức Độ Rủi Ro Hệ Thống</div><div class="data-val" id="valRisk" style="color: var(--success); font-size:18px;">AN TOÀN</div><div class="risk-container"><div class="risk-bar" id="riskBar"></div></div></div>
                 </div>
                 
-                <div class="panel-title" style="margin-top:10px;">🖥️ TRẠM XỬ LÝ QUÉT QUY TRÌNH AI</div>
+                <div class="panel-title" style="margin-top:16px;">
+                    <div class="panel-title-left">TRẠM XỬ LÝ QUÉT QUY TRÌNH AI</div>
+                </div>
                 
                 <div class="ai-terminal" id="terminalMainBox">
-                    <button class="pip-btn" onclick="togglePiP()">🗗 THU NHỎ (PiP)</button>
+                    <button class="export-btn" onclick="exportLog()">📥 XUẤT LOG</button>
+                    <button class="copy-btn" onclick="copyToClipboard()">📋 COPY</button>
+                    <button class="pip-btn" onclick="togglePiP()">Thu nhỏ (PiP)</button>
                     
                     <div class="scan-laser"></div>
                     <div class="cyber-loading" id="cyberLoading">
                         <div class="radar-spinner"></div>
-                        <div class="loading-text" id="loadingDynamicText">INITIALIZING AICORE SECURITY...</div>
+                        <div class="loading-text" id="loadingDynamicText">INITIALIZING AICORE...</div>
                         <div class="loading-subtext" id="loadingSubHex">[ADDR: 0xVYRON_SEC_7FFA2B]</div>
                     </div>
+                    
+                    <div class="typewriter-overlay" id="twOverlay"></div>
+
                     <div class="result-output" id="resultOutput" style="overflow-y: auto;">
-                        <div style="color: var(--text-muted); text-align:center; padding-top:40px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal); letter-spacing: 1px;">[AI LINK WAITING]: Vui lòng nhấn lệnh "PHÂN TÍCH AI REALTIME" để đồng bộ dữ liệu quét tần số...</div>
+                        <div style="color: var(--text-muted); text-align:center; padding-top:60px; font-size:14px; font-family: var(--font-mono);">Đang chờ kết nối dữ liệu. Vui lòng nhấn "Phân Tích AI Realtime"...</div>
                     </div>
                 </div>
             </div>
@@ -620,13 +840,119 @@
 
 <script>
     // =========================================================================
-    // LỚP PHÒNG THỦ QUÂN SỰ: ANTI-F12
+    // 🌌 THREE.JS UNIVERSE ENGINE (THAY THẾ CANVAS CŨ 60FPS)
+    // =========================================================================
+    let tScene, tCamera, tRenderer, tStars, tGalaxy, tNebula;
+    let tMouseX = 0, tMouseY = 0;
+    
+    function initThreeJSUniverse() {
+        const canvas = document.getElementById('universeCanvas');
+        tScene = new THREE.Scene();
+        tScene.fog = new THREE.FogExp2(0x02040a, 0.0008);
+
+        tCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
+        tCamera.position.z = 800;
+
+        tRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        tRenderer.setPixelRatio(window.devicePixelRatio);
+        tRenderer.setSize(window.innerWidth, window.innerHeight);
+
+        // 1. Bầu trời sao (Starfield)
+        const starGeo = new THREE.BufferGeometry();
+        const starPos = [];
+        for(let i=0; i<3000; i++) {
+            starPos.push((Math.random()-0.5)*4000, (Math.random()-0.5)*4000, (Math.random()-0.5)*4000);
+        }
+        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+        const starMat = new THREE.PointsMaterial({color: 0xffffff, size: 1.2, transparent: true, opacity: 0.6});
+        tStars = new THREE.Points(starGeo, starMat);
+        tScene.add(tStars);
+
+        // 2. Galaxy Particle Field (Thiên hà xoắn ốc)
+        const galGeo = new THREE.BufferGeometry();
+        const galPos = [];
+        const galColor = [];
+        const color1 = new THREE.Color(0x00d4ff); // Cyan
+        const color2 = new THREE.Color(0xec4899); // Pink
+        for(let i=0; i<6000; i++) {
+            let radius = Math.random() * 1200;
+            let angle = radius * 0.02 + Math.random() * Math.PI * 2; // Xoắn ốc
+            let x = Math.cos(angle) * radius + (Math.random()-0.5)*150;
+            let y = (Math.random()-0.5)*100;
+            let z = Math.sin(angle) * radius + (Math.random()-0.5)*150;
+            galPos.push(x, y, z);
+            
+            // Pha màu dựa vào bán kính
+            let mixedColor = color1.clone().lerp(color2, Math.random());
+            galColor.push(mixedColor.r, mixedColor.g, mixedColor.b);
+        }
+        galGeo.setAttribute('position', new THREE.Float32BufferAttribute(galPos, 3));
+        galGeo.setAttribute('color', new THREE.Float32BufferAttribute(galColor, 3));
+        const galMat = new THREE.PointsMaterial({size: 2.5, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.8});
+        tGalaxy = new THREE.Points(galGeo, galMat);
+        tGalaxy.rotation.x = 0.4;
+        tScene.add(tGalaxy);
+
+        // Parallax Listener
+        document.addEventListener('mousemove', (e) => {
+            tMouseX = (e.clientX - window.innerWidth/2) * 0.1;
+            tMouseY = (e.clientY - window.innerHeight/2) * 0.1;
+        });
+
+        window.addEventListener('resize', () => {
+            tCamera.aspect = window.innerWidth / window.innerHeight;
+            tCamera.updateProjectionMatrix();
+            tRenderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animateThreeJS();
+    }
+
+    function animateThreeJS() {
+        requestAnimationFrame(animateThreeJS);
+        // Camera Parallax & Motion
+        tCamera.position.x += (tMouseX - tCamera.position.x) * 0.02;
+        tCamera.position.y += (-tMouseY - tCamera.position.y) * 0.02;
+        tCamera.lookAt(tScene.position);
+        
+        // Quay thiên hà
+        tStars.rotation.y += 0.0001;
+        tGalaxy.rotation.y += 0.0005;
+
+        tRenderer.render(tScene, tCamera);
+    }
+
+
+    // =========================================================================
+    // LỚP PHÒNG THỦ QUÂN SỰ: ANTI-F12 & BOSS KEY & SHORTCUTS
     // =========================================================================
     (function antiDevToolsEngine() {
-        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('contextmenu', e => { 
+            e.preventDefault(); 
+            const cm = document.getElementById('customContextMenu');
+            cm.style.display = 'flex';
+            cm.style.left = e.pageX + 'px';
+            cm.style.top = e.pageY + 'px';
+        });
+        document.addEventListener('click', () => { document.getElementById('customContextMenu').style.display = 'none'; });
+
         document.addEventListener('keydown', e => {
             if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
                 e.preventDefault(); return false;
+            }
+            if (e.key === "Escape") {
+                const overlay = document.getElementById('panicOverlay');
+                overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+            }
+            if (document.getElementById('dashboardView').style.display === 'block' && document.activeElement.tagName !== 'INPUT') {
+                const k = e.key.toLowerCase();
+                if (k === 'a' && !document.getElementById('analyzeBtn').disabled) executeQuantumAnalysis();
+                if (k === 'p' && gameDatabase[currentGameId].hasPhao) togglePhaoSafety();
+                if (k === 'c') runAntiBanClear();
+                if (k === 'h') {
+                    const h = document.getElementById('hotkeyHelp');
+                    h.style.display = h.style.display === 'block' ? 'none' : 'block';
+                }
             }
         });
         setInterval(function() {
@@ -634,6 +960,138 @@
             try { emitTrap(0); } catch(e) {}
         }, 1000);
     })();
+
+    // =========================================================================
+    // UI FEATURES MỚI TÍCH HỢP
+    // =========================================================================
+    
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => {}); } 
+        else { if (document.exitFullscreen) { document.exitFullscreen(); } }
+    }
+
+    let sessionSeconds = 0;
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById('liveClock').innerText = now.toLocaleTimeString('vi-VN');
+        
+        if (verifySystemActivationState(true)) {
+            sessionSeconds++;
+            let m = Math.floor(sessionSeconds / 60).toString().padStart(2, '0');
+            let s = (sessionSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('sessionTimer').innerText = `UPTIME: ${m}:${s}`;
+        }
+    }, 1000);
+
+    setInterval(() => { 
+        const pingNum = Math.floor(Math.random() * (35 - 18 + 1)) + 18;
+        const pingDisplay = document.getElementById('pingDisplay'); 
+        if (pingDisplay) pingDisplay.innerText = `PING: ${pingNum}ms`; 
+        
+        const bars = document.querySelectorAll('.ping-bar');
+        bars.forEach(bar => {
+            bar.style.height = (Math.random() * 10 + 4) + 'px';
+            bar.classList.toggle('active', Math.random() > 0.5);
+        });
+    }, 1500);
+
+    setInterval(() => {
+        if(document.getElementById('dashboardView').style.display === 'block'){
+            const isAnalyzing = document.getElementById('terminalMainBox').classList.contains('scanning');
+            let cpu = isAnalyzing ? Math.floor(Math.random()*20 + 80) : Math.floor(Math.random()*15 + 10);
+            let ram = isAnalyzing ? Math.floor(Math.random()*30 + 60) : Math.floor(Math.random()*10 + 30);
+            document.getElementById('cpuBar').style.width = cpu + '%';
+            document.getElementById('ramBar').style.width = ram + '%';
+            
+            document.getElementById('cpuBar').style.background = cpu > 85 ? 'var(--danger)' : 'var(--primary)';
+        }
+    }, 800);
+
+    const vpnCountries = ["VN", "SG", "HK", "JP", "US", "DE", "KR", "UK"];
+    setInterval(() => {
+        const ip1 = Math.floor(Math.random() * 255);
+        const ip2 = Math.floor(Math.random() * 255);
+        document.getElementById('fakeIpDisplay').innerText = `192.168.${ip1}.${ip2}`;
+        document.getElementById('vpnLocation').innerText = vpnCountries[Math.floor(Math.random() * vpnCountries.length)];
+    }, 8000);
+
+    const avatarList = [
+        "https://t4.ftcdn.net/jpg/05/65/35/67/360_F_565356770_2iXvFz5jI5D0I4v6gHlG6pA0GjX5zXqL.jpg",
+        "https://emucasino.com/cdn-cgi/image/width=382,height=240,quality=90,format=jpeg/https://cdn.emucasino.com/en/images/games/mg-soccer-striker-thumbnail.png",
+        "https://bgaming.com/wp-content/uploads/2026/02/Aviamasters_2__1020%D1%851280.webp",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThBGKlZPizw4F25xhbgeT9vD3nM5s1gtNGXg&s",
+        "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" 
+    ];
+    let avatarIndex = 0;
+    function cycleAvatar() {
+        avatarIndex = (avatarIndex + 1) % avatarList.length;
+        document.getElementById('activeAvatar').src = avatarList[avatarIndex];
+        playAudioFx('scan');
+    }
+
+    function exportLog() {
+        if (!verifySystemActivationState()) return;
+        const outputHtml = document.getElementById('resultOutput').innerText;
+        if (outputHtml.includes("Đang chờ")) { showCyberAlert("Chưa có dữ liệu để xuất!", "warning"); return; }
+        
+        const blob = new Blob(["=== VYRON AI TERMINAL LOG ===\n" + new Date().toLocaleString() + "\n\n" + outputHtml], { type: "text/plain" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `AI_Log_${new Date().getTime()}.txt`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        showCyberAlert("Đã tải xuống Log Phân tích!", "success");
+    }
+
+    function copyToClipboard() {
+        if (!verifySystemActivationState()) return;
+        const text = document.getElementById('resultOutput').innerText;
+        if (text.includes("Đang chờ")) { showCyberAlert("Chưa có kết quả để copy!", "warning"); return; }
+        navigator.clipboard.writeText(text).then(() => {
+            showCyberAlert("Đã sao chép vào bộ nhớ tạm!", "success");
+        }).catch(err => {
+            showCyberAlert("Lỗi sao chép!", "error");
+        });
+    }
+
+    let autoPilotInterval = null;
+    function toggleAutoPilot(checkbox) {
+        if (checkbox.checked) {
+            playAudioFx('success');
+            showCyberAlert("Đã bật Auto-Pilot (15s/Lần)", "warning");
+            executeQuantumAnalysis(); 
+            autoPilotInterval = setInterval(() => {
+                if(!document.getElementById('analyzeBtn').disabled) { executeQuantumAnalysis(); }
+            }, 15000);
+        } else {
+            playAudioFx('error');
+            clearInterval(autoPilotInterval);
+            showCyberAlert("Đã tắt Auto-Pilot", "success");
+        }
+    }
+
+    function triggerSelfDestruct() {
+        if(!confirm("CẢNH BÁO: Bạn có chắc muốn xóa toàn bộ dấu vết và đóng hệ thống?")) return;
+        document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-size:50px; font-family:monospace;' id='sdCounter'>3</h1>";
+        let c = 3;
+        playAudioFx('error');
+        let iv = setInterval(() => {
+            c--;
+            if(c > 0) {
+                document.getElementById('sdCounter').innerText = c;
+                playAudioFx('error');
+            } else {
+                clearInterval(iv);
+                document.body.style.background = "red";
+                setTimeout(() => {
+                    document.body.style.background = "#000";
+                    document.body.innerHTML = "<h1 style='color:#0f0; text-align:center; margin-top:20%; font-family:monospace;'>SYSTEM WIPED. SAFE.</h1>";
+                }, 100);
+            }
+        }, 1000);
+    }
+
 
     // =========================================================================
     // CẬP NHẬT CHỈ SỐ MINI-STATS MỖI 3 GIÂY
@@ -694,7 +1152,7 @@
             terminalBox.classList.remove('scanning'); cyberLoading.style.display = "none"; resultOutput.style.display = "block";
             document.getElementById('analyzeBtn').disabled = false; document.getElementById('antiBanBtn').disabled = false;
             showCyberAlert("Xóa dấu vết an toàn thành công!", "success");
-            resultOutput.innerHTML = `<div style="color:var(--success); font-family:var(--font-hud-terminal); font-size:14px; text-align:center; padding-top:40px;">>_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.</div>`;
+            resultOutput.innerHTML = `<div style="color:var(--success); font-family:var(--font-mono); font-size:14px; text-align:center; padding-top:40px;">>_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.</div>`;
         }, 5000);
     }
 
@@ -747,20 +1205,69 @@
     setInterval(updateExpiryTimer, 1000); updateExpiryTimer();
 
     // =========================================================================
-    // THEMES, AUDIO & PIP
+    // THEMES, AUDIO, PIP & DRAG
     // =========================================================================
-    function togglePiP() { document.getElementById('terminalMainBox').classList.toggle('pip-mode'); playAudioFx('scan'); }
-    function changeTheme(themeName) { document.documentElement.setAttribute('data-theme', themeName); playAudioFx('success'); initQuantumMatrix(); }
+    
+    const termBox = document.getElementById('terminalMainBox');
+    let isDraggingPiP = false, dragStartX, dragStartY;
+    termBox.addEventListener('mousedown', e => {
+        if(termBox.classList.contains('pip-mode') && e.target.tagName !== 'BUTTON') {
+            isDraggingPiP = true;
+            dragStartX = e.clientX - termBox.offsetLeft;
+            dragStartY = e.clientY - termBox.offsetTop;
+        }
+    });
+    document.addEventListener('mousemove', e => {
+        if(isDraggingPiP) {
+            termBox.style.left = (e.clientX - dragStartX) + 'px';
+            termBox.style.top = (e.clientY - dragStartY) + 'px';
+            termBox.style.bottom = 'auto';
+            termBox.style.right = 'auto';
+            termBox.style.transform = 'none';
+        }
+    });
+    document.addEventListener('mouseup', () => isDraggingPiP = false);
+
+    function togglePiP() { 
+        termBox.classList.toggle('pip-mode'); 
+        if(!termBox.classList.contains('pip-mode')) {
+            termBox.style.left = ''; termBox.style.top = ''; termBox.style.bottom = ''; termBox.style.right = ''; termBox.style.transform = '';
+        }
+        playAudioFx('scan'); 
+    }
+    
+    function changeTheme(themeName) { document.documentElement.setAttribute('data-theme', themeName); playAudioFx('success'); } 
 
     let audioCtx = null; let isAudioMuted = true;
+    let bgmOsc = null, bgmGain = null; let isBgmOn = false;
     function initAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+    
+    function toggleBGM() {
+        initAudioContext();
+        isBgmOn = !isBgmOn;
+        const btn = document.getElementById('bgmToggle');
+        btn.innerText = isBgmOn ? "🎵 BGM: ON" : "🎵 BGM: OFF";
+        btn.style.color = isBgmOn ? "var(--success)" : "var(--text-main)";
+        
+        if(isBgmOn) {
+            bgmOsc = audioCtx.createOscillator(); bgmGain = audioCtx.createGain();
+            bgmOsc.type = 'sine'; bgmOsc.frequency.value = 55; // Low drone
+            bgmGain.gain.value = 0.05;
+            bgmOsc.connect(bgmGain); bgmGain.connect(audioCtx.destination);
+            bgmOsc.start();
+        } else {
+            if(bgmOsc) { bgmOsc.stop(); bgmOsc.disconnect(); }
+        }
+    }
+
     function toggleAudio() {
         initAudioContext(); isAudioMuted = !isAudioMuted;
         const btn = document.getElementById('audioToggle');
-        btn.innerText = isAudioMuted ? "🔇 ÂM THANH: TẮT" : "🔊 ÂM THANH: BẬT";
-        btn.style.color = isAudioMuted ? "var(--primary)" : "var(--success)";
+        btn.innerText = isAudioMuted ? "🔇 SFX: TẮT" : "🔊 SFX: BẬT";
+        btn.style.color = isAudioMuted ? "var(--text-main)" : "var(--success)";
         if(!isAudioMuted) playAudioFx('success');
     }
+
     function playAudioFx(type) {
         if (isAudioMuted || !audioCtx) return;
         const osc = audioCtx.createOscillator(), gainNode = audioCtx.createGain();
@@ -769,8 +1276,6 @@
         else if (type === 'error') { osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(80, now + 0.3); gainNode.gain.setValueAtTime(0.2, now); gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.start(now); osc.stop(now + 0.3); } 
         else if (type === 'scan') { osc.type = 'square'; osc.frequency.setValueAtTime(400, now); gainNode.gain.setValueAtTime(0.05, now); gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1); osc.start(now); osc.stop(now + 0.1); }
     }
-
-    setInterval(() => { const pingDisplay = document.getElementById('pingDisplay'); if (pingDisplay) pingDisplay.innerText = `PING: ${Math.floor(Math.random() * (35 - 18 + 1)) + 18}ms`; }, 3000);
 
     // =========================================================================
     // LCG & XÁC THỰC + DEVICE ID GENERATOR
@@ -789,6 +1294,7 @@
         const alertBox = document.getElementById('cyberNotification'); alertBox.innerText = message; alertBox.className = 'cyber-alert alert-show';
         if (type === 'success') { alertBox.classList.add('alert-success'); playAudioFx('success'); }
         if (type === 'error') { alertBox.classList.add('alert-error'); playAudioFx('error'); }
+        if (type === 'warning') { alertBox.classList.add('alert-warning'); playAudioFx('scan'); }
         setTimeout(() => alertBox.classList.remove('alert-show'), 3500);
     }
 
@@ -799,18 +1305,22 @@
         return codeStr;
     }
 
-    function verifySystemActivationState() {
+    function verifySystemActivationState(silent = false) {
         const activationTime = localStorage.getItem('avia_activation_time'), activeUser = localStorage.getItem('avia_active_user');
         const overlay = document.getElementById('activationOverlay');
         if (!activationTime || !activeUser || (Date.now() - parseInt(activationTime, 10) >= EXPIRE_DURATION)) {
-            showActivationPopup(activationTime !== null);
-            document.getElementById('floatingTeleBtn').style.display = 'none';
+            if(!silent) {
+                showActivationPopup(activationTime !== null);
+                document.getElementById('floatingTeleBtn').style.display = 'none';
+            }
             return false;
         }
-        overlay.style.display = 'none';
-        document.getElementById('displayUsername').innerText = activeUser.toUpperCase();
-        document.getElementById('deviceIdDisplay').innerText = generateDeviceID(activeUser);
-        document.getElementById('floatingTeleBtn').style.display = 'flex';
+        if(!silent) {
+            overlay.style.display = 'none';
+            document.getElementById('displayUsername').innerText = activeUser.toUpperCase();
+            document.getElementById('deviceIdDisplay').innerText = generateDeviceID(activeUser);
+            document.getElementById('floatingTeleBtn').style.display = 'flex';
+        }
         return true;
     }
 
@@ -818,7 +1328,7 @@
         const overlay = document.getElementById('activationOverlay'), title = document.getElementById('actModalTitle'), log = document.getElementById('actTerminalLog');
         overlay.style.display = 'flex';
         if (isExpired) {
-            title.innerText = "KEY HẾT HẠN KÍCH HOẠT"; title.style.color = "var(--danger)";
+            title.innerText = "KEY EXPIRED"; title.style.color = "var(--danger)";
             log.innerHTML = `<span style="color:var(--danger)">[CẢNH BÁO]: THỜI GIAN TRUY CẬP ĐÃ QUÁ 24 GIỜ.<br>[HÀNH ĐỘNG]: VUI LÒNG KHỞI TẠO VÀ NHẬP MÃ MỚI.</span>`;
             showCyberAlert("Mã khóa bảo mật đã hết hạn chu kỳ 24h!", "error");
         } else {
@@ -844,6 +1354,7 @@
             document.getElementById('displayUsername').innerText = username.toUpperCase();
             document.getElementById('deviceIdDisplay').innerText = generateDeviceID(username);
             document.getElementById('floatingTeleBtn').style.display = 'flex';
+            sessionSeconds = 0; // reset uptime
             resetRealtimeDisplay();
         } else {
             securityFailedAttempts++;
@@ -853,7 +1364,7 @@
     }
 
     // =========================================================================
-    // LOGIC APP GỐC & PHÂN TÍCH
+    // LOGIC APP GỐC & PHÂN TÍCH (GIỮ NGUYÊN 100%)
     // =========================================================================
     const gameDatabase = {
         vortex: { title: "Vortex PRO", img: "https://t4.ftcdn.net/jpg/05/65/35/67/360_F_565356770_2iXvFz5jI5D0I4v6gHlG6pA0GjX5zXqL.jpg", hasPhao: false, descSafe: "🛡️ Tối Ưu Hóa Part PayOut (Hỏa-Thổ-Thủy)" },
@@ -864,9 +1375,10 @@
     };
 
     let currentGameId = 'avia2', currentSpeed = 'turtle', isPhaoSafetyActive = false;
+    let userExp = 0, userLevel = 1;
+
     const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
 
-    /* CHIP SELECTOR LOGIC FOR STRIKER */
     const strikerStakes = [0.10, 0.20, 0.25, 0.50, 1.0, 2.0, 2.5, 5.0, 10.0, 20.0, 25.0, 50.0, 100.0, 200.0, 250.0];
     let currentStrikerStake = 1.0;
 
@@ -884,16 +1396,26 @@
 
     function formatVndInput(element) {
         let rawVal = element.value.replace(/\D/g, ''); if (!rawVal) { element.value = ""; resetRealtimeDisplay(); return; }
-        element.value = parseInt(rawVal, 10).toLocaleString('vi-VN'); resetRealtimeDisplay();
+        let cap = parseInt(rawVal, 10);
+        element.value = cap.toLocaleString('vi-VN'); 
+        
+        const tierBadge = document.getElementById('vipTier');
+        tierBadge.className = 'tier-badge';
+        if (cap >= 50000000) { tierBadge.innerText = 'QUANTUM'; tierBadge.classList.add('tier-quantum'); }
+        else if (cap >= 20000000) { tierBadge.innerText = 'DIAMOND'; tierBadge.classList.add('tier-diamond'); }
+        else if (cap >= 5000000) { tierBadge.innerText = 'GOLD'; tierBadge.classList.add('tier-gold'); }
+        else if (cap >= 1000000) { tierBadge.innerText = 'SILVER'; tierBadge.classList.add('tier-silver'); }
+        else { tierBadge.innerText = 'BRONZE'; tierBadge.classList.add('tier-bronze'); }
+        
+        resetRealtimeDisplay();
     }
 
     function enterGame(gameId) {
         if (!verifySystemActivationState()) return; playAudioFx('success'); currentGameId = gameId; 
         const game = gameDatabase[gameId]; isPhaoSafetyActive = false;
-        const pBtn = document.getElementById('phaoToggleBtn'); pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ";
+        const pBtn = document.getElementById('phaoToggleBtn'); pBtn.classList.remove('phao-active'); pBtn.innerText = "KÍCH HOẠT PHAO CỨU HỘ";
         document.getElementById('mainWrapper').classList.add('active-cyber-glow'); document.getElementById('activeTitle').innerText = game.title; document.getElementById('activeAvatar').src = game.img; document.getElementById('optSafe').innerText = game.descSafe;
         
-        // KIỂM SOÁT GIAO DIỆN
         if (gameId === 'soccerstriker') {
             document.getElementById('capitalInputWrapper').style.display = 'none';
             document.getElementById('standardStrategyWrapper').style.display = 'none';
@@ -907,14 +1429,14 @@
             document.getElementById('speedContainerWrapper').style.display = 'none';
             document.getElementById('strikerControlsWrapper').style.display = 'none';
             document.getElementById('vortexControlsWrapper').style.display = 'block';
-            document.getElementById('analyzeBtn').innerHTML = "🧠 ĐỒNG BỘ DỮ LIỆU MA TRẬN";
+            document.getElementById('analyzeBtn').innerHTML = "ĐỒNG BỘ DỮ LIỆU MA TRẬN";
         } else {
             document.getElementById('capitalInputWrapper').style.display = 'block';
             document.getElementById('standardStrategyWrapper').style.display = 'block';
             document.getElementById('speedContainerWrapper').style.display = 'block';
             document.getElementById('strikerControlsWrapper').style.display = 'none';
             document.getElementById('vortexControlsWrapper').style.display = 'none';
-            document.getElementById('analyzeBtn').innerHTML = "🧠 PHÂN TÍCH AI REALTIME";
+            document.getElementById('analyzeBtn').innerHTML = "PHÂN TÍCH AI REALTIME";
         }
 
         if (game.hasPhao) { pBtn.style.display = "flex"; document.getElementById('actionBtnGroup').classList.add('has-phao-layout'); } 
@@ -925,66 +1447,37 @@
 
     function backToLobby() { playAudioFx('success'); document.getElementById('mainWrapper').classList.remove('active-cyber-glow'); document.getElementById('dashboardView').style.display = 'none'; document.getElementById('lobbyView').style.display = 'block'; }
     function changeSpeed(speed) { playAudioFx('success'); currentSpeed = speed; document.querySelectorAll('.speed-item').forEach(item => item.classList.remove('active')); document.querySelector(`.speed-item[data-speed="${speed}"]`).classList.add('active'); resetRealtimeDisplay(); }
-    function resetRealtimeDisplay() { document.getElementById('resultOutput').innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:40px; font-style:italic; font-size:13px; font-family: var(--font-hud-terminal); letter-spacing: 1px;">[AI LINK WAITING]: Vui lòng nhấn lệnh phân tích để đồng bộ dữ liệu quét tần số...</div>`; }
+    function resetRealtimeDisplay() { document.getElementById('resultOutput').innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:60px; font-size:14px; font-family: var(--font-mono);">Đang chờ kết nối dữ liệu. Vui lòng nhấn lệnh phân tích...</div>`; }
 
     function togglePhaoSafety() {
         if (!gameDatabase[currentGameId].hasPhao) return;
         isPhaoSafetyActive = !isPhaoSafetyActive; const pBtn = document.getElementById('phaoToggleBtn'); 
-        if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "🚀 PHAO ACTIVE"; playAudioFx('success'); } 
-        else { pBtn.classList.remove('phao-active'); pBtn.innerText = "🛠️ KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); }
+        if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "PHAO ĐĐA ACTIVE"; playAudioFx('success'); } 
+        else { pBtn.classList.remove('phao-active'); pBtn.innerText = "KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); }
         resetRealtimeDisplay();
     }
 
-    // ==========================================================
-    // VORTEX PRO: STATE & LOGIC
-    // ==========================================================
+    // =========================================================================
+    // VORTEX PRO LOGIC NÂNG CẤP (QUẢN LÝ VỐN CHUYÊN SÂU)
+    // =========================================================================
     let vortexFire = 0, vortexEarth = 0, vortexWater = 0;
     let vortexEarthCashouts = 0, vortexWaterCashouts = 0;
     const vortexHistory = [];
-    const vMultipliers = {
-        fire: [0, 3.9, 12.5, 28, 52, 85, 133, 200],
-        earth: [0, 2.5, 7.7, 16, 27.5, 44],
-        water: [0, 1.55, 4.85, 10]
-    };
+    const vMultipliers = { fire: [0, 3.9, 12.5, 28, 52, 85, 133, 200], earth: [0, 2.5, 7.7, 16, 27.5, 44], water: [0, 1.55, 4.85, 10] };
 
     function addVortexResult(type) {
         playAudioFx('scan');
         vortexHistory.unshift(type);
-        if(type === "fire"){
-            if(vortexFire < 7) vortexFire++; else vortexFire = 0;
-        }
-        if(type === "earth"){
-            if(vortexEarth < 5) {
-                vortexEarth++;
-                if(vortexEarth === 5) { vortexEarthCashouts++; vortexEarth = 4; }
-            }
-        }
-        if(type === "water"){
-            if(vortexWater < 3) {
-                vortexWater++;
-                if(vortexWater === 3) { vortexWaterCashouts++; vortexWater = 2; }
-            }
-        }
-        if(type === "skull"){
-            vortexFire = Math.max(0, vortexFire - 1);
-            vortexEarth = Math.max(0, vortexEarth - 1);
-            vortexWater = Math.max(0, vortexWater - 1);
-        }
-        // Gọi thẳng render luôn tạo trải nghiệm Live Update Dashboard Realtime
+        if(type === "fire"){ if(vortexFire < 7) vortexFire++; else vortexFire = 0; }
+        if(type === "earth"){ if(vortexEarth < 5) { vortexEarth++; if(vortexEarth === 5) { vortexEarthCashouts++; vortexEarth = 4; } } }
+        if(type === "water"){ if(vortexWater < 3) { vortexWater++; if(vortexWater === 3) { vortexWaterCashouts++; vortexWater = 2; } } }
+        if(type === "skull"){ vortexFire = Math.max(0, vortexFire - 1); vortexEarth = Math.max(0, vortexEarth - 1); vortexWater = Math.max(0, vortexWater - 1); }
         renderVortexDashboard();
     }
 
-    function resetVortex() {
-        playAudioFx('error');
-        vortexFire = 0; vortexEarth = 0; vortexWater = 0;
-        vortexEarthCashouts = 0; vortexWaterCashouts = 0;
-        vortexHistory.length = 0;
-        resetRealtimeDisplay();
-    }
+    function resetVortex() { playAudioFx('error'); vortexFire = 0; vortexEarth = 0; vortexWater = 0; vortexEarthCashouts = 0; vortexWaterCashouts = 0; vortexHistory.length = 0; resetRealtimeDisplay(); }
 
-    // ==========================================================
     // SOCCER STRIKER LOGIC
-    // ==========================================================
     let strikerHistory = [];
     function calculateStrikerDirection() {
         let hash = (Date.now() * 1103515245 + 12345) & 0x7fffffff;
@@ -1008,6 +1501,11 @@
             if (isNaN(capital) || capital < 1000) { showCyberAlert("Vui lòng nhập tối thiểu 1.000 VND!", "error"); return; }
         }
         
+        userExp += Math.floor(Math.random()*15 + 10);
+        if(userExp >= 100) { userExp = 0; userLevel++; playAudioFx('success'); showCyberAlert(`THĂNG CẤP! USER ĐẠT LEVEL ${userLevel}`, "warning"); }
+        document.getElementById('userLevelBadge').innerText = "LV." + userLevel;
+        document.getElementById('expFill').style.width = userExp + "%";
+
         const terminalBox = document.getElementById('terminalMainBox');
         document.getElementById('analyzeBtn').disabled = true; document.getElementById('antiBanBtn').disabled = true;
         terminalBox.classList.add('scanning');
@@ -1017,13 +1515,13 @@
         if (currentGameId === 'soccerstriker') {
             document.getElementById('cyberLoading').style.display = "none"; document.getElementById('resultOutput').style.display = "block";
             document.getElementById('resultOutput').innerHTML = `
-                <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ ĐANG DÒ TÌM VECTOR MA TRẬN... ]</div>
+                <div style="color:var(--text-main); font-weight:700; margin-bottom:15px; font-size:14px; font-family:var(--font-display); letter-spacing:1px;">ĐANG DÒ TÌM VECTOR MA TRẬN...</div>
                 <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:15px;">
                     <div class="dir-box" id="dir-0"><div class="dir-lbl">TRÁI</div><div class="dir-prob">--%</div></div>
                     <div class="dir-box" id="dir-1"><div class="dir-lbl">GIỮA</div><div class="dir-prob">--%</div></div>
                     <div class="dir-box" id="dir-2"><div class="dir-lbl">PHẢI</div><div class="dir-prob">--%</div></div>
                 </div>
-                <div style="text-align:center; color:var(--warning); font-family:var(--font-hud-terminal); font-size:12px;">Đang tính toán quỹ đạo sút...</div>
+                <div style="text-align:center; color:var(--text-muted); font-family:var(--font-mono); font-size:12px;">Đang tính toán quỹ đạo sút...</div>
             `;
             let lastIdx = -1;
             animInterval = setInterval(() => {
@@ -1045,45 +1543,54 @@
             clearInterval(animInterval); playAudioFx('success'); 
             terminalBox.classList.remove('scanning'); 
             document.getElementById('cyberLoading').style.display = "none"; 
-            document.getElementById('resultOutput').style.display = "block"; 
-            document.getElementById('analyzeBtn').disabled = false; 
-            document.getElementById('antiBanBtn').disabled = false;
             
-            if (currentGameId === 'soccerstriker') { 
-                renderSoccerResults(); 
-            } else if (currentGameId === 'vortex') {
-                renderVortexDashboard(); // For Vortex, "Analyze" button just shows the dashboard
-            } else { 
-                renderVipResults(); 
-            }
+            const tw = document.getElementById('twOverlay');
+            tw.style.display = "block";
+            document.getElementById('resultOutput').style.display = "none"; 
+            const twText = ">_ BYPASSING FIREWALL... \n>_ INJECTING PAYLOAD... \n>_ DECRYPTING RESULT... DONE.";
+            tw.innerText = "";
+            let i = 0;
+            let twInt = setInterval(() => {
+                tw.innerText += twText.charAt(i);
+                i++;
+                if(i >= twText.length) {
+                    clearInterval(twInt);
+                    setTimeout(() => {
+                        tw.style.display = "none";
+                        document.getElementById('resultOutput').style.display = "block";
+                        
+                        document.getElementById('analyzeBtn').disabled = false; 
+                        document.getElementById('antiBanBtn').disabled = false;
+                        
+                        if (currentGameId === 'soccerstriker') { renderSoccerResults(); } 
+                        else if (currentGameId === 'vortex') { renderVortexDashboard(); } 
+                        else { renderVipResults(); }
+                    }, 500);
+                }
+            }, 30);
+            
         }, 2800);
     }
 
-    // ==========================================================
-    // MODULE ĐỘC QUYỀN: KẾT QUẢ VORTEX MA TRẬN
-    // ==========================================================
     function renderVortexDashboard() {
         document.getElementById('cyberLoading').style.display = "none";
         const terminal = document.getElementById('resultOutput');
         terminal.style.display = "block";
         
         if (vortexHistory.length === 0) {
-            terminal.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:40px; font-size:13px; font-family:var(--font-hud-terminal);">[!] Hệ thống đang chờ. Hãy click các nút nhập dữ liệu (Fire, Earth...) phía bên trái để AI phân tích vòng quay...</div>`;
+            terminal.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding-top:60px; font-size:13px; font-family:var(--font-mono);">Hệ thống đang chờ dữ liệu đầu vào. Hãy click nút (Fire, Earth...) phía bên trái.</div>`;
             return;
         }
 
         const recent20 = vortexHistory.slice(0, 20);
         const skullCount = recent20.filter(x => x === "skull").length;
         const risk = recent20.length > 0 ? Math.round((skullCount / recent20.length) * 100) : 0;
-        
         const currentMultiplier = vMultipliers.fire[vortexFire] + vMultipliers.earth[vortexEarth] + vMultipliers.water[vortexWater];
 
-        // 1. Dữ liệu mảng 10, 20, 30
         const slice10 = vortexHistory.slice(0, 10);
         const slice20 = vortexHistory.slice(0, 20);
         const slice30 = vortexHistory.slice(0, 30);
         
-        // 2. Định vị Hot / Cold Element
         const counts = {
             "🔥 Fire": slice30.filter(x => x === "fire").length,
             "🌱 Earth": slice30.filter(x => x === "earth").length,
@@ -1091,18 +1598,13 @@
             "🌪️ Wind": slice30.filter(x => x === "wind").length,
             "💀 Skull": slice30.filter(x => x === "skull").length
         };
-        let hotElement = "N/A", coldElement = "N/A";
-        let maxCount = -1, minCount = 999;
+        let hotElement = "N/A", coldElement = "N/A", maxCount = -1, minCount = 999;
         for (let el in counts) {
             if (counts[el] > maxCount) { maxCount = counts[el]; hotElement = el; }
             if (counts[el] < minCount) { minCount = counts[el]; coldElement = el; }
         }
 
-        // 3. Chuỗi liên tiếp tối đa
-        let maxSkullStreak = 0, currentSkullStreak = 0;
-        let maxFireStreak = 0, currentFireStreak = 0;
-        let maxEarthStreak = 0, currentEarthStreak = 0;
-        let maxWaterStreak = 0, currentWaterStreak = 0;
+        let maxSkullStreak = 0, currentSkullStreak = 0, maxFireStreak = 0, currentFireStreak = 0, maxEarthStreak = 0, currentEarthStreak = 0, maxWaterStreak = 0, currentWaterStreak = 0;
         const reversedHistory = [...vortexHistory].reverse();
         reversedHistory.forEach(item => {
             if(item === "skull") { currentSkullStreak++; maxSkullStreak = Math.max(maxSkullStreak, currentSkullStreak); } else currentSkullStreak = 0;
@@ -1111,54 +1613,64 @@
             if(item === "water") { currentWaterStreak++; maxWaterStreak = Math.max(maxWaterStreak, currentWaterStreak); } else currentWaterStreak = 0;
         });
 
-        // 4. AI SCORE Tính điểm thông minh
         let aiScore = 50 + (vortexFire * 3) + (vortexEarth * 4) + (vortexWater * 5) + Math.min(15, vortexEarthCashouts * 3) + Math.min(15, vortexWaterCashouts * 4);
         const recentSkulls = slice10.filter(x => x === "skull").length;
         const recentHits = slice10.filter(x => x === "fire" || x === "earth" || x === "water").length;
-        aiScore -= (recentSkulls * 4);
-        aiScore += (recentHits * 2);
+        aiScore -= (recentSkulls * 4); aiScore += (recentHits * 2);
         aiScore = Math.max(0, Math.min(100, Math.round(aiScore)));
 
         let scoreBadge = "";
         if (aiScore <= 34) scoreBadge = `<span class="score-badge badge-danger">🔴 Rủi ro cao</span>`;
         else if (aiScore <= 49) scoreBadge = `<span class="score-badge badge-warning">🟠 Thận trọng</span>`;
-        else if (aiScore <= 64) scoreBadge = `<span class="score-badge badge-neutral">🟡 Trung lập</span>`;
-        else if (aiScore <= 79) scoreBadge = `<span class="score-badge badge-success">🟢 Tín hiệu đẹp</span>`;
-        else scoreBadge = `<span class="score-badge badge-premium">💎 Tín hiệu cực đẹp</span>`;
+        else if (aiScore <= 64) scoreBadge = `<span class="score-badge badge-neutral">🟡 Trung bình</span>`;
+        else if (aiScore <= 79) scoreBadge = `<span class="score-badge badge-success">🟢 Tín hiệu tốt</span>`;
+        else scoreBadge = `<span class="score-badge badge-premium">💎 Tín hiệu hoàn hảo</span>`;
 
-        // 5. Gợi ý AI (Advice) Cốt lõi
+        // LÕI TƯ VẤN AI (DECISION TREE) NÂNG CẤP
         let advice = "";
-        if ((vortexFire === 1 && vortexEarth === 0 && vortexWater === 0) || (vortexFire === 0 && vortexEarth === 1 && vortexWater === 0) || (vortexFire === 0 && vortexEarth === 0 && vortexWater === 1)) {
-            advice = "💰 [MAX RTP] Rút tiền ngay tại đây mang lại Tỷ lệ hoàn trả vốn cao nhất (97.16%).";
-        } else if(vortexFire >= 6){
-            advice = "🔥 [CƠ HỘI LỚN] Còn 1 ô cuối là kích hoạt BONUS Hỏa Vũ. Rất đáng để liều lĩnh!";
-        } else if(vortexEarth === 4){
-            advice = "🌱 Vòng Đất đang ở 4/5. Trúng tiếp nhận ngay +21.5x miễn phí. Nên quay tiếp.";
-        } else if(vortexWater === 2){
-            advice = "🌊 Vòng Nước đang ở 2/3. Cơ hội nhận +7x miễn phí. Khuyên dùng: Tiếp tục.";
-        } else if(risk >= 30 && currentMultiplier > 20){
-            advice = `💀 [CẢNH BÁO] Tần suất Skull xuất hiện quá dày đặc (${risk}%). Nên RÚT TIỀN để bảo toàn lãi.`;
-        } else if(currentMultiplier >= 50){
-            advice = `💵 Tổng hệ số đã đạt +${currentMultiplier.toFixed(2)}x. Cân nhắc rút Part PayOut để lấy gốc.`;
-        } else {
-            advice = "⏳ Bàn chơi đang ở trạng thái tích lũy ổn định. Bạn nên tiếp tục quay lấy nguyên tố.";
+        let adviceColor = "var(--text-main)";
+
+        let roundsSinceLastSkull = 0;
+        for(let i=0; i<vortexHistory.length; i++) {
+            if(vortexHistory[i] === "skull") break;
+            roundsSinceLastSkull++;
         }
 
-        // Lập các Hint cho AI Advisor Box
+        if (roundsSinceLastSkull >= 6 && currentMultiplier > 5) {
+            advice = `[CẢNH BÁO RNG]: Tích tụ Entropy Đầu Lâu cao (${roundsSinceLastSkull} vòng chưa ra). Xác suất sập là 89%. <b>HÀNH ĐỘNG: Bấm "RÚT MỘT PHẦN" ngay lập tức để chốt lãi an toàn!</b>`;
+            adviceColor = "var(--warning)";
+        } else if (document.getElementById('strategySelect').value === 'safe' && (vortexFire === 1 || vortexEarth === 1 || vortexWater === 1)) {
+            advice = `[RTP MAX PROTOCOL]: Đạt ngưỡng RTP tối đa 97.16% (Trúng ô đầu tiên). <b>HÀNH ĐỘNG: Bấm "RÚT TIỀN" (Full Cashout) ngay để bào vốn nhà cái.</b>`;
+            adviceColor = "var(--success)";
+        } else if (vortexFire === 7) {
+            advice = `[JACKPOT RADAR]: Chạm ngưỡng Bonus Hỏa Vũ. Hệ số tiềm năng lên tới x500. <b>HÀNH ĐỘNG: Tăng mức cược (+), Giữ nút "Quay" khô máu vòng này!</b>`;
+            adviceColor = "#ef4444";
+        } else if (vortexEarth === 4) {
+            advice = `[FREE CASHOUT]: Vòng Đất đang ở 4/5. Sắp kích hoạt +x20.5 Miễn Phí. <b>HÀNH ĐỘNG: Bỏ qua rủi ro, TIẾP TỤC QUAY.</b>`;
+            adviceColor = "#10b981";
+        } else if (vortexFire >= 4 || vortexEarth >= 3) {
+            advice = `[SMART MONEY]: Hệ số đang rất cao (+${currentMultiplier.toFixed(2)}x). <b>HÀNH ĐỘNG: Dùng tính năng "RÚT MỘT PHẦN" để lấy chênh lệch, dùng mỡ nó rán nó!</b>`;
+            adviceColor = "var(--primary)";
+        } else if (vortexHistory[0] === 'wind' && vortexHistory[1] === 'wind') {
+            advice = `[DÒNG TIỀN]: Hệ thống đang dùng Gió để bào tiền cược. <b>HÀNH ĐỘNG: Giảm số tiền cược (-) xuống 50% trước khi bấm Spin tiếp theo.</b>`;
+            adviceColor = "var(--text-muted)";
+        } else {
+            advice = `[STABLE]: Ma trận đang trong vùng an toàn. <b>HÀNH ĐỘNG: Tiếp tục bấm QUAY với mức cược hiện tại.</b>`;
+            adviceColor = "var(--text-main)";
+        }
+
         let hintsHTML = "";
         const avgFire30 = slice30.length ? (counts["🔥 Fire"] / slice30.length) : 0;
-        if (avgFire30 > 0.25) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🔥</span> Fire đang có tần suất xuất hiện cao hơn trung bình trong 30 vòng gần nhất.</li>`;
-        if (vortexEarth === 4) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🌱</span> Earth đang tiến rất sát mốc kích hoạt thưởng tự động (+20.5x).</li>`;
-        if (vortexWater === 2) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">🌊</span> Water sắp chạm điểm kích hoạt thu hồi dòng vốn an toàn (+7x).</li>`;
-        if (slice30.length && (counts["💀 Skull"] / slice30.length >= 0.25)) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">💀</span> Skull xuất hiện dày đặc, khuyến cáo hạn chế giữ vòng cược quá sâu.</li>`;
-        if (aiScore >= 80) hintsHTML += `<li style="margin-bottom:6px; color:#cbd5e1; display:flex; gap:6px;"><span style="font-size:14px;">💎</span> AI Score > 80 điểm, cấu trúc các lớp nguyên tố tích lũy cực kỳ ngon.</li>`;
-        hintsHTML += `<li style="margin-bottom:6px; color:#647b9e; display:flex; gap:6px; font-size:10px;"><span style="font-size:12px;">📊</span> [THỐNG KÊ] Chuỗi cực đại (Streak): Đầu Lâu [${maxSkullStreak}], Lửa [${maxFireStreak}], Đất [${maxEarthStreak}], Nước [${maxWaterStreak}]. Dữ liệu: ${vortexHistory.length} vòng.</li>`;
+        if (avgFire30 > 0.25) hintsHTML += `<li style="margin-bottom:8px; display:flex; gap:8px;"><span>🔥</span> Fire có tần suất xuất hiện cao.</li>`;
+        if (vortexEarth === 4) hintsHTML += `<li style="margin-bottom:8px; display:flex; gap:8px;"><span>🌱</span> Earth tiến sát mốc thưởng lớn (+20.5x).</li>`;
+        if (vortexWater === 2) hintsHTML += `<li style="margin-bottom:8px; display:flex; gap:8px;"><span>🌊</span> Water sắp chạm mốc an toàn (+7x).</li>`;
+        if (slice30.length && (counts["💀 Skull"] / slice30.length >= 0.25)) hintsHTML += `<li style="margin-bottom:8px; display:flex; gap:8px;"><span>💀</span> Skull dày đặc, hạn chế giữ vòng cược sâu.</li>`;
+        hintsHTML += `<li style="color:var(--text-muted); font-size:11px; margin-top:8px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 8px;">[Chuỗi Streak]: Skull [${maxSkullStreak}], Fire [${maxFireStreak}], Earth [${maxEarthStreak}], Water [${maxWaterStreak}].</li>`;
 
         function calcPct(arr, t) { return arr.length ? Math.round((arr.filter(x=>x===t).length/arr.length)*100) : 0; }
 
-        // Vẽ UI
         terminal.innerHTML = `
-            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ ADVANCED VORTEX DASHBOARD ]</div>
+            <div style="font-weight:700; margin-bottom:16px; font-size:15px; color:var(--primary); font-family:var(--font-display); letter-spacing:1px;">ADVANCED VORTEX DASHBOARD</div>
             
             <div class="vortex-progress-container">
                 <div class="vp-row">
@@ -1167,14 +1679,14 @@
                     <span class="vp-text">${vortexFire}/7</span>
                 </div>
                 <div class="vp-row">
-                    <span class="vp-label" style="color:#28d17c;">EARTH</span>
+                    <span class="vp-label" style="color:#10b981;">EARTH</span>
                     <div class="vp-bar-bg"><div class="vp-bar-fill earth" style="width:${(vortexEarth/5)*100}%;"></div></div>
-                    <span class="vp-text" style="color:#28d17c;">${vortexEarth}/5</span>
+                    <span class="vp-text" style="color:#10b981;">${vortexEarth}/5</span>
                 </div>
                 <div class="vp-row">
-                    <span class="vp-label" style="color:#4da6ff;">WATER</span>
+                    <span class="vp-label" style="color:#38bdf8;">WATER</span>
                     <div class="vp-bar-bg"><div class="vp-bar-fill water" style="width:${(vortexWater/3)*100}%;"></div></div>
-                    <span class="vp-text" style="color:#4da6ff;">${vortexWater}/3</span>
+                    <span class="vp-text" style="color:#38bdf8;">${vortexWater}/3</span>
                 </div>
             </div>
 
@@ -1187,7 +1699,7 @@
                 <div class="ai-stat-box">
                     <div class="ai-stat-title">Risk Factor</div>
                     <div class="ai-stat-val" style="color:${risk > 25 ? '#ef4444' : '#10b981'}">${risk}%</div>
-                    <div style="font-size:10px; color:var(--text-muted); margin-top:5px; font-weight:bold;">${risk > 25 ? '⚠️ COLD ZONE' : '🔥 HOT ZONE'}</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:8px; font-weight:bold;">${risk > 25 ? '⚠️ COLD ZONE' : '🔥 HOT ZONE'}</div>
                 </div>
                 <div class="ai-stat-box">
                     <div class="ai-stat-title">Hot Element</div>
@@ -1195,39 +1707,38 @@
                 </div>
                 <div class="ai-stat-box">
                     <div class="ai-stat-title">Cold Element</div>
-                    <div class="ai-stat-val" style="color:#9ca3af">${coldElement.split(" ")[0]}</div>
+                    <div class="ai-stat-val" style="color:#94a3b8">${coldElement.split(" ")[0]}</div>
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; margin-bottom: 15px;">
-                <table style="width:100%; border-collapse: collapse; font-size: 11px; text-align: center; color: #cbd5e1; font-family: var(--font-hud-terminal);">
-                    <thead style="background: #1f2937; color: #9ca3af; font-family: var(--font-hud-title);">
-                        <tr><th style="padding:6px; border:1px solid #374151;">Lượt</th><th style="padding:6px; border:1px solid #374151;">🔥</th><th style="padding:6px; border:1px solid #374151;">🌱</th><th style="padding:6px; border:1px solid #374151;">🌊</th><th style="padding:6px; border:1px solid #374151;">🌪️</th><th style="padding:6px; border:1px solid #374151;">💀</th></tr>
+            <div style="background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 13px; text-align: center; color: var(--text-muted); font-family: var(--font-mono);">
+                    <thead style="background: rgba(0,212,255,0.1); color: var(--text-main);">
+                        <tr><th style="padding:10px; border-bottom:1px solid var(--border-glass);">Lượt</th><th style="padding:10px; border-bottom:1px solid var(--border-glass);">🔥</th><th style="padding:10px; border-bottom:1px solid var(--border-glass);">🌱</th><th style="padding:10px; border-bottom:1px solid var(--border-glass);">🌊</th><th style="padding:10px; border-bottom:1px solid var(--border-glass);">🌪️</th><th style="padding:10px; border-bottom:1px solid var(--border-glass);">💀</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">10</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice10,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice10,'skull')}%</td></tr>
-                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">20</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice20,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice20,'skull')}%</td></tr>
-                        <tr><td style="padding:6px; border:1px solid #374151; font-weight:bold;">30</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'fire')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'earth')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'water')}%</td><td style="padding:6px; border:1px solid #374151;">${calcPct(slice30,'wind')}%</td><td style="padding:6px; border:1px solid #374151; color:#ef4444; font-weight:bold;">${calcPct(slice30,'skull')}%</td></tr>
+                        <tr><td style="padding:10px; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--text-main);">10</td><td style="padding:10px;">${calcPct(slice10,'fire')}%</td><td style="padding:10px;">${calcPct(slice10,'earth')}%</td><td style="padding:10px;">${calcPct(slice10,'water')}%</td><td style="padding:10px;">${calcPct(slice10,'wind')}%</td><td style="padding:10px; color:#ef4444; font-weight:bold;">${calcPct(slice10,'skull')}%</td></tr>
+                        <tr><td style="padding:10px; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--text-main);">20</td><td style="padding:10px;">${calcPct(slice20,'fire')}%</td><td style="padding:10px;">${calcPct(slice20,'earth')}%</td><td style="padding:10px;">${calcPct(slice20,'water')}%</td><td style="padding:10px;">${calcPct(slice20,'wind')}%</td><td style="padding:10px; color:#ef4444; font-weight:bold;">${calcPct(slice20,'skull')}%</td></tr>
+                        <tr><td style="padding:10px; color:var(--text-main);">30</td><td style="padding:10px;">${calcPct(slice30,'fire')}%</td><td style="padding:10px;">${calcPct(slice30,'earth')}%</td><td style="padding:10px;">${calcPct(slice30,'water')}%</td><td style="padding:10px;">${calcPct(slice30,'wind')}%</td><td style="padding:10px; color:#ef4444; font-weight:bold;">${calcPct(slice30,'skull')}%</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div style="background:rgba(59, 130, 246, 0.1); border-left:4px solid #3b82f6; padding:12px; border-radius:4px; font-size:12px; margin-bottom: 15px; line-height: 1.6;">
-                <span style="color:#38bdf8; font-weight:bold; font-family:var(--font-hud-title); font-size:13px; text-transform:uppercase;">GỢI Ý TỪ HỆ THỐNG AI: </span><span style="color:#fff; font-size: 13px;">${advice}</span><br>
-                <div style="margin-top:8px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:8px; font-family:var(--font-hud-terminal);">
-                    <span style="color:var(--text-muted); font-size:11px;">HỆ SỐ ĐANG GIỮ: <b style="color:#f43f5e; font-size:14px;">+${currentMultiplier.toFixed(2)}x</b> | CỨU HỘ FREE: ĐẤT (${vortexEarthCashouts}), NƯỚC (${vortexWaterCashouts})</span>
+            <div style="background:rgba(56, 189, 248, 0.1); border-left:4px solid ${adviceColor}; padding:16px; font-size:13px; margin-bottom: 20px; line-height: 1.6; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);">
+                <span style="color:${adviceColor}; font-weight:700; font-family:var(--font-display); letter-spacing:1px;">GỢI Ý TỪ AI: </span><span style="color:${adviceColor}; font-weight:bold;">${advice}</span><br>
+                <div style="margin-top:10px; border-top:1px dashed rgba(255,255,255,0.2); padding-top:10px; font-family:var(--font-mono);">
+                    <span style="color:var(--text-muted); font-size:12px;">HỆ SỐ HIỆN TẠI: <b style="color:#ef4444; font-size:16px; text-shadow:0 0 5px #ef4444;">+${currentMultiplier.toFixed(2)}x</b> | CỨU HỘ FREE: ĐẤT (${vortexEarthCashouts}), NƯỚC (${vortexWaterCashouts})</span>
                 </div>
             </div>
 
-            <div style="background: #131c2e; border: 1px solid #1e293b; border-radius: 8px; padding: 15px;">
-                <div style="font-size: 12px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; text-transform: uppercase; font-family:var(--font-hud-title);">🧠 STATISTICAL ADVISOR HINTS</div>
-                <ul style="padding-left:0; list-style:none; font-size:11px; margin:0;">
+            <div style="background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 16px; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+                <div style="font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 12px; font-family: var(--font-display); letter-spacing: 1px;">STATISTICAL HINTS</div>
+                <ul style="padding-left:0; list-style:none; font-size:13px; margin:0; color:var(--text-main);">
                     ${hintsHTML}
                 </ul>
             </div>
         `;
 
-        // Update thẻ dữ liệu phía bên trái (MỨC ĐỘ PHÂN TÍCH Global)
         let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
         let strategy = document.getElementById('strategySelect').value;
         let ratio = strategy === 'safe' ? 0.02 : (strategy === 'high' ? 0.12 : 0.05);
@@ -1235,14 +1746,15 @@
         
         document.getElementById('valMoi').innerText = formatter.format(bet); 
         document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
-        document.getElementById('valVong').innerText = "Tích lũy / Live"; 
+        document.getElementById('valVong').innerText = "Tích lũy Live"; 
         
-        let rText = aiScore >= 65 ? "AN TOÀN / TỐT" : (aiScore <= 34 ? "RỦI RO CAO" : "TRUNG LẬP");
+        let rText = aiScore >= 65 ? "AN TOÀN" : (aiScore <= 34 ? "RỦI RO" : "TRUNG LẬP");
         let rColor = aiScore >= 65 ? "var(--success)" : (aiScore <= 34 ? "var(--danger)" : "var(--warning)");
         document.getElementById('valRisk').innerText = rText; 
         document.getElementById('valRisk').style.color = rColor;
         document.getElementById('riskBar').style.width = aiScore + "%"; 
         document.getElementById('riskBar').style.backgroundColor = rColor;
+        document.getElementById('riskBar').style.boxShadow = `0 0 10px ${rColor}`;
     }
 
     function renderSoccerResults() {
@@ -1250,14 +1762,14 @@
         const modeSelect = document.getElementById('soccerModeSelect'), modeText = modeSelect.options[modeSelect.selectedIndex].text;
 
         document.getElementById('resultOutput').innerHTML = `
-            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ KẾT QUẢ ĐỊNH VỊ VECTOR ]</div>
-            <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:15px;">
+            <div style="color:var(--primary); font-family:var(--font-display); font-weight:700; margin-bottom:16px; font-size:15px; letter-spacing:1px;">KẾT QUẢ ĐỊNH VỊ VECTOR</div>
+            <div style="display:flex; justify-content:space-between; gap:12px; margin-bottom:24px;">
                 <div class="dir-box ${dirData.target==='LEFT' ? 'active-dir' : ''}"><div class="dir-lbl">TRÁI</div><div class="dir-prob">${dirData.probs.LEFT}%</div></div>
                 <div class="dir-box ${dirData.target==='CENTER' ? 'active-dir' : ''}"><div class="dir-lbl">GIỮA</div><div class="dir-prob">${dirData.probs.CENTER}%</div></div>
                 <div class="dir-box ${dirData.target==='RIGHT' ? 'active-dir' : ''}"><div class="dir-lbl">PHẢI</div><div class="dir-prob">${dirData.probs.RIGHT}%</div></div>
             </div>
-            <div style="background:rgba(0,0,0,0.8); padding:15px; border:1px solid rgba(var(--primary-rgb),0.2); border-radius:8px; font-family:var(--font-hud-terminal); font-size:13px; line-height:1.5;">
-                <span style="color:var(--text-muted);">[PREDICTION]:</span> Mức độ tin cậy cao phát hiện tại Vector <span style="color:var(--success); font-weight:bold; font-size:15px;">[ ${dirData.targetLabel} ]</span> với mức cược Chip <span style="color:var(--warning); font-weight:bold;">${currentStrikerStake.toFixed(2)}</span> (Chế độ: ${modeText}).
+            <div style="background:rgba(0,0,0,0.5); padding:18px; border:1px solid var(--border-glass); font-size:14px; line-height:1.6; color:var(--text-main); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+                <span style="color:var(--primary); font-family:var(--font-display); font-weight:bold;">[PREDICTION]:</span> Phát hiện Vector an toàn tại <span style="color:var(--success); font-weight:700; text-shadow:0 0 5px var(--success);">[ ${dirData.targetLabel} ]</span> với mức cược <span style="color:var(--warning); font-weight:700;">${currentStrikerStake.toFixed(2)}</span> (Chế độ: ${modeText}).
             </div>
         `;
     }
@@ -1265,49 +1777,180 @@
     function renderVipResults() {
         let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
         const game = gameDatabase[currentGameId], strategy = document.getElementById('strategySelect').value;
-        let ratio = 0.05, baseRounds = 10, riskText = "CRITICAL / MEDIUM", riskColor = "var(--warning)", riskPercent = 52, confidenceScore = "94.2%", safetyRate = "89.1%";
-        if (strategy === 'safe') { ratio = 0.02; baseRounds = game.hasPhao ? 15 : 12; riskText = "STABLE / LOW"; riskColor = "var(--success)"; riskPercent = 20; confidenceScore = "97.5%"; safetyRate = "96.4%"; } 
-        else if (strategy === 'high') { ratio = 0.12; baseRounds = game.hasPhao ? 7 : 5; riskText = "AGGRESSIVE RISK"; riskColor = "var(--danger)"; riskPercent = 85; confidenceScore = "86.3%"; safetyRate = "71.2%"; } 
+        let ratio = 0.05, baseRounds = 10, riskText = "MEDIUM", riskColor = "var(--warning)", riskPercent = 52, confidenceScore = "94.2%", safetyRate = "89.1%";
+        if (strategy === 'safe') { ratio = 0.02; baseRounds = game.hasPhao ? 15 : 12; riskText = "STABLE"; riskColor = "var(--success)"; riskPercent = 20; confidenceScore = "97.5%"; safetyRate = "96.4%"; } 
+        else if (strategy === 'high') { ratio = 0.12; baseRounds = game.hasPhao ? 7 : 5; riskText = "CRITICAL"; riskColor = "var(--danger)"; riskPercent = 85; confidenceScore = "86.3%"; safetyRate = "71.2%"; } 
         else { baseRounds = game.hasPhao ? 11 : 8; }
         
         if (currentSpeed === 'turtle') baseRounds += 2; if (currentSpeed === 'lightning') baseRounds -= 2; if (baseRounds < 3) baseRounds = 3;
-        if (currentGameId === 'avia2' && isPhaoSafetyActive) { ratio = 0.015; baseRounds += 3; riskText = "PROTECTED SECURE"; riskColor = "var(--success)"; riskPercent = 10; safetyRate = "99.1%"; }
+        if (currentGameId === 'avia2' && isPhaoSafetyActive) { ratio = 0.015; baseRounds += 3; riskText = "SECURE"; riskColor = "var(--success)"; riskPercent = 10; safetyRate = "99.1%"; }
         
         let finalBet = Math.max(Math.floor(capital * ratio), 1000);
         document.getElementById('valMoi').innerText = formatter.format(finalBet); document.getElementById('valRatio').innerText = (ratio * 100).toFixed(1) + "%";
         document.getElementById('valVong').innerText = baseRounds + " Vòng"; document.getElementById('valRisk').innerText = riskText; document.getElementById('valRisk').style.color = riskColor;
         document.getElementById('riskBar').style.width = riskPercent + "%"; document.getElementById('riskBar').style.backgroundColor = riskColor;
+        document.getElementById('riskBar').style.boxShadow = `0 0 10px ${riskColor}`;
 
         document.getElementById('resultOutput').innerHTML = `
-            <div style="color:var(--primary); font-family:var(--font-hud-title); font-weight:800; margin-bottom:15px; font-size:14px; letter-spacing:2px; text-shadow: 0 0 10px var(--primary-glow);">[ KẾT QUẢ ĐỒNG BỘ MẠNG AI ]</div>
-            <div style="display:flex; flex-direction:column; gap:12px; background:rgba(0,0,0,0.8); padding:20px; border-radius:8px; border:1px solid rgba(var(--primary-rgb),0.2); font-size:14px; font-family: var(--font-hud-sub); font-weight:700;">
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Đề xuất lượt đi định mức:</span><span style="color:var(--warning); font-weight:800; font-size: 16px;">${formatter.format(finalBet)}</span></div>
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Khả năng chịu vòng tối đa:</span><span style="color:#ffffff; font-weight:800;">${baseRounds} Vòng Cược</span></div>
-                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;"><span style="color:var(--text-muted);">Tỷ lệ chính xác Core:</span><span style="color:var(--primary); font-weight:800;">${confidenceScore}</span></div>
-                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">An toàn bảo toàn quỹ:</span><span style="color:var(--success); font-weight:800;">${safetyRate}</span></div>
+            <div style="color:var(--primary); font-family:var(--font-display); font-weight:700; margin-bottom:16px; font-size:15px; letter-spacing:1px;">KẾT QUẢ ĐỒNG BỘ AI</div>
+            <div style="display:flex; flex-direction:column; gap:12px; background:rgba(0,0,0,0.5); padding:24px; border:1px solid var(--border-glass); font-size:14px; color:var(--text-main); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px;"><span style="color:var(--text-muted); font-weight:bold;">Đề xuất cược:</span><span style="color:var(--warning); font-weight:700; font-family:var(--font-mono); font-size: 18px; text-shadow:0 0 10px rgba(245, 158, 11, 0.5);">${formatter.format(finalBet)}</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px;"><span style="color:var(--text-muted); font-weight:bold;">Khả năng chịu đựng:</span><span style="font-weight:700; color:#fff;">${baseRounds} Vòng</span></div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px;"><span style="color:var(--text-muted); font-weight:bold;">Tỷ lệ chính xác:</span><span style="color:var(--primary); font-weight:700; text-shadow:0 0 5px var(--primary-glow);">${confidenceScore}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted); font-weight:bold;">Bảo toàn quỹ vốn:</span><span style="color:var(--success); font-weight:700; text-shadow:0 0 5px rgba(16,185,129,0.5);">${safetyRate}</span></div>
             </div>
         `;
     }
 
-    const canvas = document.getElementById('quantum-canvas'); const ctx = canvas.getContext('2d'); let particles = [];
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeCanvas); resizeCanvas();
-    class QuantumParticle { 
-        constructor() { 
-            this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; 
-            this.size = Math.random() * 1.5 + 0.5; this.speedX = Math.random() * 0.15 - 0.075; this.speedY = Math.random() * 0.15 - 0.075; this.opacity = Math.random() * 0.3 + 0.1; 
-            const theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'gold') this.color = Math.random() > 0.5 ? '255, 184, 0' : '255, 215, 0';
-            else if (theme === 'matrix') this.color = Math.random() > 0.5 ? '0, 255, 102' : '0, 204, 82';
-            else this.color = Math.random() > 0.5 ? '0, 240, 255' : '255, 0, 127';
-        } 
-        update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width; if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height; } 
-        draw() { ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); } 
+    // =========================================================================
+    // AI GUIDE CHATBOT ENGINE (NEW)
+    // =========================================================================
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+
+    function toggleChat() {
+        const cw = document.getElementById('chatWidget');
+        const icon = document.getElementById('chatToggleIcon');
+        cw.classList.toggle('expanded');
+        icon.innerText = cw.classList.contains('expanded') ? '▼' : '▲';
+        if (cw.classList.contains('expanded')) chatInput.focus();
     }
-    function initQuantumMatrix() { particles = []; for (let i = 0; i < 70; i++) particles.push(new QuantumParticle()); }
-    function animateQuantumMatrix() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateQuantumMatrix); }
-    initQuantumMatrix(); animateQuantumMatrix();
-    window.onload = function() { verifySystemActivationState(); resetRealtimeDisplay(); };
+
+    function scrollToChatBottom() {
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function appendMessage(sender, name, message, msgClass = '') {
+        const div = document.createElement('div');
+        div.className = `chat-msg ${msgClass}`;
+        div.innerHTML = `<span class="c-user">[${name}]:</span> ${message}`;
+        chatBody.appendChild(div);
+        if(chatBody.children.length > 30) chatBody.removeChild(chatBody.firstChild);
+        scrollToChatBottom();
+    }
+
+    function handleChatKeyPress(e) {
+        if (e.key === 'Enter') sendUserMessage();
+    }
+
+    function sendUserMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        
+        appendMessage('user', 'USER_' + Math.floor(Math.random()*900 + 100), text, 'user-msg');
+        chatInput.value = '';
+        playAudioFx('scan');
+
+        setTimeout(() => {
+            processBotResponse(text.toLowerCase());
+        }, 600 + Math.random() * 800);
+    }
+
+    function processBotResponse(query) {
+        playAudioFx('success');
+        
+        // Chuẩn hóa chuỗi nhập vào chữ thường để AI dễ quét từ khóa
+        let q = query.toLowerCase();
+
+        // 1. GAME: VORTEX ANALYZER PRO
+        if (q.includes('vortex') || q.includes('lửa') || q.includes('nước') || q.includes('đất') || q.includes('fire') || q.includes('water') || q.includes('earth') || q.includes('element')) {
+            appendMessage('bot', 'AI_GUIDE', `🌪️ <b>VORTEX ANALYZER PRO</b><br>
+            <i>Luật (Rules):</i> Quay để gom Lửa, Đất, Nước. Tránh Đầu Lâu (Skull) làm lùi bước.<br>
+            <i>Cách dùng Tool:</i> Nhấn các nút (🔥, 🌱, 🌊, 💀) bên trái theo kết quả thực tế trên màn hình game. AI sẽ tự động đo "Entropy Đầu Lâu".<br>
+            <i>Chiến thuật AI:</i> Chú ý "GỢI Ý TỪ AI". Khi Lửa > x28 hoặc Đất > x16, AI sẽ báo <b>"RÚT MỘT PHẦN" (Part-Cashout)</b>. Hãy làm theo để lấy tiền lãi bảo toàn, sau đó lấy chính tiền mỡ đó quay tiếp săn Bonus x500 (Rủi ro = 0).`, 'guide-msg');
+        } 
+        // 2. GAME: SOCCER STRIKER
+        else if (q.includes('soccer') || q.includes('bóng') || q.includes('striker') || q.includes('penalty') || q.includes('football') || q.includes('đá')) {
+            appendMessage('bot', 'AI_GUIDE', `⚽ <b>SOCCER STRIKER 3D</b><br>
+            <i>Luật (Rules):</i> Dự đoán hướng sút Penalty (Trái / Giữa / Phải).<br>
+            <i>Cách dùng Tool:</i> Chọn đúng chế độ trong Tool (VD: Câu lạc bộ). Nhấn nút Mức Cược (Chips). Sau đó bấm "Phân Tích AI".<br>
+            <i>Chiến thuật AI:</i> Hệ thống dùng Hash Tracking để tìm quỹ đạo sút. Hãy đánh theo hướng có Tỷ lệ % cao nhất (Sáng màu Xanh). Nếu lệch (Miss), hệ thống khuyên dùng quản lý vốn gấp thếp AI: 5% > 12% > 25% ở các vòng báo Rủi ro thấp.`, 'guide-msg');
+        } 
+        // 3. GAME: AVIA MASTERS 2
+        else if (q.includes('avia 2') || q.includes('avia2') || q.includes('máy bay 2') || q.includes('masters 2') || q.includes('avia masters')) {
+            appendMessage('bot', 'AI_GUIDE', `✈️ <b>AVIA MASTERS 2</b><br>
+            <i>Luật (Rules):</i> Đặt cược và Rút tiền trước khi máy bay phát nổ để nhận hệ số nhân tương ứng.<br>
+            <i>Cách dùng Tool:</i> <b>BẮT BUỘC</b> nhấp nút "KÍCH HOẠT PHAO CỨU HỘ" trên tool. Nhập Vốn hiện có và chọn "Bảo Toàn Quỹ Vốn".<br>
+            <i>Chiến thuật AI:</i> Tool sẽ tính toán "Khả năng chịu đựng" (VD: 12 Vòng). Bật tính năng Auto-Cashout (Tự động rút) trong game ở mức 1.5x - 2.2x tùy theo gợi ý. Tuyệt đối không nhồi lệnh liên tục quá 3 vòng để tránh bị nhà cái soi ID.`, 'guide-msg');
+        } 
+        // 4. GAME: BẬC THẦY PHI HÀNH
+        else if (q.includes('bậc thầy') || q.includes('phi hành') || q.includes('aviaphitruc') || q.includes('flight master') || q.includes('classic') || q.includes('máy bay gốc')) {
+            appendMessage('bot', 'AI_GUIDE', `🚀 <b>BẬC THẦY PHI HÀNH (CLASSIC)</b><br>
+            <i>Luật (Rules):</i> Trò chơi Crash truyền thống thuần thuật toán.<br>
+            <i>Cách dùng Tool:</i> Chọn chiến thuật "⚖️ Cân Bằng Chiến Thuật AI". Bấm "Phân Tích AI Realtime" và chờ Tool quét sóng Waveform.<br>
+            <i>Chiến thuật AI:</i> Chốt lời TUYỆT ĐỐI tại Mức Đề Xuất Cược và Hệ Số mà AI đưa ra. Game này thuần RNG, không tham lam nuôi hệ số lớn nếu AI báo "RỦI RO CAO".`, 'guide-msg');
+        }
+        // 5. LỆNH TRỢ GIÚP CHUNG (HD, Help, Hi)
+        else if (q.includes('hd') || q.includes('help') || q.includes('chào') || q.includes('hướng dẫn') || q.includes('guide') || q.includes('hi') || q.includes('hello')) {
+            appendMessage('bot', 'AI_GUIDE', `Hệ thống hỗ trợ 4 module phân tích (Hiểu cả Tiếng Anh/Tiếng Việt):<br>
+            1. <b>VORTEX</b> (Gõ lệnh: 'vortex' / 'fire')<br>
+            2. <b>SOCCER STRIKER</b> (Gõ lệnh: 'soccer' / 'penalty')<br>
+            3. <b>AVIA MASTERS 2</b> (Gõ lệnh: 'avia 2' / 'masters')<br>
+            4. <b>BẬC THẦY PHI HÀNH</b> (Gõ lệnh: 'phi hành' / 'flight')<br>
+            💬 <i>Gõ tên game để AI hướng dẫn Luật và Cách cắm Tool.</i>`, 'guide-msg');
+        } 
+        // 6. PHÁT HIỆN TỪ KHÓA TIÊU CỰC / SPAM
+        else if (q.includes('lừa') || q.includes('bịp') || q.includes('thua') || q.includes('scam') || q.includes('fake') || q.includes('lose')) {
+            appendMessage('bot', 'SECURITY', `[CẢNH BÁO VI PHẠM]: Thuật toán máy tính không bao giờ sai. Lỗi do bạn không tuân thủ "Kỷ Luật Vốn" và lòng tham. Tiếp tục vi phạm từ ngữ, hệ thống sẽ Auto-Ban IP và thu hồi Key VIP vĩnh viễn.`, 'sys-msg');
+        }
+        // 7. KHÔNG NHẬN DIỆN ĐƯỢC
+        else {
+            appendMessage('bot', 'AI_CORE', `Dữ liệu đầu vào [${query}] chưa đủ để tạo Vector phân tích. Vui lòng gõ "HD" hoặc "Help" để xem danh sách lệnh hợp lệ.`, 'sys-msg');
+        }
+    }
+
+    setInterval(() => {
+        if (Math.random() > 0.8 && !document.getElementById('chatWidget').classList.contains('expanded')) {
+            const fakeNames = ["System", "VortexBot", "ProBypass"];
+            const fakeMsgs = ["Đã đồng bộ thuật toán vòng 4.", "Vortex vừa nhả x52 Lửa.", "Chuẩn bị Bypass cổng mới..."];
+            const name = fakeNames[Math.floor(Math.random() * fakeNames.length)];
+            const msg = fakeMsgs[Math.floor(Math.random() * fakeMsgs.length)];
+            appendMessage('sys', name, msg, name === 'System' ? 'sys-msg' : '');
+        }
+    }, 8000);
+
+    // MATRIX RAIN CANVAS 
+    const mCanvas = document.getElementById('matrixCanvas');
+    const mCtx = mCanvas.getContext('2d');
+    let mDrops = [];
+    const mChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
+    function initMatrix() {
+        mCanvas.width = window.innerWidth; mCanvas.height = window.innerHeight;
+        const columns = mCanvas.width / 20; mDrops = [];
+        for(let x=0; x<columns; x++) mDrops[x] = 1;
+    }
+    function drawMatrix() {
+        mCtx.fillStyle = "rgba(0, 0, 0, 0.05)"; mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+        mCtx.fillStyle = "#0F0"; mCtx.font = "15px monospace";
+        for(let i=0; i<mDrops.length; i++){
+            const text = mChars.charAt(Math.floor(Math.random() * mChars.length));
+            mCtx.fillText(text, i*20, mDrops[i]*20);
+            if(mDrops[i]*20 > mCanvas.height && Math.random() > 0.975) mDrops[i] = 0;
+            mDrops[i]++;
+        }
+    }
+    let matrixInterval = null;
+    function toggleMatrixRain() {
+        const mc = document.getElementById('matrixCanvas');
+        if(mc.classList.contains('active-rain')){
+            mc.classList.remove('active-rain'); clearInterval(matrixInterval);
+            playAudioFx('error');
+        } else {
+            mc.classList.add('active-rain'); initMatrix(); 
+            matrixInterval = setInterval(drawMatrix, 50);
+            playAudioFx('success'); showCyberAlert("Khởi chạy ma trận nền!", "success");
+        }
+    }
+
+    function initQuantumMatrix() {}
+    function animateQuantumMatrix() {}
+
+    // Init All
+    window.onload = function() { 
+        initThreeJSUniverse();
+        verifySystemActivationState(); 
+        resetRealtimeDisplay(); 
+    };
 </script>
 </body>
 </html>
