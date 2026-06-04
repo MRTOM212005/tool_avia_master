@@ -43,7 +43,67 @@
             --bg-glass: rgba(2, 20, 10, 0.7); --border-glass: rgba(52, 211, 153, 0.2); --border-highlight: rgba(52, 211, 153, 0.5);
         }
 
-        :root, [data-theme="gold"], [data-theme="matrix"] {
+        [data-theme="ironman"] {
+            --primary-rgb: 239, 68, 68; --secondary-rgb: 245, 158, 11;
+            --bg-deep-color: #0d0202; --bg-surface-color: rgba(25, 5, 5, 0.7);
+            --bg-glass: rgba(25, 5, 5, 0.7); --border-glass: rgba(239, 68, 68, 0.2); --border-highlight: rgba(239, 68, 68, 0.5);
+        }
+
+        [data-theme="starcitizen"] {
+            --primary-rgb: 56, 189, 248; --secondary-rgb: 148, 163, 184;
+            --bg-deep-color: #020813; --bg-surface-color: rgba(5, 15, 30, 0.75);
+            --bg-glass: rgba(5, 15, 30, 0.75); --border-glass: rgba(56, 189, 248, 0.25); --border-highlight: rgba(56, 189, 248, 0.6);
+        }
+
+        [data-theme="netflix"] {
+            --primary-rgb: 229, 9, 20; --secondary-rgb: 100, 116, 139;
+            --bg-deep-color: #060606; --bg-surface-color: rgba(20, 20, 20, 0.85);
+            --bg-glass: rgba(20, 20, 20, 0.85); --border-glass: rgba(229, 9, 20, 0.2); --border-highlight: rgba(229, 9, 20, 0.5);
+        }
+
+        [data-theme="cyberpunk"] {
+            --primary-rgb: 250, 204, 21; --secondary-rgb: 212, 0, 255;
+            --bg-deep-color: #0c0b10; --bg-surface-color: rgba(25, 20, 35, 0.75);
+            --bg-glass: rgba(25, 20, 35, 0.75); --border-glass: rgba(250, 204, 21, 0.2); --border-highlight: rgba(212, 0, 255, 0.5);
+        }
+
+        [data-theme="quantum"] {
+            --primary-rgb: 192, 38, 211; --secondary-rgb: 45, 212, 191;
+            --bg-deep-color: #06020f; --bg-surface-color: rgba(15, 5, 25, 0.7);
+            --bg-glass: rgba(15, 5, 25, 0.7); --border-glass: rgba(192, 38, 211, 0.25); --border-highlight: rgba(45, 212, 191, 0.5);
+        }
+
+        [data-theme="terminal"] {
+            --primary-rgb: 245, 158, 11; --secondary-rgb: 120, 53, 15;
+            --bg-deep-color: #000000; --bg-surface-color: rgba(0, 0, 0, 0.9);
+            --bg-glass: rgba(0, 0, 0, 0.95); --border-glass: rgba(245, 158, 11, 0.3); --border-highlight: rgba(245, 158, 11, 0.6);
+        }
+
+        [data-theme="stellar"] {
+            --primary-rgb: 129, 140, 248; --secondary-rgb: 167, 139, 250;
+            --bg-deep-color: #050515; --bg-surface-color: rgba(10, 10, 30, 0.75);
+            --bg-glass: rgba(10, 10, 30, 0.75); --border-glass: rgba(129, 140, 248, 0.25); --border-highlight: rgba(167, 139, 250, 0.5);
+        }
+
+        [data-theme="minimalist"] {
+            --primary-rgb: 248, 250, 252; --secondary-rgb: 71, 85, 105;
+            --bg-deep-color: #080a0f; --bg-surface-color: rgba(15, 17, 23, 0.8);
+            --bg-glass: rgba(15, 17, 23, 0.8); --border-glass: rgba(255, 255, 255, 0.1); --border-highlight: rgba(255, 255, 255, 0.3);
+        }
+
+        [data-theme="cockpit"] {
+            --primary-rgb: 132, 204, 22; --secondary-rgb: 234, 179, 8;
+            --bg-deep-color: #0a0c0a; --bg-surface-color: rgba(15, 20, 15, 0.8);
+            --bg-glass: rgba(15, 20, 15, 0.8); --border-glass: rgba(132, 204, 22, 0.2); --border-highlight: rgba(234, 179, 8, 0.5);
+        }
+
+        [data-theme="supernova"] {
+            --primary-rgb: 249, 115, 22; --secondary-rgb: 239, 68, 68;
+            --bg-deep-color: #0f0502; --bg-surface-color: rgba(25, 10, 5, 0.8);
+            --bg-glass: rgba(25, 10, 5, 0.8); --border-glass: rgba(249, 115, 22, 0.25); --border-highlight: rgba(239, 68, 68, 0.5);
+        }
+
+        :root, [data-theme="gold"], [data-theme="matrix"], [data-theme="ironman"], [data-theme="starcitizen"], [data-theme="netflix"], [data-theme="cyberpunk"], [data-theme="quantum"], [data-theme="terminal"], [data-theme="stellar"], [data-theme="minimalist"], [data-theme="cockpit"], [data-theme="supernova"] {
             --primary: rgb(var(--primary-rgb)); --primary-glow: rgba(var(--primary-rgb), 0.4);
             --secondary: rgb(var(--secondary-rgb)); --secondary-glow: rgba(var(--secondary-rgb), 0.4);
             --bg-deep: var(--bg-deep-color); --bg-surface: var(--bg-surface-color);
@@ -212,30 +272,43 @@
         @media (max-width: 768px) { .game-grid { grid-template-columns: 1fr; } }
         
         .game-card { 
-            background: rgba(0,0,0,0.6); border: 1px solid var(--border-glass); 
+            background: rgba(5, 10, 20, 0.7); 
+            border: 1px solid rgba(0, 212, 255, 0.15); 
             overflow: hidden; cursor: pointer; transition: var(--transition-smooth); 
-            display: flex; flex-direction: column; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; backdrop-filter: blur(12px);
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
             clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
         }
         .game-card:hover { 
-            transform: translateY(-8px) scale(1.02); border-color: var(--primary); 
-            background: rgba(0,212,255,0.05); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9), 0 0 30px var(--primary-glow); 
+            transform: translateY(-8px) scale(1.02); 
+            border-color: var(--primary); 
+            background: rgba(0,212,255,0.06); 
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9), 0 0 25px var(--primary-glow); 
         }
 
-        .game-img-wrapper { width: 100%; height: 180px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid var(--border-glass);}
-        .game-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth); opacity: 0.6; filter: grayscale(50%) contrast(120%);}
-        .game-card:hover .game-img-wrapper img { transform: scale(1.1); opacity: 1; filter: grayscale(0%) contrast(100%); }
-        .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-surface) 0%, transparent 100%); }
+        .special-pg-card:hover {
+            border-color: #d400ff !important;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9), 0 0 25px rgba(212,0,255,0.3) !important;
+        }
+
+        .special-jili-card:hover {
+            border-color: #00d4ff !important;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9), 0 0 25px rgba(0,212,255,0.3) !important;
+        }
+
+        .game-img-wrapper { width: 100%; height: 180px; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid rgba(255,255,255,0.05);}
+        .game-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth); opacity: 0.6; filter: grayscale(40%) contrast(110%);}
+        .game-card:hover .game-img-wrapper img { transform: scale(1.06); opacity: 0.95; filter: grayscale(0%) contrast(100%); }
+        .game-img-wrapper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,10,20,0.9) 0%, transparent 100%); }
         
-        .game-badge { position: absolute; top: 16px; left: 16px; font-family: var(--font-display); font-size: 10px; font-weight: 700; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; z-index: 2; background: rgba(0,0,0,0.8); border: 1px solid var(--border-glass); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
+        .game-badge { position: absolute; top: 16px; left: 16px; font-family: var(--font-display); font-size: 10px; font-weight: 700; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; z-index: 2; background: rgba(0,0,0,0.85); border: 1px solid var(--border-glass); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
         .badge-vip { color: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow);}
 
         .game-details { padding: 24px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .game-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px;}
+        .game-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: 1px;}
         .game-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; min-height: 45px; }
         
-        .game-tactical-stats { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid rgba(255,255,255,0.05);}
+        .game-tactical-stats { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; background: rgba(0,0,0,0.45); padding: 12px; border: 1px solid rgba(255,255,255,0.05); clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);}
         .t-stat { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-family: var(--font-mono); }
         .t-stat span.lbl { color: var(--text-muted); }
         .t-stat span.val { font-weight: 700; color: var(--text-main); }
@@ -249,6 +322,227 @@
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
         .game-card:hover .btn-enter { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
+        .special-pg-card:hover .btn-enter { background: #d400ff; color: #fff; box-shadow: 0 0 20px rgba(212,0,255,0.4); border-color: #d400ff; }
+        .special-jili-card:hover .btn-enter { background: #00d4ff; color: #000; box-shadow: 0 0 20px rgba(0,212,255,0.4); border-color: #00d4ff; }
+
+        /* --- UNIFIED GAME DIRECTORY TABS STYLES --- */
+        .directory-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .directory-tab-btn {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 10px 20px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+        }
+        .directory-tab-btn:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.05);
+        }
+        .directory-tab-btn.active[data-tab="pg"] {
+            border-color: #d400ff;
+            color: #d400ff;
+            background: rgba(212, 0, 255, 0.1);
+            box-shadow: 0 0 15px rgba(212, 0, 255, 0.2);
+        }
+        .directory-tab-btn.active[data-tab="jili"] {
+            border-color: #00d4ff;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+
+        .pg-game-mini-card, .jili-game-mini-card {
+            background: rgba(5, 10, 20, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pg-game-mini-card {
+            border-color: rgba(212, 0, 255, 0.15);
+        }
+
+        .jili-game-mini-card {
+            border-color: rgba(0, 212, 255, 0.15);
+        }
+
+        .pg-game-mini-card::before, .jili-game-mini-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+
+        .pg-game-mini-card:hover::before, .jili-game-mini-card:hover::before {
+            left: 125%;
+        }
+
+        .pg-game-mini-card:hover {
+            border-color: #d400ff;
+            background: rgba(212, 0, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 0, 255, 0.25);
+        }
+
+        .jili-game-mini-card:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.25);
+        }
+
+        /* Customize scrollbars for lobby panels */
+        #pgGamesListContainer::-webkit-scrollbar,
+        #jiliGamesListContainer::-webkit-scrollbar {
+            width: 6px;
+        }
+        #pgGamesListContainer::-webkit-scrollbar-track,
+        #jiliGamesListContainer::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        #pgGamesListContainer::-webkit-scrollbar-thumb {
+            background: rgba(212, 0, 255, 0.3);
+            border-radius: 3px;
+        }
+        #pgGamesListContainer::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 0, 255, 0.6);
+        }
+        #jiliGamesListContainer::-webkit-scrollbar-thumb {
+            background: rgba(0, 212, 255, 0.3);
+            border-radius: 3px;
+        }
+        #jiliGamesListContainer::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 212, 255, 0.6);
+        }
+
+        /* --- ZEN MODE & PREMIUM FEATURES ADDITIONAL STYLES --- */
+        body.zen-mode-active #chatWidget,
+        body.zen-mode-active #floatingTeleBtn,
+        body.zen-mode-active .global-stats-panel,
+        body.zen-mode-active #liveSignalFeed,
+        body.zen-mode-active .fomo-toast {
+            display: none !important;
+        }
+
+        .live-dot-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #d400ff;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #d400ff;
+            animation: dotPulse 1.5s infinite;
+        }
+        @keyframes dotPulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 14px #d400ff; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .listening-wave {
+            width: 12px;
+            height: 12px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--success);
+            animation: wavePulse 1s infinite alternate;
+        }
+        @keyframes wavePulse {
+            0% { transform: scale(0.8); }
+            100% { transform: scale(1.4); box-shadow: 0 0 20px var(--success); }
+        }
+
+        @keyframes spinInfinite {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .heatmap-cell:hover {
+            transform: scale(1.3);
+            z-index: 5;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        /* Responsive modifications for game compare and wheel */
+        @media (max-width: 600px) {
+            #quantumWheelModal {
+                width: 95% !important;
+                padding: 16px !important;
+            }
+            #wheelCanvasOuter {
+                width: 160px !important;
+                height: 160px !important;
+            }
+            #wheelCore {
+                width: 120px !important;
+                height: 120px !important;
+            }
+        }
+
+        .quick-filters-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .quick-filter-btn {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+        }
+        .quick-filter-btn:hover, .quick-filter-btn.active {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border-color: rgba(255,255,255,0.15);
+        }
+        .quick-filter-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 10px rgba(0,212,255,0.15);
+        }
 
         /* DASHBOARD VIEW */
         .dashboard-view { display: none; animation: fadeIn 0.4s ease-out; }
@@ -456,7 +750,6 @@
         #hotkeyHelp { display:none; position:fixed; right: 24px; top: 120px; background:rgba(5,10,20,0.9); border:1px solid var(--primary); padding:20px; z-index:9999; font-family:var(--font-mono); color:#fff; font-size:12px; box-shadow: 0 0 30px rgba(0,212,255,0.3); clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);}
         .hk-line { margin-bottom:10px; display:flex; justify-content:space-between; gap:24px;}
         .hk-key { background:rgba(0,212,255,0.1); border: 1px solid var(--primary); padding:2px 8px; color:var(--primary); font-weight:bold; box-shadow: 0 0 5px var(--primary-glow);}
-
     </style>
 </head>
 <body>
@@ -502,9 +795,19 @@
     <button class="control-btn" onclick="toggleMatrixRain()">🌧️ MATRIX</button>
     <button id="fullscreenToggle" class="control-btn" onclick="toggleFullScreen()">🖥️ TOÀN MÀN HÌNH</button>
     <select id="themeSelector" class="control-btn" onchange="changeTheme(this.value)">
-        <option value="cyber">🎨 THEME: DEEP SPACE</option>
+        <option value="cyber">🎨 THEME: DEEP SPACE (DEFAULT)</option>
         <option value="gold">🎨 THEME: LUXURY GOLD</option>
         <option value="matrix">🎨 THEME: HACKER MATRIX</option>
+        <option value="ironman">🎨 THEME: JARVIS COMMAND</option>
+        <option value="starcitizen">🎨 THEME: STAR CITIZEN</option>
+        <option value="netflix">🎨 THEME: CINEMATIC CAROUSEL</option>
+        <option value="cyberpunk">🎨 THEME: NEON CYBERPUNK</option>
+        <option value="quantum">🎨 THEME: QUANTUM HOLOGRAM</option>
+        <option value="terminal">🎨 THEME: RETRO TERMINAL</option>
+        <option value="stellar">🎨 THEME: CONSTELLATION MAP</option>
+        <option value="minimalist">🎨 THEME: ZEN MINIMALIST</option>
+        <option value="cockpit">🎨 THEME: FLIGHT COCKPIT</option>
+        <option value="supernova">🎨 THEME: SUPERNOVA FLARE</option>
     </select>
     <button id="bgmToggle" class="control-btn" onclick="toggleBGM()">🎵 BGM: OFF</button>
     <button id="audioToggle" class="control-btn" onclick="toggleAudio()">🔇 SFX: TẮT</button>
@@ -582,6 +885,41 @@
 <style>
     .floating-tele-btn:hover { transform: translateY(-4px); background: rgba(0,212,255,0.2); border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
     .floating-tele-btn:hover svg { fill: #fff; }
+
+    /* --- PREMIUM STYLES --- */
+    .stat-box {
+        transition: transform 0.3s, background 0.3s;
+    }
+    .stat-box:hover {
+        transform: translateY(-2px);
+        background: rgba(0, 212, 255, 0.08) !important;
+    }
+    @keyframes levelPulse {
+        0%, 100% { transform: scale(1); filter: brightness(1); }
+        50% { transform: scale(1.05); filter: brightness(1.2); }
+    }
+    .history-table th {
+        font-family: var(--font-display);
+        font-size: 11px;
+        color: var(--primary);
+        text-shadow: 0 0 5px rgba(0,212,255,0.3);
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(0,212,255,0.2);
+        padding-bottom: 6px;
+    }
+    .history-table td {
+        padding: 8px 6px;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .history-table tr:hover {
+        background: rgba(255,255,255,0.02);
+    }
+    .level-up-title {
+        animation: levelPulse 1.5s infinite ease-in-out;
+    }
+    #levelUpOverlay {
+        backdrop-filter: blur(15px);
+    }
 </style>
 
 <div class="chat-widget" id="chatWidget">
@@ -598,6 +936,42 @@
         <input type="text" id="chatInput" class="chat-input" placeholder="Gõ lệnh (VD: hd vortex)..." onkeypress="handleChatKeyPress(event)">
         <button class="chat-send-btn" onclick="sendUserMessage()">GỬI LỆNH</button>
     </div>
+</div>
+<!-- LEVEL UP CELEBRATORY OVERLAY -->
+<div id="levelUpOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 10, 20, 0.95); z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
+    <div class="level-up-title" style="font-family: var(--font-display); font-size: 52px; color: var(--primary); text-shadow: 0 0 25px var(--primary-glow); font-weight: 900; letter-spacing: 3px;">SYSTEM UPGRADE</div>
+    <div style="font-family: var(--font-mono); font-size: 26px; color: var(--success); text-shadow: 0 0 15px rgba(16,185,129,0.6); margin-top: 15px; font-weight: bold; letter-spacing: 1px;">LEVEL UP: <span id="popupNewLevel" style="color:#fff;">LV.2</span></div>
+    <div style="font-family: var(--font-sans); font-size: 13px; color: var(--text-muted); margin-top: 25px; letter-spacing: 0.5px;">ĐÃ ĐỒNG BỘ MODULE BẢO MẬT & CHIẾN THUẬT LƯỢNG TỬ SÂU HƠN</div>
+</div>
+
+<!-- QUANTUM WHEEL MODAL -->
+<div id="quantumWheelModal" class="glass-panel" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); width: 95%; max-width: 440px; background: rgba(5, 10, 20, 0.95); border: 2px solid rgba(245, 158, 11, 0.5); border-radius: 12px; box-shadow: 0 0 50px rgba(245, 158, 11, 0.25); z-index: 999999; display: none; padding: 24px; text-align: center; transition: all 0.3s ease; opacity:0; pointer-events: auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+        <span style="font-family: var(--font-display); font-size: 14px; font-weight: bold; color: var(--warning); text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);">🎰 VÒNG QUAY THỜI GIAN THỰC AI</span>
+        <button onclick="closeQuantumWheel()" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 18px;">✕</button>
+    </div>
+    
+    <div style="position: relative; width: 200px; height: 200px; margin: 15px auto 25px; display: flex; align-items: center; justify-content: center;">
+        <div id="wheelCanvasOuter" style="position: absolute; top:0; left:0; width:100%; height:100%; border: 4px dashed var(--warning); border-radius: 50%; animation: spinInfinite 12s linear infinite;"></div>
+        <div id="wheelPointer" style="position: absolute; top: -10px; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 20px solid var(--warning); z-index: 10;"></div>
+        <div id="wheelCore" style="width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(5,10,20,1) 70%); border: 2px solid rgba(245,158,11,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1); transform: rotate(0deg);">
+            <div style="font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); font-weight: bold; letter-spacing: 1.5px;">DÒ SÓNG AI</div>
+            <div id="wheelMiddleText" style="font-size: 13px; font-weight: bold; color: #fff; font-family: var(--font-sans); margin-top: 8px; text-shadow: 0 0 8px rgba(255,255,255,0.4); text-transform: uppercase;">BẮT ĐẦU</div>
+        </div>
+    </div>
+    
+    <button id="spinWheelBtn" onclick="spinQuantumWheel()" class="btn-enter" style="width: 100%; border-color: var(--warning); color: var(--warning); background: rgba(245, 158, 11, 0.05); padding: 10px 0;">KÍCH HOẠT DÒ SÓNG CỰC NHANH</button>
+    
+    <div id="wheelResultsContainer" style="margin-top: 20px; display: none; text-align: left;">
+        <div style="font-family: var(--font-display); font-size: 11px; color: var(--warning); margin-bottom: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">🏆 TOP 3 GAME CÓ TÍN HIỆU TỐT NHẤT:</div>
+        <div id="wheelSuggestedList" style="display:flex; flex-direction:column; gap:8px;"></div>
+    </div>
+</div>
+
+<!-- SPEECH LISTENING OVERLAY -->
+<div id="speechListeningOverlay" style="position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(5, 10, 20, 0.95); border: 1px solid var(--success); padding: 12px 24px; border-radius: 30px; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); z-index: 999999; display: none; align-items: center; gap: 12px; font-family: var(--font-sans); color: #fff; font-size: 14px;">
+    <span class="listening-wave"></span>
+    <span id="speechStatusText">AI đang lắng nghe giọng nói...</span>
 </div>
 
 <div class="wrapper glass-panel" id="mainWrapper">
@@ -634,6 +1008,9 @@
         </div>
         <div class="hud-chip-container">
             <div class="hud-chip" style="background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:16px;" id="liveClock">00:00:00</div>
+            <div class="hud-chip" id="zenModeToggle" onclick="toggleZenMode()" style="cursor:pointer; background: rgba(245, 158, 11, 0.1); border-color: var(--warning); color: var(--warning); font-family: var(--font-display); font-size: 11px; font-weight: bold; box-shadow: 0 0 8px rgba(245, 158, 11, 0.2); padding: 4px 10px;">📱 TỐI ƯU DI ĐỘNG: TẮT</div>
+            <div class="hud-chip" id="voiceMuteChip" onclick="toggleVoiceAssistant()" style="cursor:pointer; background: rgba(0, 212, 255, 0.1); border-color: var(--primary); color: var(--primary); font-family: var(--font-display); font-size: 11px; font-weight: bold; box-shadow: 0 0 8px rgba(0, 212, 255, 0.2); padding: 4px 10px;">🔊 GIỌNG NÓI: BẬT</div>
+            <div class="hud-chip" id="voiceCommandBtn" onclick="toggleVoiceCommand()" style="cursor:pointer; background: rgba(16, 185, 129, 0.1); border-color: var(--success); color: var(--success); font-family: var(--font-display); font-size: 11px; font-weight: bold; box-shadow: 0 0 8px rgba(16, 185, 129, 0.2); padding: 4px 10px; display: flex; align-items: center; gap: 4px;">🎙️ LỆNH GIỌNG NÓI</div>
             <div class="hud-chip chip-live" id="sessionTimer">UPTIME: 00:00</div>
             <div class="hud-chip chip-ai">VIP SECURE</div>
         </div>
@@ -642,6 +1019,32 @@
     <div id="lobbyView" class="lobby-view">
         <div class="lobby-title glitch-hover" data-text="Vyron Analytics Pro">Vyron Analytics Pro</div>
         <div class="lobby-subtitle">Vui lòng chọn cổng trò chơi để đồng bộ hệ thống AI</div>
+        <!-- GLOBAL STATISTICS PANEL -->
+        <div class="global-stats-panel glass-panel" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px auto 30px; padding: 16px 24px; border-color: rgba(0, 212, 255, 0.25); background: rgba(5,10,20,0.5); text-align: center; max-width: 1200px; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px); box-shadow: 0 5px 15px rgba(0,212,255,0.05);">
+            <div class="stat-box" style="padding: 10px; border-radius: 4px;">
+                <div style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 1.5px; font-weight: bold;">TỔNG VỐN TỐI ƯU HÓA (HÔM NAY)</div>
+                <div id="globalStatCapital" style="font-size: 22px; font-weight: 900; color: var(--warning); text-shadow: 0 0 12px rgba(245,158,11,0.4); font-family: var(--font-display); margin-top: 6px;">0 VND</div>
+            </div>
+            <div class="stat-box" style="padding: 10px; border-radius: 4px; border-left: 1px solid rgba(0, 212, 255, 0.15); border-right: 1px solid rgba(0, 212, 255, 0.15);">
+                <div style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 1.5px; font-weight: bold;">THIẾT BỊ HOẠT ĐỘNG SONG SONG</div>
+                <div id="globalStatUsers" style="font-size: 22px; font-weight: 900; color: var(--primary); text-shadow: 0 0 12px rgba(0,212,255,0.4); font-family: var(--font-display); margin-top: 6px;">3,086 ACTIVE</div>
+            </div>
+            <div class="stat-box" style="padding: 10px; border-radius: 4px;">
+                <div style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 1.5px; font-weight: bold;">BYPASS TƯỜNG LỬA (ANTI-BAN)</div>
+                <div id="globalStatBypass" style="font-size: 22px; font-weight: 900; color: var(--success); text-shadow: 0 0 12px rgba(16,185,129,0.4); font-family: var(--font-display); margin-top: 6px;">99.87% SECURE</div>
+            </div>
+        </div>
+
+        <!-- LIVE SIGNAL FEED WIDGET -->
+        <div id="liveSignalFeed" class="glass-panel" style="margin: -10px auto 25px; padding: 12px 18px; max-width: 1200px; border-color: rgba(212, 0, 255, 0.2); background: rgba(5,10,20,0.6); display: flex; align-items: center; gap: 15px; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+            <div style="font-family: var(--font-display); font-size: 11px; font-weight: bold; color: #d400ff; text-shadow: 0 0 10px rgba(212, 0, 255, 0.4); display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+                <span class="live-dot-pulse"></span> 📡 DÒ SÓNG LƯỢNG TỬ:
+            </div>
+            <div id="signalFeedLogs" style="flex: 1; font-family: var(--font-mono); font-size: 12px; color: var(--text-main); height: 20px; overflow: hidden; position: relative;">
+                <div class="signal-log-item" style="position: absolute; width: 100%; height: 100%; line-height: 20px; transition: opacity 0.5s, transform 0.5s; opacity: 1;">[03:16:40] Đang khởi chạy Module dò sóng Vyron Pro... Hệ thống an toàn.</div>
+            </div>
+        </div>
+
         <div class="game-grid">
             
             <div class="game-card" onclick="enterGame('vortex')">
@@ -718,7 +1121,165 @@
                 </div>
             </div>
 
+            <!-- CARD SẢNH SLOT PG -->
+            <div class="game-card special-pg-card" onclick="togglePgLobby()" style="border-color: rgba(212, 0, 255, 0.4); box-shadow: 0 5px 15px rgba(212,0,255,0.1);">
+                <div class="game-img-wrapper" style="position: relative; background: #050a14; display:flex; align-items:center; justify-content:center; height:180px; overflow:hidden;">
+                    <img src="https://download.ocms.cloud/v2/my8/article/Banner1webp_20241129-024616.webp" alt="SLOT PG" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.65; filter: brightness(0.85) contrast(1.1); transition: transform 0.5s; z-index: 1;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                    <span class="game-badge badge-vip" style="color: #d400ff; border-color: #d400ff; box-shadow: 0 0 10px rgba(212, 0, 255, 0.4); z-index: 10;">🎰 SLOT PG SẢNH</span>
+                    <div style="font-family: var(--font-display); font-size: 32px; font-weight:900; color:#d400ff; text-shadow:0 0 15px #d400ff; z-index: 5;">SLOT PG</div>
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name" style="color:#d400ff;">Sảnh Slot PG</div>
+                        <div class="game-desc">Danh sách thu gọn toàn bộ 148 trò chơi Slot PG tích hợp Công cụ Gợi ý Vốn AI.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TỔNG SỐ GAME:</span> <span class="val" style="color:#d400ff; font-weight:bold;">148 GAME</span></div>
+                            <div class="t-stat"><span class="lbl">TRẠNG THÁI:</span> <span class="val val-green">READY</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter" style="border-color:#d400ff; color:#d400ff; background: rgba(212, 0, 255, 0.05);">MỞ DANH SÁCH</div>
+                </div>
+            </div>
+
+            <!-- CARD SẢNH SLOT JILI -->
+            <div class="game-card special-jili-card" onclick="toggleJiliLobby()" style="border-color: rgba(0, 212, 255, 0.4); box-shadow: 0 5px 15px rgba(0,212,255,0.1);">
+                <div class="game-img-wrapper" style="position: relative; background: #050a14; display:flex; align-items:center; justify-content:center; height:180px; overflow:hidden;">
+                    <img src="https://media-p.pasa365.com/b/f718f/information/1-6020806119134372981720721604000image.png" alt="SLOT JILI" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.65; filter: brightness(0.85) contrast(1.1); transition: transform 0.5s; z-index: 1;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                    <span class="game-badge badge-vip" style="color: #00d4ff; border-color: #00d4ff; box-shadow: 0 0 10px rgba(0, 212, 255, 0.4); z-index: 10;">🎰 SLOT JILI SẢNH</span>
+                    <div style="font-family: var(--font-display); font-size: 32px; font-weight:900; color:#00d4ff; text-shadow:0 0 15px #00d4ff; z-index: 5;">SLOT JILI</div>
+                </div>
+                <div class="game-details">
+                    <div>
+                        <div class="game-name" style="color:#00d4ff;">Sảnh Slot JILI</div>
+                        <div class="game-desc">Danh sách thu gọn toàn bộ các trò chơi Slot JILI tích hợp Công cụ Gợi ý Vốn AI.</div>
+                        <div class="game-tactical-stats">
+                            <div class="t-stat"><span class="lbl">TỔNG SỐ GAME:</span> <span class="val" style="color:#00d4ff; font-weight:bold;">120 GAME</span></div>
+                            <div class="t-stat"><span class="lbl">TRẠNG THÁI:</span> <span class="val val-green">READY</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-enter" style="border-color:#00d4ff; color:#00d4ff; background: rgba(0, 212, 255, 0.05);">MỞ DANH SÁCH</div>
+                </div>
+            </div>
+
+        </div> <!-- Closes .game-grid -->
+
+        <!-- UNIFIED QUANTUM GAME DIRECTORY -->
+        <div id="unifiedGameLobbyPanel" class="glass-panel" style="display:none; margin-top:30px; padding:24px; text-align:left; background: rgba(5, 10, 20, 0.75); border-color: rgba(0, 212, 255, 0.25); box-shadow: 0 0 35px rgba(0,212,255,0.15);">
+            
+            <!-- Tab buttons -->
+            <div class="directory-tabs">
+                <button class="directory-tab-btn active" id="tabBtnPg" data-tab="pg" onclick="switchLobbyTab('pg')">🎰 CỔNG GAME PG SLOTS (148)</button>
+                <button class="directory-tab-btn" id="tabBtnJili" data-tab="jili" onclick="switchLobbyTab('jili')">⚡ CỔNG GAME JILI SLOTS (120)</button>
+            </div>
+
+            <!-- Controls row (Unified Search & Quick Filters) -->
+            <div class="quick-filters-row">
+                <div style="flex: 1; min-width: 280px;">
+                    <input type="text" id="unifiedSearchInput" class="input-box" placeholder="🔍 Nhập tên game hoặc ID để tìm kiếm..." style="font-size:14px; padding:10px 14px; border-color:rgba(0,212,255,0.25); color:#fff; width: 100%;" oninput="handleUnifiedSearch(this.value)">
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <span style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); align-self: center; margin-right: 6px;">LỌC NHANH:</span>
+                    <button class="quick-filter-btn active" id="filterBtnAll" onclick="filterByRtpGroup('all')">TẤT CẢ</button>
+                    <button class="quick-filter-btn" id="filterBtnHot" onclick="filterByRtpGroup('hot')">🔥 RTP CAO (HOT)</button>
+                    <button class="quick-filter-btn" id="filterBtnCold" onclick="filterByRtpGroup('cold')">❄️ RTP THẤP (COLD)</button>
+                </div>
+                
+                <!-- Expanded Cyber Commands Sub-Row -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; width: 100%; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
+                    <button class="quick-filter-btn" style="border-color: rgba(245, 158, 11, 0.4); color: var(--warning);" onclick="openQuantumWheel()">🎯 VÒNG QUAY GỢI Ý AI</button>
+                    <button class="quick-filter-btn" id="heatmapToggleBtn" style="border-color: rgba(16, 185, 129, 0.4); color: var(--success);" onclick="toggleRtpHeatmap()">📊 BẢN ĐỒ NHIỆT RTP</button>
+                    <button class="quick-filter-btn" id="compareToggleBtn" style="border-color: rgba(0, 212, 255, 0.4); color: var(--primary);" onclick="toggleGameCompareMode()">⚔️ CHẾ ĐỘ SO SÁNH GAME</button>
+                </div>
+            </div>
+
+            <!-- RTP HEATMAP PANEL -->
+            <div id="rtpHeatmapPanel" class="glass-panel" style="display: none; margin-bottom: 20px; padding: 18px; border-color: rgba(16, 185, 129, 0.25); background: rgba(5, 10, 20, 0.9); animation: fadeIn 0.3s ease-out;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+                    <span style="font-family: var(--font-display); font-size: 13px; font-weight: bold; color: var(--success); text-shadow: 0 0 8px rgba(16,185,129,0.3);">📊 BẢN ĐỒ NHIỆT RTP THỜI GIAN THỰC</span>
+                    <div style="display:flex; gap:12px; font-size:10px; font-family: var(--font-mono); color:var(--text-muted);">
+                        <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; background-color:#ef4444; border-radius:50%;"></span> >85% (NÓNG)</span>
+                        <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; background-color:#f59e0b; border-radius:50%;"></span> 75% - 85% (ẤM)</span>
+                        <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; background-color:#3b82f6; border-radius:50%;"></span> &lt;75% (LẠNH)</span>
+                    </div>
+                </div>
+                <div id="heatmapGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(20px, 1fr)); gap: 4px; max-height: 200px; overflow-y: auto; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3);">
+                    <!-- Small dots will render here dynamically -->
+                </div>
+                <div id="heatmapHoverInfo" style="margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); height: 16px; text-align: left;">
+                    Di chuột lên điểm nhiệt để quét thông số lượng tử...
+                </div>
+            </div>
+
+            <!-- GAME COMPARE PANEL -->
+            <div id="gameComparePanel" class="glass-panel" style="display: none; margin-bottom: 20px; padding: 18px; border-color: rgba(0, 212, 255, 0.25); background: rgba(5, 10, 20, 0.9); animation: fadeIn 0.3s ease-out;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+                    <span style="font-family: var(--font-display); font-size: 13px; font-weight: bold; color: var(--primary); text-shadow: 0 0 8px rgba(0,212,255,0.3);">⚔️ SO SÁNH CHỈ SỐ SLOT SONG SONG</span>
+                    <button onclick="exitCompareMode()" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; font-family:var(--font-mono);">✕ THOÁT SO SÁNH</button>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 0.1fr 1fr; gap: 15px; align-items: stretch; text-align: center;">
+                    <div id="compareSlot1" class="glass-panel" style="padding: 16px; border: 1px dashed rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; min-height: 100px; display:flex; flex-direction:column; align-items:center; justify-content:center;" onclick="activateCompareSelect(1)">
+                        <div style="font-size: 20px; color: rgba(255,255,255,0.2);">➕</div>
+                        <div style="font-size: 10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:6px;">Bấm chọn game bên dưới làm Game 1</div>
+                    </div>
+                    
+                    <div style="display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:bold; color:var(--primary); font-size:16px; text-shadow:0 0 8px rgba(0,212,255,0.3);">VS</div>
+                    
+                    <div id="compareSlot2" class="glass-panel" style="padding: 16px; border: 1px dashed rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; min-height: 100px; display:flex; flex-direction:column; align-items:center; justify-content:center;" onclick="activateCompareSelect(2)">
+                        <div style="font-size: 20px; color: rgba(255,255,255,0.2);">➕</div>
+                        <div style="font-size: 10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:6px;">Bấm chọn game bên dưới làm Game 2</div>
+                    </div>
+                </div>
+                
+                <div id="compareResultTable" style="margin-top: 15px; display: none; font-family: var(--font-mono); font-size: 12px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; padding: 12px;">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 0; font-weight:bold; color: var(--primary);">
+                        <div>GAME 1</div>
+                        <div>CHỈ SỐ</div>
+                        <div>GAME 2</div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 0;">
+                        <div id="compName1">--</div>
+                        <div style="color:var(--text-muted);">TÊN GAME</div>
+                        <div id="compName2">--</div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 0;">
+                        <div id="compRtp1" style="color:var(--success); font-weight:bold;">--</div>
+                        <div style="color:var(--text-muted);">TỶ LỆ RTP</div>
+                        <div id="compRtp2" style="color:var(--success); font-weight:bold;">--</div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 0;">
+                        <div id="compBet1">--</div>
+                        <div style="color:var(--text-muted);">CƯỢC GỢI Ý</div>
+                        <div id="compBet2">--</div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; padding: 8px 0;">
+                        <div id="compRisk1">--</div>
+                        <div style="color:var(--text-muted);">MỨC RỦI RO</div>
+                        <div id="compRisk2">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden Inputs to support old filter functions -->
+            <div style="position: absolute; width:0; height:0; opacity:0; pointer-events:none; overflow:hidden;">
+                <input type="text" id="pgSearchInput" value="">
+                <input type="text" id="jiliSearchInput" value="">
+                <div id="pgLobbySection"></div>
+                <div id="jiliLobbySection"></div>
+            </div>
+
+            <!-- PG Games List Container -->
+            <div id="pgGamesListContainer" style="max-height: 480px; overflow-y: auto; padding-right:10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <!-- PG game items will be rendered here dynamically -->
+            </div>
+
+            <!-- JILI Games List Container -->
+            <div id="jiliGamesListContainer" style="max-height: 480px; overflow-y: auto; padding-right:10px; display: none; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <!-- JILI game items will be rendered here dynamically -->
+            </div>
+
         </div>
+
     </div>
     
     <div id="dashboardView" class="dashboard-view">
@@ -821,6 +1382,8 @@
                     <button class="pip-btn" onclick="togglePiP()">Thu nhỏ (PiP)</button>
                     
                     <div class="scan-laser"></div>
+                    <canvas id="waveformCanvas" width="500" height="90" style="width:100%; height:90px; display:none; background:rgba(0,0,0,0.45); border-bottom:1px solid rgba(0,212,255,0.15); margin-bottom:12px;"></canvas>
+                    
                     <div class="cyber-loading" id="cyberLoading">
                         <div class="radar-spinner"></div>
                         <div class="loading-text" id="loadingDynamicText">INITIALIZING AICORE...</div>
@@ -833,12 +1396,3134 @@
                         <div style="color: var(--text-muted); text-align:center; padding-top:60px; font-size:14px; font-family: var(--font-mono);">Đang chờ kết nối dữ liệu. Vui lòng nhấn "Phân Tích AI Realtime"...</div>
                     </div>
                 </div>
+
+                <!-- SYSTEM ANALYSIS HISTORY -->
+                <div class="panel-title" style="margin-top:20px;">LỊCH SỬ PHÂN TÍCH HỆ THỐNG</div>
+                <div class="glass-panel" style="padding:12px; max-height:165px; overflow-y:auto; border-color:rgba(0,212,255,0.1); background:rgba(0,0,0,0.35); clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);">
+                    <table class="history-table" style="width:100%; border-collapse:collapse; text-align:left; font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+                        <thead>
+                            <tr>
+                                <th style="padding:6px 0;">THỜI GIAN</th>
+                                <th>GAME</th>
+                                <th>VỐN</th>
+                                <th style="text-align:right;">CƯỢC GỢI Ý</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analysisHistoryBody">
+                            <tr>
+                                <td colspan="4" style="text-align:center; padding:15px 0; color:var(--text-muted); font-style:italic;">Chưa có phiên phân tích nào.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    // =========================================================================
+    // JILI SLOTS DATABASE & HELPER FUNCTIONS
+    // =========================================================================
+    const jiliGamesDatabase = [
+    {
+        "id": 171099,
+        "name": "Siêu Át",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0033.png",
+        "vassalage": "JL",
+        "percent": 15
+    },
+    {
+        "id": 171110,
+        "name": "Đế Quốc Hoàng Kim",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0044.png",
+        "vassalage": "JL",
+        "percent": 91
+    },
+    {
+        "id": 171111,
+        "name": "Ngọc May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0045.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 171087,
+        "name": "Crazy777",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0021.png",
+        "vassalage": "JL",
+        "percent": 8
+    },
+    {
+        "id": 171104,
+        "name": "Quyền Vương",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0038.png",
+        "vassalage": "JL",
+        "percent": 58
+    },
+    {
+        "id": 184930,
+        "name": "Ngọc May Mắn 3",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0156.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 179115,
+        "name": "Ngọc may mắn 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0125.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 171419,
+        "name": "Thợ săn điên",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0046.png",
+        "vassalage": "JL",
+        "percent": 43
+    },
+    {
+        "id": 185969,
+        "name": "Siêu Ace Deluxe",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0162.png",
+        "vassalage": "JL",
+        "percent": 54
+    },
+    {
+        "id": 174857,
+        "name": "Át lớn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0093.png",
+        "vassalage": "JL",
+        "percent": 38
+    },
+    {
+        "id": 174858,
+        "name": "Ali Baba",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0094.png",
+        "vassalage": "JL",
+        "percent": 36
+    },
+    {
+        "id": 190143,
+        "name": "Xu May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0211.png",
+        "vassalage": "JL",
+        "percent": 68
+    },
+    {
+        "id": 191580,
+        "name": "Át chủ bài siêu cấp II",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0214.png",
+        "vassalage": "JL",
+        "percent": 55
+    },
+    {
+        "id": 177721,
+        "name": "Ace hoang dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0116.png",
+        "vassalage": "JL",
+        "percent": 93
+    },
+    {
+        "id": 180387,
+        "name": "Nữ Tư Tế Aztec",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0137.png",
+        "vassalage": "JL",
+        "percent": 91
+    },
+    {
+        "id": 189029,
+        "name": "Báo May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0189.png",
+        "vassalage": "JL",
+        "percent": 29
+    },
+    {
+        "id": 186252,
+        "name": "ba chú heo con",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0165.png",
+        "vassalage": "JL",
+        "percent": 74
+    },
+    {
+        "id": 171102,
+        "name": "Tiền Đang Đến",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0036.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 174166,
+        "name": "JILI CAISHEN",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0083.png",
+        "vassalage": "JL",
+        "percent": 68
+    },
+    {
+        "id": 171089,
+        "name": "Bao Thanh Thiên",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0023.png",
+        "vassalage": "JL",
+        "percent": 41
+    },
+    {
+        "id": 171088,
+        "name": "Người đẹp bong bóng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0022.png",
+        "vassalage": "JL",
+        "percent": 72
+    },
+    {
+        "id": 171078,
+        "name": "Chin Shi Huang",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0012.png",
+        "vassalage": "JL",
+        "percent": 5
+    },
+    {
+        "id": 171090,
+        "name": "Điên cuồng FaFaFa",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0024.png",
+        "vassalage": "JL",
+        "percent": 31
+    },
+    {
+        "id": 180550,
+        "name": "Khỉ may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0139.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 184697,
+        "name": "Ba đồng Thụy Long",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0154.png",
+        "vassalage": "JL",
+        "percent": 81
+    },
+    {
+        "id": 171105,
+        "name": "Kho báu bí mật",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0039.png",
+        "vassalage": "JL",
+        "percent": 43
+    },
+    {
+        "id": 171094,
+        "name": "Phong Thần",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0028.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 171106,
+        "name": "Kho báu Pharaoh",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0040.png",
+        "vassalage": "JL",
+        "percent": 63
+    },
+    {
+        "id": 175976,
+        "name": "Joker vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0103.png",
+        "vassalage": "JL",
+        "percent": 32
+    },
+    {
+        "id": 171097,
+        "name": "Kho báu rồng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0031.png",
+        "vassalage": "JL",
+        "percent": 84
+    },
+    {
+        "id": 186178,
+        "name": "Tay súng điên 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0164.png",
+        "vassalage": "JL",
+        "percent": 42
+    },
+    {
+        "id": 186721,
+        "name": "Tiền điên đang đến để mở rộng đặt cược của bạn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0167.png",
+        "vassalage": "JL",
+        "percent": 29
+    },
+    {
+        "id": 171098,
+        "name": "Sạc trâu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0032.png",
+        "vassalage": "JL",
+        "percent": 21
+    },
+    {
+        "id": 171095,
+        "name": "Ngân hàng vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0029.png",
+        "vassalage": "JL",
+        "percent": 53
+    },
+    {
+        "id": 171100,
+        "name": "Nữ hoàng vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0034.png",
+        "vassalage": "JL",
+        "percent": 72
+    },
+    {
+        "id": 194550,
+        "name": "Điên Cuồng 777",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0233.png",
+        "vassalage": "JL",
+        "percent": 25
+    },
+    {
+        "id": 194041,
+        "name": "Vương Miện Lấp Lánh 40",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0229.png",
+        "vassalage": "JL",
+        "percent": 21
+    },
+    {
+        "id": 194013,
+        "name": "Hề Xiếc 4096",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0232.png",
+        "vassalage": "JL",
+        "percent": 85
+    },
+    {
+        "id": 193709,
+        "name": "Đế Chế Vàng 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0228.png",
+        "vassalage": "JL",
+        "percent": 1
+    },
+    {
+        "id": 193546,
+        "name": "Cô Nàng Bikini",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0227.png",
+        "vassalage": "JL",
+        "percent": 4
+    },
+    {
+        "id": 193545,
+        "name": "Mỏ Vàng Lớn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0226.png",
+        "vassalage": "JL",
+        "percent": 20
+    },
+    {
+        "id": 193416,
+        "name": "3 Chiếc Đèn Phù Thủy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0224.png",
+        "vassalage": "JL",
+        "percent": 10
+    },
+    {
+        "id": 193239,
+        "name": "Đồng xu Cỏ ba lá 3x3",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0223.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 193238,
+        "name": "Nồi Tiền Deluxe",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0222.png",
+        "vassalage": "JL",
+        "percent": 12
+    },
+    {
+        "id": 193237,
+        "name": "Nữ Hoàng Hải Tặc 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0221.png",
+        "vassalage": "JL",
+        "percent": 48
+    },
+    {
+        "id": 193235,
+        "name": "Kho Báu Vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0220.png",
+        "vassalage": "JL",
+        "percent": 88
+    },
+    {
+        "id": 192690,
+        "name": "Cú đá phạt đền",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0219.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 192689,
+        "name": "Xu Hề",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0218.png",
+        "vassalage": "JL",
+        "percent": 27
+    },
+    {
+        "id": 191598,
+        "name": "10 Vương Miện Lấp Lánh",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0217.png",
+        "vassalage": "JL",
+        "percent": 33
+    },
+    {
+        "id": 191585,
+        "name": "Tiền điên 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0215.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 191562,
+        "name": "3 con trâu xông pha",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0213.png",
+        "vassalage": "JL",
+        "percent": 87
+    },
+    {
+        "id": 191557,
+        "name": "Super Ace Joker",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0212.png",
+        "vassalage": "JL",
+        "percent": 62
+    },
+    {
+        "id": 190078,
+        "name": "Va Chạm Chạm Đích",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0210.png",
+        "vassalage": "JL",
+        "percent": 41
+    },
+    {
+        "id": 189874,
+        "name": "Roma X Cao Cấp",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0209.png",
+        "vassalage": "JL",
+        "percent": 89
+    },
+    {
+        "id": 189823,
+        "name": "3 Sư Tử May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0208.png",
+        "vassalage": "JL",
+        "percent": 52
+    },
+    {
+        "id": 189822,
+        "name": "Chiến Tranh Cricket",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0207.png",
+        "vassalage": "JL",
+        "percent": 68
+    },
+    {
+        "id": 189821,
+        "name": "3 Xu Ngựa Hoang",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0206.png",
+        "vassalage": "JL",
+        "percent": 43
+    },
+    {
+        "id": 189759,
+        "name": "Keno Cược Thêm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0205.png",
+        "vassalage": "JL",
+        "percent": 56
+    },
+    {
+        "id": 189622,
+        "name": "Keno Cơ Hội Siêu Việt",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0204.png",
+        "vassalage": "JL",
+        "percent": 72
+    },
+    {
+        "id": 189476,
+        "name": "Nhiệm Vụ Truy Tìm Kho Báu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0203.png",
+        "vassalage": "JL",
+        "percent": 77
+    },
+    {
+        "id": 189466,
+        "name": "Cây Tiền Xu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0202.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 189349,
+        "name": "Tiệc Kim Cương",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0200.png",
+        "vassalage": "JL",
+        "percent": 93
+    },
+    {
+        "id": 189348,
+        "name": "Trò Chơi Màu Sắc Cực Đỉnh",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0201.png",
+        "vassalage": "JL",
+        "percent": 56
+    },
+    {
+        "id": 189347,
+        "name": "Vẻ Đẹp Hawaii",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0199.png",
+        "vassalage": "JL",
+        "percent": 54
+    },
+    {
+        "id": 189343,
+        "name": "Cuộn Tiền Vô Tận Bùng Nổ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0198.png",
+        "vassalage": "JL",
+        "percent": 79
+    },
+    {
+        "id": 189342,
+        "name": "Bí ẩn Safari",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0197.png",
+        "vassalage": "JL",
+        "percent": 12
+    },
+    {
+        "id": 189314,
+        "name": "Cào Ngọc May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0195.png",
+        "vassalage": "JL",
+        "percent": 84
+    },
+    {
+        "id": 189232,
+        "name": "Tranh chức vô địch",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0194.png",
+        "vassalage": "JL",
+        "percent": 22
+    },
+    {
+        "id": 189215,
+        "name": "3 Kho Báu Xu 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0193.png",
+        "vassalage": "JL",
+        "percent": 17
+    },
+    {
+        "id": 189213,
+        "name": "Ngân Hàng Vàng 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0192.png",
+        "vassalage": "JL",
+        "percent": 52
+    },
+    {
+        "id": 189112,
+        "name": "Vua Thảo Nguyên",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0191.png",
+        "vassalage": "JL",
+        "percent": 23
+    },
+    {
+        "id": 189051,
+        "name": "Vòng Quay May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0190.png",
+        "vassalage": "JL",
+        "percent": 22
+    },
+    {
+        "id": 188841,
+        "name": "Săn Lùng Lúc Chạng Vạng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0187.png",
+        "vassalage": "JL",
+        "percent": 26
+    },
+    {
+        "id": 188839,
+        "name": "Cuộc Thi Quyền Anh Hoành Tráng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0185.png",
+        "vassalage": "JL",
+        "percent": 29
+    },
+    {
+        "id": 188834,
+        "name": "Tướng quân",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0184.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 188153,
+        "name": "Nồi Tiền",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0182.png",
+        "vassalage": "JL",
+        "percent": 91
+    },
+    {
+        "id": 188136,
+        "name": "3 Rồng Nồi",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0180.png",
+        "vassalage": "JL",
+        "percent": 47
+    },
+    {
+        "id": 188135,
+        "name": "Chó May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0179.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 188091,
+        "name": "Vòng quay trái cây",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0178.png",
+        "vassalage": "JL",
+        "percent": 89
+    },
+    {
+        "id": 188010,
+        "name": "Số thưởng Keno",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0177.png",
+        "vassalage": "JL",
+        "percent": 4
+    },
+    {
+        "id": 188009,
+        "name": "Poseidon",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0176.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 187830,
+        "name": "Ánh Sáng của Ai Cập",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0174.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 187829,
+        "name": "3 Chú Heo May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0173.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 186725,
+        "name": "ngôi sao tiệc tùng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0171.png",
+        "vassalage": "JL",
+        "percent": 51
+    },
+    {
+        "id": 186724,
+        "name": "Crash Cricket",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0170.png",
+        "vassalage": "JL",
+        "percent": 59
+    },
+    {
+        "id": 186722,
+        "name": "Super Ace Scratch",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0168.png",
+        "vassalage": "JL",
+        "percent": 63
+    },
+    {
+        "id": 186720,
+        "name": "di sản Ai Cập",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0166.png",
+        "vassalage": "JL",
+        "percent": 91
+    },
+    {
+        "id": 185984,
+        "name": "Mục tiêu va chạm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0163.png",
+        "vassalage": "JL",
+        "percent": 83
+    },
+    {
+        "id": 185102,
+        "name": "Phù Thủy Phép Thuật",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0161.png",
+        "vassalage": "JL",
+        "percent": 44
+    },
+    {
+        "id": 185100,
+        "name": "Tôm Cua Cá",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0160.png",
+        "vassalage": "JL",
+        "percent": 42
+    },
+    {
+        "id": 184941,
+        "name": "Trò chơi động vật",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0159.png",
+        "vassalage": "JL",
+        "percent": 93
+    },
+    {
+        "id": 184940,
+        "name": "Video Poker",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0158.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 184691,
+        "name": "Joker độc đắc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0153.png",
+        "vassalage": "JL",
+        "percent": 94
+    },
+    {
+        "id": 184217,
+        "name": "thần Zeus",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0152.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 183063,
+        "name": "Thử Thách của Phượng Hoàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0151.png",
+        "vassalage": "JL",
+        "percent": 13
+    },
+    {
+        "id": 183062,
+        "name": "Lửa Quỷ 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0150.png",
+        "vassalage": "JL",
+        "percent": 3
+    },
+    {
+        "id": 183028,
+        "name": "Chiến binh đấu trường",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0149.png",
+        "vassalage": "JL",
+        "percent": 77
+    },
+    {
+        "id": 182357,
+        "name": "Phí Buffalo Ascent",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0148.png",
+        "vassalage": "JL",
+        "percent": 88
+    },
+    {
+        "id": 181999,
+        "name": "Đêm phù thủy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0147.png",
+        "vassalage": "JL",
+        "percent": 54
+    },
+    {
+        "id": 181926,
+        "name": "Pearls of Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0146.png",
+        "vassalage": "JL",
+        "percent": 16
+    },
+    {
+        "id": 181635,
+        "name": "Vua Arthur",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0145.png",
+        "vassalage": "JL",
+        "percent": 36
+    },
+    {
+        "id": 181610,
+        "name": "Thành phố đêm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0144.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 181505,
+        "name": "Thành phố Tội lỗi",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0142.png",
+        "vassalage": "JL",
+        "percent": 15
+    },
+    {
+        "id": 181110,
+        "name": "Dabanggg",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0140.png",
+        "vassalage": "JL",
+        "percent": 22
+    },
+    {
+        "id": 180389,
+        "name": "lửa quỷ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0138.png",
+        "vassalage": "JL",
+        "percent": 2
+    },
+    {
+        "id": 180267,
+        "name": "Người đẹp Bangla",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0134.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 180141,
+        "name": "Bingo Đèn Thần",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0132.png",
+        "vassalage": "JL",
+        "percent": 26
+    },
+    {
+        "id": 179804,
+        "name": "Cricket Sah 75",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0131.png",
+        "vassalage": "JL",
+        "percent": 89
+    },
+    {
+        "id": 179741,
+        "name": "Dự Đoán Màu Sắc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0130.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 179438,
+        "name": "Plinko",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0128.png",
+        "vassalage": "JL",
+        "percent": 31
+    },
+    {
+        "id": 179303,
+        "name": "Tiền thưởng tai nạn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0127.png",
+        "vassalage": "JL",
+        "percent": 28
+    },
+    {
+        "id": 179279,
+        "name": "Cricket King 18",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0126.png",
+        "vassalage": "JL",
+        "percent": 87
+    },
+    {
+        "id": 179102,
+        "name": "ngôi đền vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0124.png",
+        "vassalage": "JL",
+        "percent": 88
+    },
+    {
+        "id": 178986,
+        "name": "yêu tinh Ailen",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0123.png",
+        "vassalage": "JL",
+        "percent": 20
+    },
+    {
+        "id": 178371,
+        "name": "Keno",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0122.png",
+        "vassalage": "JL",
+        "percent": 62
+    },
+    {
+        "id": 178067,
+        "name": "mỏ vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0119.png",
+        "vassalage": "JL",
+        "percent": 42
+    },
+    {
+        "id": 178045,
+        "name": "Bánh xe",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0118.png",
+        "vassalage": "JL",
+        "percent": 58
+    },
+    {
+        "id": 177965,
+        "name": "Mật Địa Hoàng Kim",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0117.png",
+        "vassalage": "JL",
+        "percent": 48
+    },
+    {
+        "id": 177720,
+        "name": "lấp lửng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0115.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 177692,
+        "name": "Bingo Adventure",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0114.png",
+        "vassalage": "JL",
+        "percent": 43
+    },
+    {
+        "id": 177177,
+        "name": "Vùng đất ngọt ngào",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0113.png",
+        "vassalage": "JL",
+        "percent": 6
+    },
+    {
+        "id": 176841,
+        "name": "xin chào",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0112.png",
+        "vassalage": "JL",
+        "percent": 75
+    },
+    {
+        "id": 176795,
+        "name": "mỏ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0110.png",
+        "vassalage": "JL",
+        "percent": 14
+    },
+    {
+        "id": 176784,
+        "name": "Tòa tháp",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0109.png",
+        "vassalage": "JL",
+        "percent": 6
+    },
+    {
+        "id": 176203,
+        "name": "Hổ chủ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0107.png",
+        "vassalage": "JL",
+        "percent": 48
+    },
+    {
+        "id": 176197,
+        "name": "nữ hoàng hải tặc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0106.png",
+        "vassalage": "JL",
+        "percent": 80
+    },
+    {
+        "id": 176189,
+        "name": "PAPPU",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0105.png",
+        "vassalage": "JL",
+        "percent": 16
+    },
+    {
+        "id": 176188,
+        "name": "West Hunter Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0104.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 175673,
+        "name": "tay đua hoang dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0102.png",
+        "vassalage": "JL",
+        "percent": 19
+    },
+    {
+        "id": 175296,
+        "name": "Mèo Thần Tài",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0101.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 175215,
+        "name": "TwinWins",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0100.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 175214,
+        "name": "Aladin",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0099.png",
+        "vassalage": "JL",
+        "percent": 58
+    },
+    {
+        "id": 175213,
+        "name": "Đêm Party",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0098.png",
+        "vassalage": "JL",
+        "percent": 33
+    },
+    {
+        "id": 175212,
+        "name": "Đặc vụ Át Chủ Bài",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0097.png",
+        "vassalage": "JL",
+        "percent": 5
+    },
+    {
+        "id": 175199,
+        "name": "Calaca Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0096.png",
+        "vassalage": "JL",
+        "percent": 34
+    },
+    {
+        "id": 174883,
+        "name": "Lễ hội Samba",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0095.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 174644,
+        "name": "Cúp thế giới",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0090.png",
+        "vassalage": "JL",
+        "percent": 30
+    },
+    {
+        "id": 174460,
+        "name": "Chơi Bingo Mục tiêu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0089.png",
+        "vassalage": "JL",
+        "percent": 85
+    },
+    {
+        "id": 174439,
+        "name": "Jackpot Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0088.png",
+        "vassalage": "JL",
+        "percent": 28
+    },
+    {
+        "id": 174438,
+        "name": "Trò chơi màu sắc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0087.png",
+        "vassalage": "JL",
+        "percent": 85
+    },
+    {
+        "id": 174373,
+        "name": "Giành chiến thắng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0086.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 174332,
+        "name": "Thợ săn tiền thưởng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0085.png",
+        "vassalage": "JL",
+        "percent": 81
+    },
+    {
+        "id": 174267,
+        "name": "Bingo may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0084.png",
+        "vassalage": "JL",
+        "percent": 33
+    },
+    {
+        "id": 173953,
+        "name": "Bingo Carnaval",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0074.png",
+        "vassalage": "JL",
+        "percent": 81
+    },
+    {
+        "id": 173952,
+        "name": "Super Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0073.png",
+        "vassalage": "JL",
+        "percent": 77
+    },
+    {
+        "id": 173950,
+        "name": "Fortune Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0071.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 173938,
+        "name": "Irich Bingo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0058.png",
+        "vassalage": "JL",
+        "percent": 74
+    },
+    {
+        "id": 173834,
+        "name": "Bone Fortune",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0057.png",
+        "vassalage": "JL",
+        "percent": 41
+    },
+    {
+        "id": 173640,
+        "name": "Crazy Pusher",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0056.png",
+        "vassalage": "JL",
+        "percent": 49
+    },
+    {
+        "id": 172682,
+        "name": "Đế chế Maya",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0055.png",
+        "vassalage": "JL",
+        "percent": 6
+    },
+    {
+        "id": 172514,
+        "name": "Tìm vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0054.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 172499,
+        "name": "Happy Taxi",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0053.png",
+        "vassalage": "JL",
+        "percent": 53
+    },
+    {
+        "id": 172468,
+        "name": "Thor X",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0051.png",
+        "vassalage": "JL",
+        "percent": 39
+    },
+    {
+        "id": 172250,
+        "name": "Quyển sách hoàng kim",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0048.png",
+        "vassalage": "JL",
+        "percent": 74
+    },
+    {
+        "id": 172129,
+        "name": "Medusa",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0047.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 171109,
+        "name": "RomaX",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0043.png",
+        "vassalage": "JL",
+        "percent": 56
+    },
+    {
+        "id": 171108,
+        "name": "Cực giàu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0042.png",
+        "vassalage": "JL",
+        "percent": 22
+    },
+    {
+        "id": 171107,
+        "name": "May mắn đến",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0041.png",
+        "vassalage": "JL",
+        "percent": 21
+    },
+    {
+        "id": 171103,
+        "name": "Vua rừng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0037.png",
+        "vassalage": "JL",
+        "percent": 88
+    },
+    {
+        "id": 171101,
+        "name": "Bữa tiệc của khỉ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0035.png",
+        "vassalage": "JL",
+        "percent": 53
+    },
+    {
+        "id": 171096,
+        "name": "Lucky Goldbricks",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0030.png",
+        "vassalage": "JL",
+        "percent": 9
+    },
+    {
+        "id": 171093,
+        "name": "Candy Baby",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0027.png",
+        "vassalage": "JL",
+        "percent": 91
+    },
+    {
+        "id": 171092,
+        "name": "Fortune Pig",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0026.png",
+        "vassalage": "JL",
+        "percent": 7
+    },
+    {
+        "id": 171091,
+        "name": "Xi Yang Yang",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0025.png",
+        "vassalage": "JL",
+        "percent": 95
+    },
+    {
+        "id": 171086,
+        "name": "Seven Seven Seven",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0020.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 171085,
+        "name": "Quan Vân Trường",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0019.png",
+        "vassalage": "JL",
+        "percent": 86
+    },
+    {
+        "id": 171084,
+        "name": "Cực Tốc Phát Đại Tài",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0018.png",
+        "vassalage": "JL",
+        "percent": 70
+    },
+    {
+        "id": 171083,
+        "name": "Vẻ đẹp Thượng Hải",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0017.png",
+        "vassalage": "JL",
+        "percent": 22
+    },
+    {
+        "id": 171082,
+        "name": "Hyper Burst",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0016.png",
+        "vassalage": "JL",
+        "percent": 92
+    },
+    {
+        "id": 171081,
+        "name": "Quả cầu may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0015.png",
+        "vassalage": "JL",
+        "percent": 36
+    },
+    {
+        "id": 171080,
+        "name": "Cây tài lộc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0014.png",
+        "vassalage": "JL",
+        "percent": 94
+    },
+    {
+        "id": 171079,
+        "name": "War Of Dragons",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0013.png",
+        "vassalage": "JL",
+        "percent": 90
+    },
+    {
+        "id": 171077,
+        "name": "Ớt cay",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/JL/EN/JL0011.png",
+        "vassalage": "JL",
+        "percent": 89
+    }
+];
+
+    let currentLobbyTab = 'pg';
+    let currentRtpFilter = 'all';
+
+    function switchLobbyTab(tabName) {
+        currentLobbyTab = tabName;
+        const tabBtnPg = document.getElementById('tabBtnPg');
+        const tabBtnJili = document.getElementById('tabBtnJili');
+        const pgContainer = document.getElementById('pgGamesListContainer');
+        const jiliContainer = document.getElementById('jiliGamesListContainer');
+
+        if (tabName === 'pg') {
+            tabBtnPg.classList.add('active');
+            tabBtnJili.classList.remove('active');
+            pgContainer.style.display = 'grid';
+            jiliContainer.style.display = 'none';
+            
+            if (pgContainer.children.length === 0) {
+                renderPgGamesList();
+            }
+        } else {
+            tabBtnPg.classList.remove('active');
+            tabBtnJili.classList.add('active');
+            pgContainer.style.display = 'none';
+            jiliContainer.style.display = 'grid';
+            
+            if (jiliContainer.children.length === 0) {
+                renderJiliGamesList();
+            }
+        }
+        
+        // Re-run search/filter logic for current tab
+        const searchVal = document.getElementById('unifiedSearchInput').value;
+        handleUnifiedSearch(searchVal);
+    }
+
+    function handleUnifiedSearch(value) {
+        document.getElementById('pgSearchInput').value = value;
+        document.getElementById('jiliSearchInput').value = value;
+        
+        // Apply filtration
+        filterByRtpGroup(currentRtpFilter);
+    }
+
+    function filterByRtpGroup(group) {
+        currentRtpFilter = group;
+        
+        document.getElementById('filterBtnAll').classList.toggle('active', group === 'all');
+        document.getElementById('filterBtnHot').classList.toggle('active', group === 'hot');
+        document.getElementById('filterBtnCold').classList.toggle('active', group === 'cold');
+        
+        const searchVal = document.getElementById('unifiedSearchInput').value.toLowerCase().trim();
+        
+        // Filter PG games
+        const pgCards = document.querySelectorAll('#pgGamesListContainer > div');
+        pgGamesDatabase.forEach((game, idx) => {
+            const card = pgCards[idx];
+            if (card) {
+                const matchesSearch = !searchVal || game.name.toLowerCase().includes(searchVal) || game.id.toString() === searchVal;
+                let matchesRtp = true;
+                if (group === 'hot') {
+                    matchesRtp = game.percent > 75;
+                } else if (group === 'cold') {
+                    matchesRtp = game.percent <= 75;
+                }
+                
+                if (matchesSearch && matchesRtp) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+        
+        // Filter JILI games
+        const jiliCards = document.querySelectorAll('#jiliGamesListContainer > div');
+        jiliGamesDatabase.forEach((game, idx) => {
+            const card = jiliCards[idx];
+            if (card) {
+                const matchesSearch = !searchVal || game.name.toLowerCase().includes(searchVal) || game.id.toString() === searchVal;
+                let matchesRtp = true;
+                if (group === 'hot') {
+                    matchesRtp = game.percent > 75;
+                } else if (group === 'cold') {
+                    matchesRtp = game.percent <= 75;
+                }
+                
+                if (matchesSearch && matchesRtp) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    function toggleJiliLobby() {
+        const panel = document.getElementById('unifiedGameLobbyPanel');
+        const tabBtnJili = document.getElementById('tabBtnJili');
+        const isJiliActive = tabBtnJili.classList.contains('active');
+        
+        if (panel.style.display === 'none' || !isJiliActive) {
+            panel.style.display = 'block';
+            switchLobbyTab('jili');
+            panel.scrollIntoView({ behavior: 'smooth' });
+            playAudioFx('success');
+        } else {
+            panel.style.display = 'none';
+            playAudioFx('error');
+        }
+    }
+
+    function renderJiliGamesList() {
+        const container = document.getElementById('jiliGamesListContainer');
+        container.innerHTML = '';
+        jiliGamesDatabase.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'jili-game-mini-card';
+            card.onclick = () => {
+                if (typeof isCompareMode !== 'undefined' && isCompareMode && isCompareSelectMode) {
+                    handleCompareSelection({...game, vassalage: 'JL'});
+                } else {
+                    enterGame('jl-' + game.id);
+                }
+            };
+            card.innerHTML = `
+                <img src="${game.showIcon}" alt="${game.name}" style="width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="flex: 1; min-width: 0; text-align: left;">
+                    <div style="font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${game.name}">${game.name}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                        <span style="font-size:10px; color:#00d4ff; font-family:var(--font-mono); font-weight:bold;">ID: #${game.id}</span>
+                        <span style="font-size:11px; color:var(--success); font-family:var(--font-mono); font-weight:bold;">RTP: ${game.percent}%</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterJiliGames() {
+        const query = document.getElementById('jiliSearchInput').value.toLowerCase().trim();
+        const cards = document.querySelectorAll('#jiliGamesListContainer > div');
+        jiliGamesDatabase.forEach((game, idx) => {
+            const card = cards[idx];
+            if (card) {
+                if (!query || game.name.toLowerCase().includes(query) || game.id.toString() === query) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    // --- ADDITIONAL PREMIUM FUNCTIONS ---
+    let isZenMode = false;
+
+    function toggleZenMode(force) {
+        if (typeof force === 'boolean') {
+            isZenMode = force;
+        } else {
+            isZenMode = !isZenMode;
+        }
+        
+        const body = document.body;
+        const btn = document.getElementById('zenModeToggle');
+        
+        if (isZenMode) {
+            body.classList.add('zen-mode-active');
+            btn.innerText = '📱 TỐI ƯU DI ĐỘNG: BẬT';
+            btn.style.borderColor = 'var(--success)';
+            btn.style.color = 'var(--success)';
+            btn.style.background = 'rgba(16, 185, 129, 0.1)';
+            btn.style.boxShadow = '0 0 8px rgba(16, 185, 129, 0.2)';
+            speakVoiceQuietly('Đã kích hoạt chế độ tối ưu di động.');
+        } else {
+            body.classList.remove('zen-mode-active');
+            btn.innerText = '📱 TỐI ƯU DI ĐỘNG: TẮT';
+            btn.style.borderColor = 'var(--warning)';
+            btn.style.color = 'var(--warning)';
+            btn.style.background = 'rgba(245, 158, 11, 0.1)';
+            btn.style.boxShadow = '0 0 8px rgba(245, 158, 11, 0.2)';
+            speakVoiceQuietly('Đã tắt chế độ tối ưu di động.');
+        }
+    }
+    
+    function speakVoiceQuietly(text) {
+        if (typeof voiceAssistantMuted !== 'undefined' && !voiceAssistantMuted) {
+            speakVietnamese(text);
+        }
+    }
+
+    const signalMessages = [
+        "Đang làm mới khóa bảo mật lượng tử... [Bypass: 99.87%]",
+        "Tín hiệu sảnh PG có dấu hiệu khởi sắc ở game 'Mỹ Nhân Kế'.",
+        "Phát hiện tỷ lệ RTP sảnh JILI 'Đế Quốc Hoàng Kim' vượt mốc 92%.",
+        "Tường lửa sảnh game đang ổn định, lưu lượng an toàn.",
+        "Khuyên dùng: Slot JILI 'Crazy777' đang có xung nhịp RTP rất cao.",
+        "Hệ thống Anti-Ban: Đã tự động dọn dẹp cache phiên hoạt động.",
+        "Gợi ý vốn AI: Vốn 1.000.000đ khuyên dùng mức bet 4.000đ - 8.000đ.",
+        "Dò sóng AI: Phát hiện điểm vào lệnh vàng (Golden Entry) tại game ID #171110."
+    ];
+
+    function startSignalFeed() {
+        const container = document.getElementById('signalFeedLogs');
+        if (!container) return;
+        
+        setInterval(() => {
+            const randomMsg = signalMessages[Math.floor(Math.random() * signalMessages.length)];
+            const timeStr = new Date().toLocaleTimeString('vi-VN', { hour12: false });
+            const logText = `[${timeStr}] ${randomMsg}`;
+            
+            const currentLog = container.querySelector('.signal-log-item');
+            if (currentLog) {
+                currentLog.style.opacity = '0';
+                currentLog.style.transform = 'translateY(-10px)';
+                setTimeout(() => currentLog.remove(), 500);
+            }
+            
+            const newLog = document.createElement('div');
+            newLog.className = 'signal-log-item';
+            newLog.style.cssText = `
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                line-height: 20px;
+                transition: opacity 0.5s, transform 0.5s;
+                opacity: 0;
+                transform: translateY(10px);
+            `;
+            newLog.innerText = logText;
+            container.appendChild(newLog);
+            
+            setTimeout(() => {
+                newLog.style.opacity = '1';
+                newLog.style.transform = 'translateY(0)';
+            }, 50);
+        }, 6000);
+    }
+
+    let speechRecognitionActive = false;
+    let speechRec = null;
+
+    function toggleVoiceCommand() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            alert("Trình duyệt của bạn không hỗ trợ nhận diện giọng nói (Speech Recognition). Vui lòng dùng Chrome hoặc Safari.");
+            return;
+         }
+         
+         const btn = document.getElementById('voiceCommandBtn');
+         const overlay = document.getElementById('speechListeningOverlay');
+         
+         if (speechRecognitionActive) {
+             if (speechRec) speechRec.stop();
+             speechRecognitionActive = false;
+             btn.style.background = 'rgba(16, 185, 129, 0.1)';
+             btn.style.borderColor = 'var(--success)';
+             btn.style.color = 'var(--success)';
+             overlay.style.display = 'none';
+             speakVoiceQuietly('Đã dừng trợ lý nhận diện giọng nói.');
+         } else {
+             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+             speechRec = new SpeechRecognition();
+             speechRec.lang = 'vi-VN';
+             speechRec.continuous = true;
+             speechRec.interimResults = false;
+             
+             speechRec.onstart = () => {
+                 speechRecognitionActive = true;
+                 btn.style.background = 'rgba(239, 68, 68, 0.2)';
+                 btn.style.borderColor = '#ef4444';
+                 btn.style.color = '#ef4444';
+                 overlay.style.display = 'flex';
+                 document.getElementById('speechStatusText').innerText = "AI đang lắng nghe... Nói lệnh của bạn.";
+                 speakVoiceQuietly('Trợ lý giọng nói đang lắng nghe.');
+             };
+             
+             speechRec.onresult = (event) => {
+                 const resultText = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
+                 document.getElementById('speechStatusText').innerText = `Nhận diện: "${resultText}"`;
+                 handleSpeechCommand(resultText);
+             };
+             
+             speechRec.onerror = (e) => {
+                 console.error("Speech Recognition Error:", e);
+                 overlay.style.display = 'none';
+                 speechRecognitionActive = false;
+                 btn.style.background = 'rgba(16, 185, 129, 0.1)';
+                 btn.style.borderColor = 'var(--success)';
+                 btn.style.color = 'var(--success)';
+             };
+             
+             speechRec.onend = () => {
+                 if (speechRecognitionActive && speechRec) {
+                     try { speechRec.start(); } catch(e) {}
+                 }
+             };
+             
+             speechRec.start();
+         }
+     }
+
+     function handleSpeechCommand(cmd) {
+         if (cmd.includes('mở pg') || cmd.includes('sảnh pg')) {
+             speakVoiceQuietly("Đang mở danh sách game cổng PG Slots.");
+             togglePgLobby();
+         } else if (cmd.includes('mở jili') || cmd.includes('sảnh jili')) {
+             speakVoiceQuietly("Đang mở danh sách game cổng Jili Slots.");
+             toggleJiliLobby();
+         } else if (cmd.includes('quét') || cmd.includes('phân tích')) {
+             const scanBtn = document.getElementById('scanBtn');
+             if (scanBtn && document.getElementById('dashboardView').style.display === 'block') {
+                 speakVoiceQuietly("Đang phân tích lượng tử.");
+                 scanBtn.click();
+             } else {
+                 speakVoiceQuietly("Vui lòng chọn một trò chơi trước.");
+             }
+         } else if (cmd.includes('anti ban') || cmd.includes('bảo mật') || cmd.includes('xóa dấu vết')) {
+             const abBtn = document.getElementById('antibanBtn');
+             if (abBtn) {
+                 speakVoiceQuietly("Chạy bảo mật chống khóa.");
+                 abBtn.click();
+             }
+         } else if (cmd.includes('tìm') || cmd.includes('kiếm')) {
+             const parts = cmd.split(/tìm|kiếm/);
+             if (parts.length > 1) {
+                 const searchWord = parts[1].trim();
+                 document.getElementById('unifiedSearchInput').value = searchWord;
+                 handleUnifiedSearch(searchWord);
+                 speakVoiceQuietly(`Đang tìm kiếm ${searchWord}`);
+             }
+         } else if (cmd.includes('tối ưu') || cmd.includes('di động') || cmd.includes('zen mode')) {
+             toggleZenMode();
+         }
+     }
+
+     let isWheelSpinning = false;
+     function openQuantumWheel() {
+         const modal = document.getElementById('quantumWheelModal');
+         modal.style.display = 'block';
+         setTimeout(() => {
+             modal.style.transform = 'translate(-50%, -50%) scale(1)';
+             modal.style.opacity = '1';
+         }, 50);
+         playAudioFx('success');
+     }
+     
+     function closeQuantumWheel() {
+         const modal = document.getElementById('quantumWheelModal');
+         modal.style.transform = 'translate(-50%, -50%) scale(0.9)';
+         modal.style.opacity = '0';
+         setTimeout(() => {
+             modal.style.display = 'none';
+         }, 300);
+         playAudioFx('error');
+     }
+     
+     function spinQuantumWheel() {
+         if (isWheelSpinning) return;
+         isWheelSpinning = true;
+         
+         const core = document.getElementById('wheelCore');
+         const middleText = document.getElementById('wheelMiddleText');
+         const spinBtn = document.getElementById('spinWheelBtn');
+         const resultsContainer = document.getElementById('wheelResultsContainer');
+         
+         spinBtn.disabled = true;
+         spinBtn.innerText = "ĐANG DÒ SÓNG LƯỢNG TỬ...";
+         middleText.innerText = "QUÉT SÓNG...";
+         resultsContainer.style.display = 'none';
+         
+         const randomRotation = 1800 + Math.floor(Math.random() * 360);
+         core.style.transform = `rotate(${randomRotation}deg)`;
+         playAudioFx('scan');
+         
+         setTimeout(() => {
+             isWheelSpinning = false;
+             spinBtn.disabled = false;
+             spinBtn.innerText = "KÍCH HOẠT DÒ SÓNG CỰC NHANH";
+             middleText.innerText = "ĐÃ HOÀN TẤT";
+             
+             const allGames = [...pgGamesDatabase.map(g => ({...g, vassalage: 'PG'})), ...jiliGamesDatabase.map(g => ({...g, vassalage: 'JL'}))];
+             const sortedHot = allGames.filter(g => g.percent > 80).sort(() => 0.5 - Math.random()).slice(0, 3);
+             
+             const suggestedList = document.getElementById('wheelSuggestedList');
+             suggestedList.innerHTML = '';
+             sortedHot.forEach(game => {
+                 const item = document.createElement('div');
+                 item.style.cssText = `
+                     display: flex;
+                     align-items: center;
+                     justify-content: space-between;
+                     padding: 10px;
+                     background: rgba(255,255,255,0.03);
+                     border: 1px solid rgba(245, 158, 11, 0.2);
+                     border-radius: 6px;
+                 `;
+                 const gameCode = (game.vassalage === 'PG' ? 'pg-' : 'jl-') + game.id;
+                 item.innerHTML = `
+                     <div style="display:flex; align-items:center; gap:8px;">
+                         <img src="${game.showIcon}" alt="${game.name}" style="width:36px; height:36px; border-radius:4px; border:1px solid rgba(255,255,255,0.1);">
+                         <div>
+                             <div style="font-size:12px; font-weight:bold; color:#fff;">${game.name}</div>
+                             <div style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">${game.vassalage} SLOT</div>
+                         </div>
+                     </div>
+                     <div style="display:flex; align-items:center; gap:10px;">
+                         <span style="font-family:var(--font-mono); font-weight:bold; color:var(--success); font-size:12px;">RTP: ${game.percent}%</span>
+                         <button onclick="closeQuantumWheel(); enterGame('${gameCode}')" class="quick-filter-btn" style="border-color:var(--warning); color:var(--warning); font-size:10px; padding:3px 8px;">VÀO TRÒ CHƠI</button>
+                     </div>
+                 `;
+                 suggestedList.appendChild(item);
+             });
+             
+             resultsContainer.style.display = 'block';
+             playAudioFx('success');
+             speakVoiceQuietly("Dò sóng hoàn tất. Đã hiển thị gợi ý tốt nhất.");
+         }, 4000);
+     }
+
+     let isHeatmapOpen = false;
+     function toggleRtpHeatmap() {
+         isHeatmapOpen = !isHeatmapOpen;
+         const panel = document.getElementById('rtpHeatmapPanel');
+         const toggleBtn = document.getElementById('heatmapToggleBtn');
+         
+         if (isHeatmapOpen) {
+             panel.style.display = 'block';
+             toggleBtn.classList.add('active');
+             toggleBtn.style.background = 'rgba(16, 185, 129, 0.15)';
+             renderRtpHeatmap();
+             playAudioFx('success');
+         } else {
+             panel.style.display = 'none';
+             toggleBtn.classList.remove('active');
+             toggleBtn.style.background = 'rgba(0,0,0,0.4)';
+             playAudioFx('error');
+         }
+     }
+     
+     function renderRtpHeatmap() {
+         const grid = document.getElementById('heatmapGrid');
+         grid.innerHTML = '';
+         
+         const allGames = [...pgGamesDatabase.map(g => ({...g, vassalage: 'PG'})), ...jiliGamesDatabase.map(g => ({...g, vassalage: 'JL'}))];
+         
+         allGames.forEach(game => {
+             const cell = document.createElement('div');
+             cell.className = 'heatmap-cell';
+             
+             let bgColor = '#3b82f6';
+             if (game.percent > 85) {
+                 bgColor = '#ef4444';
+             } else if (game.percent >= 75) {
+                 bgColor = '#f59e0b';
+             }
+             
+             cell.style.backgroundColor = bgColor;
+             cell.style.boxShadow = `0 0 4px ${bgColor}`;
+             
+             cell.onmouseover = () => {
+                 document.getElementById('heatmapHoverInfo').innerHTML = 
+                     `Quét: <span style="color:#fff; font-weight:bold;">${game.name}</span> (${game.vassalage}) | Tín hiệu RTP: <span style="color:var(--success); font-weight:bold;">${game.percent}%</span>`;
+             };
+             cell.onmouseout = () => {
+                 document.getElementById('heatmapHoverInfo').innerHTML = 'Di chuột lên điểm nhiệt để quét thông số lượng tử...';
+             };
+             
+             cell.onclick = () => {
+                 if (isCompareMode && isCompareSelectMode) {
+                     handleCompareSelection(game);
+                 } else {
+                     const gameCode = (game.vassalage === 'PG' ? 'pg-' : 'jl-') + game.id;
+                     enterGame(gameCode);
+                 }
+             };
+             
+             grid.appendChild(cell);
+         });
+     }
+
+     let isCompareMode = false;
+     let isCompareSelectMode = false;
+     let activeCompareSlot = null;
+     let compareGame1 = null;
+     let compareGame2 = null;
+     
+     function toggleGameCompareMode() {
+         isCompareMode = !isCompareMode;
+         const panel = document.getElementById('gameComparePanel');
+         const toggleBtn = document.getElementById('compareToggleBtn');
+         
+         if (isCompareMode) {
+             panel.style.display = 'block';
+             toggleBtn.classList.add('active');
+             toggleBtn.style.background = 'rgba(0, 212, 255, 0.15)';
+             resetComparePanel();
+             playAudioFx('success');
+         } else {
+             exitCompareMode();
+         }
+     }
+     
+     function exitCompareMode() {
+         isCompareMode = false;
+         isCompareSelectMode = false;
+         activeCompareSlot = null;
+         
+         const panel = document.getElementById('gameComparePanel');
+         const toggleBtn = document.getElementById('compareToggleBtn');
+         panel.style.display = 'none';
+         toggleBtn.classList.remove('active');
+         toggleBtn.style.background = 'rgba(0,0,0,0.4)';
+         
+         document.getElementById('compareSlot1').style.borderColor = 'rgba(255,255,255,0.1)';
+         document.getElementById('compareSlot2').style.borderColor = 'rgba(255,255,255,0.1)';
+         
+         playAudioFx('error');
+     }
+     
+     function resetComparePanel() {
+         compareGame1 = null;
+         compareGame2 = null;
+         
+         const slot1 = document.getElementById('compareSlot1');
+         const slot2 = document.getElementById('compareSlot2');
+         
+         slot1.innerHTML = `
+             <div style="font-size: 20px; color: rgba(255,255,255,0.2);">➕</div>
+             <div style="font-size: 10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:6px;">Bấm chọn game bên dưới làm Game 1</div>
+         `;
+         slot2.innerHTML = `
+             <div style="font-size: 20px; color: rgba(255,255,255,0.2);">➕</div>
+             <div style="font-size: 10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:6px;">Bấm chọn game bên dưới làm Game 2</div>
+         `;
+         
+         document.getElementById('compareResultTable').style.display = 'none';
+     }
+     
+     function activateCompareSelect(slotNum) {
+         isCompareSelectMode = true;
+         activeCompareSlot = slotNum;
+         
+         const slot1 = document.getElementById('compareSlot1');
+         const slot2 = document.getElementById('compareSlot2');
+         
+         if (slotNum === 1) {
+             slot1.style.borderColor = 'var(--primary)';
+             slot2.style.borderColor = 'rgba(255,255,255,0.1)';
+             speakVoiceQuietly("Hãy chọn game thứ nhất từ danh sách bên dưới.");
+         } else {
+             slot1.style.borderColor = 'rgba(255,255,255,0.1)';
+             slot2.style.borderColor = 'var(--primary)';
+             speakVoiceQuietly("Hãy chọn game thứ hai từ danh sách bên dưới.");
+         }
+         playAudioFx('scan');
+     }
+     
+     function handleCompareSelection(game) {
+         if (!isCompareSelectMode || !activeCompareSlot) return;
+         
+         const slot = document.getElementById(`compareSlot${activeCompareSlot}`);
+         slot.innerHTML = `
+             <img src="${game.showIcon}" alt="${game.name}" style="width: 44px; height: 44px; border-radius: 4px; border:1px solid rgba(255,255,255,0.1);">
+             <div style="font-size: 12px; font-weight:bold; color:#fff; margin-top:6px;">${game.name}</div>
+             <div style="font-size: 9px; font-family:var(--font-mono); color:var(--primary);">${game.vassalage} ID: #${game.id}</div>
+         `;
+         slot.style.borderColor = 'rgba(255,255,255,0.1)';
+         
+         if (activeCompareSlot === 1) {
+             compareGame1 = game;
+         } else {
+             compareGame2 = game;
+         }
+         
+         isCompareSelectMode = false;
+         activeCompareSlot = null;
+         playAudioFx('success');
+         
+         if (compareGame1 && compareGame2) {
+             renderComparisonResults();
+         }
+     }
+     
+     function renderComparisonResults() {
+         const results = document.getElementById('compareResultTable');
+         
+         document.getElementById('compName1').innerText = compareGame1.name;
+         document.getElementById('compRtp1').innerText = compareGame1.percent + "%";
+         
+         let betMin1 = compareGame1.percent > 85 ? "8.000đ - 16.000đ" : "2.000đ - 5.000đ";
+         document.getElementById('compBet1').innerText = betMin1;
+         
+         let risk1 = compareGame1.percent > 85 ? "THẤP" : "TRUNG BÌNH";
+         document.getElementById('compRisk1').innerText = risk1;
+         
+         document.getElementById('compName2').innerText = compareGame2.name;
+         document.getElementById('compRtp2').innerText = compareGame2.percent + "%";
+         
+         let betMin2 = compareGame2.percent > 85 ? "8.000đ - 16.000đ" : "2.000đ - 5.000đ";
+         document.getElementById('compBet2').innerText = betMin2;
+         
+         let risk2 = compareGame2.percent > 85 ? "THẤP" : "TRUNG BÌNH";
+         document.getElementById('compRisk2').innerText = risk2;
+         
+         results.style.display = 'block';
+         speakVoiceQuietly("Đã hoàn tất tính toán so sánh hai trò chơi.");
+     }
+
+    function renderJiliResults() {
+        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
+        const gameId = currentGameId;
+        const jlIndex = parseInt(gameId.replace('jl-', ''), 10);
+        const jlGame = jiliGamesDatabase.find(g => g.id === jlIndex);
+        if (!jlGame) return;
+
+        let betMin, betMax;
+        if (capital <= 500000) {
+            betMin = 2000;
+            betMax = 5000;
+        } else if (capital <= 800000) {
+            betMin = 4000;
+            betMax = 8000;
+        } else if (capital <= 1500000) {
+            betMin = 8000;
+            betMax = 15000;
+        } else {
+            betMin = Math.round((capital * 0.005) / 1000) * 1000;
+            betMax = Math.round((capital * 0.010) / 1000) * 1000;
+        }
+        
+        let minRounds = Math.floor(Math.random() * (160 - 130 + 1)) + 130;
+        let maxRounds = Math.floor(Math.random() * (250 - 190 + 1)) + 190;
+        if (minRounds < 130) minRounds = 130;
+        if (maxRounds > 250) maxRounds = 250;
+        
+        let riskPercent = Math.max(1, Math.min(25, Math.round((100 - jlGame.percent) * 0.3 + Math.random() * 5)));
+        let stabilityPercent = 100 - riskPercent;
+
+        document.getElementById('valMoi').innerText = betMin.toLocaleString('vi-VN') + " - " + betMax.toLocaleString('vi-VN') + " đ";
+        document.getElementById('valRatio').innerText = ((betMin / capital) * 100).toFixed(1) + "% - " + ((betMax / capital) * 100).toFixed(1) + "%";
+        document.getElementById('valVong').innerText = minRounds + " - " + maxRounds + " Vòng";
+        
+        let riskText = "VERY LOW";
+        let riskColor = "var(--success)";
+        if (riskPercent > 15) {
+            riskText = "LOW";
+        }
+        document.getElementById('valRisk').innerText = riskText;
+        document.getElementById('valRisk').style.color = riskColor;
+        
+        document.getElementById('riskBar').style.width = riskPercent + "%";
+        document.getElementById('riskBar').style.backgroundColor = riskColor;
+        document.getElementById('riskBar').style.boxShadow = `0 0 10px ${riskColor}`;
+
+        document.getElementById('resultOutput').innerHTML = `
+            <div style="color:#00d4ff; font-family:var(--font-display); font-weight:700; margin-bottom:16px; font-size:15px; letter-spacing:1px;">KẾT QUẢ GỢI Ý VỐN JILI SLOT</div>
+            <div style="display:flex; flex-direction:column; gap:12px; background:rgba(0,0,0,0.5); padding:20px; border:1px solid rgba(0, 212, 255, 0.3); font-size:14px; color:var(--text-main); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);">
+                
+                <div style="display:flex; align-items:center; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:4px;">
+                    <img src="${jlGame.showIcon}" alt="${jlGame.name}" style="width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border:1px solid rgba(0,212,255,0.3);">
+                    <div style="text-align:left;">
+                        <div style="font-weight:700; font-family:var(--font-sans); color:#fff; font-size:14px;">${jlGame.name}</div>
+                        <div style="font-size:11px; color:#00d4ff; font-family:var(--font-mono); margin-top:2px;">RTP ĐỒNG BỘ: ${jlGame.percent}%</div>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Vốn hiện tại:</span>
+                    <span style="color:#fff; font-weight:700; font-family:var(--font-mono);">${capital.toLocaleString('vi-VN')} VND</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Mức cược cược:</span>
+                    <span style="color:var(--warning); font-weight:700; font-family:var(--font-mono); font-size: 16px; text-shadow:0 0 8px rgba(245, 158, 11, 0.4);">${betMin.toLocaleString('vi-VN')} - ${betMax.toLocaleString('vi-VN')} VND</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Vòng tham khảo:</span>
+                    <span style="font-weight:700; color:#fff; font-family:var(--font-mono);">${minRounds} - ${maxRounds} Vòng</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Chỉ số ổn định:</span>
+                    <span style="color:var(--primary); font-weight:700; font-family:var(--font-mono); text-shadow:0 0 5px var(--primary-glow);">${stabilityPercent}% (ỔN ĐỊNH)</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; padding-bottom:4px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Chỉ số rủi ro:</span>
+                    <span style="color:var(--success); font-weight:700; font-family:var(--font-mono); text-shadow:0 0 5px rgba(16,185,129,0.5);">${riskPercent}% (CỰC THẤP)</span>
+                </div>
+
+            </div>
+        `;
+    }
+
+
+
+    // =========================================================================
+    // PG SLOTS DATABASE & HELPER FUNCTIONS
+    // =========================================================================
+    const pgGamesDatabase = [
+    {
+        "name": "Cuộc Đối Đầu Tiền Thưởng Hoang Dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0113.png",
+        "vassalage": "PG",
+        "id": 1,
+        "percent": 44
+    },
+    {
+        "name": "Đường Mạt Chược 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0055.png",
+        "vassalage": "PG",
+        "id": 2,
+        "percent": 50
+    },
+    {
+        "name": "Đường Mạt Chược 1",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0046.png",
+        "vassalage": "PG",
+        "id": 3,
+        "percent": 29
+    },
+    {
+        "name": "Kho Báu AZTEC",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0066.png",
+        "vassalage": "PG",
+        "id": 4,
+        "percent": 27
+    },
+    {
+        "name": "Neko may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0073.png",
+        "vassalage": "PG",
+        "id": 5,
+        "percent": 60
+    },
+    {
+        "name": "Thỏ May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0120.png",
+        "vassalage": "PG",
+        "id": 6,
+        "percent": 58
+    },
+    {
+        "name": "Kỳ Lân Mách Nước",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0084.png",
+        "vassalage": "PG",
+        "id": 7,
+        "percent": 92
+    },
+    {
+        "name": "Ban nhạc hoang dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0083.png",
+        "vassalage": "PG",
+        "id": 8,
+        "percent": 71
+    },
+    {
+        "name": "Đêm tiệc cocktail",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0098.png",
+        "vassalage": "PG",
+        "id": 9,
+        "percent": 91
+    },
+    {
+        "name": "Chiến Thắng Thần Tài",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0052.png",
+        "vassalage": "PG",
+        "id": 10,
+        "percent": 23
+    },
+    {
+        "name": "thần may mắn ganesha",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0057.png",
+        "vassalage": "PG",
+        "id": 11,
+        "percent": 15
+    },
+    {
+        "name": "Rồng May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0140.png",
+        "vassalage": "PG",
+        "id": 12,
+        "percent": 40
+    },
+    {
+        "name": "pháo hoa hoang dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0063.png",
+        "vassalage": "PG",
+        "id": 13,
+        "percent": 43
+    },
+    {
+        "name": "Nữ hoàng tiền thưởng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0071.png",
+        "vassalage": "PG",
+        "id": 14,
+        "percent": 7
+    },
+    {
+        "name": "Truyền thuyết về Perseus",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0111.png",
+        "vassalage": "PG",
+        "id": 15,
+        "percent": 13
+    },
+    {
+        "name": "Khỉ Hoang Dã#3258",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0143.png",
+        "vassalage": "PG",
+        "id": 16,
+        "percent": 24
+    },
+    {
+        "name": "khủng hoảng zombie",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0148.png",
+        "vassalage": "PG",
+        "id": 17,
+        "percent": 81
+    },
+    {
+        "name": "Asgardian trỗi dậy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0118.png",
+        "vassalage": "PG",
+        "id": 18,
+        "percent": 94
+    },
+    {
+        "name": "Sự Báo Thù Của Geisha",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0158.png",
+        "vassalage": "PG",
+        "id": 19,
+        "percent": 12
+    },
+    {
+        "name": "Anubis",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0146.png",
+        "vassalage": "PG",
+        "id": 20,
+        "percent": 80
+    },
+    {
+        "name": "Cơn cuồng tiền mặt",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0142.png",
+        "vassalage": "PG",
+        "id": 21,
+        "percent": 92
+    },
+    {
+        "name": "Danh dự Yakuza",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0151.png",
+        "vassalage": "PG",
+        "id": 22,
+        "percent": 10
+    },
+    {
+        "name": "Tiền thưởng cá mập",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0150.png",
+        "vassalage": "PG",
+        "id": 23,
+        "percent": 69
+    },
+    {
+        "name": "Truyền thuyết Người sói",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0138.png",
+        "vassalage": "PG",
+        "id": 24,
+        "percent": 3
+    },
+    {
+        "name": "yêu tinh giàu có",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0041.png",
+        "vassalage": "PG",
+        "id": 25,
+        "percent": 20
+    },
+    {
+        "name": "Cơn sốt bữa tiệc cuồng nhiệt",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0121.png",
+        "vassalage": "PG",
+        "id": 26,
+        "percent": 16
+    },
+    {
+        "name": "Giấc mơ Ma Cao",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0060.png",
+        "vassalage": "PG",
+        "id": 27,
+        "percent": 75
+    },
+    {
+        "name": "Kho Báu Của Thuyền Trưởng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0039.png",
+        "vassalage": "PG",
+        "id": 28,
+        "percent": 7
+    },
+    {
+        "name": "Nhà Vô Địch Tốc Độ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0110.png",
+        "vassalage": "PG",
+        "id": 29,
+        "percent": 78
+    },
+    {
+        "name": "Chim cánh cụt",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0037.png",
+        "vassalage": "PG",
+        "id": 30,
+        "percent": 92
+    },
+    {
+        "name": "Đôi cánh của Iguazu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0152.png",
+        "vassalage": "PG",
+        "id": 31,
+        "percent": 91
+    },
+    {
+        "name": "Tài sản của Midas",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0119.png",
+        "vassalage": "PG",
+        "id": 32,
+        "percent": 55
+    },
+    {
+        "name": "Pinata Wins",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0144.png",
+        "vassalage": "PG",
+        "id": 33,
+        "percent": 95
+    },
+    {
+        "name": "Tiền Thưởng Grimms: Hansel & Gretel",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0170.png",
+        "vassalage": "PG",
+        "id": 34,
+        "percent": 19
+    },
+    {
+        "name": "Thợ Mỏ Ngân Hà",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0169.png",
+        "vassalage": "PG",
+        "id": 35,
+        "percent": 29
+    },
+    {
+        "name": "Cuộc Truy Tìm Kho Báu Rồng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0168.png",
+        "vassalage": "PG",
+        "id": 36,
+        "percent": 26
+    },
+    {
+        "name": "Cơn Sốt Quán Ăn Vòng Quay",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0167.png",
+        "vassalage": "PG",
+        "id": 37,
+        "percent": 88
+    },
+    {
+        "name": "Jack Thợ Săn Người Khổng Lồ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0166.png",
+        "vassalage": "PG",
+        "id": 38,
+        "percent": 91
+    },
+    {
+        "name": "Kho báu của người chết",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0165.png",
+        "vassalage": "PG",
+        "id": 39,
+        "percent": 11
+    },
+    {
+        "name": "Cú Đấm Giàu Sang",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0164.png",
+        "vassalage": "PG",
+        "id": 40,
+        "percent": 27
+    },
+    {
+        "name": "Cơn Cuồng Nộ Tận Thế",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0163.png",
+        "vassalage": "PG",
+        "id": 41,
+        "percent": 26
+    },
+    {
+        "name": "Cuộc Đua Graffiti",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0163.png",
+        "vassalage": "PG",
+        "id": 42,
+        "percent": 38
+    },
+    {
+        "name": "Vận May Của Ngài Kho Báu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0161.png",
+        "vassalage": "PG",
+        "id": 43,
+        "percent": 67
+    },
+    {
+        "name": "Kỳ quan Inca",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0160.png",
+        "vassalage": "PG",
+        "id": 44,
+        "percent": 93
+    },
+    {
+        "name": "Rắn May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0159.png",
+        "vassalage": "PG",
+        "id": 45,
+        "percent": 7
+    },
+    {
+        "name": "Sô-cô-la Cao Cấp",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0157.png",
+        "vassalage": "PG",
+        "id": 46,
+        "percent": 13
+    },
+    {
+        "name": "Lễ hội Rio",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0156.png",
+        "vassalage": "PG",
+        "id": 47,
+        "percent": 53
+    },
+    {
+        "name": "Kỳ Quan Viện Bảo Tàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0155.png",
+        "vassalage": "PG",
+        "id": 48,
+        "percent": 84
+    },
+    {
+        "name": "Niềm vui ẩm thực Oishi",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0154.png",
+        "vassalage": "PG",
+        "id": 49,
+        "percent": 61
+    },
+    {
+        "name": "Ba chú heo điên",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0153.png",
+        "vassalage": "PG",
+        "id": 50,
+        "percent": 7
+    },
+    {
+        "name": "Bóng đá nóng bỏng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0149.png",
+        "vassalage": "PG",
+        "id": 51,
+        "percent": 20
+    },
+    {
+        "name": "Chicky Chạy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0147.png",
+        "vassalage": "PG",
+        "id": 52,
+        "percent": 73
+    },
+    {
+        "name": "Phép thuật huyền bí",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0145.png",
+        "vassalage": "PG",
+        "id": 53,
+        "percent": 69
+    },
+    {
+        "name": "Đá quý vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0141.png",
+        "vassalage": "PG",
+        "id": 54,
+        "percent": 14
+    },
+    {
+        "name": "Rồng Lửa 2",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0139.png",
+        "vassalage": "PG",
+        "id": 55,
+        "percent": 89
+    },
+    {
+        "name": "Báu vật của Tsar (Báu vật của Tsar)",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0137.png",
+        "vassalage": "PG",
+        "id": 56,
+        "percent": 13
+    },
+    {
+        "name": "Băng Nhóm Mafia",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0136.png",
+        "vassalage": "PG",
+        "id": 57,
+        "percent": 83
+    },
+    {
+        "name": "Lò Vàng (Lò Vàng)",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0135.png",
+        "vassalage": "PG",
+        "id": 58,
+        "percent": 12
+    },
+    {
+        "name": "Rút tiền trong vụ cướp hoang dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0134.png",
+        "vassalage": "PG",
+        "id": 59,
+        "percent": 2
+    },
+    {
+        "name": "Tiền đạo tối thượng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0133.png",
+        "vassalage": "PG",
+        "id": 60,
+        "percent": 17
+    },
+    {
+        "name": "Cuồng nhiệt Hải Tặc Ninja",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0132.png",
+        "vassalage": "PG",
+        "id": 61,
+        "percent": 53
+    },
+    {
+        "name": "VinhquangcủaNgườiđấusĩ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0131.png",
+        "vassalage": "PG",
+        "id": 62,
+        "percent": 35
+    },
+    {
+        "name": "Safari Hoang Dã",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0130.png",
+        "vassalage": "PG",
+        "id": 63,
+        "percent": 46
+    },
+    {
+        "name": "Du thuyền Hoàng gia",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0129.png",
+        "vassalage": "PG",
+        "id": 64,
+        "percent": 62
+    },
+    {
+        "name": "Kẹo Trái Cây",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0128.png",
+        "vassalage": "PG",
+        "id": 65,
+        "percent": 73
+    },
+    {
+        "name": "Cỏ Ba Lá May Mắn Giàu Có",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/VI/PG0127.png",
+        "vassalage": "PG",
+        "id": 66,
+        "percent": 63
+    },
+    {
+        "name": "Siêu Golf Drive",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0126.png",
+        "vassalage": "PG",
+        "id": 67,
+        "percent": 88
+    },
+    {
+        "name": "Linh hồn huyền bí",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0125.png",
+        "vassalage": "PG",
+        "id": 68,
+        "percent": 78
+    },
+    {
+        "name": "Lễ té nước Songkran",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0124.png",
+        "vassalage": "PG",
+        "id": 69,
+        "percent": 91
+    },
+    {
+        "name": "Tiệm bánh Bonanza",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0123.png",
+        "vassalage": "PG",
+        "id": 70,
+        "percent": 15
+    },
+    {
+        "name": "tiki hawaii",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0122.png",
+        "vassalage": "PG",
+        "id": 71,
+        "percent": 58
+    },
+    {
+        "name": "Bữa Tối Hân Hoan",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0117.png",
+        "vassalage": "PG",
+        "id": 72,
+        "percent": 7
+    },
+    {
+        "name": "Vàng giả kim",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0116.png",
+        "vassalage": "PG",
+        "id": 73,
+        "percent": 6
+    },
+    {
+        "name": "Kỳ quan vật totem",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0115.png",
+        "vassalage": "PG",
+        "id": 74,
+        "percent": 53
+    },
+    {
+        "name": "Cây Tài Lộc Thịnh Vượng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0114.png",
+        "vassalage": "PG",
+        "id": 75,
+        "percent": 86
+    },
+    {
+        "name": "Wild Coaster",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0112.png",
+        "vassalage": "PG",
+        "id": 76,
+        "percent": 87
+    },
+    {
+        "name": "Heo đất may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0109.png",
+        "vassalage": "PG",
+        "id": 77,
+        "percent": 89
+    },
+    {
+        "name": "Win Win Fish Prawn Crab",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0108.png",
+        "vassalage": "PG",
+        "id": 78,
+        "percent": 39
+    },
+    {
+        "name": "Battleground Royale",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0107.png",
+        "vassalage": "PG",
+        "id": 79,
+        "percent": 66
+    },
+    {
+        "name": "Bữa tiệc của Nữ hoàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0106.png",
+        "vassalage": "PG",
+        "id": 80,
+        "percent": 23
+    },
+    {
+        "name": "Rooster Rumble",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0105.png",
+        "vassalage": "PG",
+        "id": 81,
+        "percent": 56
+    },
+    {
+        "name": "Hoa bướm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0104.png",
+        "vassalage": "PG",
+        "id": 82,
+        "percent": 91
+    },
+    {
+        "name": "Destiny of Sun & Moon",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0103.png",
+        "vassalage": "PG",
+        "id": 83,
+        "percent": 95
+    },
+    {
+        "name": "Đá quý Garuda",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0102.png",
+        "vassalage": "PG",
+        "id": 84,
+        "percent": 80
+    },
+    {
+        "name": "Hổ vận may",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0101.png",
+        "vassalage": "PG",
+        "id": 85,
+        "percent": 57
+    },
+    {
+        "name": "Sự thịnh vượng phương Đông",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0100.png",
+        "vassalage": "PG",
+        "id": 86,
+        "percent": 37
+    },
+    {
+        "name": "Lễ hội hóa trang",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0099.png",
+        "vassalage": "PG",
+        "id": 87,
+        "percent": 54
+    },
+    {
+        "name": "Biểu tượng cảm xúc phong phú",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0097.png",
+        "vassalage": "PG",
+        "id": 88,
+        "percent": 56
+    },
+    {
+        "name": "Kỳ quan vùng đất linh hồn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0095.png",
+        "vassalage": "PG",
+        "id": 89,
+        "percent": 63
+    },
+    {
+        "name": "Vua khỉ huyền thoại",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0094.png",
+        "vassalage": "PG",
+        "id": 90,
+        "percent": 44
+    },
+    {
+        "name": "Buffalo Win",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0093.png",
+        "vassalage": "PG",
+        "id": 91,
+        "percent": 2
+    },
+    {
+        "name": "Siêu thị Spree",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0092.png",
+        "vassalage": "PG",
+        "id": 92,
+        "percent": 42
+    },
+    {
+        "name": "Raider Jane's Crypt of Fortune",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0091.png",
+        "vassalage": "PG",
+        "id": 93,
+        "percent": 6
+    },
+    {
+        "name": "Mermaid Riches",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0089.png",
+        "vassalage": "PG",
+        "id": 94,
+        "percent": 95
+    },
+    {
+        "name": "Vương quốc kỷ Jura",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0088.png",
+        "vassalage": "PG",
+        "id": 95,
+        "percent": 14
+    },
+    {
+        "name": "Sự trỗi dậy của Apollo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0086.png",
+        "vassalage": "PG",
+        "id": 96,
+        "percent": 10
+    },
+    {
+        "name": "Heist of Stakes",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0085.png",
+        "vassalage": "PG",
+        "id": 97,
+        "percent": 71
+    },
+    {
+        "name": "Kẹo Bonanza",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0082.png",
+        "vassalage": "PG",
+        "id": 98,
+        "percent": 48
+    },
+    {
+        "name": "Kho báu hùng vĩ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0081.png",
+        "vassalage": "PG",
+        "id": 99,
+        "percent": 92
+    },
+    {
+        "name": "Vàng tiền điện tử",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0080.png",
+        "vassalage": "PG",
+        "id": 100,
+        "percent": 68
+    },
+    {
+        "name": "Kỳ nghỉ Bali",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0079.png",
+        "vassalage": "PG",
+        "id": 101,
+        "percent": 52
+    },
+    {
+        "name": "Vận may tuổi Sửu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0078.png",
+        "vassalage": "PG",
+        "id": 102,
+        "percent": 50
+    },
+    {
+        "name": "Vương triều Opera",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0077.png",
+        "vassalage": "PG",
+        "id": 103,
+        "percent": 8
+    },
+    {
+        "name": "Người bảo vệ băng và lửa",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0076.png",
+        "vassalage": "PG",
+        "id": 104,
+        "percent": 23
+    },
+    {
+        "name": "Đá quý thiên hà",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0075.png",
+        "vassalage": "PG",
+        "id": 105,
+        "percent": 13
+    },
+    {
+        "name": "Jack Sương Frost Mùa Đông",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0074.png",
+        "vassalage": "PG",
+        "id": 106,
+        "percent": 17
+    },
+    {
+        "name": "Trang sức của sự thịnh vượng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0072.png",
+        "vassalage": "PG",
+        "id": 107,
+        "percent": 41
+    },
+    {
+        "name": "Sự quyến rũ của ma cà ròng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0070.png",
+        "vassalage": "PG",
+        "id": 108,
+        "percent": 93
+    },
+    {
+        "name": "Bí Mật Của Cleopatra",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0069.png",
+        "vassalage": "PG",
+        "id": 109,
+        "percent": 37
+    },
+    {
+        "name": "Kỳ quan sông Thái",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0068.png",
+        "vassalage": "PG",
+        "id": 110,
+        "percent": 42
+    },
+    {
+        "name": "Circus Delight",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0067.png",
+        "vassalage": "PG",
+        "id": 111,
+        "percent": 37
+    },
+    {
+        "name": "Đèn Aladdin",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0065.png",
+        "vassalage": "PG",
+        "id": 112,
+        "percent": 89
+    },
+    {
+        "name": "Phượng Hoàng Nổi Dậy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0059.png",
+        "vassalage": "PG",
+        "id": 113,
+        "percent": 87
+    },
+    {
+        "name": "Cuốn sách bí ẩn của Ai Cập",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0056.png",
+        "vassalage": "PG",
+        "id": 114,
+        "percent": 77
+    },
+    {
+        "name": "Thiên Đường Bikini",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0054.png",
+        "vassalage": "PG",
+        "id": 115,
+        "percent": 46
+    },
+    {
+        "name": "nổ kẹo",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0053.png",
+        "vassalage": "PG",
+        "id": 116,
+        "percent": 51
+    },
+    {
+        "name": "Vị Cứu Tinh - Hành Trình",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0051.png",
+        "vassalage": "PG",
+        "id": 117,
+        "percent": 90
+    },
+    {
+        "name": "Bóng Đá Thiếu Lâm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0050.png",
+        "vassalage": "PG",
+        "id": 118,
+        "percent": 56
+    },
+    {
+        "name": "Guồng Quay Tình Yêu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0049.png",
+        "vassalage": "PG",
+        "id": 119,
+        "percent": 79
+    },
+    {
+        "name": "chuột may mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0048.png",
+        "vassalage": "PG",
+        "id": 120,
+        "percent": 19
+    },
+    {
+        "name": "Long Sinh",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0047.png",
+        "vassalage": "PG",
+        "id": 121,
+        "percent": 19
+    },
+    {
+        "name": "Rồng Hổ May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0045.png",
+        "vassalage": "PG",
+        "id": 122,
+        "percent": 87
+    },
+    {
+        "name": "Nhà Vô Địch Muay Thái",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0044.png",
+        "vassalage": "PG",
+        "id": 123,
+        "percent": 86
+    },
+    {
+        "name": "Ninja đối đầu Samurai",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0043.png",
+        "vassalage": "PG",
+        "id": 124,
+        "percent": 15
+    },
+    {
+        "name": "Bá Hổ Thu Hương",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0042.png",
+        "vassalage": "PG",
+        "id": 125,
+        "percent": 14
+    },
+    {
+        "name": "Cuộc Phiêu Lưu Đến Kho Báu",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0038.png",
+        "vassalage": "PG",
+        "id": 126,
+        "percent": 88
+    },
+    {
+        "name": "Kho Báu Khổng Lồ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0035.png",
+        "vassalage": "PG",
+        "id": 127,
+        "percent": 95
+    },
+    {
+        "name": "Khu Rừng Vui Nhộn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0033.png",
+        "vassalage": "PG",
+        "id": 128,
+        "percent": 33
+    },
+    {
+        "name": "Ganesha Vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0031.png",
+        "vassalage": "PG",
+        "id": 129,
+        "percent": 26
+    },
+    {
+        "name": "Ân Sủng Của Hoàng Đế",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0030.png",
+        "vassalage": "PG",
+        "id": 130,
+        "percent": 28
+    },
+    {
+        "name": "Biểu Tượng Ai Cập",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0029.png",
+        "vassalage": "PG",
+        "id": 131,
+        "percent": 61
+    },
+    {
+        "name": "Heo Vàng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0028.png",
+        "vassalage": "PG",
+        "id": 132,
+        "percent": 60
+    },
+    {
+        "name": "Vị Cứu Tinh - Thanh Kiếm",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0027.png",
+        "vassalage": "PG",
+        "id": 133,
+        "percent": 80
+    },
+    {
+        "name": "Quà Của Ông Già Noel",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0025.png",
+        "vassalage": "PG",
+        "id": 134,
+        "percent": 88
+    },
+    {
+        "name": "Gấu Trúc Hip Hop",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0024.png",
+        "vassalage": "PG",
+        "id": 135,
+        "percent": 81
+    },
+    {
+        "name": "Sư Tử Vương Giả",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0023.png",
+        "vassalage": "PG",
+        "id": 136,
+        "percent": 92
+    },
+    {
+        "name": "Huyền thoại Hou Yi",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0021.png",
+        "vassalage": "PG",
+        "id": 137,
+        "percent": 50
+    },
+    {
+        "name": "Ông Hallow-Win!",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0020.png",
+        "vassalage": "PG",
+        "id": 138,
+        "percent": 24
+    },
+    {
+        "name": "Truyền Thuyết Rồng",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0019.png",
+        "vassalage": "PG",
+        "id": 139,
+        "percent": 93
+    },
+    {
+        "name": "Cô Bé Quàng Khăn Đỏ",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0017.png",
+        "vassalage": "PG",
+        "id": 140,
+        "percent": 91
+    },
+    {
+        "name": "Vị Cứu Tinh",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0014.png",
+        "vassalage": "PG",
+        "id": 141,
+        "percent": 24
+    },
+    {
+        "name": "Plushie Frenzy",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0012.png",
+        "vassalage": "PG",
+        "id": 142,
+        "percent": 71
+    },
+    {
+        "name": "Medusa 1: Lời nguyền của Athena",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0009.png",
+        "vassalage": "PG",
+        "id": 143,
+        "percent": 55
+    },
+    {
+        "name": "Cây Tài Lộc",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0007.png",
+        "vassalage": "PG",
+        "id": 144,
+        "percent": 64
+    },
+    {
+        "name": "Medusa 2: Sứ mệnh Perseus",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0005.png",
+        "vassalage": "PG",
+        "id": 145,
+        "percent": 91
+    },
+    {
+        "name": "Win Win Won",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0004.png",
+        "vassalage": "PG",
+        "id": 146,
+        "percent": 71
+    },
+    {
+        "name": "Thần May Mắn",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0003.png",
+        "vassalage": "PG",
+        "id": 147,
+        "percent": 72
+    },
+    {
+        "name": "Mỹ Nhân Kế Của Diao Chan",
+        "showIcon": "https://images.484930494.com/TCG_GAME_ICONS/PG/EN/PG0002.png",
+        "vassalage": "PG",
+        "id": 148,
+        "percent": 95
+    }
+];
+
+    function togglePgLobby() {
+        const panel = document.getElementById('unifiedGameLobbyPanel');
+        const tabBtnPg = document.getElementById('tabBtnPg');
+        const isPgActive = tabBtnPg.classList.contains('active');
+        
+        if (panel.style.display === 'none' || !isPgActive) {
+            panel.style.display = 'block';
+            switchLobbyTab('pg');
+            panel.scrollIntoView({ behavior: 'smooth' });
+            playAudioFx('success');
+        } else {
+            panel.style.display = 'none';
+            playAudioFx('error');
+        }
+    }
+
+    function renderPgGamesList() {
+        const container = document.getElementById('pgGamesListContainer');
+        container.innerHTML = '';
+        pgGamesDatabase.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'pg-game-mini-card';
+            card.onclick = () => {
+                if (typeof isCompareMode !== 'undefined' && isCompareMode && isCompareSelectMode) {
+                    handleCompareSelection({...game, vassalage: 'PG'});
+                } else {
+                    enterGame('pg-' + game.id);
+                }
+            };
+            card.innerHTML = `
+                <img src="${game.showIcon}" alt="${game.name}" style="width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="flex: 1; min-width: 0; text-align: left;">
+                    <div style="font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${game.name}">${game.name}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                        <span style="font-size:10px; color:#d400ff; font-family:var(--font-mono); font-weight:bold;">ID: #${game.id}</span>
+                        <span style="font-size:11px; color:var(--success); font-family:var(--font-mono); font-weight:bold;">RTP: ${game.percent}%</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterPgGames() {
+        const query = document.getElementById('pgSearchInput').value.toLowerCase().trim();
+        const cards = document.querySelectorAll('#pgGamesListContainer > div');
+        pgGamesDatabase.forEach((game, idx) => {
+            const card = cards[idx];
+            if (card) {
+                if (!query || game.name.toLowerCase().includes(query) || game.id.toString() === query) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    function renderPgResults() {
+        let capital = parseFloat(document.getElementById('capitalInput').value.replace(/\./g, ''));
+        const gameId = currentGameId;
+        const pgIndex = parseInt(gameId.replace('pg-', ''), 10);
+        const pgGame = pgGamesDatabase.find(g => g.id === pgIndex);
+        if (!pgGame) return;
+
+        let betMin, betMax;
+        if (capital <= 500000) {
+            betMin = 2000;
+            betMax = 5000;
+        } else if (capital <= 800000) {
+            betMin = 4000;
+            betMax = 8000;
+        } else if (capital <= 1500000) {
+            betMin = 8000;
+            betMax = 15000;
+        } else {
+            betMin = Math.round((capital * 0.005) / 1000) * 1000;
+            betMax = Math.round((capital * 0.010) / 1000) * 1000;
+        }
+        
+        let minRounds = Math.floor(Math.random() * (160 - 130 + 1)) + 130;
+        let maxRounds = Math.floor(Math.random() * (250 - 190 + 1)) + 190;
+        if (minRounds < 130) minRounds = 130;
+        if (maxRounds > 250) maxRounds = 250;
+        
+        let riskPercent = Math.max(1, Math.min(25, Math.round((100 - pgGame.percent) * 0.3 + Math.random() * 5)));
+        let stabilityPercent = 100 - riskPercent;
+
+        document.getElementById('valMoi').innerText = betMin.toLocaleString('vi-VN') + " - " + betMax.toLocaleString('vi-VN') + " đ";
+        document.getElementById('valRatio').innerText = ((betMin / capital) * 100).toFixed(1) + "% - " + ((betMax / capital) * 100).toFixed(1) + "%";
+        document.getElementById('valVong').innerText = minRounds + " - " + maxRounds + " Vòng";
+        
+        let riskText = "VERY LOW";
+        let riskColor = "var(--success)";
+        if (riskPercent > 15) {
+            riskText = "LOW";
+        }
+        document.getElementById('valRisk').innerText = riskText;
+        document.getElementById('valRisk').style.color = riskColor;
+        
+        document.getElementById('riskBar').style.width = riskPercent + "%";
+        document.getElementById('riskBar').style.backgroundColor = riskColor;
+        document.getElementById('riskBar').style.boxShadow = `0 0 10px ${riskColor}`;
+
+        document.getElementById('resultOutput').innerHTML = `
+            <div style="color:#d400ff; font-family:var(--font-display); font-weight:700; margin-bottom:16px; font-size:15px; letter-spacing:1px;">KẾT QUẢ GỢI Ý VỐN PG SLOT</div>
+            <div style="display:flex; flex-direction:column; gap:12px; background:rgba(0,0,0,0.5); padding:20px; border:1px solid rgba(212, 0, 255, 0.3); font-size:14px; color:var(--text-main); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); box-shadow: 0 0 15px rgba(212, 0, 255, 0.15);">
+                
+                <div style="display:flex; align-items:center; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:4px;">
+                    <img src="${pgGame.showIcon}" alt="${pgGame.name}" style="width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border:1px solid rgba(212,0,255,0.3);">
+                    <div style="text-align:left;">
+                        <div style="font-weight:700; font-family:var(--font-sans); color:#fff; font-size:14px;">${pgGame.name}</div>
+                        <div style="font-size:11px; color:#d400ff; font-family:var(--font-mono); margin-top:2px;">RTP ĐỒNG BỘ: ${pgGame.percent}%</div>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Vốn hiện tại:</span>
+                    <span style="color:#fff; font-weight:700; font-family:var(--font-mono);">${capital.toLocaleString('vi-VN')} VND</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Mức cược cược:</span>
+                    <span style="color:var(--warning); font-weight:700; font-family:var(--font-mono); font-size: 16px; text-shadow:0 0 8px rgba(245, 158, 11, 0.4);">${betMin.toLocaleString('vi-VN')} - ${betMax.toLocaleString('vi-VN')} VND</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Vòng tham khảo:</span>
+                    <span style="font-weight:700; color:#fff; font-family:var(--font-mono);">${minRounds} - ${maxRounds} Vòng</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Chỉ số ổn định:</span>
+                    <span style="color:var(--primary); font-weight:700; font-family:var(--font-mono); text-shadow:0 0 5px var(--primary-glow);">${stabilityPercent}% (ỔN ĐỊNH)</span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; padding-bottom:4px;">
+                    <span style="color:var(--text-muted); font-weight:bold;">Chỉ số rủi ro:</span>
+                    <span style="color:var(--success); font-weight:700; font-family:var(--font-mono); text-shadow:0 0 5px rgba(16,185,129,0.5);">${riskPercent}% (CỰC THẤP)</span>
+                </div>
+
+            </div>
+        `;
+    }
+
+
     // =========================================================================
     // 🌌 THREE.JS UNIVERSE ENGINE (THAY THẾ CANVAS CŨ 60FPS)
     // =========================================================================
@@ -1073,6 +4758,7 @@
 
     function triggerSelfDestruct() {
         if(!confirm("CẢNH BÁO: Bạn có chắc muốn xóa toàn bộ dấu vết và đóng hệ thống?")) return;
+        speakVietnamese("Cảnh báo. Hệ thống tự hủy dữ liệu đang được kích hoạt.");
         document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-size:50px; font-family:monospace;' id='sdCounter'>3</h1>";
         let c = 3;
         playAudioFx('error');
@@ -1153,6 +4839,10 @@
             document.getElementById('analyzeBtn').disabled = false; document.getElementById('antiBanBtn').disabled = false;
             showCyberAlert("Xóa dấu vết an toàn thành công!", "success");
             resultOutput.innerHTML = `<div style="color:var(--success); font-family:var(--font-mono); font-size:14px; text-align:center; padding-top:40px;">>_ GIAO THỨC ANTI-BAN ĐÃ HOÀN TẤT.<br>Tài khoản và thiết bị của bạn đang ở trạng thái an toàn tuyệt đối.</div>`;
+            
+            // Add EXP and speak voice alert
+            addExp(15);
+            speakVietnamese("Đã hoàn tất dọn dẹp bộ nhớ đệm và xóa dấu vết hệ thống.");
         }, 5000);
     }
 
@@ -1236,7 +4926,45 @@
         playAudioFx('scan'); 
     }
     
-    function changeTheme(themeName) { document.documentElement.setAttribute('data-theme', themeName); playAudioFx('success'); } 
+    function changeTheme(themeName) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        localStorage.setItem('vyron_selected_theme', themeName);
+
+        // Keep dropdown select value in sync
+        const selector = document.getElementById('themeSelector');
+        if (selector && selector.value !== themeName) {
+            selector.value = themeName;
+        }
+
+        // Custom scripts for background colors
+        handleLayoutCustomBehaviors(themeName);
+
+        playAudioFx('success');
+    }
+
+    function handleLayoutCustomBehaviors(theme) {
+        // THREE.JS background color updating
+        if (window.tGalaxy && window.tGalaxy.geometry) {
+            const rgbString = getComputedStyle(document.documentElement).getPropertyValue('--primary-rgb').trim();
+            const rgbString2 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-rgb').trim();
+            if (rgbString && rgbString2) {
+                const c1 = rgbString.split(',').map(n => parseInt(n) / 255);
+                const c2 = rgbString2.split(',').map(n => parseInt(n) / 255);
+                if (c1.length === 3 && c2.length === 3) {
+                    const colorAttr = window.tGalaxy.geometry.attributes.color;
+                    if (colorAttr) {
+                        const THREE_Color1 = new THREE.Color(c1[0], c1[1], c1[2]);
+                        const THREE_Color2 = new THREE.Color(c2[0], c2[1], c2[2]);
+                        for (let i = 0; i < colorAttr.count; i++) {
+                            const mixed = THREE_Color1.clone().lerp(THREE_Color2, Math.random());
+                            colorAttr.setXYZ(i, mixed.r, mixed.g, mixed.b);
+                        }
+                        colorAttr.needsUpdate = true;
+                    }
+                }
+            }
+        }
+    } 
 
     let audioCtx = null; let isAudioMuted = true;
     let bgmOsc = null, bgmGain = null; let isBgmOn = false;
@@ -1412,6 +5140,33 @@
 
     function enterGame(gameId) {
         if (!verifySystemActivationState()) return; playAudioFx('success'); currentGameId = gameId; 
+        
+        if (gameId.startsWith('pg-') && !gameDatabase[gameId]) {
+            const pgIndex = parseInt(gameId.replace('pg-', ''), 10);
+            const pgGame = pgGamesDatabase.find(g => g.id === pgIndex);
+            if (pgGame) {
+                gameDatabase[gameId] = {
+                    title: pgGame.name,
+                    img: pgGame.showIcon,
+                    hasPhao: false,
+                    descSafe: "🛡️ Tối Ưu Hóa Slot PG"
+                };
+            }
+        }
+        
+        if (gameId.startsWith('jl-') && !gameDatabase[gameId]) {
+            const jlIndex = parseInt(gameId.replace('jl-', ''), 10);
+            const jlGame = jiliGamesDatabase.find(g => g.id === jlIndex);
+            if (jlGame) {
+                gameDatabase[gameId] = {
+                    title: jlGame.name,
+                    img: jlGame.showIcon,
+                    hasPhao: false,
+                    descSafe: "🛡️ Tối Ưu Hóa Slot JILI"
+                };
+            }
+        }
+        
         const game = gameDatabase[gameId]; isPhaoSafetyActive = false;
         const pBtn = document.getElementById('phaoToggleBtn'); pBtn.classList.remove('phao-active'); pBtn.innerText = "KÍCH HOẠT PHAO CỨU HỘ";
         document.getElementById('mainWrapper').classList.add('active-cyber-glow'); document.getElementById('activeTitle').innerText = game.title; document.getElementById('activeAvatar').src = game.img; document.getElementById('optSafe').innerText = game.descSafe;
@@ -1430,6 +5185,28 @@
             document.getElementById('strikerControlsWrapper').style.display = 'none';
             document.getElementById('vortexControlsWrapper').style.display = 'block';
             document.getElementById('analyzeBtn').innerHTML = "ĐỒNG BỘ DỮ LIỆU MA TRẬN";
+        } else if (gameId.startsWith('pg-')) {
+            document.getElementById('capitalInputWrapper').style.display = 'block';
+            document.getElementById('standardStrategyWrapper').style.display = 'none';
+            document.getElementById('speedContainerWrapper').style.display = 'none';
+            document.getElementById('strikerControlsWrapper').style.display = 'none';
+            document.getElementById('vortexControlsWrapper').style.display = 'none';
+            document.getElementById('analyzeBtn').innerHTML = "PHÂN TÍCH AI REALTIME";
+            
+            // Set default example capital for PG Slot game
+            document.getElementById('capitalInput').value = "500.000";
+            formatVndInput(document.getElementById('capitalInput'));
+        } else if (gameId.startsWith('jl-')) {
+            document.getElementById('capitalInputWrapper').style.display = 'block';
+            document.getElementById('standardStrategyWrapper').style.display = 'none';
+            document.getElementById('speedContainerWrapper').style.display = 'none';
+            document.getElementById('strikerControlsWrapper').style.display = 'none';
+            document.getElementById('vortexControlsWrapper').style.display = 'none';
+            document.getElementById('analyzeBtn').innerHTML = "PHÂN TÍCH AI REALTIME";
+            
+            // Set default example capital for JILI Slot game
+            document.getElementById('capitalInput').value = "500.000";
+            formatVndInput(document.getElementById('capitalInput'));
         } else {
             document.getElementById('capitalInputWrapper').style.display = 'block';
             document.getElementById('standardStrategyWrapper').style.display = 'block';
@@ -1452,8 +5229,8 @@
     function togglePhaoSafety() {
         if (!gameDatabase[currentGameId].hasPhao) return;
         isPhaoSafetyActive = !isPhaoSafetyActive; const pBtn = document.getElementById('phaoToggleBtn'); 
-        if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "PHAO ĐĐA ACTIVE"; playAudioFx('success'); } 
-        else { pBtn.classList.remove('phao-active'); pBtn.innerText = "KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); }
+        if (isPhaoSafetyActive) { pBtn.classList.add('phao-active'); pBtn.innerText = "PHAO ĐĐA ACTIVE"; playAudioFx('success'); speakVietnamese("Đã kích hoạt phao cứu trợ an toàn."); } 
+        else { pBtn.classList.remove('phao-active'); pBtn.innerText = "KÍCH HOẠT PHAO CỨU HỘ"; playAudioFx('error'); speakVietnamese("Đã hủy chế độ phao cứu trợ."); }
         resetRealtimeDisplay();
     }
 
@@ -1501,14 +5278,12 @@
             if (isNaN(capital) || capital < 1000) { showCyberAlert("Vui lòng nhập tối thiểu 1.000 VND!", "error"); return; }
         }
         
-        userExp += Math.floor(Math.random()*15 + 10);
-        if(userExp >= 100) { userExp = 0; userLevel++; playAudioFx('success'); showCyberAlert(`THĂNG CẤP! USER ĐẠT LEVEL ${userLevel}`, "warning"); }
-        document.getElementById('userLevelBadge').innerText = "LV." + userLevel;
-        document.getElementById('expFill').style.width = userExp + "%";
-
         const terminalBox = document.getElementById('terminalMainBox');
         document.getElementById('analyzeBtn').disabled = true; document.getElementById('antiBanBtn').disabled = true;
         terminalBox.classList.add('scanning');
+
+        // Start Waveform Animation
+        startWaveformAnimation(currentSpeed);
 
         let animInterval = null;
 
@@ -1544,6 +5319,9 @@
             terminalBox.classList.remove('scanning'); 
             document.getElementById('cyberLoading').style.display = "none"; 
             
+            // Stop Waveform and render Golden Entry
+            stopWaveformAnimationAndDrawGoldenEntry();
+            
             const tw = document.getElementById('twOverlay');
             tw.style.display = "block";
             document.getElementById('resultOutput').style.display = "none"; 
@@ -1564,7 +5342,12 @@
                         
                         if (currentGameId === 'soccerstriker') { renderSoccerResults(); } 
                         else if (currentGameId === 'vortex') { renderVortexDashboard(); } 
+                        else if (currentGameId.startsWith('pg-')) { renderPgResults(); }
+                        else if (currentGameId.startsWith('jl-')) { renderJiliResults(); }
                         else { renderVipResults(); }
+                        
+                        // Handle voice read out & analysis history saving
+                        handleAnalysisCompleted();
                     }, 500);
                 }
             }, 30);
@@ -1840,10 +5623,21 @@
         appendMessage('user', 'USER_' + Math.floor(Math.random()*900 + 100), text, 'user-msg');
         chatInput.value = '';
         playAudioFx('scan');
+        
+        // Add 5 EXP when chatting
+        addExp(5);
 
         setTimeout(() => {
             processBotResponse(text.toLowerCase());
         }, 600 + Math.random() * 800);
+    }
+
+    function removeVietnameseAccents(str) {
+        return str.normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/đ/g, "d")
+                  .replace(/Đ/g, "D")
+                  .toLowerCase();
     }
 
     function processBotResponse(query) {
@@ -1851,6 +5645,52 @@
         
         // Chuẩn hóa chuỗi nhập vào chữ thường để AI dễ quét từ khóa
         let q = query.toLowerCase();
+        let qNormalized = removeVietnameseAccents(q);
+
+        // --- DYNAMIC SLOT GAMES SEARCH (PG & JILI) ---
+        let matchedGame = null;
+        let gameType = '';
+
+        // Search in pgGamesDatabase
+        for (let game of pgGamesDatabase) {
+            let nameNorm = removeVietnameseAccents(game.name);
+            if (q.includes(String(game.id)) || qNormalized.includes(nameNorm) || (qNormalized.length >= 3 && nameNorm.includes(qNormalized))) {
+                matchedGame = game;
+                gameType = 'PG';
+                break;
+            }
+        }
+
+        // Search in jiliGamesDatabase if not found in PG
+        if (!matchedGame) {
+            for (let game of jiliGamesDatabase) {
+                let nameNorm = removeVietnameseAccents(game.name);
+                if (q.includes(String(game.id)) || qNormalized.includes(nameNorm) || (qNormalized.length >= 3 && nameNorm.includes(qNormalized))) {
+                    matchedGame = game;
+                    gameType = 'JILI';
+                    break;
+                }
+            }
+        }
+
+        if (matchedGame) {
+            const vassal = gameType === 'PG' ? 'PG Slots' : 'JILI Slots';
+            const neonColor = gameType === 'PG' ? '#d400ff' : '#00d4ff';
+            const rtpStatus = matchedGame.percent > 75 ? '⚡ HOT ZONE (Khả năng nổ hũ cao)' : '⚖️ COLD ZONE (Đang tích lũy hũ)';
+            const rtpColor = matchedGame.percent > 75 ? 'var(--success)' : 'var(--warning)';
+            
+            appendMessage('bot', 'AI_GUIDE', `🎮 <b>${matchedGame.name.toUpperCase()}</b> (ID: ${matchedGame.id})<br>
+            <i>Sảnh:</i> <span style="color: ${neonColor}; font-weight: bold; text-shadow: 0 0 5px ${neonColor};">${vassal}</span><br>
+            <i>RTP hiện tại:</i> <span style="color: ${rtpColor}; font-weight: bold;">${matchedGame.percent}% (${rtpStatus})</span><br>
+            <br>
+            📖 <b>HƯỚNG DẪN CÁCH CHƠI & DÙNG TOOL:</b><br>
+            1. <b>Luật chơi:</b> Quay thưởng và kết hợp các biểu tượng liên tiếp từ trái qua phải theo dòng thanh toán. Tìm biểu tượng Wild/Scatter để kích hoạt vòng quay miễn phí (Free Spins) với hệ số nhân lớn.<br>
+            2. <b>Cách cắm Tool AI:</b> Chọn game này từ danh sách sảnh $\rightarrow$ Dashboard điều khiển tự động hiển thị Avatar game $\rightarrow$ Nhập số Vốn $\rightarrow$ Bấm <b>"PHÂN TÍCH AI REALTIME"</b> để lấy cấu hình cược đề xuất tối ưu.<br>
+            3. <b>Chiến thuật AI khuyến nghị:</b><br>
+               - ${matchedGame.percent > 75 ? `RTP cao (${matchedGame.percent}%), game đang nhả thưởng. Khuyên dùng cược <b>"⚖️ Cân Bằng Chiến Thuật"</b>, quay đều tay và kiên trì đón hũ.` : `RTP trung bình (${matchedGame.percent}%), game đang tích quỹ. Nên dùng cược <b>"🛡️ Bảo Toàn Quỹ Vốn"</b> (cược min), quay thăm dò 20-30 vòng đầu trước khi nâng cược.`}<br>
+               - <i>Mẹo VIP:</i> Nên cược tay đan xen 5-10 vòng thủ công để đánh lừa thuật toán nhận diện bot của nhà cái.`, 'guide-msg');
+            return;
+        }
 
         // 1. GAME: VORTEX ANALYZER PRO
         if (q.includes('vortex') || q.includes('lửa') || q.includes('nước') || q.includes('đất') || q.includes('fire') || q.includes('water') || q.includes('earth') || q.includes('element')) {
@@ -1942,6 +5782,362 @@
         }
     }
 
+    // =========================================================================
+    // PREMIUM SYSTEM UPGRADES: VOICE, CANVAS WAVEFORM, DYNAMIC LEVEL, HISTORY
+    // =========================================================================
+    let voiceAssistantMuted = false;
+
+    function initVoiceAssistant() {
+        voiceAssistantMuted = localStorage.getItem('vyron_voice_muted') === 'true';
+        const chip = document.getElementById('voiceMuteChip');
+        if (!chip) return;
+        
+        if (voiceAssistantMuted) {
+            chip.innerText = '🔇 GIỌNG NÓI: TẮT';
+            chip.style.background = 'rgba(239, 68, 68, 0.1)';
+            chip.style.borderColor = 'var(--danger)';
+            chip.style.color = 'var(--danger)';
+            chip.style.boxShadow = '0 0 8px rgba(239, 68, 68, 0.2)';
+        } else {
+            chip.innerText = '🔊 GIỌNG NÓI: BẬT';
+            chip.style.background = 'rgba(0, 212, 255, 0.1)';
+            chip.style.borderColor = 'var(--primary)';
+            chip.style.color = 'var(--primary)';
+            chip.style.boxShadow = '0 0 8px rgba(0, 212, 255, 0.2)';
+        }
+    }
+
+    function toggleVoiceAssistant() {
+        voiceAssistantMuted = !voiceAssistantMuted;
+        const chip = document.getElementById('voiceMuteChip');
+        if (voiceAssistantMuted) {
+            chip.innerText = '🔇 GIỌNG NÓI: TẮT';
+            chip.style.background = 'rgba(239, 68, 68, 0.1)';
+            chip.style.borderColor = 'var(--danger)';
+            chip.style.color = 'var(--danger)';
+            chip.style.boxShadow = '0 0 8px rgba(239, 68, 68, 0.2)';
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        } else {
+            chip.innerText = '🔊 GIỌNG NÓI: BẬT';
+            chip.style.background = 'rgba(0, 212, 255, 0.1)';
+            chip.style.borderColor = 'var(--primary)';
+            chip.style.color = 'var(--primary)';
+            chip.style.boxShadow = '0 0 8px rgba(0, 212, 255, 0.2)';
+            speakVietnamese('Bật giọng nói trợ lý thành công.');
+        }
+        localStorage.setItem('vyron_voice_muted', voiceAssistantMuted ? 'true' : 'false');
+    }
+
+    function speakVietnamese(text) {
+        if (voiceAssistantMuted || !window.speechSynthesis) return;
+        
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        
+        const voices = window.speechSynthesis.getVoices();
+        const viVoice = voices.find(v => v.lang === 'vi-VN' || v.lang.startsWith('vi'));
+        if (viVoice) {
+            utterance.voice = viVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // EXP & LEVEL SYSTEM
+    function initUserLevelSystem() {
+        userLevel = parseInt(localStorage.getItem('vyron_level') || '1');
+        userExp = parseInt(localStorage.getItem('vyron_exp') || '0');
+        updateLevelHUD();
+    }
+
+    function updateLevelHUD() {
+        document.getElementById('userLevelBadge').innerText = `LV.${userLevel}`;
+        document.getElementById('expFill').style.width = `${userExp}%`;
+        
+        const vipBadge = document.getElementById('vipTier');
+        if (userLevel >= 11) {
+            vipBadge.innerText = 'PLATINUM';
+            vipBadge.className = 'tier-badge tier-platinum';
+            vipBadge.style.color = '#e5e7eb';
+            vipBadge.style.borderColor = '#e5e7eb';
+            vipBadge.style.background = 'rgba(229, 231, 235, 0.1)';
+            vipBadge.style.boxShadow = '0 0 10px rgba(229, 231, 235, 0.3)';
+        } else if (userLevel >= 6) {
+            vipBadge.innerText = 'GOLD';
+            vipBadge.className = 'tier-badge tier-gold';
+            vipBadge.style.color = '#fbbf24';
+            vipBadge.style.borderColor = '#fbbf24';
+            vipBadge.style.background = 'rgba(251, 191, 36, 0.1)';
+            vipBadge.style.boxShadow = '0 0 10px rgba(251, 191, 36, 0.3)';
+        } else {
+            vipBadge.innerText = 'SILVER';
+            vipBadge.className = 'tier-badge tier-silver';
+            vipBadge.style.color = '#9ca3af';
+            vipBadge.style.borderColor = '#9ca3af';
+            vipBadge.style.background = 'rgba(156, 163, 175, 0.1)';
+            vipBadge.style.boxShadow = '0 0 10px rgba(156, 163, 175, 0.3)';
+        }
+    }
+
+    function addExp(amount) {
+        userExp += amount;
+        if (userExp >= 100) {
+            userExp = userExp % 100;
+            userLevel++;
+            triggerLevelUpCelebration(userLevel);
+        }
+        localStorage.setItem('vyron_level', userLevel);
+        localStorage.setItem('vyron_exp', userExp);
+        updateLevelHUD();
+    }
+
+    function triggerLevelUpCelebration(level) {
+        const overlay = document.getElementById('levelUpOverlay');
+        if (!overlay) return;
+        
+        document.getElementById('popupNewLevel').innerText = `LV.${level}`;
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'all';
+        
+        speakVietnamese(`Nâng cấp hệ thống thành công. Bạn đã lên cấp ${level}`);
+        playAudioFx('success');
+        
+        setTimeout(() => {
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+        }, 3200);
+    }
+
+    // ANALYSIS HISTORY LOG
+    function saveAnalysisSession(gameName, capitalAmount, betAmount) {
+        let history = JSON.parse(localStorage.getItem('vyron_analysis_history') || '[]');
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        
+        const newSession = {
+            time: timeStr,
+            game: gameName,
+            capital: capitalAmount,
+            bet: betAmount
+        };
+        
+        history.unshift(newSession);
+        if (history.length > 5) {
+            history.pop();
+        }
+        
+        localStorage.setItem('vyron_analysis_history', JSON.stringify(history));
+        renderAnalysisHistory();
+    }
+
+    function renderAnalysisHistory() {
+        const historyBody = document.getElementById('analysisHistoryBody');
+        if (!historyBody) return;
+        
+        let history = JSON.parse(localStorage.getItem('vyron_analysis_history') || '[]');
+        if (history.length === 0) {
+            historyBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:15px 0; color:var(--text-muted); font-style:italic;">Chưa có phiên phân tích nào.</td></tr>`;
+            return;
+        }
+        
+        let html = '';
+        history.forEach(item => {
+            html += `<tr>
+                <td style="padding: 8px 0; font-weight: bold; color: var(--primary);">${item.time}</td>
+                <td style="color: #fff; font-weight: bold;">${item.game}</td>
+                <td style="color: var(--warning);">${item.capital}</td>
+                <td style="text-align: right; color: var(--success); font-weight: bold;">${item.bet}</td>
+            </tr>`;
+        });
+        historyBody.innerHTML = html;
+    }
+
+    // GLOBAL STATS PANEL
+    let currentGlobalCapital = 5420500000;
+    
+    function initGlobalStats() {
+        updateGlobalStatsValues();
+        setInterval(() => {
+            currentGlobalCapital += Math.floor(Math.random() * 2000000) + 500000;
+            updateGlobalStatsValues();
+        }, 3000);
+    }
+    
+    function updateGlobalStatsValues() {
+        const capDisplay = document.getElementById('globalStatCapital');
+        const userDisplay = document.getElementById('globalStatUsers');
+        const bypassDisplay = document.getElementById('globalStatBypass');
+        
+        if (capDisplay) {
+            const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+            capDisplay.innerText = formatter.format(currentGlobalCapital);
+        }
+        
+        if (userDisplay) {
+            const fakeUsers = Math.floor(Math.random() * (3120 - 2950 + 1)) + 2950;
+            userDisplay.innerText = `${fakeUsers.toLocaleString('vi-VN')} ACTIVE`;
+        }
+        
+        if (bypassDisplay) {
+            const fakeBypass = (Math.random() * (99.89 - 99.85) + 99.85).toFixed(2);
+            bypassDisplay.innerText = `${fakeBypass}% SECURE`;
+        }
+    }
+
+    // WAVEFORM CANVAS DRAWING
+    let waveformCanvas = null;
+    let waveformCtx = null;
+    let isWaveformAnimating = false;
+    let waveformAnimId = null;
+    let waveformOffset = 0;
+    let currentWaveSpeed = 0.15;
+
+    function initWaveform() {
+        waveformCanvas = document.getElementById('waveformCanvas');
+        if (waveformCanvas) {
+            waveformCtx = waveformCanvas.getContext('2d');
+        }
+    }
+
+    function startWaveformAnimation(speedType) {
+        if (!waveformCanvas || !waveformCtx) return;
+        
+        switch (speedType) {
+            case 'turtle': currentWaveSpeed = 0.05; break;
+            case 'human': currentWaveSpeed = 0.12; break;
+            case 'hare': currentWaveSpeed = 0.25; break;
+            case 'lightning': currentWaveSpeed = 0.45; break;
+            default: currentWaveSpeed = 0.15;
+        }
+        
+        isWaveformAnimating = true;
+        waveformCanvas.style.display = 'block';
+        
+        function animate() {
+            if (!isWaveformAnimating) return;
+            drawWave(waveformOffset);
+            waveformOffset += currentWaveSpeed;
+            waveformAnimId = requestAnimationFrame(animate);
+        }
+        
+        if (waveformAnimId) cancelAnimationFrame(waveformAnimId);
+        animate();
+    }
+
+    function drawWave(offset) {
+        const w = waveformCanvas.width;
+        const h = waveformCanvas.height;
+        waveformCtx.clearRect(0, 0, w, h);
+        
+        waveformCtx.strokeStyle = 'rgba(0, 212, 255, 0.05)';
+        waveformCtx.lineWidth = 1;
+        for (let x = 0; x < w; x += 25) {
+            waveformCtx.beginPath();
+            waveformCtx.moveTo(x, 0);
+            waveformCtx.lineTo(x, h);
+            waveformCtx.stroke();
+        }
+        for (let y = 0; y < h; y += 15) {
+            waveformCtx.beginPath();
+            waveformCtx.moveTo(0, y);
+            waveformCtx.lineTo(w, y);
+            waveformCtx.stroke();
+        }
+        
+        waveformCtx.beginPath();
+        waveformCtx.strokeStyle = '#00d4ff';
+        waveformCtx.lineWidth = 2.5;
+        waveformCtx.shadowColor = '#00d4ff';
+        waveformCtx.shadowBlur = 10;
+        
+        for (let x = 0; x < w; x++) {
+            const y = h / 2 + 
+                      Math.sin(x * 0.015 + offset) * 22 + 
+                      Math.sin(x * 0.035 - offset * 0.7) * 8;
+            if (x === 0) {
+                waveformCtx.beginPath();
+                waveformCtx.moveTo(x, y);
+            } else {
+                waveformCtx.lineTo(x, y);
+            }
+        }
+        waveformCtx.stroke();
+        waveformCtx.shadowBlur = 0;
+    }
+
+    function stopWaveformAnimationAndDrawGoldenEntry() {
+        if (!waveformCanvas || !waveformCtx) return;
+        isWaveformAnimating = false;
+        if (waveformAnimId) cancelAnimationFrame(waveformAnimId);
+        
+        const w = waveformCanvas.width;
+        const h = waveformCanvas.height;
+        drawWave(waveformOffset);
+        
+        const entryX = Math.floor(w * 0.55);
+        const entryY = h / 2 + 
+                      Math.sin(entryX * 0.015 + waveformOffset) * 22 + 
+                      Math.sin(entryX * 0.035 - waveformOffset * 0.7) * 8;
+                      
+        waveformCtx.beginPath();
+        waveformCtx.arc(entryX, entryY, 6, 0, Math.PI * 2);
+        waveformCtx.fillStyle = '#10b981';
+        waveformCtx.shadowColor = '#10b981';
+        waveformCtx.shadowBlur = 15;
+        waveformCtx.fill();
+        
+        waveformCtx.beginPath();
+        waveformCtx.arc(entryX, entryY, 12, 0, Math.PI * 2);
+        waveformCtx.strokeStyle = 'rgba(16, 185, 129, 0.6)';
+        waveformCtx.lineWidth = 1.5;
+        waveformCtx.stroke();
+        
+        waveformCtx.fillStyle = '#fff';
+        waveformCtx.font = 'bold 10px monospace';
+        waveformCtx.shadowBlur = 5;
+        waveformCtx.shadowColor = '#10b981';
+        waveformCtx.fillText('▲ GOLDEN ENTRY', entryX - 40, entryY - 18);
+        
+        waveformCtx.shadowBlur = 0;
+    }
+
+    function handleAnalysisCompleted() {
+        let gameName = document.getElementById('activeTitle').innerText;
+        let capitalVal = document.getElementById('capitalInput') ? document.getElementById('capitalInput').value : "---";
+        let betVal = document.getElementById('valMoi').innerText;
+        let roundsVal = document.getElementById('valVong').innerText;
+
+        if (currentGameId === 'soccerstriker') {
+            gameName = "Soccer Striker";
+            capitalVal = "Hệ số penalty";
+            const dirData = calculateStrikerDirection();
+            betVal = `${dirData.targetLabel} (${currentStrikerStake} Chips)`;
+            roundsVal = "1 Lượt";
+        } else if (currentGameId === 'vortex') {
+            gameName = "Vortex Analyzer";
+            betVal = `Chỉ số AI: ${document.getElementById('valMoi') ? document.getElementById('valMoi').innerText : '---'}`;
+        }
+
+        saveAnalysisSession(gameName, capitalVal, betVal);
+        addExp(20);
+
+        let speechText = "";
+        if (currentGameId === 'soccerstriker') {
+            const dirData = calculateStrikerDirection();
+            speechText = `Phân tích penalty. Hướng sút tối ưu: ${dirData.targetLabel}.`;
+        } else if (currentGameId === 'vortex') {
+            speechText = `Đồng bộ ma trận vót téc thành công. Kiểm tra chỉ số khuyến nghị trên màn hình điều khiển.`;
+        } else {
+            let cleanBet = betVal.replace("đ", "").replace("VND", "").trim();
+            let cleanRounds = roundsVal.replace("Vòng", "").trim();
+            speechText = `Đồng bộ phân tích ${gameName} thành công. Khuyên dùng cược ${cleanBet} trong khoảng ${cleanRounds}.`;
+        }
+        speakVietnamese(speechText);
+    }
+
     function initQuantumMatrix() {}
     function animateQuantumMatrix() {}
 
@@ -1950,6 +6146,23 @@
         initThreeJSUniverse();
         verifySystemActivationState(); 
         resetRealtimeDisplay(); 
+        initVoiceAssistant();
+        initUserLevelSystem();
+        renderAnalysisHistory();
+        initGlobalStats();
+        initWaveform();
+        startSignalFeed();
+        if (window.innerWidth < 768) {
+            toggleZenMode(true);
+        }
+
+        // Restore saved theme and layout
+        const savedTheme = localStorage.getItem('vyron_selected_theme');
+        if (savedTheme) {
+            setTimeout(() => {
+                changeTheme(savedTheme);
+            }, 300);
+        }
     };
 </script>
 </body>
